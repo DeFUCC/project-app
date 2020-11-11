@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import useFetch from "../../use/useFetch.js";
+import useFetch from "../../use/fetch.js";
 export default {
   setup() {
     return {

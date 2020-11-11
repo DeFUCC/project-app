@@ -1,6 +1,7 @@
 :root {
   --background: #eee;
   --top-bar: #aaa;
+  --body-padding: 0.8em;
 }
 
 body {
@@ -43,6 +44,7 @@ html {
 .fade-leave-active {
   transition: all 0.5s ease;
   position: absolute;
+  width: 100%;
 }
 
 .fade-enter-from,
@@ -63,4 +65,15 @@ html {
 
 .slide-right-leave-to {
   transform: translateX(30px);
+}
+
+.opacity-enter-from,
+.opacity-leave-to {
+  opacity: 0;
+}
+
+.opacity-enter-active,
+.opacity-leave-active {
+  transition: all 0.1s ease;
+  opacity: 1;
 }
