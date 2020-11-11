@@ -1,3 +1,5 @@
+// https://gist.github.com/swenzel/70beac153cdf23803f89
+
 var grams = {
   ' ': {
     0.6294: 's',

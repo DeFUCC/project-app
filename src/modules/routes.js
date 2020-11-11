@@ -17,17 +17,19 @@ export default [
   {
     path: '/project/:id',
     name: 'project',
+    props: true,
     component: () => import('./project/ProjectPage.vue'),
   },
   {
     path: '/designs',
     name: 'designs',
-    component: () => import('./designs/DesignFeed.vue'),
+    component: () => import('./designs/DesignsFeed.vue'),
   },
   {
     path: '/user/',
     props: true,
     name: 'user',
+    meta: { requiresAuth: true },
     component: () => import('./user/UserPage.vue'),
     children: [
       {

@@ -9,9 +9,14 @@
       :key="key"
       :style="{ backgroundColor: itemColor(key) }"
     >
-      <router-link :to="{ name: 'project', params: { id: project.title } }">{{
-        project.title
-      }}</router-link>
+      <div class="title">
+        <router-link :to="{ name: 'project', params: { id: project.title } }">{{
+          project.title
+        }}</router-link>
+      </div>
+      <div class="created">
+        Created: {{ new Date(project.createdAt).toLocaleString() }}
+      </div>
     </div>
   </section>
 </template>
@@ -20,7 +25,7 @@
 import { reactive } from "vue";
 import { generateWords } from "../../use/randomWords.js";
 import { itemColor } from "../../use/colors.js";
-import { db } from "../../store/gun-db.js";
+import { db, soul } from "../../store/gun-db.js";
 export default {
   setup() {
     const projects = reactive({});
@@ -31,13 +36,16 @@ export default {
       });
 
     function addProject() {
-      db.get("projects").set({
-        title: generateWords(2).join(" "),
-        createdAt: Date.now(),
-      });
+      db.get("projects")
+        .get(generateWords(2).join(" "))
+        .put({
+          title: generateWords(2).join(" "),
+          createdAt: Date.now(),
+        });
     }
 
     return {
+      soul,
       projects,
       addProject,
       itemColor,
@@ -47,4 +55,11 @@ export default {
 </script>
 
 <style scoped>
+.project {
+  padding: 0.2em;
+  display: flex;
+}
+.project > div {
+  padding: 0.5em;
+}
 </style>
