@@ -33,6 +33,7 @@ import { ref, watch, watchEffect } from "vue";
 import { user, createUser, findUser, authUser } from "../../use/user.js";
 import { useRouter } from "vue-router";
 export default {
+  components: {},
   setup() {
     const router = useRouter();
     watchEffect(() => {

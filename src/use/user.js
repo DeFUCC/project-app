@@ -7,7 +7,31 @@ export const user = reactive({
   ref: gun.user(),
   is: null,
   createdAt: null,
+  avatar: null,
 })
+
+let initiated = false
+
+export function useUser() {
+  if (!initiated) {
+    init()
+    initiated = true
+  }
+
+  return {
+    user,
+  }
+}
+
+function init() {
+  gun
+    .user()
+    .get('avatar')
+    .on((data) => {
+      console.log('new')
+      user.avatar = data
+    })
+}
 
 function logIn() {
   user.isLoggedIn = true
@@ -52,6 +76,7 @@ export function logOut() {
     if (!gun.user()._?.sea) {
       user.isLoggedIn = false
       user.is = null
+      initiated = false
       notify('User logged out')
     }
   }, 300)

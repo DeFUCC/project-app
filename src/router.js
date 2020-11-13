@@ -36,7 +36,6 @@ router.beforeEach((to, from) => {
     return {
       path: '/auth',
       // save the location we were at to come back later
-      params: { denied: '1' },
     }
   }
 })
