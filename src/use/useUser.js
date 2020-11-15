@@ -4,7 +4,7 @@ import { reactive } from 'vue'
 
 export const user = reactive({
   isLoggedIn: false,
-  ref: gun.user(),
+  ref: gun.user,
   is: null,
   createdAt: null,
   avatar: null,
@@ -21,16 +21,23 @@ export function useUser() {
   return {
     user,
     logOut,
+    createUser,
+    findUser,
+    authUser,
+    recallUser,
   }
 }
 
 function init() {
-  gun
-    .user()
-    .get('avatar')
-    .on((data) => {
-      user.avatar = data
-    })
+  recallUser()
+  gun.on('auth', (ack) => {
+    gun
+      .user()
+      .get('avatar')
+      .on((data) => {
+        user.avatar = data
+      })
+  })
 }
 
 function logIn() {
@@ -39,11 +46,11 @@ function logIn() {
   notify('User ' + user.is.alias + ' is logged in!')
 }
 
-export function findUser(alias, cb) {
+function findUser(alias, cb) {
   gun.get('~@' + alias).once(cb)
 }
 
-export function createUser(alias, pass) {
+function createUser(alias, pass) {
   findUser(alias, (data) => {
     if (data) {
       error('user already exists!')
@@ -60,7 +67,7 @@ export function createUser(alias, pass) {
   })
 }
 
-export function authUser(alias, pass) {
+function authUser(alias, pass) {
   gun.user().auth(alias, pass, (ack) => {
     if (!ack.err) {
       logIn()
@@ -70,7 +77,7 @@ export function authUser(alias, pass) {
   })
 }
 
-export function logOut() {
+function logOut() {
   gun.user().leave()
   setTimeout(() => {
     if (!gun.user()._?.sea) {
@@ -82,7 +89,7 @@ export function logOut() {
   }, 300)
 }
 
-export function recallUser() {
+function recallUser() {
   gun.user().recall({ sessionStorage: true }, (ack) => {
     if (!ack.err) {
       logIn()

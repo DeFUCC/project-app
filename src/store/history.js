@@ -12,7 +12,7 @@ if (localStorage.history) {
   try {
     story = JSON.parse(localStorage.history)
     story.forEach((line) => (line.seen = true))
-  } catch (error) {
+  } catch (err) {
     localStorage.history = null
   }
 }

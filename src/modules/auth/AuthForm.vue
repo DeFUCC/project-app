@@ -30,11 +30,12 @@
 
 <script>
 import { ref, watch, watchEffect } from "vue";
-import { user, createUser, findUser, authUser } from "../../use/user.js";
+import { useUser } from "../../use/useUser.js";
 import { useRouter } from "vue-router";
 export default {
   components: {},
   setup() {
+    const { user, createUser, findUser, authUser } = useUser();
     const router = useRouter();
     watchEffect(() => {
       if (user.is) {

@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import {} from "../../use/user.js";
 export default {
   setup() {
     return {};

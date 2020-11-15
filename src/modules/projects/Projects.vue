@@ -4,6 +4,14 @@
       <div class="title">
         Projects <span class="tag">{{ sorted.count }}</span>
       </div>
+      <button
+        v-for="(by, key) in options.orderBy"
+        :key="key"
+        :class="{ active: by }"
+        @click="options.orderBy[key] = !options.orderBy[key]"
+      >
+        {{ key }}
+      </button>
 
       <button @click="addProject()">add</button>
     </header>
@@ -20,8 +28,9 @@
             >{{ project.title }}</router-link
           >
         </div>
-        <div class="created">
-          Created: {{ new Date(project.createdAt).toLocaleString() }}
+        <div>Created: {{ formatDate(project.createdAt) }}</div>
+        <div v-if="project.updatedAt">
+          Updated: {{ formatDate(project.updatedAt) }}
         </div>
       </div>
     </transition-group>
@@ -34,11 +43,12 @@ import { generateWords } from "../../use/randomWords.js";
 import { itemColor } from "../../use/colors.js";
 import { useSorter } from "../../use/useSorter.js";
 import { db, soul } from "../../store/gun-db.js";
+import { notify } from "../../store/history.js";
 export default {
   setup() {
     const projects = reactive({});
 
-    const { sorted } = useSorter(projects);
+    const { sorted, options } = useSorter(projects);
 
     db.get("projects")
       .map()
@@ -51,18 +61,33 @@ export default {
 
     function addProject() {
       let title = generateWords(2).join(" ");
-      db.get("projects").get(title).put({
-        title,
-        createdAt: Date.now(),
-      });
+      db.get("projects")
+        .get(title)
+        .put(
+          {
+            title,
+            createdAt: Date.now(),
+          },
+          (ack) => {
+            if (!ack.err) {
+              notify(`Project ${title} added`);
+            }
+          }
+        );
+    }
+
+    function formatDate(date) {
+      return new Date(date).toLocaleString();
     }
 
     return {
       soul,
       projects,
+      options,
       sorted,
       addProject,
       itemColor,
+      formatDate,
     };
   },
 };

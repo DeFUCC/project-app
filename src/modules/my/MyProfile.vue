@@ -1,11 +1,10 @@
 <template>
-  <article>
-    <h1>Userinfo</h1>
-    <section>
+  <article id="profile">
+    <h1>My profile</h1>
+    <section class="avatar-editor">
       <div
         class="edit-avatar"
         @click="update = true"
-        v-if="user.avatar && !update"
         :style="{
           backgroundImage:
             'linear-gradient(hsla(0,100%,100%,0.7), hsla(0,100%,100%,0.5)), url(' +
@@ -30,8 +29,10 @@
 
 <script>
 import FileUploader from "../../components/FileUploader.vue";
-import { useUser } from "../../use/user.js";
+import { useUser } from "../../use/useUser.js";
+import { gun } from "../../store/gun-db.js";
 import { ref } from "vue";
+import { notify } from "../../store/history.js";
 export default {
   props: {
     alias: String,
@@ -44,7 +45,17 @@ export default {
     const { user } = useUser();
 
     function process(img) {
-      user.ref.get("avatar").put(img.content);
+      if (!img.content) return;
+      gun
+        .user()
+        .get("avatar")
+        .put(img.content, (st) => {
+          console.log(st);
+          if (!st.err) {
+            update.value = false;
+            notify("User avatar updated");
+          }
+        });
     }
     return {
       update,
@@ -56,6 +67,12 @@ export default {
 </script>
 
 <style scoped>
+#profile {
+  padding: 1em;
+}
+.avatar-editor {
+  display: flex;
+}
 .edit-avatar {
   border-radius: 80px;
   display: flex;

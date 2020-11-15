@@ -41,10 +41,8 @@
       </div>
     </form>
     <div class="output" v-if="state.isSuccess">
-      <code v-for="(item, index) in state.output" :key="index">
-        <img :src="item.content" alt="" />
-        {{ item.size }}
-      </code>
+      <img :src="state.output.content" alt="" />
+      {{ state.output.size }}
     </div>
     <button class="close" @click="$emit('close')">close</button>
   </div>
@@ -53,14 +51,14 @@
 <script>
 // https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue
 import { state, handleChanges } from "../use/fileUpload.js";
-import { watchEffect } from "vue";
+import { watch } from "vue";
 export default {
   name: "FileUploader",
   emits: ["loaded", "close"],
   setup(props, { emit }) {
-    watchEffect(() => {
-      if (state.output.length > 0) {
-        emit("loaded", state.output[0]);
+    watch(state, () => {
+      if (state.status == 2) {
+        emit("loaded", state.output);
       }
     });
     return {
@@ -78,7 +76,7 @@ export default {
 }
 .box {
   padding: 10px;
-  flex: 1 1 200px;
+  flex: 1 1 400px;
   position: relative;
 }
 .box .box-inner {

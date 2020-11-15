@@ -4,8 +4,13 @@ onmessage = (e) => {
 
 function sort({ data }) {
   let list = Object.values(data.list)
-
-  list.sort(sortByAB)
+  let orderBy = data.options.orderBy
+  if (orderBy.AB) {
+    list.sort(sortByAB)
+  }
+  if (orderBy.createdAt) {
+    list.sort(sortByCreated)
+  }
   postMessage(list)
 }
 
@@ -27,4 +32,12 @@ function sortByAB(a, b) {
   }
 
   return 0
+}
+
+function sortByCreated(a, b) {
+  if (a.createdAt > b.createdAt) {
+    return -1
+  } else {
+    return 1
+  }
 }

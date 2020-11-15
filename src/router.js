@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { user } from './use/user.js'
+import { user } from './use/useUser.js'
 
 import MainPageRoutes from './modules/routes'
 

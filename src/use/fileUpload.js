@@ -28,7 +28,7 @@ const options = {
 export const state = reactive({
   errors: [],
   status: null,
-  output: [],
+  output: {},
   isInitial: computed(() => {
     return state.status === status.initial
   }),
@@ -52,11 +52,11 @@ export function handleChanges(fieldName, fileList) {
 
 function processFile(file) {
   fileToBase64(file).then((res) => {
-    state.output.push({
+    state.output = {
       name: sanitizeFileName(file.name),
       content: res,
       size: Math.round((res.length * 3) / 4),
-    })
+    }
     state.status = status.success
   })
   return null
@@ -100,8 +100,8 @@ function fileToBase64(file) {
         const canvas = document.createElement('canvas')
         canvas.width = canvas.height = 100
         const context = canvas.getContext('2d')
-        const naturalAspect = img.naturalWidth / img.naturalHeight
-        console.log(naturalAspect)
+        //  const naturalAspect = img.naturalWidth / img.naturalHeight
+
         context.drawImage(img, 0, 0, canvas.width, canvas.height)
         resolve(canvas.toDataURL())
       }
@@ -118,7 +118,7 @@ function fileToBase64(file) {
 function reset() {
   state.status = status.initial
   state.errors = []
-  state.output = []
+  state.output = {}
 }
 
 // Converts from bytes to megabytes

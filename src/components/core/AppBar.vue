@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import { recallUser, user } from "../../use/user.js";
+import { useUser } from "../../use/useUser.js";
 export default {
   setup() {
-    recallUser();
+    const { user } = useUser();
     return {
       user,
     };

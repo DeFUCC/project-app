@@ -4,8 +4,13 @@
       {{ project.title }}
       <button @click="edit.title = !edit.title">Edit</button>
     </h1>
-    <input type="text" v-if="edit.title" :value="project.title" />
-    <button @click="update()">Save</button>
+    <input
+      type="text"
+      v-if="edit.title"
+      v-model="edited.title"
+      @keypress.enter="update()"
+    />
+    <button v-if="edit.title" @click="update()">Save</button>
     <div>Created: {{ new Date(project.createdAt).toLocaleString() }}</div>
     <div v-if="project.updatedAt">
       Updated:
@@ -19,6 +24,7 @@
 <script>
 import { gun, db, soul } from "../../store/gun-db.js";
 import { reactive } from "vue";
+import { notify } from "../../store/history.js";
 export default {
   props: {
     id: String,
@@ -26,6 +32,9 @@ export default {
   setup(props) {
     const edit = reactive({
       title: false,
+    });
+    const edited = reactive({
+      title: "",
     });
     const project = reactive({});
     db.get("projects")
@@ -44,21 +53,34 @@ export default {
       gun
         .get(project.soul)
         .map()
-        .on((data, key) => {
-          project[key] = data;
+        .on((data, ke) => {
+          project[ke] = data;
         });
     }
 
-    function update(title = Date.now()) {
-      gun.get(project.soul).put({
-        title: title,
-        updatedAt: Date.now(),
-      });
+    function update() {
+      if (!edited.title) {
+        edit.title = false;
+        return;
+      }
+      let title = project.title;
+      gun.get(project.soul).put(
+        {
+          title: edited.title,
+          updatedAt: Date.now(),
+        },
+        () => {
+          notify(`Project ${title} is renamed to ${edited.title}`);
+          edited.title = "";
+          edit.title = false;
+        }
+      );
     }
     return {
       update,
       project,
       edit,
+      edited,
     };
   },
 };

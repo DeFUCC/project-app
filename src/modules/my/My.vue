@@ -1,6 +1,6 @@
 <template>
-  <article v-if="user.is" :style="{ backgroundColor: itemColor(user.is?.pub) }">
-    <div id="panel">
+  <article v-if="user.is">
+    <header class="bar" :style="{ backgroundColor: itemColor(user.is?.pub) }">
       <img
         class="avatar"
         v-if="user.avatar"
@@ -10,15 +10,18 @@
       <div class="title">{{ user.is?.alias }}</div>
       <div class="spacer"></div>
       <button @click="logOut()">🚪 Log out</button>
+    </header>
+    <div class="bar">
+      <router-link to="/my/profile">Profile</router-link>
     </div>
-    <router-link to="/my/profile">Profile</router-link>
+
     <router-view></router-view>
   </article>
 </template>
 
 <script>
 import { itemColor } from "../../use/colors.js";
-import { useUser } from "../../use/user.js";
+import { useUser } from "../../use/useUser.js";
 import { useRouter } from "vue-router";
 import { watchEffect } from "vue";
 export default {
@@ -41,15 +44,6 @@ export default {
 </script>
 
 <style scoped>
-#panel {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-between;
-}
-.spacer {
-  flex: 10;
-}
 .title {
   padding: 0 1em;
   font-size: 1.2em;

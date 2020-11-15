@@ -1,6 +1,6 @@
 import { reactive, toRaw, watch } from 'vue'
 
-export function useSorter(obj, options = reactive({})) {
+export function useSorter(obj) {
   if (!window.Worker) {
     console.log('No worker support')
     return
@@ -8,6 +8,13 @@ export function useSorter(obj, options = reactive({})) {
   const sorter = new Worker('./workers/sorter.js')
   const sorted = reactive({
     data: null,
+  })
+  const options = reactive({
+    orderBy: {
+      AB: true,
+      createdAt: false,
+      modifiedAt: false,
+    },
   })
 
   watch([obj, options], () => {
@@ -29,7 +36,7 @@ export function useSorter(obj, options = reactive({})) {
   }
 
   return {
-    sort,
     sorted,
+    options,
   }
 }
