@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { ref, watch, watchEffect } from "vue";
+import { ref, watch } from "vue";
 import { useUser } from "../../use/useUser.js";
 import { useRouter } from "vue-router";
 export default {
@@ -37,8 +37,8 @@ export default {
   setup() {
     const { user, createUser, findUser, authUser } = useUser();
     const router = useRouter();
-    watchEffect(() => {
-      if (user.is) {
+    watch(user, () => {
+      if (user.isLoggedIn) {
         router.push("/my");
       }
     });

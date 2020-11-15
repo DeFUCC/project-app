@@ -3,8 +3,8 @@
     <header class="bar" :style="{ backgroundColor: itemColor(user.is?.pub) }">
       <img
         class="avatar"
-        v-if="user.avatar"
-        :src="user.avatar"
+        v-if="user.profile.avatar"
+        :src="user.profile.avatar"
         :alt="user.is?.alias"
       />
       <div class="title">{{ user.is?.alias }}</div>

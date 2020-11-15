@@ -1,18 +1,14 @@
-import { reactive, toRaw, watch } from 'vue'
+import { reactive, watch } from 'vue'
 
 export function useSorter(obj) {
-  if (!window.Worker) {
-    console.log('No worker support')
-    return
-  }
-  const sorter = new Worker('./workers/sorter.js')
   const sorted = reactive({
     data: null,
+    count: 0,
   })
   const options = reactive({
     orderBy: {
-      AB: true,
-      createdAt: false,
+      AB: false,
+      createdAt: true,
       modifiedAt: false,
     },
   })
@@ -24,19 +20,47 @@ export function useSorter(obj) {
   })
 
   function sort(list) {
-    sorter.postMessage({
-      list: toRaw(list),
-      options: toRaw(options),
-    })
-  }
-
-  sorter.onmessage = (e) => {
-    sorted.data = e.data
-    sorted.count = e.data.length
+    let data = Object.values(list)
+    sorted.count = data.length
+    if (options.orderBy.AB) {
+      sorted.data = data.sort(sortByAB)
+    } else if (options.orderBy.createdAt) {
+      sorted.data = data.sort(sortByCreated)
+    } else {
+      sorted.data = data
+    }
   }
 
   return {
     sorted,
     options,
+  }
+}
+
+function sortByAB(a, b) {
+  if (!a) {
+    return -1
+  }
+  if (!b) {
+    return 1
+  }
+  let aTitle = String(a.title).toLowerCase()
+  let bTitle = String(b.title).toLowerCase()
+
+  if (aTitle > bTitle) {
+    return 1
+  }
+  if (aTitle < bTitle) {
+    return -1
+  }
+
+  return 0
+}
+
+function sortByCreated(a, b) {
+  if (a.createdAt > b.createdAt) {
+    return -1
+  } else {
+    return 1
   }
 }

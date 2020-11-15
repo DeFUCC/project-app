@@ -30,7 +30,7 @@ router.afterEach((to, from) => {
 router.beforeEach((to, from) => {
   // instead of having to check every route record with
   // to.matched.some(record => record.meta.requiresAuth)
-  if (to.meta.requiresAuth && !user.is) {
+  if (to.meta.requiresAuth && !user.is?.pub) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
     return {

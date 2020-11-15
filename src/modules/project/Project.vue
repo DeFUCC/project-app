@@ -1,16 +1,19 @@
 <template>
   <section v-if="project.soul">
-    <h1 v-if="!edit.title">
-      {{ project.title }}
-      <button @click="edit.title = !edit.title">Edit</button>
-    </h1>
-    <input
-      type="text"
-      v-if="edit.title"
-      v-model="edited.title"
-      @keypress.enter="update()"
-    />
-    <button v-if="edit.title" @click="update()">Save</button>
+    <header class="bar" :style="{ backgroundColor: itemColor(project.soul) }">
+      <h1 v-if="!edit.title">
+        {{ project.title }}
+        <button @click="edit.title = !edit.title">Edit</button>
+      </h1>
+      <input
+        type="text"
+        v-if="edit.title"
+        v-model="edited.title"
+        @keypress.enter="update()"
+      />
+      <button v-if="edit.title" @click="update()">Save</button>
+    </header>
+
     <div>Created: {{ new Date(project.createdAt).toLocaleString() }}</div>
     <div v-if="project.updatedAt">
       Updated:
@@ -23,8 +26,9 @@
 
 <script>
 import { gun, db, soul } from "../../store/gun-db.js";
-import { reactive } from "vue";
+import { reactive, watchEffect } from "vue";
 import { notify } from "../../store/history.js";
+import { itemColor } from "../../use/colors.js";
 export default {
   props: {
     id: String,
@@ -37,24 +41,27 @@ export default {
       title: "",
     });
     const project = reactive({});
-    db.get("projects")
-      .map((proj, key) => {
-        if (proj.title == props.id) {
-          return proj;
-        }
-        return;
-      })
-      .once((data, key) => {
-        getProject(soul(data));
-      });
 
-    function getProject(key) {
-      project.soul = key;
+    watchEffect(() => {
+      db.get("projects")
+        .map((proj, key) => {
+          if (proj.title == props.id) {
+            return proj;
+          }
+          return;
+        })
+        .on((data, key) => {
+          getProject(soul(data));
+        });
+    });
+
+    function getProject(id) {
+      project.soul = id;
       gun
-        .get(project.soul)
+        .get(id)
         .map()
-        .on((data, ke) => {
-          project[ke] = data;
+        .on((data, key) => {
+          project[key] = data;
         });
     }
 
@@ -81,6 +88,7 @@ export default {
       project,
       edit,
       edited,
+      itemColor,
     };
   },
 };

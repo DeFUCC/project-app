@@ -3,11 +3,11 @@
   <history-bar />
   <main>
     <router-view v-slot="{ Component }">
-      <keep-alive>
-        <transition name="fade">
+      <transition name="fade">
+        <keep-alive>
           <component :is="Component" />
-        </transition>
-      </keep-alive>
+        </keep-alive>
+      </transition>
     </router-view>
   </main>
 </template>

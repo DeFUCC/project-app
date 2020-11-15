@@ -32,7 +32,8 @@ export default [
     component: () => import('./my/My.vue'),
     children: [
       {
-        path: 'profile',
+        path: '',
+        alias: 'profile',
         component: () => import('./my/MyProfile.vue'),
       },
     ],

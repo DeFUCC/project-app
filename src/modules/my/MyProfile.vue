@@ -8,17 +8,17 @@
         :style="{
           backgroundImage:
             'linear-gradient(hsla(0,100%,100%,0.7), hsla(0,100%,100%,0.5)), url(' +
-            user.avatar +
+            user.profile.avatar +
             ')',
         }"
-        :src="user.avatar"
+        :src="user.profile.avatar"
         :alt="user.is?.alias"
       >
         &#10000;
       </div>
 
       <file-uploader
-        v-if="!user.avatar || update"
+        v-if="!user.profile.avatar || update"
         @loaded="process"
         @close="update = false"
       ></file-uploader>
@@ -48,6 +48,7 @@ export default {
       if (!img.content) return;
       gun
         .user()
+        .get("profile")
         .get("avatar")
         .put(img.content, (st) => {
           console.log(st);

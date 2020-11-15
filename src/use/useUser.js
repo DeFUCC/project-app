@@ -5,9 +5,12 @@ import { reactive } from 'vue'
 export const user = reactive({
   isLoggedIn: false,
   ref: gun.user,
+  profileRef: gun.user().get('profile'),
   is: null,
-  createdAt: null,
-  avatar: null,
+  profile: {
+    createdAt: null,
+    avatar: null,
+  },
 })
 
 let initiated = false
@@ -33,9 +36,10 @@ function init() {
   gun.on('auth', (ack) => {
     gun
       .user()
-      .get('avatar')
-      .on((data) => {
-        user.avatar = data
+      .get('profile')
+      .map()
+      .on((data, key) => {
+        user.profile[key] = data
       })
   })
 }
@@ -57,7 +61,11 @@ function createUser(alias, pass) {
     } else {
       gun.user().create(alias, pass, (ack) => {
         if (!ack.err) {
-          gun.user().get('createdAt').put(Date.now())
+          setTimeout(() => {
+            gun.user().get('createdAt').put(Date.now())
+            console.log('created!')
+          }, 1000)
+
           logIn()
         } else {
           error(ack.err)
