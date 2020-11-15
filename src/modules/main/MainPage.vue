@@ -1,7 +1,7 @@
 <template>
   <article>
-    <h1>Привет!</h1>
-    <p>Проектный подход</p>
+    <h1>Welcome!</h1>
+    <p>This is Project App – the new approach to social collaboration</p>
   </article>
 </template>
 
