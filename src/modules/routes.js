@@ -18,12 +18,12 @@ export default [
     path: '/project/:id',
     name: 'project',
     props: true,
-    component: () => import('./project/ProjectPage.vue'),
+    component: () => import('./project/Project.vue'),
   },
   {
     path: '/designs',
     name: 'designs',
-    component: () => import('./designs/DesignsFeed.vue'),
+    component: () => import('./designs/Designs.vue'),
   },
   {
     path: '/my',

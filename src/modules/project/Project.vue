@@ -45,7 +45,6 @@ export default {
         .get(project.soul)
         .map()
         .on((data, key) => {
-          project[key] = null;
           project[key] = data;
         });
     }

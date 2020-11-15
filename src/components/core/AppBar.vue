@@ -1,6 +1,7 @@
 <template>
   <nav id="app-bar">
     <router-link class="logo" to="/">PROJECT APP</router-link>
+    <router-link to="/designs">Designs</router-link>
     <router-link to="/projects">Projects</router-link>
     <div class="spacer"></div>
     <router-link v-if="!user.is" to="/auth">Auth</router-link>
