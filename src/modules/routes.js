@@ -12,7 +12,7 @@ export default [
   {
     path: '/projects',
     name: 'projects',
-    component: () => import('./projects/ProjectsFeed.vue'),
+    component: () => import('./projects/Projects.vue'),
   },
   {
     path: '/project/:id',
@@ -26,15 +26,27 @@ export default [
     component: () => import('./designs/DesignsFeed.vue'),
   },
   {
-    path: '/user/',
-    props: true,
-    name: 'user',
+    path: '/my',
+    name: 'my',
     meta: { requiresAuth: true },
-    component: () => import('./user/UserPage.vue'),
+    component: () => import('./my/My.vue'),
+    children: [
+      {
+        path: 'profile',
+        component: () => import('./my/MyProfile.vue'),
+      },
+    ],
+  },
+  {
+    path: '/users/',
+    props: true,
+    name: 'users',
+    meta: { requiresAuth: true },
+    component: () => import('./users/Users.vue'),
     children: [
       {
         path: ':alias',
-        component: () => import('./user/UserInfo.vue'),
+        component: () => import('./users/UserInfo.vue'),
       },
     ],
   },

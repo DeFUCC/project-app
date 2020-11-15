@@ -38,7 +38,7 @@ export default {
     const router = useRouter();
     watchEffect(() => {
       if (user.is) {
-        router.push("/user/" + user.is.alias);
+        router.push("/my");
       }
     });
     const alias = ref("");

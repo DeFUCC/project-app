@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { unseen, eventColors } from "../store/history.js";
+import { unseen, eventColors } from "../../store/history.js";
 export default {
   setup() {
     return {
@@ -31,8 +31,8 @@ export default {
 <style scoped>
 .notification {
   position: fixed;
-  top: 6em;
-  right: 20px;
+  bottom: 2em;
+  right: 2em;
 }
 .message {
   padding: 0.5em;

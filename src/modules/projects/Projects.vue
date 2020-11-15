@@ -25,9 +25,11 @@
 import { reactive } from "vue";
 import { generateWords } from "../../use/randomWords.js";
 import { itemColor } from "../../use/colors.js";
+import { useSorter } from "../../use/useSorter.js";
 import { db, soul } from "../../store/gun-db.js";
 export default {
   setup() {
+    const { sorter } = useSorter();
     const projects = reactive({});
     db.get("projects")
       .map()

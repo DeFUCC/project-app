@@ -1,20 +1,18 @@
 <template>
   <app-bar />
   <history-bar />
-  <main class="main">
+  <main>
     <router-view v-slot="{ Component }">
-      <keep-alive>
-        <transition name="fade">
-          <component :is="Component" />
-        </transition>
-      </keep-alive>
+      <transition name="fade">
+        <component :is="Component" />
+      </transition>
     </router-view>
   </main>
 </template>
 
 <script>
-import AppBar from "./core/AppBar.vue";
-import HistoryBar from "./core/HistoryBar.vue";
+import AppBar from "./components/core/AppBar.vue";
+import HistoryBar from "./components/core/HistoryBar.vue";
 export default {
   name: "Project app",
   components: {
@@ -25,7 +23,4 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  padding: var(--body-padding);
-}
 </style>

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { user } from './use/user.js'
 
 import MainPageRoutes from './modules/routes'
@@ -6,7 +6,7 @@ import MainPageRoutes from './modules/routes'
 const routes = [...MainPageRoutes]
 
 export const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

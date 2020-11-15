@@ -1,0 +1,6 @@
+button {
+  border: none;
+  padding: 0.7em 0.7em;
+  background-color: var(--secondary-button);
+  border-radius: 0.5em;
+}

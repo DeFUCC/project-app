@@ -1,24 +1,20 @@
 <template>
-  <nav id="app-bar" :style="{ backgroundColor: itemColor(user.is?.pub) }">
+  <nav id="app-bar">
     <router-link class="logo" to="/">PROJECT APP</router-link>
     <router-link to="/projects">Projects</router-link>
     <div class="spacer"></div>
     <router-link v-if="!user.is" to="/auth">Auth</router-link>
-    <router-link v-else :to="'/user/' + user.is.alias">{{
-      user.is.alias
-    }}</router-link>
+    <router-link v-else to="/my">{{ user.is.alias }}</router-link>
   </nav>
 </template>
 
 <script>
-import { itemColor } from "../use/colors.js";
-import { recallUser, user } from "../use/user.js";
+import { recallUser, user } from "../../use/user.js";
 export default {
   setup() {
     recallUser();
     return {
       user,
-      itemColor,
     };
   },
 };

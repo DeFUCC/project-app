@@ -20,6 +20,7 @@ export function useUser() {
 
   return {
     user,
+    logOut,
   }
 }
 
@@ -28,7 +29,6 @@ function init() {
     .user()
     .get('avatar')
     .on((data) => {
-      console.log('new')
       user.avatar = data
     })
 }
@@ -50,7 +50,7 @@ export function createUser(alias, pass) {
     } else {
       gun.user().create(alias, pass, (ack) => {
         if (!ack.err) {
-          gun.user().get('createdAt').put('today')
+          gun.user().get('createdAt').put(Date.now())
           logIn()
         } else {
           error(ack.err)
