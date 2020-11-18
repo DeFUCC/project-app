@@ -26,7 +26,7 @@
 
 <script>
 import { gun, db, soul } from "../../store/gun-db.js";
-import { reactive, watchEffect } from "vue";
+import { reactive, watchEffect, onActivated } from "vue";
 import { notify } from "../../store/history.js";
 import { itemColor } from "../../use/colors.js";
 export default {
@@ -34,6 +34,9 @@ export default {
     id: String,
   },
   setup(props) {
+    onActivated(() => {
+      console.log("active");
+    });
     const edit = reactive({
       title: false,
     });
@@ -43,7 +46,7 @@ export default {
     const project = reactive({});
 
     watchEffect(() => {
-      db.get("projects")
+      db.get("project")
         .map((proj, key) => {
           if (proj.title == props.id) {
             return proj;

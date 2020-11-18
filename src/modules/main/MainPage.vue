@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article id="main">
     <h1>Welcome!</h1>
     <p>This is Project App – the new approach to social collaboration</p>
   </article>
@@ -14,4 +14,7 @@ export default {
 </script>
 
 <style scoped>
+#main {
+  padding: 2em;
+}
 </style>

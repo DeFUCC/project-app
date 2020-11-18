@@ -23,14 +23,15 @@
         @close="update = false"
       ></file-uploader>
     </section>
-    <section></section>
+    <button @click="newInfo()">Test</button>
+    <section>{{ user }}</section>
   </article>
 </template>
 
 <script>
 import FileUploader from "../../components/FileUploader.vue";
 import { useUser } from "../../use/useUser.js";
-import { gun } from "../../store/gun-db.js";
+import { gun, db } from "../../store/gun-db.js";
 import { ref } from "vue";
 import { notify } from "../../store/history.js";
 export default {
@@ -43,6 +44,12 @@ export default {
   setup() {
     const update = ref(false);
     const { user } = useUser();
+
+    function newInfo() {
+      db.get("users").get(gun.user().is.pub).put({
+        test: "testing",
+      });
+    }
 
     function process(img) {
       if (!img.content) return;
@@ -59,6 +66,7 @@ export default {
         });
     }
     return {
+      newInfo,
       update,
       process,
       user,

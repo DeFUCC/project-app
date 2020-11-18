@@ -13,7 +13,7 @@
         {{ key }}
       </button>
 
-      <button @click="addProject()">add</button>
+      <button @click="addItem()">add</button>
     </header>
     <transition-group name="list">
       <div
@@ -32,63 +32,22 @@
         <div v-if="project.updatedAt">
           Updated: {{ formatDate(project.updatedAt) }}
         </div>
+        <item-rating :item="project.soul"></item-rating>
       </div>
     </transition-group>
   </article>
 </template>
 
 <script>
-import { reactive } from "vue";
-import { generateWords } from "../../use/randomWords.js";
-import { itemColor } from "../../use/colors.js";
-import { useSorter } from "../../use/useSorter.js";
-import { db, soul } from "../../store/gun-db.js";
-import { notify } from "../../store/history.js";
+import { useItems } from "../../use/useItems.js";
+import ItemRating from "../../components/ItemRating.vue";
 export default {
+  components: {
+    ItemRating,
+  },
   setup() {
-    const projects = reactive({});
-
-    const { sorted, options } = useSorter(projects);
-
-    db.get("projects")
-      .map()
-      .on((data, key) => {
-        if (projects[key]) {
-          projects[key] = null;
-        }
-        projects[key] = data;
-      });
-
-    function addProject() {
-      let title = generateWords(2).join(" ");
-      db.get("projects")
-        .get(title)
-        .put(
-          {
-            title,
-            createdAt: Date.now(),
-          },
-          (ack) => {
-            if (!ack.err) {
-              notify(`Project ${title} added`);
-            }
-          }
-        );
-    }
-
-    function formatDate(date) {
-      return new Date(date).toLocaleString();
-    }
-
-    return {
-      soul,
-      projects,
-      options,
-      sorted,
-      addProject,
-      itemColor,
-      formatDate,
-    };
+    const projects = useItems("project");
+    return projects;
   },
 };
 </script>

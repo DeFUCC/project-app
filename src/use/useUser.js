@@ -1,24 +1,23 @@
-import { gun } from '../store/gun-db.js'
+import { gun, db } from '../store/gun-db.js'
 import { notify, error } from '../store/history.js'
 import { reactive } from 'vue'
 
 export const user = reactive({
+  initiated: false,
   isLoggedIn: false,
   ref: gun.user,
-  profileRef: gun.user().get('profile'),
   is: null,
   profile: {
     createdAt: null,
     avatar: null,
   },
+  info: {},
 })
 
-let initiated = false
-
 export function useUser() {
-  if (!initiated) {
+  if (!user.initiated) {
     init()
-    initiated = true
+    user.initiated = true
   }
 
   return {
@@ -41,6 +40,13 @@ function init() {
       .on((data, key) => {
         user.profile[key] = data
       })
+    db.get('users')
+      .get(gun.user().is.pub)
+      .map()
+      .on((data, key) => {
+        user.info[key] = data
+        console.log(data)
+      })
   })
 }
 
@@ -61,17 +67,22 @@ function createUser(alias, pass) {
     } else {
       gun.user().create(alias, pass, (ack) => {
         if (!ack.err) {
-          setTimeout(() => {
-            gun.user().get('createdAt').put(Date.now())
-            console.log('created!')
-          }, 1000)
-
-          logIn()
+          if (gun.user().is) {
+            addUserToDB()
+            logIn()
+          }
         } else {
           error(ack.err)
         }
       })
     }
+  })
+}
+
+function addUserToDB() {
+  db.get('users').get(gun.user().is.pub).put({
+    is: gun.user().is,
+    createdAt: Date.now(),
   })
 }
 
@@ -91,8 +102,9 @@ function logOut() {
     if (!gun.user()._?.sea) {
       user.isLoggedIn = false
       user.is = null
-      initiated = false
+      user.initiated = false
       notify('User logged out')
+      window.location.reload()
     }
   }, 300)
 }

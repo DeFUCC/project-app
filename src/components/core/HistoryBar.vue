@@ -44,4 +44,7 @@ export default {
   padding: 0 0.4em;
   text-decoration: none;
 }
+.content:first-letter {
+  text-transform: capitalize;
+}
 </style>

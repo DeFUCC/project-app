@@ -1,0 +1,8 @@
+input[type='text'],
+input[type='password'] {
+  margin: 1em;
+  padding: 1em;
+  border-radius: var(--small-radius);
+  outline: none;
+  border: 1px solid #999;
+}
