@@ -1,16 +1,13 @@
 <template>
   <article>
     <div id="panel">All users here</div>
-
     <router-view></router-view>
   </article>
 </template>
 
 <script>
 export default {
-  setup() {
-    return {};
-  },
+  setup() {},
 };
 </script>
 

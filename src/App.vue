@@ -5,12 +5,9 @@
     <router-view v-slot="{ Component }">
       <transition name="fade">
         <keep-alive>
-          <component v-if="$route.meta.keepAlive" :is="Component" />
+          <component :is="Component" />
         </keep-alive>
-        
       </transition>
-      <component v-if="!$route.meta.keepAlive" :is="Component" />
-      <main>
     </router-view>
   </main>
 </template>

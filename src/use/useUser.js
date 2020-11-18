@@ -12,6 +12,7 @@ export const user = reactive({
     avatar: null,
   },
   info: {},
+  rating: {},
 })
 
 export function useUser() {
@@ -45,7 +46,14 @@ function init() {
       .map()
       .on((data, key) => {
         user.info[key] = data
-        console.log(data)
+        console.log(key, data)
+      })
+    gun
+      .user()
+      .get('rating')
+      .map()
+      .on((data, key) => {
+        user.rating[key] = data
       })
   })
 }
@@ -80,10 +88,12 @@ function createUser(alias, pass) {
 }
 
 function addUserToDB() {
-  db.get('users').get(gun.user().is.pub).put({
-    is: gun.user().is,
-    createdAt: Date.now(),
-  })
+  db.get('user')
+    .get(gun.user().is.pub)
+    .put({
+      ...gun.user().is,
+      createdAt: Date.now(),
+    })
 }
 
 function authUser(alias, pass) {

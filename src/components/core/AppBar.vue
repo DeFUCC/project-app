@@ -4,6 +4,7 @@
     <router-link to="/designs">Designs</router-link>
     <router-link to="/projects">Projects</router-link>
     <div class="spacer"></div>
+    <router-link to="/users">Users</router-link>
     <router-link v-if="!user.is" to="/auth">Auth</router-link>
     <router-link v-else to="/my">{{ user.is.alias }}</router-link>
   </nav>

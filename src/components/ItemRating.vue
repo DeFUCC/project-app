@@ -1,8 +1,11 @@
 <template>
   <div class="rating">
-    <button class="minus">- {{ rating.minus }}</button>
-    <button class="zero">{{ rating.zero }}</button>
-    <button class="plus" @click="rate.plus(item)">+ {{ rating.plus }}</button>
+    <button class="minus">- {{ rating.count.minus }}</button>
+    <button class="zero">{{ rating.count.zero }}</button>
+    <button class="plus" @click="rate.plus(item)">
+      + {{ rating.count.plus }}
+    </button>
+    {{ rating.plused }}
   </div>
 </template>
 

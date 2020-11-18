@@ -46,6 +46,10 @@ export default [
     component: () => import('./users/Users.vue'),
     children: [
       {
+        path: '',
+        component: () => import('./users/UserList.vue'),
+      },
+      {
         path: ':alias',
         component: () => import('./users/UserInfo.vue'),
       },
