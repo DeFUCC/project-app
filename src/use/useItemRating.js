@@ -1,4 +1,4 @@
-import { reactive, toRaw } from 'vue'
+import { reactive, computed } from 'vue'
 import { db, gun } from '../store/gun-db.js'
 
 export function useItemRating(id) {
@@ -12,7 +12,9 @@ export function useItemRating(id) {
       all: 0,
       minus: 0,
       zero: 0,
-      plus: 0,
+      plus: computed(() => {
+        return Object.keys(rating.plused).length
+      }),
     },
     plused: {},
     minused: {},
