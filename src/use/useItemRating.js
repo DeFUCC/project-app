@@ -15,7 +15,6 @@ export function useItemRating(id) {
       minus: 0,
       zero: 0,
       plus: computed(() => {
-        console.log('hmm')
         return Object.keys(rating.plused).length
       }),
     },

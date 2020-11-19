@@ -34,33 +34,37 @@ export function useUser() {
 function init() {
   recallUser()
   gun.on('auth', (ack) => {
-    gun
-      .user()
-      .get('profile')
-      .map()
-      .on((data, key) => {
-        user.profile[key] = data
-      })
-    db.get('users')
-      .get(gun.user().is.pub)
-      .map()
-      .on((data, key) => {
-        user.info[key] = data
-        console.log(key, data)
-      })
-    gun
-      .user()
-      .get('rating')
-      .map()
-      .on((data, key) => {
-        user.rating[key] = data
-      })
+    loadUser()
   })
+}
+
+function loadUser() {
+  gun
+    .user()
+    .get('profile')
+    .map()
+    .on((data, key) => {
+      user.profile[key] = data
+    })
+  db.get('users')
+    .get(gun.user().is.pub)
+    .map()
+    .on((data, key) => {
+      user.info[key] = data
+    })
+  gun
+    .user()
+    .get('rating')
+    .map()
+    .on((data, key) => {
+      user.rating[key] = data
+    })
 }
 
 function logIn() {
   user.isLoggedIn = true
   user.is = gun.user().is
+  loadUser()
   notify('You successfully logged in as ' + user.is.alias + '.')
 }
 

@@ -43,7 +43,7 @@ a.router-link-active {
   position: sticky;
   top: 0;
   flex-flow: row nowrap;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
   padding: 1em;
   background-color: var(--bar-color);

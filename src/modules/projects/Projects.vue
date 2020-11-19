@@ -50,6 +50,7 @@
 <script>
 import { itemColor } from "../../use/colors.js";
 import { format } from "timeago.js";
+// https://github.com/hustcc/timeago.js/blob/7ebf670ec3d47af66b175225eb675354d12951c2/src/lang/ru.ts
 import { useItems } from "../../use/useItems.js";
 import ItemRating from "../../components/ItemRating.vue";
 export default {
@@ -66,7 +67,9 @@ export default {
 <style scoped>
 .project {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  margin: 0.5em;
+  padding: 0.5em;
 }
 .info {
   padding: 0.5em;

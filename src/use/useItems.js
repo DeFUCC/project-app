@@ -10,28 +10,35 @@ export function useItems({ type = 'project' } = {}) {
 
   const { sorted, options } = useSorter(items)
 
-  db.get(type)
-    .map()
-    .on((data, key) => {
-      if (items[key]) {
-        items[key] = null
-      }
-      items[key] = data
-      items[key].soul = soul(data)
-      items[key].author = {}
-      gun
-        .user(key.substring(1, 88))
-        .get('profile')
-        .get('avatar')
-        .on((d) => {
-          items[key].author.avatar = d
-        })
-      db.get('users')
-        .get(data.createdBy)
-        .once((d, k) => {
-          items[key].author.alias = d.alias
-        })
-    })
+  function getItems() {
+    db.get(type)
+      .map()
+      .on((data, key) => {
+        if (items[key]) {
+          items[key] = null
+        }
+        items[key] = data
+        items[key].soul = soul(data)
+        items[key].author = {}
+        gun
+          .user(key.substring(1, 88))
+          .get('profile')
+          .get('avatar')
+          .on((d) => {
+            items[key].author.avatar = d
+          })
+
+        if (data.createdBy) {
+          db.get('users')
+            .get(data.createdBy)
+            .once((d, k) => {
+              items[key].author.alias = d?.alias
+            })
+        }
+      })
+  }
+
+  getItems()
 
   function addItem() {
     let title = generateWords(2).join(' ')

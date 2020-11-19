@@ -8,7 +8,8 @@
         flexGrow: rating.count.plus,
       }"
     >
-      <img src="/icons/hero-outline.svg#plus" alt="" />
+      <img v-if="!rating.myRate" src="/icons/hero-outline.svg#star" alt="" />
+      <img v-else src="/icons/hero-solid.svg#star" alt="" />
       {{ rating.count.plus }}
     </div>
 
@@ -17,14 +18,14 @@
       {{ rating.count.zero }}
     </div>
     <div class="minus">
-      <img src="/icons/hero-outline.svg#x" alt="" /> {{ rating.count.minus }}
+      <img src="/icons/hero-outline.svg#trash" alt="" />
+      {{ rating.count.minus }}
     </div>
   </div>
 </template>
 
 <script>
 import { useItemRating } from "../use/useItemRating.js";
-import { soul } from "../store/gun-db.js";
 export default {
   props: {
     item: String,
@@ -69,6 +70,6 @@ export default {
   padding: 0em 0.2em 0 0;
 }
 .rating div.active {
-  opacity: 1;
+  opacity: 0.7;
 }
 </style>

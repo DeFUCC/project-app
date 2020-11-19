@@ -2,7 +2,7 @@
   <section>
     <div
       :style="{ backgroundColor: itemColor(user.soul) }"
-      class="user"
+      class="user-line"
       v-for="user in items"
       :key="user.soul"
     >
@@ -31,6 +31,9 @@ export default {
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
+}
+.user-line {
+  padding: 1em;
 }
 .avatar {
   border-radius: 80px;
