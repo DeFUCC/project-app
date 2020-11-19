@@ -18,7 +18,7 @@ export function useSorter(obj) {
     },
   })
 
-  const throttledSort = throttle(sort, 300)
+  const throttledSort = throttle(sort, 100)
 
   watch([obj, options], () => {
     if (obj) {

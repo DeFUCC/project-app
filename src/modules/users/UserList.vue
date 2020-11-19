@@ -12,11 +12,15 @@
 </template>
 
 <script>
+import { itemColor } from "../../use/colors.js";
 import { useItems } from "../../use/useItems.js";
 export default {
   setup() {
-    const users = useItems({ type: "user" });
-    return users;
+    const users = useItems({ type: "users" });
+    return {
+      ...users,
+      itemColor,
+    };
   },
 };
 </script>

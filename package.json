@@ -8,6 +8,7 @@
   "dependencies": {
     "color-hash": "^1.0.3",
     "image-compressor": "^2.0.3",
+    "timeago.js": "^4.0.2",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-rc.2"
   },

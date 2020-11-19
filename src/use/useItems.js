@@ -1,9 +1,9 @@
 import { reactive } from 'vue'
 import { generateWords } from './randomWords.js'
-import { itemColor } from './colors.js'
 import { useSorter } from './useSorterWorker.js'
 import { db, soul, gun } from '../store/gun-db.js'
 import { notify } from '../store/history.js'
+import { itemColor } from '../use/colors.js'
 
 export function useItems({ type = 'project' } = {}) {
   const items = reactive({})
@@ -18,6 +18,19 @@ export function useItems({ type = 'project' } = {}) {
       }
       items[key] = data
       items[key].soul = soul(data)
+      items[key].author = {}
+      gun
+        .user(key.substring(1, 88))
+        .get('profile')
+        .get('avatar')
+        .on((d) => {
+          items[key].author.avatar = d
+        })
+      db.get('users')
+        .get(data.createdBy)
+        .once((d, k) => {
+          items[key].author.alias = d.alias
+        })
     })
 
   function addItem() {
@@ -29,6 +42,7 @@ export function useItems({ type = 'project' } = {}) {
         {
           title,
           createdAt: Date.now(),
+          createdBy: gun.user()?.is?.pub,
         },
         (ack) => {
           if (!ack.err) {
@@ -39,17 +53,10 @@ export function useItems({ type = 'project' } = {}) {
       )
   }
 
-  function formatDate(date) {
-    return new Date(date).toLocaleString()
-  }
-
   return {
-    soul,
     items,
     options,
     sorted,
     addItem,
-    itemColor,
-    formatDate,
   }
 }

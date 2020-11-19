@@ -12,6 +12,8 @@
         @keypress.enter="update()"
       />
       <button v-if="edit.title" @click="update()">Save</button>
+      <div class="spacer"></div>
+      <item-rating :item="project.soul"></item-rating>
     </header>
 
     <div>Created: {{ new Date(project.createdAt).toLocaleString() }}</div>
@@ -21,6 +23,7 @@
     </div>
     <button @click="update()">update</button>
   </section>
+
   <section v-else>Project {{ id }} not found</section>
 </template>
 
@@ -29,9 +32,13 @@ import { gun, db, soul } from "../../store/gun-db.js";
 import { reactive, watchEffect, onActivated } from "vue";
 import { notify } from "../../store/history.js";
 import { itemColor } from "../../use/colors.js";
+import itemRating from "../../components/ItemRating.vue";
 export default {
   props: {
     id: String,
+  },
+  components: {
+    itemRating,
   },
   setup(props) {
     onActivated(() => {
@@ -97,5 +104,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 </style>

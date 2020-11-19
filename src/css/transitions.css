@@ -8,11 +8,14 @@
 
 .list-leave-to {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(30px);
 }
 
 .list-leave-active {
-  transition: all 1s ease-in;
+  transition: all 0.4s ease-in;
+}
+.list-move {
+  transition: transform 0.8s ease;
 }
 
 .fade-enter-active,

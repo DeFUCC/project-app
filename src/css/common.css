@@ -40,6 +40,8 @@ a.router-link-active {
 
 .bar {
   display: flex;
+  position: sticky;
+  top: 0;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
@@ -63,4 +65,18 @@ a.router-link-active {
 
 .spacer {
   flex: 10;
+}
+
+.avatar {
+  border-radius: 8em;
+}
+
+.avatar.small {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.avatar.medium {
+  width: 4em;
+  height: 4em;
 }

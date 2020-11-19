@@ -61,7 +61,7 @@ function init() {
 function logIn() {
   user.isLoggedIn = true
   user.is = gun.user().is
-  notify('User ' + user.is.alias + ' is logged in!')
+  notify('You successfully logged in as ' + user.is.alias + '.')
 }
 
 function findUser(alias, cb) {
@@ -88,7 +88,7 @@ function createUser(alias, pass) {
 }
 
 function addUserToDB() {
-  db.get('user')
+  db.get('users')
     .get(gun.user().is.pub)
     .put({
       ...gun.user().is,

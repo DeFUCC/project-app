@@ -2,7 +2,7 @@
   <article v-if="user.is">
     <header class="bar" :style="{ backgroundColor: itemColor(user.is?.pub) }">
       <img
-        class="avatar"
+        class="avatar medium"
         v-if="user.profile.avatar"
         :src="user.profile.avatar"
         :alt="user.is?.alias"
@@ -48,10 +48,5 @@ export default {
   padding: 0 1em;
   font-size: 1.2em;
   font-weight: bold;
-}
-.avatar {
-  border-radius: 80px;
-  width: 50px;
-  height: 50px;
 }
 </style>

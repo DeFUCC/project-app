@@ -37,11 +37,14 @@ export default {
   setup() {
     const { user, createUser, findUser, authUser } = useUser();
     const router = useRouter();
-    watch(user, () => {
-      if (user.isLoggedIn) {
-        router.push("/my");
+    watch(
+      () => user.is,
+      () => {
+        if (user.isLoggedIn) {
+          router.push("/my");
+        }
       }
-    });
+    );
     const alias = ref("");
     const pass = ref("");
     const userExists = ref(null);

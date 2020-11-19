@@ -19,19 +19,28 @@
       <div
         class="project"
         v-for="project in sorted.data"
-        :key="soul(project)"
-        :style="{ backgroundColor: itemColor(soul(project)) }"
+        :key="project.soul"
+        :style="{ backgroundColor: itemColor(project.soul) }"
       >
-        <div class="title">
+        <div class="title info">
           <router-link
             :to="{ name: 'project', params: { id: project.title } }"
             >{{ project.title }}</router-link
           >
         </div>
-        <div>Created: {{ formatDate(project.createdAt) }}</div>
-        <div v-if="project.updatedAt">
-          Updated: {{ formatDate(project.updatedAt) }}
+        <div class="info">
+          <img
+            v-if="project.author.avatar"
+            class="avatar-small"
+            :src="project.author.avatar"
+            alt=""
+          />
+          by {{ project.author.alias }} {{ format(project.createdAt) }}
         </div>
+        <div class="info" v-if="project.updatedAt">
+          Updated: {{ format(project.updatedAt) }}
+        </div>
+        <div class="spacer"></div>
         <item-rating :item="project.soul"></item-rating>
       </div>
     </transition-group>
@@ -39,6 +48,8 @@
 </template>
 
 <script>
+import { itemColor } from "../../use/colors.js";
+import { format } from "timeago.js";
 import { useItems } from "../../use/useItems.js";
 import ItemRating from "../../components/ItemRating.vue";
 export default {
@@ -47,17 +58,21 @@ export default {
   },
   setup() {
     const projects = useItems("project");
-    return projects;
+    return { ...projects, format, itemColor };
   },
 };
 </script>
 
 <style scoped>
 .project {
-  padding: 0.2em;
   display: flex;
+  align-items: center;
 }
-.project > div {
+.info {
   padding: 0.5em;
+}
+.avatar-small {
+  height: 1.5em;
+  border-radius: 2em;
 }
 </style>
