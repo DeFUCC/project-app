@@ -18,6 +18,7 @@ export default [
     path: '/project/:id',
     name: 'project',
     props: true,
+    meta: { noKeepAlive: true },
     component: () => import('./project/Project.vue'),
   },
   {
@@ -35,6 +36,11 @@ export default [
         path: '',
         alias: 'profile',
         component: () => import('./my/MyProfile.vue'),
+      },
+      {
+        path: 'projects',
+        alias: 'projects',
+        component: () => import('./my/MyProjects.vue'),
       },
     ],
   },

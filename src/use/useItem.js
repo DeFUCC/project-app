@@ -1,9 +1,12 @@
-import { reactive, watchEffect } from 'vue'
 import { gun, db, soul } from '../store/gun-db.js'
+import { reactive, watchEffect, onActivated } from 'vue'
 import { notify } from '../store/history.js'
-import { itemColor } from '../use/colors.js'
 
-export function useItem() {
+export function useItem(id) {
+  onActivated(() => {
+    console.log('activated')
+    findProject(id)
+  })
   const edit = reactive({
     title: false,
   })
@@ -13,12 +16,17 @@ export function useItem() {
   const project = reactive({})
 
   watchEffect(() => {
-    sync('project', id)
+    findProject(id)
   })
 
-  function sync(itemType, title) {
+  function findProject(pid) {
     db.get('project')
-      .get(id)
+      .map((proj, key) => {
+        if (proj.title == pid) {
+          return proj
+        }
+        return
+      })
       .on((data, key) => {
         getProject(soul(data))
       })
@@ -30,6 +38,7 @@ export function useItem() {
       .get(pid)
       .map()
       .on((data, key) => {
+        project[key] = null
         project[key] = data
       })
   }
@@ -57,6 +66,5 @@ export function useItem() {
     project,
     edit,
     edited,
-    itemColor,
   }
 }

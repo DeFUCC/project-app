@@ -13,9 +13,16 @@
     </header>
     <div class="bar">
       <router-link to="/my/profile">Profile</router-link>
+      <router-link to="/my/projects">Projects</router-link>
     </div>
 
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <transition name="fade">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
   </article>
 </template>
 

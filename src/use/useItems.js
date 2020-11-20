@@ -19,22 +19,18 @@ export function useItems({ type = 'project' } = {}) {
         }
         items[key] = data
         items[key].soul = soul(data)
-        items[key].author = {}
+        items[key].author = reactive({})
         gun
           .user(key.substring(1, 88))
+          .once((userIs) => {
+            console.log(userIs.alias)
+            items[key].author.alias = userIs?.alias
+          })
           .get('profile')
           .get('avatar')
           .on((d) => {
             items[key].author.avatar = d
           })
-
-        if (data.createdBy) {
-          db.get('users')
-            .get(data.createdBy)
-            .once((d, k) => {
-              items[key].author.alias = d?.alias
-            })
-        }
       })
   }
 

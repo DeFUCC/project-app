@@ -16,10 +16,10 @@
       <item-rating :item="project.soul"></item-rating>
     </header>
 
-    <div>Created: {{ new Date(project.createdAt).toLocaleString() }}</div>
+    <div>Created {{ format(project.createdAt) }}</div>
     <div v-if="project.updatedAt">
-      Updated:
-      {{ new Date(project.updatedAt).toLocaleString() }}
+      Updated
+      {{ format(project.updatedAt) }}
     </div>
     <button @click="update()">update</button>
   </section>
@@ -28,10 +28,9 @@
 </template>
 
 <script>
-import { gun, db, soul } from "../../store/gun-db.js";
-import { reactive, watchEffect, onActivated } from "vue";
-import { notify } from "../../store/history.js";
+import { useItem } from "../../use/useItem.js";
 import { itemColor } from "../../use/colors.js";
+import { format } from "timeago.js";
 import itemRating from "../../components/ItemRating.vue";
 export default {
   props: {
@@ -41,64 +40,11 @@ export default {
     itemRating,
   },
   setup(props) {
-    onActivated(() => {
-      console.log("active");
-    });
-    const edit = reactive({
-      title: false,
-    });
-    const edited = reactive({
-      title: "",
-    });
-    const project = reactive({});
-
-    watchEffect(() => {
-      db.get("project")
-        .map((proj, key) => {
-          if (proj.title == props.id) {
-            return proj;
-          }
-          return;
-        })
-        .on((data, key) => {
-          getProject(soul(data));
-        });
-    });
-
-    function getProject(id) {
-      project.soul = id;
-      gun
-        .get(id)
-        .map()
-        .on((data, key) => {
-          project[key] = data;
-        });
-    }
-
-    function update() {
-      if (!edited.title) {
-        edit.title = false;
-        return;
-      }
-      let title = project.title;
-      gun.get(project.soul).put(
-        {
-          title: edited.title,
-          updatedAt: Date.now(),
-        },
-        () => {
-          notify(`Project ${title} is renamed to ${edited.title}`);
-          edited.title = "";
-          edit.title = false;
-        }
-      );
-    }
+    const project = useItem(props.id);
     return {
-      update,
-      project,
-      edit,
-      edited,
+      ...project,
       itemColor,
+      format,
     };
   },
 };

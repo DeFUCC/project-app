@@ -4,7 +4,7 @@
   <main>
     <router-view v-slot="{ Component }">
       <transition name="fade">
-        <keep-alive>
+        <keep-alive include="Projects">
           <component :is="Component" />
         </keep-alive>
       </transition>

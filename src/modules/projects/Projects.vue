@@ -28,7 +28,7 @@
             >{{ project.title }}</router-link
           >
         </div>
-        <div class="info">
+        <div class="info" v-if="project.author">
           <img
             v-if="project.author.avatar"
             class="avatar-small"
@@ -54,6 +54,7 @@ import { format } from "timeago.js";
 import { useItems } from "../../use/useItems.js";
 import ItemRating from "../../components/ItemRating.vue";
 export default {
+  name: "Projects",
   components: {
     ItemRating,
   },
