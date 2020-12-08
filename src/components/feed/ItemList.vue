@@ -31,6 +31,7 @@ export default {
   align-items: stretch;
   flex-flow: column nowrap;
   padding: 0;
+  margin: 0;
   overflow: scroll;
   scroll-snap-type: y mandatory;
 }

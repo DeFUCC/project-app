@@ -1,5 +1,5 @@
 <template>
-  <div class="info" v-if="author">
+  <span v-if="author">
     <img
       v-if="author.avatar"
       class="avatar-small"
@@ -7,7 +7,7 @@
       alt=""
     />
     {{ author.alias }}
-  </div>
+  </span>
 </template>
 
 <script>

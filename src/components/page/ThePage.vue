@@ -1,40 +1,57 @@
 <template>
-  <article class="page">
-    <PageHeader :item="item.info" />
-    {{ item.info.soul }}
+  <article ref="page" class="page">
+    <ItemCard :item="item.info" />
+
     <section class="content">
       <div class="description">
         {{ item.info.description }}
       </div>
-
-      <button @click="item.addChild('project')">Add project</button>
-      <div class="card" v-for="child in item.children" :key="child">
-        {{ child.title }}
-      </div>
-      <ItemFeed type="project" :root="item.info.soul" />
+      <small> {{ item.info.soul }} </small>
     </section>
+
+    <ItemFeed
+      v-if="item.info.type == 'design'"
+      type="project"
+      :root="item.info.soul"
+    />
+    <ItemFeed
+      v-if="item.info.type == 'project'"
+      type="object"
+      :root="item.info.soul"
+    />
   </article>
 </template>
 
 <script>
-import { reactive, ref, watchEffect } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 import { useItem } from "../../use/useItem";
-import PageHeader from "./PageHeader.vue";
 import ItemFeed from "../feed/ItemFeed.vue";
+import ItemCard from "../item/ItemCard.vue";
 export default {
   props: ["id"],
   components: {
-    PageHeader,
+    ItemCard,
     ItemFeed,
   },
   setup(props) {
     const item = ref({});
+    const page = ref(null);
+    let mounted = false;
     watchEffect(() => {
       item.value = useItem(props.id);
+      if (mounted) {
+        page.value.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+
+    onMounted(() => {
+      mounted = true;
+      page.value.scrollIntoView({ behavior: "smooth" });
     });
 
     return {
       item,
+      page,
     };
   },
 };
@@ -46,7 +63,7 @@ export default {
   overflow: scroll;
 }
 
-.content {
-  padding: 1em;
+.description {
+  padding: 2em;
 }
 </style>

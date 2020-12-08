@@ -12,7 +12,7 @@
       {{ key }}
     </button>
 
-    <button @click="addItem()">add</button>
+    <button v-if="user.isLoggedIn" @click="items.addItem()">add</button>
   </header>
   <item-list :items="items.sorted.data"></item-list>
 </template>
@@ -23,6 +23,7 @@ import { format } from "timeago.js";
 import { useItems } from "../../use/useItems.js";
 import ItemList from "./ItemList.vue";
 import { ref, watchEffect } from "vue";
+import { user } from "../../use/useUser.js";
 export default {
   name: "ItemFeed",
   props: {
@@ -49,6 +50,7 @@ export default {
     });
 
     return {
+      user,
       items,
       format,
       itemColor,

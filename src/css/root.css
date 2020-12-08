@@ -24,4 +24,5 @@ html {
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
   word-break: break-word;
+  overscroll-behavior-x: none !important;
 }

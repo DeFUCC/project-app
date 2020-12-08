@@ -1,31 +1,18 @@
-import { gun, db, soul } from '../store/gun-db.js'
-import { reactive, watchEffect, onActivated } from 'vue'
+import { gun } from '../store/gun-db.js'
+import { reactive } from 'vue'
 import { notify } from '../store/history.js'
 import { generateWords } from './randomWords.js'
 
 export function useItem(id) {
-  console.log(id)
   const info = reactive({})
-  const children = reactive({})
   gun
     .get(id)
     .map()
     .on((data, key) => {
       info[key] = data
     })
-  async function addChild(type) {
-    let added = await gun.get(id).get(type).set(generateItem(type))
-    console.log(added)
-  }
-  gun
-    .get(id)
-    .get('project')
-    .map()
-    .on((data, key) => {
-      children[key] = data
-    })
 
-  return { info, addChild, children }
+  return { info }
 }
 
 export function generateItem(type) {

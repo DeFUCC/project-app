@@ -49,7 +49,12 @@ export function useItems({
   }
 
   async function addItem() {
-    let title = generateWords(2).join(' ')
+    let query
+    if (root) {
+      query = gun.get(root)
+    } else {
+      query = db
+    }
     if (mode == 'private') {
       let userItem = gun
         .user()
@@ -58,11 +63,11 @@ export function useItems({
           if (!ack.err) {
             notify(`${type} has been added`)
           }
-          db.get(type).set(userItem)
+          query.get(type).set(userItem)
         })
     }
     if (mode == 'public') {
-      db.get(type).set(generateItem(type), (ack) => {
+      query.get(type).set(generateItem(type), (ack) => {
         if (!ack.err) {
           notify(`${type}  has been added`)
         }
@@ -71,7 +76,6 @@ export function useItems({
   }
 
   return {
-    items,
     options,
     sorted,
     addItem,

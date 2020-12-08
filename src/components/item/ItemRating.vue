@@ -2,39 +2,42 @@
   <div class="rating">
     <div
       class="plus"
-      @click.stop="rate.plus(item)"
-      :class="{ active: rating.myRate }"
+      @click.stop="r.rate.plus(item)"
+      :class="{ active: r.rating.myRate }"
       :style="{
-        flexGrow: rating.count.plus,
+        flexGrow: r.rating.count.plus,
       }"
     >
-      <img v-if="!rating.myRate" src="/icons/hero-outline.svg#star" alt="" />
+      <img v-if="!r.rating.myRate" src="/icons/hero-outline.svg#star" alt="" />
       <img v-else src="/icons/hero-solid.svg#star" alt="" />
-      {{ rating.count.plus }}
+      {{ r.rating.count.plus }}
     </div>
 
     <div class="zero">
       <img src="/icons/hero-outline.svg#eye" alt="" />
-      {{ rating.count.zero }}
+      {{ r.rating.count.zero }}
     </div>
     <div class="minus">
       <img src="/icons/hero-outline.svg#trash" alt="" />
-      {{ rating.count.minus }}
+      {{ r.rating.count.minus }}
     </div>
   </div>
 </template>
 
 <script>
+import { ref, watchEffect } from "vue";
 import { useItemRating } from "../../use/useItemRating.js";
 export default {
   props: {
     item: String,
   },
-  async setup(props) {
-    const { rating, rate } = useItemRating(props.item);
+  setup(props) {
+    const r = ref({});
+    watchEffect(() => {
+      r.value = useItemRating(props.item);
+    });
     return {
-      rating,
-      rate,
+      r,
     };
   },
 };
