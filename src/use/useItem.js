@@ -1,70 +1,39 @@
 import { gun, db, soul } from '../store/gun-db.js'
 import { reactive, watchEffect, onActivated } from 'vue'
 import { notify } from '../store/history.js'
+import { generateWords } from './randomWords.js'
 
 export function useItem(id) {
-  onActivated(() => {
-    console.log('activated')
-    findProject(id)
-  })
-  const edit = reactive({
-    title: false,
-  })
-  const edited = reactive({
-    title: '',
-  })
-  const project = reactive({})
-
-  watchEffect(() => {
-    findProject(id)
-  })
-
-  function findProject(pid) {
-    db.get('project')
-      .map((proj, key) => {
-        if (proj.title == pid) {
-          return proj
-        }
-        return
-      })
-      .on((data, key) => {
-        getProject(soul(data))
-      })
+  console.log(id)
+  const info = reactive({})
+  const children = reactive({})
+  gun
+    .get(id)
+    .map()
+    .on((data, key) => {
+      info[key] = data
+    })
+  async function addChild(type) {
+    let added = await gun.get(id).get(type).set(generateItem(type))
+    console.log(added)
   }
+  gun
+    .get(id)
+    .get('project')
+    .map()
+    .on((data, key) => {
+      children[key] = data
+    })
 
-  function getProject(pid) {
-    project.soul = pid
-    gun
-      .get(pid)
-      .map()
-      .on((data, key) => {
-        project[key] = null
-        project[key] = data
-      })
-  }
+  return { info, addChild, children }
+}
 
-  function update() {
-    if (!edited.title) {
-      edit.title = false
-      return
-    }
-    let title = project.title
-    gun.get(project.soul).put(
-      {
-        title: edited.title,
-        updatedAt: Date.now(),
-      },
-      () => {
-        notify(`Project ${title} is renamed to ${edited.title}`)
-        edited.title = ''
-        edit.title = false
-      },
-    )
-  }
+export function generateItem(type) {
   return {
-    update,
-    project,
-    edit,
-    edited,
+    title: generateWords(2).join(' '),
+    description: generateWords(100).join(' '),
+    type: type,
+    createdAt: Date.now(),
+    createdBy: gun.user()?.is?.pub,
   }
 }

@@ -24,6 +24,8 @@ export default [
   {
     path: '/designs',
     name: 'designs',
+
+    meta: { noKeepAlive: true },
     component: () => import('./designs/Designs.vue'),
   },
   {

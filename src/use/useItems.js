@@ -3,15 +3,28 @@ import { generateWords } from './randomWords.js'
 import { useSorter } from './useSorterWorker.js'
 import { db, soul, gun } from '../store/gun-db.js'
 import { notify } from '../store/history.js'
-import { itemColor } from '../use/colors.js'
+import { generateItem } from './useItem.js'
 
-export function useItems({ type = 'project' } = {}) {
+export function useItems({
+  type = 'project',
+  mode = 'private',
+  root = null,
+} = {}) {
   const items = reactive({})
+
+  getItems()
 
   const { sorted, options } = useSorter(items)
 
   function getItems() {
-    db.get(type)
+    let query
+    if (root) {
+      query = gun.get(root)
+    } else {
+      query = db
+    }
+    query
+      .get(type)
       .map()
       .on((data, key) => {
         if (items[key]) {
@@ -23,8 +36,9 @@ export function useItems({ type = 'project' } = {}) {
         gun
           .user(key.substring(1, 88))
           .once((userIs) => {
-            console.log(userIs.alias)
-            items[key].author.alias = userIs?.alias
+            if (userIs) {
+              items[key].author.alias = userIs?.alias
+            }
           })
           .get('profile')
           .get('avatar')
@@ -34,26 +48,26 @@ export function useItems({ type = 'project' } = {}) {
       })
   }
 
-  getItems()
-
-  function addItem() {
+  async function addItem() {
     let title = generateWords(2).join(' ')
-    let userItem = gun
-      .user()
-      .get(type)
-      .set(
-        {
-          title,
-          createdAt: Date.now(),
-          createdBy: gun.user()?.is?.pub,
-        },
-        (ack) => {
+    if (mode == 'private') {
+      let userItem = gun
+        .user()
+        .get(type)
+        .set(generateItem(type), (ack) => {
           if (!ack.err) {
-            notify(`${type} ${title} has been added`)
+            notify(`${type} has been added`)
           }
           db.get(type).set(userItem)
-        },
-      )
+        })
+    }
+    if (mode == 'public') {
+      db.get(type).set(generateItem(type), (ack) => {
+        if (!ack.err) {
+          notify(`${type}  has been added`)
+        }
+      })
+    }
   }
 
   return {

@@ -66,17 +66,3 @@ a.router-link-active {
 .spacer {
   flex: 10;
 }
-
-.avatar {
-  border-radius: 8em;
-}
-
-.avatar.small {
-  width: 1.5em;
-  height: 1.5em;
-}
-
-.avatar.medium {
-  width: 4em;
-  height: 4em;
-}

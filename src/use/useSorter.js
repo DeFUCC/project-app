@@ -19,15 +19,15 @@ export function useSorter(obj) {
     }
   })
 
-  function sort(list) {
+  async function sort(list) {
     let data = Object.values(list)
     sorted.count = data.length
     if (options.orderBy.AB) {
-      sorted.data = data.sort(sortByAB)
+      sorted.data = await data.sort(sortByAB)
     } else if (options.orderBy.createdAt) {
-      sorted.data = data.sort(sortByCreated)
+      sorted.data = await data.sort(sortByCreated)
     } else {
-      sorted.data = data
+      sorted.data = await data
     }
   }
 

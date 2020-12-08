@@ -20,13 +20,19 @@ export function useSorter(obj) {
 
   const throttledSort = throttle(sort, 100)
 
-  watch([obj, options], () => {
-    if (obj) {
-      throttledSort(obj)
-    }
-  })
+  watch(
+    [obj, options],
+    () => {
+      if (obj) {
+        throttledSort(obj)
+      }
+    },
+    {
+      immediate: true,
+    },
+  )
 
-  function sort(list) {
+  async function sort(list) {
     sorter.postMessage({
       list: toRaw(list),
       options: toRaw(options),

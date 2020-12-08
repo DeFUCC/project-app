@@ -3,6 +3,7 @@
 }
 .list-enter-from {
   opacity: 0;
+  z-index: 20;
   transform: translateY(-100%);
 }
 
@@ -16,6 +17,9 @@
 }
 .list-move {
   transition: transform 0.8s ease-in-out;
+}
+.list-item {
+  z-index: 1;
 }
 
 .fade-enter-active,

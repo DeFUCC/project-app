@@ -2,7 +2,7 @@
   <div class="rating">
     <div
       class="plus"
-      @click="rate.plus(item)"
+      @click.stop="rate.plus(item)"
       :class="{ active: rating.myRate }"
       :style="{
         flexGrow: rating.count.plus,
@@ -25,12 +25,12 @@
 </template>
 
 <script>
-import { useItemRating } from "../use/useItemRating.js";
+import { useItemRating } from "../../use/useItemRating.js";
 export default {
   props: {
     item: String,
   },
-  setup(props) {
+  async setup(props) {
     const { rating, rate } = useItemRating(props.item);
     return {
       rating,

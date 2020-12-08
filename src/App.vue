@@ -1,15 +1,11 @@
 <template>
   <app-bar />
   <history-bar />
-  <main>
-    <router-view v-slot="{ Component }">
-      <transition name="fade">
-        <keep-alive include="Projects">
-          <component :is="Component" />
-        </keep-alive>
-      </transition>
-    </router-view>
-  </main>
+  <router-view v-slot="{ Component }">
+    <transition name="fade">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script>

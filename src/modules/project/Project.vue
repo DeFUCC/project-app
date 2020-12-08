@@ -21,7 +21,6 @@
       Updated
       {{ format(project.updatedAt) }}
     </div>
-    <button @click="update()">update</button>
   </section>
 
   <section v-else>Project {{ id }} not found</section>
@@ -31,7 +30,7 @@
 import { useItem } from "../../use/useItem.js";
 import { itemColor } from "../../use/colors.js";
 import { format } from "timeago.js";
-import itemRating from "../../components/ItemRating.vue";
+import itemRating from "../../components/item/ItemRating.vue";
 export default {
   props: {
     id: String,
