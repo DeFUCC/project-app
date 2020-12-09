@@ -37,7 +37,7 @@ export default {
     const router = useRouter();
     watchEffect(() => {
       if (!user.is) {
-        router.push("/");
+        router.push("/auth");
       }
     });
 
@@ -51,6 +51,9 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  overflow-y: scroll;
+}
 .bar {
   display: flex;
   position: sticky;

@@ -1,12 +1,12 @@
 <template>
-  <ViewFeeds item="project" />
+  <ViewFeeds item="object" />
 </template>
 
 <script>
 import ViewFeeds from "../../components/feed/ViewFeeds.vue";
 
 export default {
-  name: "Projects",
+  name: "Objects",
   components: {
     ViewFeeds,
   },

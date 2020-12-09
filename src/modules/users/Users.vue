@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article class="pane">
     <div id="panel">All users here</div>
     <router-view></router-view>
   </article>
@@ -7,11 +7,16 @@
 
 <script>
 export default {
+  components: {},
   setup() {},
 };
 </script>
 
 <style scoped>
+.pane {
+  overflow-y: scroll;
+  padding: 2em;
+}
 #panel {
   display: flex;
   flex-flow: row wrap;

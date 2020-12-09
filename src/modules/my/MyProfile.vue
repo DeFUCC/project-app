@@ -23,8 +23,6 @@
         @close="update = false"
       ></file-uploader>
     </section>
-    <button @click="newInfo()">Test</button>
-    <section>{{ user }}</section>
   </article>
 </template>
 
@@ -45,12 +43,6 @@ export default {
     const update = ref(false);
     const { user } = useUser();
 
-    function newInfo() {
-      db.get("users").get(gun.user().is.pub).put({
-        test: "testing",
-      });
-    }
-
     function process(img) {
       if (!img.content) return;
       gun
@@ -66,7 +58,6 @@ export default {
         });
     }
     return {
-      newInfo,
       update,
       process,
       user,

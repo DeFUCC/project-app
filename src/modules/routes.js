@@ -10,6 +10,11 @@ export default [
     component: () => import('./main/MainPage.vue'),
   },
   {
+    path: '/objects',
+    name: 'objects',
+    component: () => import('./objects/Objects.vue'),
+  },
+  {
     path: '/projects',
     name: 'projects',
     component: () => import('./projects/Projects.vue'),

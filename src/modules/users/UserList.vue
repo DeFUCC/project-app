@@ -1,21 +1,14 @@
 <template>
-  <section>
-    <div
-      :style="{ backgroundColor: 'none' }"
-      class="user-line"
-      v-for="user in users.sorted"
-      :key="user"
-    >
-      {{ user }}
-    </div>
-  </section>
+  <UserCard :user="user" v-for="user in users.sorted" :key="user?.alias" />
 </template>
 
 <script>
 import { watchEffect, ref } from "vue";
 import { itemColor } from "../../use/colors.js";
 import { useItems } from "../../use/useItems.js";
+import UserCard from "../../components/user/UserCard.vue";
 export default {
+  components: { UserCard },
   setup() {
     const users = ref({});
     watchEffect(() => {

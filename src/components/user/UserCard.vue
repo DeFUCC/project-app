@@ -4,9 +4,7 @@
 
 <script>
 export default {
-  props: {
-    user: Object,
-  },
+  props: ["user"],
   setup() {
     return {};
   },
@@ -14,4 +12,7 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  padding: 2em;
+}
 </style>
