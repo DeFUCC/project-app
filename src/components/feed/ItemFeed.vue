@@ -1,7 +1,13 @@
 <template>
   <header class="bar">
     <div class="title">
-      {{ type }} <span class="tag">{{ items.sorted.count }}</span>
+      <img
+        v-if="type"
+        class="icon bigger"
+        :src="'/svg/' + type + '.svg'"
+        alt=""
+      />
+      <span class="tag">{{ items.sorted.count }}</span>
     </div>
     <button
       v-for="(by, key) in items.options.orderBy"
@@ -13,24 +19,36 @@
     </button>
 
     <button
-      v-if="!root || (root && user.is.pub == root.substring(1, 88))"
+      v-if="
+        (!root && user.is) || (root && user.is?.pub == root.substring(1, 88))
+      "
       @click="items.addItem()"
     >
       add
     </button>
   </header>
-  <item-list :items="items.sorted.data"></item-list>
+  <ul class="item-list">
+    <transition-group name="list">
+      <ItemCard
+        @open="$emit('open', $event)"
+        v-for="project in items.sorted.data"
+        :key="project.soul"
+        :item="project"
+      ></ItemCard>
+    </transition-group>
+  </ul>
 </template>
 
 <script>
 import { itemColor } from "../../use/colors.js";
 import { format } from "timeago.js";
 import { useItems } from "../../use/useItems.js";
-import ItemList from "./ItemList.vue";
+import ItemCard from "../item/ItemCard.vue";
 import { ref, watchEffect } from "vue";
 import { user } from "../../use/useUser.js";
 export default {
   name: "ItemFeed",
+  emits: ["open"],
   props: {
     type: {
       type: String,
@@ -42,7 +60,7 @@ export default {
     },
   },
   components: {
-    ItemList,
+    ItemCard,
   },
   setup(props) {
     const items = ref({});
@@ -66,6 +84,32 @@ export default {
 
 <style scoped>
 .bar {
+  display: flex;
+  position: sticky;
   z-index: 20;
+  top: 0;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 1em;
+  background-color: var(--bar-color);
+}
+
+.bar > .title {
+  padding: 0 1em 0 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.item-list {
+  display: flex;
+  align-items: stretch;
+  flex-flow: column nowrap;
+  padding: 0;
+  margin: 0;
+  overflow: scroll;
+  scroll-snap-type: y mandatory;
 }
 </style>

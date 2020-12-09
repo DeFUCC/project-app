@@ -10,7 +10,6 @@ export function useItem(id) {
     .on((data, key) => {
       info[key] = data
     })
-
   return { info }
 }
 

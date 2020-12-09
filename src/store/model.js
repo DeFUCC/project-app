@@ -26,7 +26,9 @@ export const items = {
 
 export const links = {}
 
-export const tree = {
+export const model = {
   design: ['project'],
   project: ['event', 'object'],
+  event: ['task', 'purchase'],
+  object: ['task', 'purchase'],
 }

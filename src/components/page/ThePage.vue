@@ -9,13 +9,10 @@
     </section>
 
     <ItemFeed
-      v-if="item.info.type == 'design'"
-      type="project"
-      :root="item.info.soul"
-    />
-    <ItemFeed
-      v-if="item.info.type == 'project'"
-      type="object"
+      @open="$emit('open', $event)"
+      v-for="type in model[item.info.type]"
+      :key="type"
+      :type="type"
       :root="item.info.soul"
     />
   </article>
@@ -23,11 +20,13 @@
 
 <script>
 import { onMounted, ref, watchEffect } from "vue";
-import { useItem } from "../../use/useItem";
+import { useItem } from "../../use/useItem.js";
+import { model } from "../../store/model.js";
 import ItemFeed from "../feed/ItemFeed.vue";
 import ItemCard from "../item/ItemCard.vue";
 export default {
   props: ["id"],
+  emits: ["open"],
   components: {
     ItemCard,
     ItemFeed,
@@ -35,21 +34,21 @@ export default {
   setup(props) {
     const item = ref({});
     const page = ref(null);
-    let mounted = false;
+    const mounted = ref(false);
     watchEffect(() => {
       item.value = useItem(props.id);
-      if (mounted) {
+      if (mounted.value) {
         page.value.scrollIntoView({ behavior: "smooth" });
       }
     });
 
     onMounted(() => {
-      mounted = true;
-      page.value.scrollIntoView({ behavior: "smooth" });
+      mounted.value = true;
     });
 
     return {
       item,
+      model,
       page,
     };
   },
@@ -60,6 +59,9 @@ export default {
 .page {
   color: #333;
   overflow: scroll;
+}
+.page > .card {
+  margin: 0;
 }
 
 .description {

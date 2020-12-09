@@ -10,7 +10,6 @@ export function useItems({
   root = null,
 } = {}) {
   const items = reactive({})
-  console.log(type, mode, root)
   getItems()
 
   const { sorted, options } = useSorter(items)
@@ -49,12 +48,6 @@ export function useItems({
   }
 
   async function addItem() {
-    let query
-    if (root) {
-      query = gun.get(root)
-    } else {
-      query = db
-    }
     if (mode == 'private') {
       let userItem = gun
         .user()
@@ -63,7 +56,10 @@ export function useItems({
           if (ack.err) {
             console.error(ack)
           }
-          query.get(type).set(userItem)
+          if (root) {
+            gun.get(root).get(type).set(userItem)
+          }
+          db.get(type).set(userItem)
         })
     }
     if (mode == 'public') {

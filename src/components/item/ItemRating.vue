@@ -46,6 +46,7 @@ export default {
 <style scoped>
 .rating {
   display: flex;
+  flex-flow: column nowrap;
   align-items: stretch;
   justify-items: stretch;
   font-size: 0.8em;

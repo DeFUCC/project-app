@@ -27,6 +27,7 @@ router.afterEach((to, from) => {
   to.meta.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
 })
 
+/*
 router.beforeEach((to, from) => {
   // instead of having to check every route record with
   // to.matched.some(record => record.meta.requiresAuth)
@@ -39,3 +40,4 @@ router.beforeEach((to, from) => {
     }
   }
 })
+*/

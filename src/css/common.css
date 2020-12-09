@@ -38,23 +38,6 @@ a.router-link-active {
   color: #000;
 }
 
-.bar {
-  display: flex;
-  position: sticky;
-  top: 0;
-  flex-flow: row nowrap;
-  align-items: stretch;
-  justify-content: flex-start;
-  padding: 1em;
-  background-color: var(--bar-color);
-}
-
-.bar > .title {
-  padding: 0 1em 0 0;
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
 .tag {
   font-size: 12px;
   padding: 4px 6px;
@@ -65,4 +48,8 @@ a.router-link-active {
 
 .spacer {
   flex: 10;
+}
+
+.icon {
+  width: 1.5em;
 }

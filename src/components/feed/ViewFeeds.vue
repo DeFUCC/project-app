@@ -1,7 +1,14 @@
 <template>
   <main class="columns">
-    <transition-group name="fade">
-      <article class="column" v-for="(view, key) in views" :key="view">
+    <transition-group name="feed">
+      <article
+        class="column"
+        v-for="(view, key) in views"
+        :key="key"
+        :style="{
+          borderColor: itemColor(view.id ? view.id.substring(1, 88) : 0),
+        }"
+      >
         <div
           :style="{ backgroundColor: itemColor(view.id) }"
           v-if="key > 0"
@@ -10,8 +17,17 @@
         >
           {{ key }} close
         </div>
-        <item-feed v-if="view.type == 'feed'" :type="view.item"></item-feed>
-        <the-page v-if="view.type != 'feed'" :id="view.id"> </the-page>
+        <ItemFeed
+          @open="openView($event, key)"
+          v-if="view.type == 'feed'"
+          :type="view.item"
+        ></ItemFeed>
+        <ThePage
+          @open="openView($event, key)"
+          v-if="view.type != 'feed'"
+          :id="view.id"
+        >
+        </ThePage>
       </article>
     </transition-group>
   </main>
@@ -36,15 +52,15 @@ export default {
     ThePage,
   },
   setup(props) {
-    const { views, closeView } = useViews({
+    const { views, closeView, openView } = useViews({
       type: "feed",
       item: props.item,
     });
-
     return {
       views,
       itemColor,
       closeView,
+      openView,
     };
   },
 };
@@ -65,7 +81,7 @@ export default {
   -webkit-overflow-scrolling: touch;
 }
 .column {
-  border-right: 1px dashed #999;
+  border-left: 4px solid #eee;
   scroll-snap-align: start;
   display: flex;
   flex: 1 0 360px;

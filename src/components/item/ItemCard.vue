@@ -1,39 +1,59 @@
 <template>
   <li
     @click="
-      openView({
+      $emit('open', {
         type: item.type,
         id: item.soul,
       })
     "
     class="item"
-    :style="{ backgroundColor: itemColor(item.soul) }"
+    :style="{
+      backgroundColor: itemColor(item.soul),
+      borderColor: itemColor(item.soul.substring(1, 88)),
+    }"
   >
     <div class="main">
-      <div class="title">
-        <h2>{{ item.title }}</h2>
-      </div>
       <div class="info">
-        {{ item.type }} by <ItemAuthor :author="item.author"></ItemAuthor>
+        <img
+          v-if="item.type"
+          class="icon"
+          :src="'/svg/' + item.type + '.svg'"
+          alt=""
+        />
+        <UserAvatar size="small" :pic="item.author.avatar" />
         {{ format(item.createdAt, "short") }}
         <span v-if="item.updatedAt">
           , upd {{ format(item.updatedAt, "short") }}
         </span>
       </div>
+
+      <div class="title">
+        <h2>{{ item.title }}</h2>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="counters">
+      <ItemCount
+        :id="item.soul"
+        :type="type"
+        v-for="type in model[item.type]"
+        :key="type"
+      />
     </div>
 
-    <div class="spacer"></div>
-    <ItemRating :item="item.soul"></ItemRating>
+    <ItemRating :item="item.soul" />
   </li>
 </template>
 
 <script>
+import { model } from "../../store/model.js";
 import { itemColor } from "../../use/colors.js";
 import { format } from "timeago.js";
-import { openView } from "../../use/useViews.js";
-import ItemAuthor from "../item/ItemAuthor.vue";
+import UserAvatar from "../user/UserAvatar.vue";
 import ItemRating from "./ItemRating.vue";
+import ItemCount from "./ItemCount.vue";
 export default {
+  emits: ["open"],
   props: {
     item: {
       type: Object,
@@ -52,11 +72,12 @@ export default {
   },
   components: {
     ItemRating,
-    ItemAuthor,
+    UserAvatar,
+    ItemCount,
   },
   setup() {
     return {
-      openView,
+      model,
       itemColor,
       format,
     };
@@ -73,6 +94,12 @@ export default {
 .main {
   padding: 0.5em;
 }
+.counters {
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  flex-flow: column nowrap;
+}
 .item {
   cursor: pointer;
   display: flex;
@@ -81,8 +108,11 @@ export default {
   padding: 0.5em;
   scroll-snap-align: start end;
   flex: 1 1 4em;
+  border-left: 4px solid;
 }
 .info {
   font-size: 0.7em;
+  display: flex;
+  align-items: center;
 }
 </style>

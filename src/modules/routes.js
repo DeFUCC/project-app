@@ -18,7 +18,6 @@ export default [
     path: '/project/:id',
     name: 'project',
     props: true,
-    meta: { noKeepAlive: true },
     component: () => import('./project/Project.vue'),
   },
   {
@@ -29,7 +28,6 @@ export default [
   {
     path: '/my',
     name: 'my',
-    meta: { requiresAuth: true },
     component: () => import('./my/My.vue'),
     children: [
       {
@@ -38,9 +36,9 @@ export default [
         component: () => import('./my/MyProfile.vue'),
       },
       {
-        path: 'projects',
-        alias: 'projects',
-        component: () => import('./my/MyProjects.vue'),
+        path: 'stars',
+        alias: 'likes',
+        component: () => import('./my/MyStars.vue'),
       },
     ],
   },
@@ -48,7 +46,6 @@ export default [
     path: '/users/',
     props: true,
     name: 'users',
-    meta: { requiresAuth: true },
     component: () => import('./users/Users.vue'),
     children: [
       {

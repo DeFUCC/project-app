@@ -1,13 +1,11 @@
 <template>
-  <div class="avatar">
-    <img
-      class="avatar"
-      v-if="pic"
-      :src="pic"
-      :class="{ [size]: true }"
-      :alt="user.is.alias"
-    />
-  </div>
+  <img
+    class="avatar"
+    v-if="pic"
+    :src="pic"
+    :class="{ [size]: true }"
+    :alt="user.is.alias"
+  />
 </template>
 
 <script>

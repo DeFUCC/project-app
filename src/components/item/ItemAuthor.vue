@@ -1,17 +1,14 @@
 <template>
-  <span v-if="author">
-    <img
-      v-if="author.avatar"
-      class="avatar-small"
-      :src="author.avatar"
-      alt=""
-    />
-    {{ author.alias }}
-  </span>
+  <UserAvatar size="small" :pic="author.avatar" />
+  <div>{{ author.alias }}</div>
 </template>
 
 <script>
+import UserAvatar from "../user/UserAvatar.vue";
 export default {
+  components: {
+    UserAvatar,
+  },
   props: {
     author: Object,
   },

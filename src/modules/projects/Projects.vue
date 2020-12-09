@@ -1,14 +1,14 @@
 <template>
-  <FeedViews item="project" />
+  <VIewFeeds item="project" />
 </template>
 
 <script>
-import FeedViews from "../../components/feed/FeedViews.vue";
+import VIewFeeds from "../../components/feed/ViewFeeds.vue";
 
 export default {
   name: "Designs",
   components: {
-    FeedViews,
+    VIewFeeds,
   },
   setup() {
     return {};
