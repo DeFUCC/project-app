@@ -1,13 +1,6 @@
 import { reactive } from 'vue'
 
-export const views = reactive([
-  {
-    type: 'feed',
-    root: 'frukt',
-    item: 'design',
-    id: null,
-  },
-])
+export const views = reactive([])
 
 export function openView(
   view = {
@@ -29,5 +22,20 @@ export function openView(
 export function closeView(num) {
   if (num > 0) {
     views.splice(num, 1)
+  }
+}
+
+export function useViews({ item = 'design', type = 'feed' }) {
+  views.length = 0
+  views[0] = {
+    type: type,
+    root: 'frukt',
+    item: item,
+  }
+
+  return {
+    views,
+    openView,
+    closeView,
   }
 }

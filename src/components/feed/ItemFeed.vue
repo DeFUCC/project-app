@@ -12,7 +12,12 @@
       {{ key }}
     </button>
 
-    <button v-if="user.isLoggedIn" @click="items.addItem()">add</button>
+    <button
+      v-if="!root || (root && user.is.pub == root.substring(1, 88))"
+      @click="items.addItem()"
+    >
+      add
+    </button>
   </header>
   <item-list :items="items.sorted.data"></item-list>
 </template>

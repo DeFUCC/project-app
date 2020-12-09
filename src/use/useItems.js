@@ -1,5 +1,4 @@
-import { reactive } from 'vue'
-import { generateWords } from './randomWords.js'
+import { reactive, ref } from 'vue'
 import { useSorter } from './useSorterWorker.js'
 import { db, soul, gun } from '../store/gun-db.js'
 import { notify } from '../store/history.js'
@@ -11,7 +10,7 @@ export function useItems({
   root = null,
 } = {}) {
   const items = reactive({})
-
+  console.log(type, mode, root)
   getItems()
 
   const { sorted, options } = useSorter(items)
@@ -38,6 +37,7 @@ export function useItems({
           .once((userIs) => {
             if (userIs) {
               items[key].author.alias = userIs?.alias
+              items[key].author.pub = userIs?.pub
             }
           })
           .get('profile')
@@ -60,16 +60,16 @@ export function useItems({
         .user()
         .get(type)
         .set(generateItem(type), (ack) => {
-          if (!ack.err) {
-            notify(`${type} has been added`)
+          if (ack.err) {
+            console.error(ack)
           }
           query.get(type).set(userItem)
         })
     }
     if (mode == 'public') {
       query.get(type).set(generateItem(type), (ack) => {
-        if (!ack.err) {
-          notify(`${type}  has been added`)
+        if (ack.err) {
+          console.error(ack)
         }
       })
     }

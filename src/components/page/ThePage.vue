@@ -6,7 +6,6 @@
       <div class="description">
         {{ item.info.description }}
       </div>
-      <small> {{ item.info.soul }} </small>
     </section>
 
     <ItemFeed

@@ -10,12 +10,13 @@
 body {
   padding: 0;
   margin: 0;
-  min-height: 100vh;
+  height: 100vh;
   background-color: var(--background);
 }
 
 html {
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 #app {
@@ -25,4 +26,6 @@ html {
   font-size: 15px;
   word-break: break-word;
   overscroll-behavior-x: none !important;
+  display: flex;
+  height: 100vh;
 }

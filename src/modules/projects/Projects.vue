@@ -1,15 +1,14 @@
 <template>
-  <article>
-    <item-feed type="project"></item-feed>
-  </article>
+  <FeedViews item="project" />
 </template>
 
 <script>
-import ItemFeed from "../../components/feed/ItemFeed.vue";
+import FeedViews from "../../components/feed/FeedViews.vue";
+
 export default {
-  name: "Projects",
+  name: "Designs",
   components: {
-    ItemFeed,
+    FeedViews,
   },
   setup() {
     return {};

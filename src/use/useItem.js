@@ -1,6 +1,5 @@
 import { gun } from '../store/gun-db.js'
 import { reactive } from 'vue'
-import { notify } from '../store/history.js'
 import { generateWords } from './randomWords.js'
 
 export function useItem(id) {

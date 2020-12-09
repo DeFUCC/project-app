@@ -30,7 +30,7 @@
 <script>
 import { itemColor } from "../../use/colors.js";
 import { format } from "timeago.js";
-import { openView, views } from "../../use/useViews.js";
+import { openView } from "../../use/useViews.js";
 import ItemAuthor from "../item/ItemAuthor.vue";
 import ItemRating from "./ItemRating.vue";
 export default {
@@ -50,7 +50,6 @@ export default {
       },
     },
   },
-  emits: ["view"],
   components: {
     ItemRating,
     ItemAuthor,
@@ -58,7 +57,6 @@ export default {
   setup() {
     return {
       openView,
-      views,
       itemColor,
       format,
     };
@@ -82,6 +80,7 @@ export default {
   margin: 0.5em;
   padding: 0.5em;
   scroll-snap-align: start end;
+  flex: 1 1 4em;
 }
 .info {
   font-size: 0.7em;

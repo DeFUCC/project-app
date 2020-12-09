@@ -1,24 +1,31 @@
 <template>
   <section>
     <div
-      :style="{ backgroundColor: itemColor(user.soul) }"
+      :style="{ backgroundColor: 'none' }"
       class="user-line"
-      v-for="user in items"
-      :key="user.soul"
+      v-for="user in users.sorted"
+      :key="user"
     >
-      {{ user.alias }}
+      {{ user }}
     </div>
   </section>
 </template>
 
 <script>
+import { watchEffect, ref } from "vue";
 import { itemColor } from "../../use/colors.js";
 import { useItems } from "../../use/useItems.js";
 export default {
   setup() {
-    const users = useItems({ type: "users" });
+    const users = ref({});
+    watchEffect(() => {
+      users.value = useItems({
+        type: "user",
+        mode: "private",
+      });
+    });
     return {
-      ...users,
+      users,
       itemColor,
     };
   },

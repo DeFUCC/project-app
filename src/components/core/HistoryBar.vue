@@ -32,9 +32,10 @@ export default {
 .notification {
   position: fixed;
   bottom: 2em;
-  right: 2em;
+  left: 130px;
 }
 .message {
+  font-size: 0.7em;
   padding: 0.5em;
   background-color: #eee;
   display: flex;

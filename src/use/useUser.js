@@ -92,7 +92,7 @@ function createUser(alias, pass) {
 }
 
 function addUserToDB() {
-  db.get('users')
+  db.get('user')
     .get(gun.user().is.pub)
     .put({
       ...gun.user().is,

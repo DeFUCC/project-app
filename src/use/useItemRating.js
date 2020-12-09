@@ -32,7 +32,7 @@ export function useItemRating(id) {
       })
   }
 
-  db.get('users')
+  db.get('user')
     .map()
     .on((data, key) => {
       getUserRating({
