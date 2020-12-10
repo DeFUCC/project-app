@@ -28,7 +28,7 @@
 
 <script>
 import { useUser } from "../../use/useUser.js";
-import { gun, db } from "../../store/gun-db.js";
+import { gun } from "../../store/gun-db.js";
 import { ref } from "vue";
 import { notify } from "../../store/history.js";
 export default {

@@ -22,15 +22,9 @@
 import { onMounted, ref, watchEffect } from "vue";
 import { useItem } from "../../use/useItem.js";
 import { model } from "../../store/model.js";
-import ItemFeed from "../feed/ItemFeed.vue";
-import ItemCard from "../item/ItemCard.vue";
 export default {
   props: ["id"],
   emits: ["open"],
-  components: {
-    ItemCard,
-    ItemFeed,
-  },
   setup(props) {
     const item = ref({});
     const page = ref(null);

@@ -49,9 +49,7 @@
 import { model } from "../../store/model.js";
 import { itemColor } from "../../use/colors.js";
 import { format } from "timeago.js";
-import UserAvatar from "../user/UserAvatar.vue";
-import ItemRating from "./ItemRating.vue";
-import ItemCount from "./ItemCount.vue";
+
 export default {
   emits: ["open"],
   props: {
@@ -70,11 +68,7 @@ export default {
       },
     },
   },
-  components: {
-    ItemRating,
-    UserAvatar,
-    ItemCount,
-  },
+
   setup() {
     return {
       model,

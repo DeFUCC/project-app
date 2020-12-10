@@ -19,15 +19,9 @@
 <script>
 import { itemColor } from "../../use/colors.js";
 import { format } from "timeago.js";
-import ItemRating from "../item/ItemSyncRating.vue";
-import ItemAuthor from "../item/ItemAuthor.vue";
 export default {
   props: {
     item: Object,
-  },
-  components: {
-    ItemRating,
-    ItemAuthor,
   },
   setup() {
     return {
