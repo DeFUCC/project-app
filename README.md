@@ -2,63 +2,50 @@
 
 The tool for people to collaborate on shared ideas. Everyone can create and publish their projects and everyone can engage in cocreation of them. It can be used to better understand each other and synchronize our intentions in order to reach common goals.
 
-This app is intended to be fast, reliable and free. So it's developed only by those who are passionate about the new level of social collaboration. Like social media creates chaos in our heads with their clever feeds with huge amount of ads, the Project App can give structure to our ideas and deeds with a particular project schema. Structured project info can help people connect, mutually coordinate and collaborate in a new more intense way. 
+This app is intended to be fast, reliable and free. So it's developed only by those who are passionate about the new level of social collaboration. Like social media creates chaos in our heads with their smart feeds with huge amount of ads, the Project App can put structure to our ideas and deeds with a particular project realization model. Structured project info can help people connect, mutually coordinate and collaborate in a new more intense but fun way. 
 
-## Basic tools
-
-The app barely started, but after a couple of insucessful attempts, I know about the importance of good foundation for the project. Code splitting is the most important way to deal with evergrowing complexity.
-
-So at the base we have:
-- Vite for the fast development environment with modular bundling
-- Vue 3 as it's fast and easy to use without JSX and other CSS-in-JS maddness 😅
-- GUN for the reactive p2p graph database
-- and some other libraries, check the package.json and index.html
+## STACK
+- [Vue 3](https://v3.vuejs.org/) as fast and easy to reactive framework with the new powerful Composition API
+  - [i18n](https://vue-i18n-next.intlify.dev/advanced/composition.html#basic-usage) **TBD**
+- [Vite](https://github.com/vitejs/vite) as the fast development environment with modular bundling, with magic plugins by [Antifu](https://github.com/antfu)
+  - [voie](https://github.com/vamplate/vite-plugin-voie)  enables file system based routing (all routes are parsed from file structure under the *./src/pages* folder) **done**
+  - [vite-plugin-components](https://github.com/antfu/vite-plugin-components) automatically import components from *./src/components* **done**
+  - [purgeIcons](https://github.com/antfu/purge-icons) **TBD**
+  - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) may be used for static pages...
+- [GUN](https://gun.eco/) for the reactive p2p graph database
+- timeago-js to render short dates
+- color-hash to get colors for item UUIDs
+- image-compressor to create small user avatars
 
 ## Basic structure
 
-It's one of the most difficult questions. I'm in the process of formulating the exact structure. We have so much data about the process, that it's hard to condence all that into ine source of truth. And it's definitely not a regular tree, but a complex graph of relations. But let's try.
+It's one of the most difficult questions. I'm in the process of formulating the exact structure. We have so much data about the process, that it's hard to condence all that into one source of truth. And it's definitely not a regular tree, but a complex graph of relations. Let's try.
 
-```
-Designs
-    Design
-        Ideas
-            Idea
-        Projects
-            Project
-                Status
-                Purposes
-                    Purpose
-                Events
-                    Event
-                Objects
-                    Object
-                Opportunities
-                    Opportunity     
-                Tasks
-                    Task
-                        Tools
-                            Tool
-                        Matrials
-                            Material
-                        Results
-                            Result
-                Purchases
-                    Purchase
-                        Tools
-                            Tool
-                        Matrials
-                            Material
-                Updates
-                    Update
-                Comments
-                    Comment
-                Enhancements
-                    Enhancement
-                Results
-                    Result
-                Presentations
-                    Presentation                
-```
+
+- design
+  - project
+- project
+  - object
+  - event
+- event
+  - task
+  - purchase
+- object
+  - task
+  - purchase
+- task
+  - tool
+  - material
+  - result
+- purchase
+  - quality
+  - quantity
+  - thing
+- course
+  - class
+- page
+  - comment
+
 
 It's the most basic structure, but it's needs to be filled with all field and relations schema. A lot of work, but how interesting it is!
 
