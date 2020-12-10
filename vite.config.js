@@ -14,7 +14,7 @@ export default {
       deep: true,
 
       // Allow subdirectories as namespace prefix for components.
-      directoryAsNamespace: false,
+      directoryAsNamespace: true,
       // Subdirectory paths for ignoring namespace prefixes
       // works when `directoryAsNamespace: true`
       globalNamespaces: [],

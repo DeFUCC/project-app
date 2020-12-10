@@ -18,7 +18,7 @@
       {{ r.rating.count.zero }}
     </div>
     <div class="minus">
-      <img src="/icons/hero-outline.svg#trash" alt="" />
+      <IconTrash />
       {{ r.rating.count.minus }}
     </div>
   </div>
