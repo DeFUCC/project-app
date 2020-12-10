@@ -14,7 +14,7 @@
 
 <script>
 import { ref } from "vue";
-import { useUser } from "../../use/useUser.js";
+import { useUser } from "../use/useUser.js";
 export default {
   name: "AppBar",
   setup() {

@@ -23,7 +23,7 @@ export default {
   },
   components: {
     ItemCard: defineAsyncComponent(() =>
-      import("../../components/item/ItemAsyncCard.vue")
+      import("../../components/ItemAsyncCard.vue")
     ),
   },
   setup(props) {

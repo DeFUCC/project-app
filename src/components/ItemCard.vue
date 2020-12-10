@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import { model } from "../../store/model.js";
-import { itemColor } from "../../use/colors.js";
+import { model } from "../store/model.js";
+import { itemColor } from "../use/colors.js";
 import { format } from "timeago.js";
 
 export default {

@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import { itemColor } from "../../use/colors.js";
+import { itemColor } from "../use/colors.js";
 import { format } from "timeago.js";
-import { useItems } from "../../use/useItems.js";
+import { useItems } from "../use/useItems.js";
 import { ref, watchEffect } from "vue";
-import { user } from "../../use/useUser.js";
+import { user } from "../use/useUser.js";
 export default {
   name: "ItemFeed",
   emits: ["open"],
