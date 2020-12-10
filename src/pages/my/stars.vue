@@ -15,7 +15,6 @@
 
 <script>
 import { defineAsyncComponent, reactive } from "vue";
-import ItemFeed from "../../components/feed/ItemFeed.vue";
 import { user } from "../../use/useUser.js";
 
 export default {
@@ -23,7 +22,6 @@ export default {
     user: String,
   },
   components: {
-    ItemFeed,
     ItemCard: defineAsyncComponent(() =>
       import("../../components/item/ItemAsyncCard.vue")
     ),

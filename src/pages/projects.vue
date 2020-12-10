@@ -3,13 +3,8 @@
 </template>
 
 <script>
-import ViewFeeds from "../../components/feed/ViewFeeds.vue";
-
 export default {
   name: "Projects",
-  components: {
-    ViewFeeds,
-  },
   setup() {
     return {};
   },

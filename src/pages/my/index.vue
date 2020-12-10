@@ -17,17 +17,16 @@
         &#10000;
       </div>
 
-      <file-uploader
+      <FileUploader
         v-if="!user.profile.avatar || update"
         @loaded="process"
         @close="update = false"
-      ></file-uploader>
+      ></FileUploader>
     </section>
   </article>
 </template>
 
 <script>
-import FileUploader from "../../components/FileUploader.vue";
 import { useUser } from "../../use/useUser.js";
 import { gun, db } from "../../store/gun-db.js";
 import { ref } from "vue";
@@ -36,9 +35,7 @@ export default {
   props: {
     alias: String,
   },
-  components: {
-    FileUploader,
-  },
+
   setup() {
     const update = ref(false);
     const { user } = useUser();

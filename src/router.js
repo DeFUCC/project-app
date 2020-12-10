@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { user } from './use/useUser.js'
-
-import MainPageRoutes from './modules/routes'
-
-const routes = [...MainPageRoutes]
+import routes from 'voie-pages'
 
 export const router = createRouter({
   history: createWebHistory(),

@@ -34,10 +34,7 @@
 </template>
 
 <script>
-import ItemFeed from "./ItemFeed.vue";
-import ThePage from "../page/ThePage.vue";
 import { itemColor } from "../../use/colors.js";
-
 import { useViews } from "../../use/useViews.js";
 export default {
   props: {
@@ -47,10 +44,6 @@ export default {
     },
   },
   name: "Designs",
-  components: {
-    ItemFeed,
-    ThePage,
-  },
   setup(props) {
     const { views, closeView, openView } = useViews({
       type: "feed",

@@ -6,9 +6,7 @@
 import { watchEffect, ref } from "vue";
 import { itemColor } from "../../use/colors.js";
 import { useItems } from "../../use/useItems.js";
-import UserCard from "../../components/user/UserCard.vue";
 export default {
-  components: { UserCard },
   setup() {
     const users = ref({});
     watchEffect(() => {

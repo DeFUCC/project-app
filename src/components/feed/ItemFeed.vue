@@ -43,7 +43,6 @@
 import { itemColor } from "../../use/colors.js";
 import { format } from "timeago.js";
 import { useItems } from "../../use/useItems.js";
-import ItemCard from "../item/ItemCard.vue";
 import { ref, watchEffect } from "vue";
 import { user } from "../../use/useUser.js";
 export default {
@@ -59,9 +58,7 @@ export default {
       default: null,
     },
   },
-  components: {
-    ItemCard,
-  },
+
   setup(props) {
     const items = ref({});
     watchEffect(() => {

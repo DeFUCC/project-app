@@ -9,15 +9,9 @@
 </template>
 
 <script>
-import AppBar from "./components/core/AppBar.vue";
-import HistoryBar from "./components/core/HistoryBar.vue";
 import { itemColor } from "./use/colors.js";
 export default {
   name: "Project app",
-  components: {
-    AppBar,
-    HistoryBar,
-  },
   setup() {
     return {
       itemColor,
