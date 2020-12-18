@@ -1,8 +1,8 @@
 import { reactive, ref } from 'vue'
-import { useSorter } from './useSorterWorker.js'
+import { useSorter } from './useSorterWorker'
 import { db, soul, gun } from '../store/gun-db.js'
 import { notify } from '../store/history.js'
-import { generateItem } from './useItem.js'
+import { generateItem } from './useItem'
 
 export function useItems({
   type = 'project',

@@ -1,12 +1,9 @@
 import { reactive, computed } from 'vue'
 import { db, gun } from '../store/gun-db.js'
-import { user } from '../use/useUser.js'
+import { user } from './useUser.js'
 
-export function useItemRating(id) {
-  if (!id) {
-    console.error('no id for rating')
-    return
-  }
+export function useItemRating(id:string) {
+
   const rating = reactive({
     item: id,
     myRate: null,
@@ -34,25 +31,22 @@ export function useItemRating(id) {
 
   db.get('user')
     .map()
-    .on((data, key) => {
-      getUserRating({
-        userId: key,
-        item: id,
-      })
+    .on((data:any, key:string) => {
+      getUserRating(key,id)
     })
 
-  function getUserRating({ userId, item } = {}) {
-    let userProfile
+  function getUserRating(userId:string, itemId:string) {
+    let userProfile: any
     gun
       .user(userId)
       .get('profile')
-      .once((data, key) => {
+      .once((data:any, key:string) => {
         userProfile = data
       })
       .back()
       .get('rating')
-      .get(item)
-      .on((d, k) => {
+      .get(itemId)
+      .on((d:any, k:string) => {
         if (k == id) {
           if (d) {
             rating.plused[userId] = userProfile
@@ -66,12 +60,12 @@ export function useItemRating(id) {
   const rate = {
     plus() {
       if (!user.is) return
-      let current
+      let current : boolean
       gun
         .user()
         .get('rating')
         .get(id)
-        .once((val) => {
+        .once((val:boolean) => {
           current = val
         })
         .put(!current)

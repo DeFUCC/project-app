@@ -8,16 +8,17 @@
   </router-view>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { itemColor } from "./use/colors.js";
-export default {
+export default defineComponent({
   name: "Project app",
   setup() {
     return {
       itemColor,
     };
   },
-};
+});
 </script>
 
 <style scoped>

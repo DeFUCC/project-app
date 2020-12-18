@@ -1,15 +1,18 @@
 import { reactive, toRaw, watch } from 'vue'
 
-export function useSorter(obj) {
+export function useSorter(obj:object) {
   if (!window.Worker) {
-    console.log('No worker support')
+    console.error('No worker support')
     return
   }
+
   const sorter = new Worker('./workers/sorter.js')
+
   const sorted = reactive({
     data: null,
     count: 0,
   })
+
   const options = reactive({
     orderBy: {
       AB: true,
@@ -32,7 +35,7 @@ export function useSorter(obj) {
     },
   )
 
-  async function sort(list) {
+  async function sort(list:object) {
     sorter.postMessage({
       list: toRaw(list),
       options: toRaw(options),
@@ -44,21 +47,22 @@ export function useSorter(obj) {
     sorted.count = e.data.length
   }
 
-  function throttle(fn, wait) {
+  function throttle(fn: Function, wait: number) {
     // https://gist.github.com/beaucharman/e46b8e4d03ef30480d7f4db5a78498ca#gistcomment-3015837
 
-    let previouslyRun, queuedToRun
+    let previouslyRun:number, queuedToRun:number
 
-    return function invokeFn(...args) {
+    return function invokeFn(...args:unknown[]) {
+
       const now = Date.now()
 
-      queuedToRun = clearTimeout(queuedToRun)
+      clearTimeout(queuedToRun)
 
       if (!previouslyRun || now - previouslyRun >= wait) {
         fn.apply(null, args)
         previouslyRun = now
       } else {
-        queuedToRun = setTimeout(
+        queuedToRun = window.setTimeout(
           invokeFn.bind(null, ...args),
           wait - (now - previouslyRun),
         )

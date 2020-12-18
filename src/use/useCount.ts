@@ -1,13 +1,13 @@
 import { computed, reactive } from 'vue'
 import { gun } from '../store/gun-db.js'
 
-export function useCount(id = 'frukt', type = 'design') {
+export function useCount(id: string, type: string) {
   const items = reactive({})
   gun
     .get(id)
     .get(type)
     .map()
-    .on((data, key) => {
+    .on((data: any, key: string) => {
       items[key] = data
     })
   const count = computed(() => Object.keys(items).length)

@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import { ref, watchEffect } from "vue";
-import { useItemRating } from "../use/useItemRating.js";
-export default {
+import { defineComponent, ref, watchEffect } from "vue";
+import { useItemRating } from "../use/useItemRating";
+export default defineComponent({
   props: {
     item: String,
   },
@@ -40,7 +40,7 @@ export default {
       r,
     };
   },
-};
+});
 </script>
 
 <style scoped>

@@ -333,7 +333,7 @@ for (var key in grams) {
   grams[key].sorted = sorted.sort()
 }
 
-export function generateWords(n) {
+export function generateWords(n:number): string {
   if (!n) {
     n = 1
   }
@@ -363,5 +363,5 @@ export function generateWords(n) {
     // strip the leading space before appending to the list
     words.push(w.substring(1))
   }
-  return words
+  return words.join(' ')
 }
