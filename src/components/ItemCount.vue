@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { useCount } from "../use/useCount.ts";
+import { useCount } from "../use/count";
 export default {
   props: {
     id: String,

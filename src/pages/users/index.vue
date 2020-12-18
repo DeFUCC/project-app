@@ -4,7 +4,7 @@
 
 <script>
 import { watchEffect, ref } from "vue";
-import { itemColor } from "../../use/colors.js";
+import { itemColor } from "../../tools/colors";
 import { useItems } from "../../use/useItems.js";
 export default {
   setup() {

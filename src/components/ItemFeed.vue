@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { itemColor } from "../use/colors.js";
+import { itemColor } from "../tools/colors";
 import { format } from "timeago.js";
 import { useItems } from "../use/useItems.js";
 import { ref, watchEffect } from "vue";

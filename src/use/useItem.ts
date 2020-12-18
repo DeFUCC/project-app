@@ -1,6 +1,6 @@
 import { gun } from '../store/gun-db.js'
 import { reactive } from 'vue'
-import { generateWords } from './randomWords'
+import { generateWords } from '../tools/randomWords'
 
 export function useItem(id : string) {
   const info = reactive({})

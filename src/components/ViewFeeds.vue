@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { itemColor } from "../use/colors.js";
+import { itemColor } from "../tools/colors";
 import { useViews } from "../use/useViews.js";
 export default {
   props: {

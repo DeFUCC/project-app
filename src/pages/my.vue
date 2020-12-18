@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { itemColor } from "../use/colors.js";
+import { itemColor } from "../tools/colors";
 import { useUser } from "../use/useUser.js";
 import { useRouter } from "vue-router";
 import { watchEffect } from "vue";

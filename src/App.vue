@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { itemColor } from "./use/colors.js";
+import { itemColor } from "./tools/colors";
 export default defineComponent({
   name: "Project app",
   setup() {

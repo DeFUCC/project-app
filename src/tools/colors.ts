@@ -6,7 +6,7 @@ const color = new ColorHash({
   lightness: [0.75, 0.85, 0.9],
 })
 
-export function itemColor(item) {
+export function itemColor(item:any):string {
   if (isNode(item)) {
     return color.hex(uuid(soul(item)))
   }
