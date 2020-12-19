@@ -52,7 +52,8 @@ export default {
 <style scoped>
 .page {
   color: #333;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .page > .card {
   margin: 0;

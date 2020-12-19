@@ -8,6 +8,7 @@
       "target": "esnext",
       "sourceMap": true,
       "allowJs": true,
-      "outDir": "diste"
+      "outDir": "diste",
+      "isolatedModules": true
     }
   }

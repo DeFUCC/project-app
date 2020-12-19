@@ -1,6 +1,11 @@
 <template>
   <main class="columns">
     <transition-group name="feed">
+      <ItemFeed
+        @open="openView($event, -1)"
+        :type="item"
+        key="starter"
+      ></ItemFeed>
       <article
         class="column"
         v-for="(view, key) in views"
@@ -11,23 +16,13 @@
       >
         <div
           :style="{ backgroundColor: itemColor(view.id) }"
-          v-if="key > 0"
           class="sticky"
           @click="closeView(key)"
         >
           {{ key }} close
         </div>
-        <ItemFeed
-          @open="openView($event, key)"
-          v-if="view.type == 'feed'"
-          :type="view.item"
-        ></ItemFeed>
-        <ThePage
-          @open="openView($event, key)"
-          v-if="view.type != 'feed'"
-          :id="view.id"
-        >
-        </ThePage>
+
+        <ThePage @open="openView($event, key)" :id="view.id"> </ThePage>
       </article>
     </transition-group>
   </main>
@@ -35,7 +30,7 @@
 
 <script>
 import { itemColor } from "../tools/colors";
-import { useViews } from "../use/useViews.js";
+import { useViews } from "../use/views";
 export default {
   props: {
     item: {
@@ -59,7 +54,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 .sticky {
   position: sticky;
   top: 0;
@@ -81,7 +76,7 @@ export default {
   flex-flow: column nowrap;
   max-width: 960px;
   min-width: 360px;
-  height: 100vh;
+  overflow-y: hidden;
 }
 
 .column:last-child {

@@ -1,7 +1,7 @@
 import { reactive, ref } from 'vue'
 import { useSorter } from './useSorterWorker'
 import { db, soul, gun } from '../store/gun-db.js'
-import { notify } from '../store/history.js'
+import { error, notify } from '../store/history.js'
 import { generateItem } from './useItem'
 
 export function useItems({
@@ -10,6 +10,7 @@ export function useItems({
   root = null,
 } = {}) {
   const items = reactive({})
+  const adding = ref(false)
   getItems()
 
   const { sorted, options } = useSorter(items)
@@ -48,32 +49,28 @@ export function useItems({
   }
 
   async function addItem() {
-    if (mode == 'private') {
-      let userItem = gun
-        .user()
-        .get(type)
-        .set(generateItem(type), (ack) => {
-          if (ack.err) {
-            console.error(ack)
-          }
-          if (root) {
-            gun.get(root).get(type).set(userItem)
-          }
-          db.get(type).set(userItem)
-        })
-    }
-    if (mode == 'public') {
-      query.get(type).set(generateItem(type), (ack) => {
-        if (ack.err) {
-          console.error(ack)
-        }
+    adding.value = true
+    let item = generateItem(type)
+    try {
+      let privateItem = await gun.user().get(type).set(item)
+      let hash = await SEA.work(privateItem, privateItem.createdAt, null, {
+        name: 'sha-1',
+        encode: 'hex',
       })
+      let publicItem = await db.get(type).get(hash).put(privateItem)
+      if (root) {
+        gun.get(root).get(type).get(hash).put(privateItem)
+      }
+    } catch (err) {
+      error(err)
     }
+    adding.value = false
   }
 
   return {
     options,
     sorted,
     addItem,
+    adding,
   }
 }

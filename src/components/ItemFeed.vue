@@ -1,49 +1,43 @@
 <template>
-  <header class="bar">
-    <div class="title">
-      <img
-        v-if="type"
-        class="icon bigger"
-        :src="'/svg/' + type + '.svg'"
-        alt=""
-      />
-      <span class="tag">{{ items.sorted.count }}</span>
-    </div>
-    <button
-      v-for="(by, key) in items.options.orderBy"
-      :key="key"
-      :class="{ active: by }"
-      @click="items.options.orderBy[key] = !items.options.orderBy[key]"
-    >
-      {{ key }}
-    </button>
-
-    <button
-      v-if="
-        (!root && user.is) || (root && user.is?.pub == root.substring(1, 88))
-      "
-      @click="items.addItem()"
-    >
-      add
-    </button>
-  </header>
-  <ul class="item-list">
-    <transition-group name="list">
-      <ItemCard
-        @open="$emit('open', $event)"
-        v-for="project in items.sorted.data"
-        :key="project.soul"
-        :item="project"
-      ></ItemCard>
-    </transition-group>
-  </ul>
+  <article class="column">
+    <header class="bar">
+      <div class="title">
+        <img
+          v-if="type"
+          class="icon bigger"
+          :src="'/svg/' + type + '.svg'"
+          alt=""
+        />
+        <span class="tag">{{ items.sorted.count }}</span>
+      </div>
+      <button
+        v-for="(by, key) in items.options.orderBy"
+        :key="key"
+        :class="{ active: by }"
+        @click="items.options.orderBy[key] = !items.options.orderBy[key]"
+      >
+        {{ key }}
+      </button>
+      <button v-if="canAdd" @click="items.addItem()">add</button>
+    </header>
+    <ul class="item-list">
+      <transition-group name="list">
+        <ItemCard
+          @open="$emit('open', $event)"
+          v-for="project in items.sorted.data"
+          :key="project.soul"
+          :item="project"
+        ></ItemCard>
+      </transition-group>
+    </ul>
+  </article>
 </template>
 
 <script>
 import { itemColor } from "../tools/colors";
 import { format } from "timeago.js";
 import { useItems } from "../use/useItems.js";
-import { ref, watchEffect } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { user } from "../use/useUser.js";
 export default {
   name: "ItemFeed",
@@ -60,18 +54,26 @@ export default {
   },
 
   setup(props) {
-    const items = ref({});
+    let items;
     watchEffect(() => {
-      items.value = useItems({
+      items = useItems({
         type: props.type,
         mode: "private",
         root: props.root,
       });
     });
 
+    const canAdd = computed(
+      () =>
+        !items.adding.value &&
+        ((!props.root && user.is) ||
+          (props.root && user.is?.pub == props.root.slice(1, 88)))
+    );
+
     return {
       user,
       items,
+      canAdd,
       format,
       itemColor,
     };

@@ -5,6 +5,7 @@
     <router-link to="/projects">Projects</router-link>
     <router-link to="/objects">Objects</router-link>
     <div class="spacer"></div>
+    <router-link to="/graph">Graph</router-link>
     <router-link to="/users">Users</router-link>
     <router-link v-if="!user.is" to="/auth">Auth</router-link>
     <router-link v-else to="/my">{{ user.is.alias }}</router-link>
