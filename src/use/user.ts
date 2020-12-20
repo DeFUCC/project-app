@@ -1,5 +1,5 @@
-import { gun, db } from '../store/gun-db.js'
-import { notify, error } from '../store/history.js'
+import { gun, db } from '../store/gun-db'
+import { notify, error } from '../store/history'
 import { reactive } from 'vue'
 
 export const user = reactive({

@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@vueuse/core": "^4.0.0-rc.11",
     "color-hash": "^1.0.3",
     "image-compressor": "^2.0.3",
     "timeago.js": "^4.0.2",

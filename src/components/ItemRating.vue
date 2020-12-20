@@ -26,7 +26,7 @@
 
 <script>
 import { defineComponent, ref, watchEffect } from "vue";
-import { useItemRating } from "../use/useItemRating";
+import { useItemRating } from "../use/rating";
 export default defineComponent({
   props: {
     item: String,

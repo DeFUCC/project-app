@@ -51,7 +51,7 @@ export function handleChanges(fieldName, fileList) {
 }
 
 function processFile(file) {
-  fileToBase64(file).then((res) => {
+  fileToBase64(file).then((res: any) => {
     state.output = {
       name: sanitizeFileName(file.name),
       content: res,
@@ -106,7 +106,7 @@ function fileToBase64(file) {
         resolve(canvas.toDataURL())
       }
       let res = readerBase64.result
-      img.src = res
+      img.src = res as string
     }
 
     reader.onerror = (error) => reject(error)

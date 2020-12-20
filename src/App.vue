@@ -1,6 +1,6 @@
 <template>
   <AppBar />
-  <HistoryBar />
+  <AppHistory />
   <router-view v-slot="{ Component }">
     <transition name="slide-right">
       <component :is="Component" />

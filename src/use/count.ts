@@ -1,5 +1,5 @@
 import { computed, reactive } from 'vue'
-import { gun } from '../store/gun-db.js'
+import { gun } from '../store/gun-db'
 
 export function useCount(id: string, type: string) {
   const items = reactive({})

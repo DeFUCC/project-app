@@ -24,7 +24,7 @@
 
 <script>
 import { itemColor } from "../tools/colors";
-import { useUser } from "../use/useUser.js";
+import { useUser } from "../use/user";
 import { useRouter } from "vue-router";
 import { watchEffect } from "vue";
 export default {

@@ -15,7 +15,7 @@
 
 <script>
 import { defineAsyncComponent, reactive } from "vue";
-import { user } from "../../use/useUser.js";
+import { user } from "../../use/user";
 
 export default {
   props: {

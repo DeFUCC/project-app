@@ -9,5 +9,9 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
+.error {
+  padding: 2em;
+  background-color: rgb(255, 224, 224);
+}
 </style>

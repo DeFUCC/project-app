@@ -30,7 +30,7 @@
 
 <script>
 import { ref, watch } from "vue";
-import { useUser } from "../use/useUser.js";
+import { useUser } from "../use/user";
 import { useRouter } from "vue-router";
 export default {
   components: {},

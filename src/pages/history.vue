@@ -1,5 +1,5 @@
 <template>
-  <article id="the-history">
+  <article>
     <button @click="warn('Checking history')">Check</button>
     <button @click="clear()">Clear</button>
     <div
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { history, warn, eventColors, clear } from "../store/history.js";
+import { history, warn, eventColors, clear } from "../store/history";
 
 export default {
   setup() {
@@ -37,6 +37,9 @@ export default {
 </script>
 
 <style scoped>
+article {
+  overflow-y: scroll;
+}
 .line {
   display: flex;
   flex-flow: row wrap;

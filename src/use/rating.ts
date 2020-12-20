@@ -1,9 +1,8 @@
 import { reactive, computed } from 'vue'
-import { db, gun } from '../store/gun-db.js'
-import { user } from './useUser.js'
+import { db, gun } from '../store/gun-db'
+import { user } from './user'
 
-export function useItemRating(id:string) {
-
+export function useItemRating(id: string) {
   const rating = reactive({
     item: id,
     myRate: null,
@@ -31,22 +30,22 @@ export function useItemRating(id:string) {
 
   db.get('user')
     .map()
-    .on((data:any, key:string) => {
-      getUserRating(key,id)
+    .on((data: any, key: string) => {
+      getUserRating(key, id)
     })
 
-  function getUserRating(userId:string, itemId:string) {
+  function getUserRating(userId: string, itemId: string) {
     let userProfile: any
     gun
       .user(userId)
       .get('profile')
-      .once((data:any, key:string) => {
+      .once((data: any, key: string) => {
         userProfile = data
       })
       .back()
       .get('rating')
       .get(itemId)
-      .on((d:any, k:string) => {
+      .on((d: any, k: string) => {
         if (k == id) {
           if (d) {
             rating.plused[userId] = userProfile
@@ -60,12 +59,12 @@ export function useItemRating(id:string) {
   const rate = {
     plus() {
       if (!user.is) return
-      let current : boolean
+      let current: boolean
       gun
         .user()
         .get('rating')
         .get(id)
-        .once((val:boolean) => {
+        .once((val: boolean) => {
           current = val
         })
         .put(!current)

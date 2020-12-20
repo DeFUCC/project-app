@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { unseen, eventColors } from "../store/history.js";
+import { unseen, eventColors } from "../../store/history";
 export default {
   setup() {
     return {

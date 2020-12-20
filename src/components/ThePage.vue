@@ -20,8 +20,8 @@
 
 <script>
 import { onMounted, ref, watchEffect } from "vue";
-import { useItem } from "../use/useItem.ts";
-import { model } from "../store/model.js";
+import { useItem } from "../use/item";
+import { model } from "../store/model";
 export default {
   props: ["id"],
   emits: ["open"],

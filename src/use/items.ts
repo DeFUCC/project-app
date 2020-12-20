@@ -1,14 +1,10 @@
 import { reactive, ref } from 'vue'
-import { useSorter } from './useSorterWorker'
-import { db, soul, gun } from '../store/gun-db.js'
-import { error, notify } from '../store/history.js'
-import { generateItem } from './useItem'
+import { useSorter } from './sorterWorker'
+import { db, soul, gun, sea } from '../store/gun-db'
+import { error, notify } from '../store/history'
+import { generateItem } from './item'
 
-export function useItems({
-  type = 'project',
-  mode = 'private',
-  root = null,
-} = {}) {
+export function useItems({ type = 'project', root = null } = {}) {
   const items = reactive({})
   const adding = ref(false)
   getItems()
@@ -53,7 +49,7 @@ export function useItems({
     let item = generateItem(type)
     try {
       let privateItem = await gun.user().get(type).set(item)
-      let hash = await SEA.work(privateItem, privateItem.createdAt, null, {
+      let hash = await sea.work(privateItem, privateItem.createdAt, null, {
         name: 'sha-1',
         encode: 'hex',
       })

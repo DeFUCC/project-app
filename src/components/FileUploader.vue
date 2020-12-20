@@ -50,7 +50,7 @@
 
 <script>
 // https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue
-import { state, handleChanges } from "../tools/fileUpload.js";
+import { state, handleChanges } from "../tools/fileUpload";
 import { watch } from "vue";
 export default {
   name: "FileUploader",

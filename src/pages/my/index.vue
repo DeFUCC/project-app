@@ -27,10 +27,10 @@
 </template>
 
 <script>
-import { useUser } from "../../use/useUser.js";
-import { gun } from "../../store/gun-db.js";
+import { useUser } from "../../use/user";
+import { gun } from "../../store/gun-db";
 import { ref } from "vue";
-import { notify } from "../../store/history.js";
+import { notify } from "../../store/history";
 export default {
   props: {
     alias: String,

@@ -1,8 +1,8 @@
-import { gun } from '../store/gun-db.js'
+import { gun } from '../store/gun-db'
 import { reactive } from 'vue'
 import { generateWords } from '../tools/randomWords'
 
-export function useItem(id : string) {
+export function useItem(id: string) {
   const info = reactive({})
   gun
     .get(id)
@@ -13,7 +13,7 @@ export function useItem(id : string) {
   return { info }
 }
 
-export function generateItem(type:string):Item {
+export function generateItem(type: string): Item {
   return {
     title: generateWords(2),
     description: generateWords(100),
@@ -24,9 +24,9 @@ export function generateItem(type:string):Item {
 }
 
 export interface Item {
-  title: string,
-  description: string,
-  type: string,
-  createdAt: number,
-  createdBy: string,
+  title: string
+  description: string
+  type: string
+  createdAt: number
+  createdBy: string
 }

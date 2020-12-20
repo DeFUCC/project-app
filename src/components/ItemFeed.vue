@@ -36,9 +36,9 @@
 <script>
 import { itemColor } from "../tools/colors";
 import { format } from "timeago.js";
-import { useItems } from "../use/useItems.js";
+import { useItems } from "../use/items";
 import { computed, ref, watchEffect } from "vue";
-import { user } from "../use/useUser.js";
+import { user } from "../use/user";
 export default {
   name: "ItemFeed",
   emits: ["open"],
