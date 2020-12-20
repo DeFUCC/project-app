@@ -2,6 +2,7 @@
   <section class="search">
     <label for="search"><IconSearch /></label>
     <input id="search" type="text" placeholder="search" v-model="search.text" />
+    <IconClose class="close" @click="search.text = ''" />
   </section>
 </template>
 
@@ -34,16 +35,21 @@ export default defineComponent({
 .search {
   display: flex;
   align-items: center;
-  margin-left: 0.5em;
+  margin: 0 2em;
 }
 .search input {
   margin: 0;
   padding: 0.5em 1em;
-  text-indent: 1.5em;
+  text-indent: 1.4em;
   border-radius: 2em;
 }
 .search label {
-  margin-right: -1.5em;
+  cursor: pointer;
+  margin: 2px -1.5em 0 0;
   z-index: 10;
+}
+.close {
+  cursor: pointer;
+  margin: -1.5em;
 }
 </style>

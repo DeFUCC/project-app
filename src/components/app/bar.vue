@@ -15,11 +15,10 @@
 
 <script>
 import { ref } from "vue";
-import { useUser } from "../../use/user";
+import { user } from "../../store/user";
 export default {
   name: "AppBar",
   setup() {
-    const { user } = useUser();
     const open = ref(false);
     function toggle() {
       open.value = !open.value;

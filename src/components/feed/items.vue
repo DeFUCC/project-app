@@ -10,7 +10,7 @@
         />
         <span class="tag">{{ items.sorted.count }}</span>
       </div>
-      <button v-if="canAdd" @click="items.addItem()">add</button>
+      <button :disabled="!canAdd" @click="items.addItem()">add</button>
       <div class="spacer"></div>
       <FeedSearch @search="items.options.search = $event" />
     </header>
@@ -42,7 +42,7 @@ import { format } from "timeago.js";
 import { computed, ref, watchEffect } from "vue";
 import { itemColor } from "../../tools/colors";
 import { useItems } from "../../use/items";
-import { user } from "../../use/user";
+import { user } from "../../store/user";
 export default {
   name: "FeedItems",
   emits: ["open"],

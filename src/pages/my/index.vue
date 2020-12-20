@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { useUser } from "../../use/user";
+import { user } from "../../store/user";
 import { gun } from "../../store/gun-db";
 import { ref } from "vue";
 import { notify } from "../../store/history";
@@ -38,7 +38,6 @@ export default {
 
   setup() {
     const update = ref(false);
-    const { user } = useUser();
 
     function process(img) {
       if (!img.content) return;

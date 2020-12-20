@@ -1,6 +1,6 @@
 import { reactive, computed } from 'vue'
 import { db, gun } from '../store/gun-db'
-import { user } from './user'
+import { user } from '../store/user'
 
 export function useItemRating(id: string) {
   const rating = reactive({

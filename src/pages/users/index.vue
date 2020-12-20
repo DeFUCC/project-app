@@ -1,20 +1,13 @@
 <template>
-  <UserCard :user="user" v-for="user in users.sorted" :key="user?.alias" />
+  <UserCard :user="user" v-for="user in users" :key="user?.alias" />
 </template>
 
 <script>
-import { watchEffect, ref } from "vue";
 import { itemColor } from "../../tools/colors";
-import { useItems } from "../../use/items";
+import { useUsers } from "../../use/users";
 export default {
   setup() {
-    const users = ref({});
-    watchEffect(() => {
-      users.value = useItems({
-        type: "user",
-        mode: "private",
-      });
-    });
+    let { users } = useUsers();
     return {
       users,
       itemColor,

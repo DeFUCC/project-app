@@ -2,8 +2,8 @@
   <svg
     v-if="!active"
     focusable="false"
-    width="1.5em"
-    height="1.5em"
+    width="1em"
+    height="1em"
     viewBox="0 0 32 32"
   >
     <path
@@ -16,8 +16,8 @@
     aria-hidden="true"
     focusable="false"
     role="img"
-    width="1.5em"
-    height="1.5em"
+    width="1em"
+    height="1em"
     preserveAspectRatio="xMidYMid meet"
     viewBox="0 0 32 32"
   >

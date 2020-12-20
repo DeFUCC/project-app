@@ -24,12 +24,11 @@
 
 <script>
 import { itemColor } from "../tools/colors";
-import { useUser } from "../use/user";
+import { user, logOut } from "../store/user";
 import { useRouter } from "vue-router";
 import { watchEffect } from "vue";
 export default {
   setup() {
-    const { user, logOut } = useUser();
     const router = useRouter();
     watchEffect(() => {
       if (!user.is) {

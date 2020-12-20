@@ -12,7 +12,7 @@ export function useItems({ type = 'project', root = null } = {}) {
   const { sorted, options } = useSorter(items)
 
   function getItems() {
-    let query
+    let query: any
     if (root) {
       query = gun.get(root)
     } else {

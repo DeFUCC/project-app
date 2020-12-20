@@ -4,9 +4,6 @@
       class="plus"
       @click.stop="r.rate.plus(item)"
       :class="{ active: r.rating.myRate }"
-      :style="{
-        flexGrow: r.rating.count.plus,
-      }"
     >
       <IconStar :active="r.rating.myRate" />
       {{ r.rating.count.plus }}
