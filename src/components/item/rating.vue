@@ -8,17 +8,15 @@
         flexGrow: r.rating.count.plus,
       }"
     >
-      <img v-if="!r.rating.myRate" src="/icons/hero-outline.svg#star" alt="" />
-      <img v-else src="/icons/hero-solid.svg#star" alt="" />
+      <IconStar :active="r.rating.myRate" />
       {{ r.rating.count.plus }}
     </div>
-
     <div class="zero">
-      <img src="/icons/hero-outline.svg#eye" alt="" />
+      <IconEye :active="r.rating.myRate" />
       {{ r.rating.count.zero }}
     </div>
     <div class="minus">
-      <IconTrash />
+      <IconTrash :active="!r.rating.myRate" />
       {{ r.rating.count.minus }}
     </div>
   </div>
@@ -26,7 +24,7 @@
 
 <script>
 import { defineComponent, ref, watchEffect } from "vue";
-import { useItemRating } from "../use/rating";
+import { useItemRating } from "../../use/rating";
 export default defineComponent({
   props: {
     item: String,

@@ -5,14 +5,17 @@ The tool for people to collaborate on shared ideas. Everyone can create and publ
 This app is intended to be fast, reliable and free. So it's developed only by those who are passionate about the new level of social collaboration. Like social media creates chaos in our heads with their smart feeds with huge amount of ads, the Project App can put structure to our ideas and deeds with a particular project realization model. Structured project info can help people connect, mutually coordinate and collaborate in a new more intense but fun way. 
 
 ## STACK
+- [TypeScript](https://www.typescriptlang.org/) in all use functions for Composition API
 - [Vue 3](https://v3.vuejs.org/) as fast and easy to reactive framework with the new powerful Composition API
   - [i18n](https://vue-i18n-next.intlify.dev/advanced/composition.html#basic-usage) **TBD**
+  - [VueUse](https://vueuse.js.org) helpers **TBD**
 - [Vite](https://github.com/vitejs/vite) as the fast development environment with modular bundling, with magic plugins by [Antifu](https://github.com/antfu)
   - [voie](https://github.com/vamplate/vite-plugin-voie)  enables file system based routing (all routes are parsed from file structure under the *./src/pages* folder) **done**
   - [vite-plugin-components](https://github.com/antfu/vite-plugin-components) automatically import components from *./src/components* **done**
   - [purgeIcons](https://github.com/antfu/purge-icons) **TBD**
   - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) may be used for static pages...
 - [GUN](https://gun.eco/) for the reactive p2p graph database
+- [Icônes](https://icones.js.org/) for svg icons
 - timeago-js to render short dates
 - color-hash to get colors for item UUIDs
 - image-compressor to create small user avatars

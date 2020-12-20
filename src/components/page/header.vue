@@ -17,8 +17,9 @@
 </template>
 
 <script>
-import { itemColor } from "../tools/colors";
 import { format } from "timeago.js";
+import { itemColor } from "../../tools/colors";
+
 export default {
   props: {
     item: Object,

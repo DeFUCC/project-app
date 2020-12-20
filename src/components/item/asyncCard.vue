@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { gun } from "../store/gun-db";
+import { gun } from "../../store/gun-db";
 export default {
   props: ["id"],
   async setup(props) {

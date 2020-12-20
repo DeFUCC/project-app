@@ -1,5 +1,5 @@
 <template>
-  <ViewFeeds item="design" />
+  <FeedView item="design" />
 </template>
 
 <script>

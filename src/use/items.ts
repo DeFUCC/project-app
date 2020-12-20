@@ -1,5 +1,5 @@
 import { reactive, ref } from 'vue'
-import { useSorter } from './sorterWorker'
+import { useSorter } from './sorter'
 import { db, soul, gun, sea } from '../store/gun-db'
 import { error, notify } from '../store/history'
 import { generateItem } from './item'

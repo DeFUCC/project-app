@@ -1,66 +1,77 @@
-import { reactive, watch } from 'vue'
+import { reactive, toRaw, watch } from 'vue'
 
-export function useSorter(obj) {
+export function useSorter(obj: object) {
+  if (!window.Worker) {
+    console.error('No worker support')
+    return
+  }
+
+  const sorter = new Worker('./workers/sorter.js')
+
   const sorted = reactive({
     data: null,
     count: 0,
   })
+
   const options = reactive({
     orderBy: {
-      AB: false,
+      AB: true,
       createdAt: true,
       modifiedAt: false,
     },
+    search: '',
   })
 
-  watch([obj, options], () => {
-    if (obj) {
-      sort(obj)
-    }
-  })
+  const throttledSort = throttle(sort, 100)
 
-  async function sort(list) {
-    let data = Object.values(list)
-    sorted.count = data.length
-    if (options.orderBy.AB) {
-      sorted.data = await data.sort(sortByAB)
-    } else if (options.orderBy.createdAt) {
-      sorted.data = await data.sort(sortByCreated)
-    } else {
-      sorted.data = await data
+  watch(
+    [obj, options],
+    () => {
+      if (obj) {
+        throttledSort(obj)
+      }
+    },
+    {
+      immediate: true,
+    },
+  )
+
+  async function sort(list: object) {
+    sorter.postMessage({
+      list: toRaw(list),
+      options: toRaw(options),
+    })
+  }
+
+  sorter.onmessage = (e) => {
+    sorted.data = e.data
+    sorted.count = e.data.length
+  }
+
+  function throttle(fn: Function, wait: number) {
+    // https://gist.github.com/beaucharman/e46b8e4d03ef30480d7f4db5a78498ca#gistcomment-3015837
+
+    let previouslyRun: number, queuedToRun: number
+
+    return function invokeFn(...args: unknown[]) {
+      const now = Date.now()
+
+      clearTimeout(queuedToRun)
+
+      if (!previouslyRun || now - previouslyRun >= wait) {
+        fn.apply(null, args)
+        previouslyRun = now
+      } else {
+        queuedToRun = window.setTimeout(
+          invokeFn.bind(null, ...args),
+          wait - (now - previouslyRun),
+        )
+      }
     }
   }
 
   return {
     sorted,
     options,
-  }
-}
-
-function sortByAB(a, b) {
-  if (!a) {
-    return -1
-  }
-  if (!b) {
-    return 1
-  }
-  let aTitle = String(a.title).toLowerCase()
-  let bTitle = String(b.title).toLowerCase()
-
-  if (aTitle > bTitle) {
-    return 1
-  }
-  if (aTitle < bTitle) {
-    return -1
-  }
-
-  return 0
-}
-
-function sortByCreated(a, b) {
-  if (a.createdAt > b.createdAt) {
-    return -1
-  } else {
-    return 1
   }
 }

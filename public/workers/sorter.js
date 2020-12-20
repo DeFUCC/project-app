@@ -4,13 +4,21 @@ onmessage = (e) => {
 
 function sort({ data }) {
   let list = Object.values(data.list)
-  let orderBy = data.options.orderBy
+  let { orderBy, search } = data.options
+
+  if (search) {
+    list = list.filter((item) => {
+      return item.title.includes(search)
+    })
+  }
+
   if (orderBy.AB) {
     list.sort(sortByAB)
   }
   if (orderBy.createdAt) {
     list.sort(sortByCreated)
   }
+
   postMessage(list)
 }
 

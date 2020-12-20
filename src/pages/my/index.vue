@@ -17,11 +17,11 @@
         &#10000;
       </div>
 
-      <FileUploader
+      <FormFile
         v-if="!user.profile.avatar || update"
         @loaded="process"
         @close="update = false"
-      ></FileUploader>
+      ></FormFile>
     </section>
   </article>
 </template>

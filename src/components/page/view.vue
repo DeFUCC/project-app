@@ -3,12 +3,12 @@
     <ItemCard :item="item.info" />
 
     <section class="content">
-      <div class="description">
+      <div class="description" v-if="item.info.description">
         {{ item.info.description }}
       </div>
     </section>
 
-    <ItemFeed
+    <FeedItems
       @open="$emit('open', $event)"
       v-for="type in model[item.info.type]"
       :key="type"
@@ -20,8 +20,8 @@
 
 <script>
 import { onMounted, ref, watchEffect } from "vue";
-import { useItem } from "../use/item";
-import { model } from "../store/model";
+import { useItem } from "../../use/item";
+import { model } from "../../store/model";
 export default {
   props: ["id"],
   emits: ["open"],

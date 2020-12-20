@@ -1,36 +1,37 @@
 <template>
   <main class="columns">
     <transition-group name="feed">
-      <ItemFeed
-        @open="openView($event, -1)"
+      <FeedItems
+        @open="openFeed($event, -1)"
         :type="item"
         key="starter"
-      ></ItemFeed>
+      ></FeedItems>
       <article
         class="column"
-        v-for="(view, key) in views"
+        v-for="(feed, key) in feeds"
         :key="key"
         :style="{
-          borderColor: itemColor(view.id ? view.id.substring(1, 88) : 0),
+          borderColor: itemColor(feed.id ? feed.id.substring(1, 88) : 0),
         }"
       >
         <div
-          :style="{ backgroundColor: itemColor(view.id) }"
+          :style="{ backgroundColor: itemColor(feed.id) }"
           class="sticky"
-          @click="closeView(key)"
+          @click="closeFeed(key)"
         >
-          {{ key }} close
+          {{ key }} <IconClose />
         </div>
 
-        <ThePage @open="openView($event, key)" :id="view.id"> </ThePage>
+        <PageView @open="openFeed($event, key)" :key="feed.id" :id="feed.id">
+        </PageView>
       </article>
     </transition-group>
   </main>
 </template>
 
 <script>
-import { itemColor } from "../tools/colors";
-import { useViews } from "../use/views";
+import { itemColor } from "../../tools/colors";
+import { useFeeds } from "../../use/feeds";
 export default {
   props: {
     item: {
@@ -40,15 +41,15 @@ export default {
   },
   name: "Designs",
   setup(props) {
-    const { views, closeView, openView } = useViews({
+    const { feeds, closeFeed, openFeed } = useFeeds({
       type: "feed",
       item: props.item,
     });
     return {
-      views,
       itemColor,
-      closeView,
-      openView,
+      feeds,
+      closeFeed,
+      openFeed,
     };
   },
 };

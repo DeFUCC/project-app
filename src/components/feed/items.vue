@@ -10,17 +10,21 @@
         />
         <span class="tag">{{ items.sorted.count }}</span>
       </div>
-      <button
-        v-for="(by, key) in items.options.orderBy"
-        :key="key"
-        :class="{ active: by }"
-        @click="items.options.orderBy[key] = !items.options.orderBy[key]"
-      >
-        {{ key }}
-      </button>
       <button v-if="canAdd" @click="items.addItem()">add</button>
+      <div class="spacer"></div>
+      <FeedSearch @search="items.options.search = $event" />
     </header>
+
     <ul class="item-list">
+      <li class="filters">
+        <FeedFilters
+          :options="items.options"
+          @order="
+            items.options.orderBy[$event] = !items.options.orderBy[$event]
+          "
+        />
+      </li>
+
       <transition-group name="list">
         <ItemCard
           @open="$emit('open', $event)"
@@ -34,13 +38,13 @@
 </template>
 
 <script>
-import { itemColor } from "../tools/colors";
 import { format } from "timeago.js";
-import { useItems } from "../use/items";
 import { computed, ref, watchEffect } from "vue";
-import { user } from "../use/user";
+import { itemColor } from "../../tools/colors";
+import { useItems } from "../../use/items";
+import { user } from "../../use/user";
 export default {
-  name: "ItemFeed",
+  name: "FeedItems",
   emits: ["open"],
   props: {
     type: {
@@ -110,5 +114,10 @@ export default {
   margin: 0;
   overflow: scroll;
   scroll-snap-type: y mandatory;
+}
+.filters {
+  padding: 0.5em;
+  background-color: var(--bar-color);
+  scroll-snap-align: start;
 }
 </style>
