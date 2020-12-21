@@ -57,4 +57,4 @@ If you have any ideas or proposals – feel free to create an issue or send me a
 
 ## Roadmap
 
-- [] Feed columns with full routes and types
+- [ ] Feed columns with full routes and types
