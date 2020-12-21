@@ -1,11 +1,5 @@
 <template>
   <li
-    @click="
-      $emit('open', {
-        type: item.type,
-        id: item.soul,
-      })
-    "
     class="item"
     :style="{
       backgroundColor: itemColor(item.soul),
@@ -51,7 +45,6 @@ import { model } from "../../store/model";
 import { itemColor } from "../../tools/colors";
 
 export default {
-  emits: ["open"],
   props: {
     item: {
       type: Object,

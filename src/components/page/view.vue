@@ -8,12 +8,12 @@
       </div>
     </section>
 
-    <FeedItems
+    <FeedList
       @open="$emit('open', $event)"
       v-for="type in model[item.info.type]"
       :key="type"
       :type="type"
-      :root="item.info.soul"
+      :parent="item.info.soul"
     />
   </article>
 </template>

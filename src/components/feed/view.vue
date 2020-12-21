@@ -1,30 +1,38 @@
 <template>
   <main class="columns">
     <transition-group name="feed">
-      <FeedItems
+      <FeedList
         @open="openFeed($event, -1)"
         :type="item"
         key="starter"
-      ></FeedItems>
-      <article
+      ></FeedList>
+      <section
         class="column"
-        v-for="(feed, key) in feeds"
-        :key="key"
+        v-for="(feed, num) in feeds"
+        :key="num"
         :style="{
           borderColor: itemColor(feed.id ? feed.id.substring(1, 88) : 0),
         }"
       >
         <div
           :style="{ backgroundColor: itemColor(feed.id) }"
-          class="sticky"
-          @click="closeFeed(key)"
+          class="sticky bar"
         >
-          {{ key }} <IconClose />
+          <div class="title">{{ num }}: {{ feed }}</div>
+          <div class="spacer"></div>
+          <div class="close" @click="closeFeed(num)"><IconClose /></div>
         </div>
 
-        <PageView @open="openFeed($event, key)" :key="feed.id" :id="feed.id">
+        <EditItem v-if="feed.view == 'edit'" />
+
+        <PageView
+          v-if="feed.view == 'page'"
+          @open="openFeed($event, num)"
+          :key="feed.id"
+          :id="feed.id"
+        >
         </PageView>
-      </article>
+      </section>
     </transition-group>
   </main>
 </template>
@@ -59,6 +67,16 @@ export default {
 .sticky {
   position: sticky;
   top: 0;
+}
+.bar {
+  font-size: 0.8em;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 0.5em;
+}
+.close {
+  font-size: 1.4em;
 }
 .columns {
   display: flex;

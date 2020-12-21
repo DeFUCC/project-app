@@ -55,6 +55,17 @@ It's the most basic structure, but it's needs to be filled with all field and re
 
 If you have any ideas or proposals – feel free to create an issue or send me a message. 
 
-## Roadmap
+## Features
 
-- [ ] Feed columns with full routes and types
+- [ ] Feed columns as the main interface
+  - [x] Universal items feeds
+  - [ ] Users feeds
+- [ ] Item editor
+- [ ] Full rating system
+  - [x] pluses
+  - [ ] seens
+  - [ ] minuses
+- [ ] UKT rating
+- [ ] item logs
+- [ ] comments
+- [ ] User role system

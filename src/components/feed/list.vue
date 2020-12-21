@@ -1,36 +1,43 @@
 <template>
   <article class="column">
-    <header class="bar">
-      <div class="title">
-        <img
-          v-if="type"
-          class="icon bigger"
-          :src="'/svg/' + type + '.svg'"
-          alt=""
-        />
-        <span class="tag">{{ items.sorted.count }}</span>
-      </div>
-      <button :disabled="!canAdd" @click="items.addItem()">add</button>
-      <div class="spacer"></div>
-      <FeedSearch @search="items.options.search = $event" />
-    </header>
+    <FeedListBar
+      :count="items.sorted.count"
+      :canAdd="canAdd"
+      :type="type"
+      @search="items.options.search = $event"
+      @create="
+        $emit('open', {
+          view: 'edit',
+          type: type,
+          id: parent,
+        })
+      "
+      @add="items.addItem()"
+    />
 
     <ul class="item-list">
       <li class="filters">
-        <FeedFilters
+        <FeedListFilters
           :options="items.options"
           @order="
             items.options.orderBy[$event] = !items.options.orderBy[$event]
           "
+          class="fl"
         />
       </li>
 
       <transition-group name="list">
         <ItemCard
-          @open="$emit('open', $event)"
-          v-for="project in items.sorted.data"
-          :key="project.soul"
-          :item="project"
+          @click="
+            $emit('open', {
+              view: 'page',
+              type: item.type,
+              id: item.soul,
+            })
+          "
+          v-for="item in items.sorted.data"
+          :key="item.soul"
+          :item="item"
         ></ItemCard>
       </transition-group>
     </ul>
@@ -51,7 +58,7 @@ export default {
       type: String,
       default: "design",
     },
-    root: {
+    parent: {
       type: String,
       default: null,
     },
@@ -63,15 +70,16 @@ export default {
       items = useItems({
         type: props.type,
         mode: "private",
-        root: props.root,
+        root: props.parent,
       });
     });
 
-    const canAdd = computed(
-      () =>
+    const canAdd = computed(() =>
+      Boolean(
         !items.adding.value &&
-        ((!props.root && user.is) ||
-          (props.root && user.is?.pub == props.root.slice(1, 88)))
+          ((!props.parent && user.is) ||
+            (props.parent && user.is?.pub == props.parent.slice(1, 88)))
+      )
     );
 
     return {

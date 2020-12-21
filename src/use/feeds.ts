@@ -6,6 +6,7 @@ interface FeedParams {
 }
 
 interface Feed {
+  view: 'page' | 'edit'
   type: string
   id: string
   root?: string
@@ -14,8 +15,8 @@ interface Feed {
 export function useFeeds(starter: FeedParams) {
   const feeds = reactive([])
 
-  function openFeed(view: Feed, num: number) {
-    feeds[num + 1] = view
+  function openFeed(feed: Feed, num: number) {
+    feeds[num + 1] = feed
     feeds.splice(num + 2)
   }
 

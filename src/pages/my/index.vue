@@ -17,11 +17,11 @@
         &#10000;
       </div>
 
-      <FormFile
+      <EditFile
         v-if="!user.profile.avatar || update"
         @loaded="process"
         @close="update = false"
-      ></FormFile>
+      ></EditFile>
     </section>
   </article>
 </template>
