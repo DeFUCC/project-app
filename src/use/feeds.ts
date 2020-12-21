@@ -9,7 +9,8 @@ interface Feed {
   view: 'page' | 'edit'
   type: string
   id: string
-  root?: string
+  title: string
+  parent?: string
 }
 
 export function useFeeds(starter: FeedParams) {

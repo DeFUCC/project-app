@@ -28,11 +28,11 @@ export function useItems({ type = 'project', root = null } = {}) {
         items[key].soul = soul(data)
         items[key].author = reactive({})
         gun
-          .user(key.substring(1, 88))
-          .once((userIs) => {
+          .user(items[key]?.createdBy)
+          .on((userIs) => {
             if (userIs) {
-              items[key].author.alias = userIs?.alias
-              items[key].author.pub = userIs?.pub
+              items[key].author.alias = userIs.alias
+              items[key].author.pub = userIs.pub
             }
           })
           .get('profile')

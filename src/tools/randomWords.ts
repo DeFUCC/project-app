@@ -333,9 +333,12 @@ for (var key in grams) {
   grams[key].sorted = sorted.sort()
 }
 
-export function generateWords(n:number): string {
+export function generateWords(n: number, max?: number): string {
   if (!n) {
     n = 1
+  }
+  if (max && max > n) {
+    n = Math.ceil(Math.random() * max)
   }
   var words = []
   for (var i = 0; i < n; i++) {

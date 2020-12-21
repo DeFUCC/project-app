@@ -7,31 +7,35 @@
         key="starter"
       ></FeedList>
       <section
-        class="column"
+        class="column bordered"
         v-for="(feed, num) in feeds"
         :key="num"
         :style="{
-          borderColor: itemColor(feed.id ? feed.id.substring(1, 88) : 0),
+          borderColor: itemColor(feed.parent),
         }"
       >
         <div
           :style="{ backgroundColor: itemColor(feed.id) }"
           class="sticky bar"
         >
-          <div class="title">{{ num }}: {{ feed }}</div>
+          <IconType :type="feed.type" />
+          <div class="title">{{ feed.title }}</div>
           <div class="spacer"></div>
           <div class="close" @click="closeFeed(num)"><IconClose /></div>
         </div>
 
-        <EditItem
-          v-if="feed.view == 'edit'"
+        <AddItem
+          v-if="feed.view == 'add'"
           :parent="feed.id"
           :type="feed.type"
+          :key="feed.id"
+          @added="closeFeed(num)"
         />
 
         <PageView
           v-if="feed.view == 'page'"
           @open="openFeed($event, num)"
+          @close="closeFeed(num)"
           :key="feed.id"
           :id="feed.id"
         >
@@ -57,6 +61,7 @@ export default {
       type: "feed",
       item: props.item,
     });
+
     return {
       itemColor,
       feeds,
@@ -67,7 +72,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 .sticky {
   position: sticky;
   top: 0;
@@ -91,8 +96,10 @@ export default {
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-overflow-scrolling: touch;
 }
+.bordered {
+  border-left: 6px solid #eee;
+}
 .column {
-  border-left: 4px solid #eee;
   scroll-snap-align: start;
   display: flex;
   flex: 1 0 360px;

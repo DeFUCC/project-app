@@ -61,6 +61,8 @@ If you have any ideas or proposals – feel free to create an issue or send me a
   - [x] Universal items feeds
   - [ ] Users feeds
 - [ ] Item editor
+  - [x] Basic item creation 
+  - [x] Title input
 - [ ] Full rating system
   - [x] pluses
   - [ ] seens

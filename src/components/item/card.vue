@@ -3,39 +3,40 @@
     class="item"
     :style="{
       backgroundColor: itemColor(item.soul),
-      borderColor: itemColor(item.soul.substring(1, 88)),
     }"
   >
     <div class="main">
-      <div class="info">
-        <img
-          v-if="item.type"
-          class="icon"
-          :src="'/svg/' + item.type + '.svg'"
-          alt=""
-        />
-        <UserAvatar size="small" :pic="item.author.avatar" />
-        {{ format(item.createdAt, "short") }}
-        <span v-if="item.updatedAt">
-          , upd {{ format(item.updatedAt, "short") }}
-        </span>
-      </div>
-
       <div class="title">
         <h2>{{ item.title }}</h2>
-      </div>
-    </div>
-    <div class="spacer"></div>
-    <div class="counters">
-      <ItemCount
-        :id="item.soul"
-        :type="type"
-        v-for="type in model[item.type]"
-        :key="type"
-      />
-    </div>
+        <div
+          class="info"
+          :style="{
+            backgroundColor: itemColor(item.createdBy),
+          }"
+        >
+          <IconType :type="item.type" />
 
-    <ItemRating :item="item.soul" />
+          <UserAvatar size="small" :pic="item.author.avatar" />&nbsp;
+          {{ item.author.alias }}
+          {{ format(item.createdAt, "short") }}
+          <span v-if="item.updatedAt">
+            , upd {{ format(item.updatedAt, "short") }}
+          </span>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+      <div class="counters">
+        <ItemCount
+          :id="item.soul"
+          :type="type"
+          v-for="type in model[item.type]"
+          :key="type"
+        />
+      </div>
+
+      <ItemRating :item="item.soul" />
+    </div>
   </li>
 </template>
 
@@ -79,7 +80,13 @@ export default {
   line-height: 1.4em;
 }
 .main {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+}
+.title {
   padding: 0.5em;
+  align-self: center;
 }
 .counters {
   display: flex;
@@ -90,16 +97,17 @@ export default {
 .item {
   cursor: pointer;
   display: flex;
+  flex-flow: column;
   align-items: stretch;
-  margin: 0.5em;
-  padding: 0.5em;
-  scroll-snap-align: start end;
+  padding: 0;
   flex: 1 1 4em;
-  border-left: 4px solid;
 }
 .info {
+  opacity: 0.5;
   font-size: 0.7em;
   display: flex;
   align-items: center;
+  display: flex;
+  padding: 4px;
 }
 </style>

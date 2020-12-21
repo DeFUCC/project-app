@@ -6,7 +6,7 @@
       :type="type"
       @create="
         $emit('open', {
-          view: 'edit',
+          view: 'add',
           type: type,
           id: parent,
         })
@@ -27,11 +27,14 @@
 
       <transition-group name="list">
         <ItemCard
+          class="card"
           @click="
             $emit('open', {
               view: 'page',
               type: item.type,
               id: item.soul,
+              title: item.title,
+              parent: parent,
             })
           "
           v-for="item in items.sorted.data"
@@ -120,6 +123,11 @@ export default {
   margin: 0;
   overflow: scroll;
   scroll-snap-type: y mandatory;
+}
+.card {
+  scroll-snap-align: start end;
+
+  margin: 0.5em;
 }
 .filters {
   padding: 0.5em;

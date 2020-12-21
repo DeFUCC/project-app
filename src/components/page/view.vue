@@ -1,6 +1,6 @@
 <template>
   <article ref="page" class="page">
-    <ItemCard :item="item.info" />
+    <ItemCard :item="item.info" @click="$emit('close')" />
 
     <section class="content">
       <div class="description" v-if="item.info.description">
@@ -18,13 +18,13 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
 import { onMounted, ref, watchEffect } from "vue";
 import { useItem } from "../../use/item";
 import { model } from "../../store/model";
 export default {
   props: ["id"],
-  emits: ["open"],
+  emits: ["open", "close"],
   setup(props) {
     const item = ref({});
     const page = ref(null);
