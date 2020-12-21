@@ -7,6 +7,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 ## STACK
 - [TypeScript](https://www.typescriptlang.org/) in all use functions for Composition API
 - [Vue 3](https://v3.vuejs.org/) as fast and easy to reactive framework with the new powerful Composition API
+  - [Vue router](https://github.com/vuejs/vue-router-next) for page routing
   - [i18n](https://vue-i18n-next.intlify.dev/advanced/composition.html#basic-usage) **TBD**
   - [VueUse](https://vueuse.js.org) helpers **TBD**
 - [Vite](https://github.com/vitejs/vite) as the fast development environment with modular bundling, with magic plugins by [Antifu](https://github.com/antfu)
@@ -53,3 +54,7 @@ It's one of the most difficult questions. I'm in the process of formulating the 
 It's the most basic structure, but it's needs to be filled with all field and relations schema. A lot of work, but how interesting it is!
 
 If you have any ideas or proposals – feel free to create an issue or send me a message. 
+
+## Roadmap
+
+- [] Feed columns with full routes and types

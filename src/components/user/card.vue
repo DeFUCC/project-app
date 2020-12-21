@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
+  <router-link :to="'/users/' + user.pub" class="card">
     <h3 class="alias">{{ user.alias }}</h3>
     <UserAvatar size="medium" :pic="data.profile.avatar" />
     {{ data.rates }}
-  </div>
+  </router-link>
 </template>
 
 <script>

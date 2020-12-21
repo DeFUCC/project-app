@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { defineAsyncComponent, reactive } from "vue";
+import { reactive } from "vue";
 import { user } from "../../store/user";
 
 export default {
