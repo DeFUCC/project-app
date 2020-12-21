@@ -2,7 +2,7 @@ import { reactive, ref } from 'vue'
 import { useSorter } from './sorter'
 import { db, soul, gun, sea } from '../store/gun-db'
 import { error, notify } from '../store/history'
-import { generateItem } from './item'
+import { createItem, generateItem } from './item'
 
 export function useItems({ type = 'project', root = null } = {}) {
   const items = reactive({})
@@ -46,20 +46,7 @@ export function useItems({ type = 'project', root = null } = {}) {
 
   async function addItem() {
     adding.value = true
-    let item = generateItem(type)
-    try {
-      let privateItem = await gun.user().get(type).set(item)
-      let hash = await sea.work(privateItem, privateItem.createdAt, null, {
-        name: 'sha-1',
-        encode: 'hex',
-      })
-      let publicItem = await db.get(type).get(hash).put(privateItem)
-      if (root) {
-        gun.get(root).get(type).get(hash).put(privateItem)
-      }
-    } catch (err) {
-      error(err)
-    }
+    await createItem(type, null, root)
     adding.value = false
   }
 

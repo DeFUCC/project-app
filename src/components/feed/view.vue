@@ -23,7 +23,11 @@
           <div class="close" @click="closeFeed(num)"><IconClose /></div>
         </div>
 
-        <EditItem v-if="feed.view == 'edit'" />
+        <EditItem
+          v-if="feed.view == 'edit'"
+          :parent="feed.id"
+          :type="feed.type"
+        />
 
         <PageView
           v-if="feed.view == 'page'"
