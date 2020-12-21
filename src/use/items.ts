@@ -6,7 +6,6 @@ import { createItem, generateItem } from './item'
 
 export function useItems({ type = 'project', root = null } = {}) {
   const items = reactive({})
-  const adding = ref(false)
   getItems()
 
   const { sorted, options } = useSorter(items)
@@ -44,16 +43,8 @@ export function useItems({ type = 'project', root = null } = {}) {
       })
   }
 
-  async function addItem() {
-    adding.value = true
-    await createItem(type, null, root)
-    adding.value = false
-  }
-
   return {
     options,
     sorted,
-    addItem,
-    adding,
   }
 }

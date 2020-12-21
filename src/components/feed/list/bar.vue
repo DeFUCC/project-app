@@ -9,7 +9,7 @@
       />
       <span class="tag">{{ count }}</span>
     </div>
-    <button :disabled="!canAdd" @click="$emit('add')">add</button>
+
     <button :disabled="!canAdd" @click="$emit('create')">create</button>
     <div class="spacer"></div>
     <FeedListSearch @search="$emit('search', $event)" />
@@ -20,7 +20,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  emits: ["search", "create", "add"],
+  emits: ["search", "create"],
   props: {
     canAdd: {
       type: Boolean,

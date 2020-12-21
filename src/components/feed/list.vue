@@ -4,7 +4,6 @@
       :count="items.sorted.count"
       :canAdd="canAdd"
       :type="type"
-      @search="items.options.search = $event"
       @create="
         $emit('open', {
           view: 'edit',
@@ -12,7 +11,7 @@
           id: parent,
         })
       "
-      @add="items.addItem()"
+      @search="items.options.search = $event"
     />
 
     <ul class="item-list">
@@ -76,9 +75,8 @@ export default {
 
     const canAdd = computed(() =>
       Boolean(
-        !items.adding.value &&
-          ((!props.parent && user.is) ||
-            (props.parent && user.is?.pub == props.parent.slice(1, 88)))
+        (!props.parent && user.is) ||
+          (props.parent && user.is?.pub == props.parent.slice(1, 88))
       )
     );
 
