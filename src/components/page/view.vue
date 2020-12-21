@@ -8,7 +8,7 @@
       </div>
     </section>
 
-    <FeedList
+    <ListItems
       @open="$emit('open', $event)"
       v-for="type in model[item.info.type]"
       :key="type"
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { onMounted, ref, watchEffect } from "vue";
+import { ref, watchEffect } from "vue";
 import { useItem } from "../../use/item";
 import { model } from "../../store/model";
 export default {
@@ -28,16 +28,8 @@ export default {
   setup(props) {
     const item = ref({});
     const page = ref(null);
-    const mounted = ref(false);
     watchEffect(() => {
       item.value = useItem(props.id);
-      if (mounted.value) {
-        page.value.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-
-    onMounted(() => {
-      mounted.value = true;
     });
 
     return {

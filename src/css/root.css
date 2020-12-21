@@ -12,11 +12,13 @@ body {
   margin: 0;
   height: 100vh;
   background-color: var(--background);
+  touch-action: pan-x;
 }
 
 html {
   scroll-behavior: smooth;
   overflow: hidden;
+  overscroll-behavior-x: none;
 }
 
 #app {

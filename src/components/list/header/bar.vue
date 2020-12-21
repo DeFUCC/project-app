@@ -12,7 +12,7 @@
 
     <button :disabled="!canAdd" @click="$emit('create')">create</button>
     <div class="spacer"></div>
-    <FeedListSearch @search="$emit('search', $event)" />
+    <ListHeaderSearch @search="$emit('search', $event)" />
   </header>
 </template>
 

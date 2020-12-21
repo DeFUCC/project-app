@@ -100,7 +100,8 @@ export default {
   flex-flow: column;
   align-items: stretch;
   padding: 0;
-  flex: 1 1 4em;
+  flex: 1 0 5em;
+  min-height: min-content;
 }
 .info {
   opacity: 0.5;

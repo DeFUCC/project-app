@@ -1,6 +1,6 @@
 <template>
   <article class="column">
-    <FeedListBar
+    <ListHeaderBar
       :count="items.sorted.count"
       :canAdd="canAdd"
       :type="type"
@@ -16,7 +16,7 @@
 
     <ul class="item-list">
       <li class="filters">
-        <FeedListFilters
+        <ListHeaderFilters
           :options="items.options"
           @order="
             items.options.orderBy[$event] = !items.options.orderBy[$event]

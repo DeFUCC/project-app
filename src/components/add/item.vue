@@ -1,5 +1,5 @@
 <template>
-  <form ref="form" id="edit" @submit.prevent>
+  <form id="edit" @submit.prevent>
     <div class="row">
       <IconType :type="type" />
       + {{ parent }} <br />
@@ -42,10 +42,6 @@ export default defineComponent({
       title: "",
       description: "",
     });
-    const form = ref(null);
-    onMounted(() => {
-      form.value.scrollIntoView({ behavior: "smooth" });
-    });
 
     async function addItem() {
       let added = await createItem(props.type, data, props.parent);
@@ -54,7 +50,6 @@ export default defineComponent({
     return {
       data,
       addItem,
-      form,
       generateWords,
     };
   },

@@ -1,12 +1,12 @@
 {
   "name": "project-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
   "dependencies": {
-    "@vueuse/core": "^4.0.0-rc.11",
+    "@vueuse/core": "^4.0.0",
     "color-hash": "^1.0.3",
     "image-compressor": "^2.0.3",
     "timeago.js": "^4.0.2",
