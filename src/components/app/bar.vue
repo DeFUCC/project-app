@@ -43,6 +43,8 @@ export default {
   flex-flow: column nowrap;
   padding: 1em;
   background-color: var(--top-bar);
+  overflow-y: scroll;
+  padding-bottom: 4em;
 }
 .spacer {
   flex: 10 1 100px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="count">
+  <div class="count" v-if="count > 0">
     <img class="icon" :src="icon" alt="" />
     {{ count }}
   </div>

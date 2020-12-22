@@ -134,4 +134,13 @@ export default {
   background-color: var(--bar-color);
   scroll-snap-align: start;
 }
+.column {
+  scroll-snap-align: start;
+  display: flex;
+  flex: 1 0 360px;
+  flex-flow: column nowrap;
+  max-width: 960px;
+  min-width: 360px;
+  overflow-y: hidden;
+}
 </style>
