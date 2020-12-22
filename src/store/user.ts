@@ -10,7 +10,7 @@ export const user = reactive({
     avatar: null,
   },
   info: {},
-  rating: {},
+  rates: {},
 })
 
 gun.user().recall({ sessionStorage: true }, (ack: { err: string }) => {
@@ -25,44 +25,37 @@ gun.user().recall({ sessionStorage: true }, (ack: { err: string }) => {
 
 gun.on('auth', () => {
   console.log('authed')
-  loadUser(user, gun.user().is.pub)
+  loadUser(gun.user().is.pub)
 })
 
-export function loadUser(
-  container = {
-    profile: {},
-    info: {},
-    rating: {},
-  },
-  pub: string,
-) {
+export function loadUser(pub: string) {
   console.log('loading')
   gun
     .user(pub)
     .get('profile')
     .map()
     .on((data, key) => {
-      container.profile[key] = data
+      user.profile[key] = data
     })
   db.get('user')
     .get(pub)
     .map()
     .on((data, key) => {
-      container.info[key] = data
+      user.info[key] = data
     })
   gun
     .user(pub)
-    .get('rating')
+    .get('rate')
     .map()
     .on((data, key) => {
-      container.rating[key] = data
+      user.rates[key] = data
     })
 }
 
 export function logIn() {
   user.isLoggedIn = true
   user.is = gun.user().is
-  loadUser(user, gun.user().is.pub)
+  loadUser(gun.user().is.pub)
   console.log('logging in', user.is)
   notify('You successfully logged in as ' + user.is.alias + '.')
 }

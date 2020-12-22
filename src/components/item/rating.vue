@@ -1,20 +1,28 @@
 <template>
   <div class="rating">
     <div
-      class="plus"
-      @click.stop="r.rate.plus(item)"
-      :class="{ active: r.rating.myRate }"
+      class="star"
+      @click.stop="rate('star')"
+      :class="{ active: myRate.star }"
     >
-      <IconStar :active="r.rating.myRate" />
-      {{ r.rating.count.plus }}
+      <IconStar :active="myRate.star" />
+      {{ count.star }}
     </div>
-    <div class="zero">
-      <IconEye :active="r.rating.myRate" />
-      {{ r.rating.count.zero }}
+    <div
+      class="seen"
+      @click.stop="rate('seen')"
+      :class="{ active: myRate.seen }"
+    >
+      <IconEye :active="myRate.seen" />
+      {{ count.seen }}
     </div>
-    <div class="minus">
-      <IconTrash :active="!r.rating.myRate" />
-      {{ r.rating.count.minus }}
+    <div
+      class="trash"
+      @click.stop="rate('trash')"
+      :class="{ active: myRate.trash }"
+    >
+      <IconTrash :active="myRate.trash" />
+      {{ count.trash }}
     </div>
   </div>
 </template>
@@ -27,12 +35,12 @@ export default defineComponent({
     item: String,
   },
   setup(props) {
-    const r = ref({});
-    watchEffect(() => {
-      r.value = useItemRating(props.item);
-    });
+    let { count, myRate, rate } = useItemRating(props.item);
+
     return {
-      r,
+      count,
+      myRate,
+      rate,
     };
   },
 });
@@ -54,13 +62,13 @@ export default defineComponent({
   cursor: pointer;
   opacity: 0.5;
 }
-.plus {
+.star {
   background-color: hsla(0, 0%, 100%, 0.4);
 }
-.zero {
+.seen {
   background-color: hsla(0, 0%, 50%, 0.4);
 }
-.minus {
+.trash {
   background-color: hsla(0, 0%, 0%, 0.4);
 }
 .rating img {

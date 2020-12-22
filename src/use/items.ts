@@ -4,7 +4,7 @@ import { db, soul, gun, sea } from '../store/gun-db'
 import { error, notify } from '../store/history'
 import { createItem, generateItem } from './item'
 
-export function useItems({ type = 'project', root = null } = {}) {
+export function useItems({ type = 'project', parent = null } = {}) {
   const items = reactive({})
   getItems()
 
@@ -12,8 +12,8 @@ export function useItems({ type = 'project', root = null } = {}) {
 
   function getItems() {
     let query: any
-    if (root) {
-      query = gun.get(root)
+    if (parent) {
+      query = gun.get(parent)
     } else {
       query = db
     }
@@ -37,7 +37,7 @@ export function useItems({ type = 'project', root = null } = {}) {
           })
           .get('profile')
           .get('avatar')
-          .on((d) => {
+          .on((d: string) => {
             items[key].author.avatar = d
           })
       })

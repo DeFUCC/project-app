@@ -8,16 +8,15 @@
     <div class="main">
       <div class="title">
         <h2>{{ item.title }}</h2>
-        <div
-          class="info"
-          :style="{
-            backgroundColor: itemColor(item.createdBy),
-          }"
-        >
+        <div class="info">
           <IconType :type="item.type" />
 
-          <UserAvatar size="small" :pic="item.author.avatar" />&nbsp;
-          {{ item.author.alias }}
+          <UserPill
+            :avatar="item.author.avatar"
+            :alias="item.author.alias"
+            :pub="item.soul.slice(1, 88)"
+          />
+
           {{ format(item.createdAt, "short") }}
           <span v-if="item.updatedAt">
             , upd {{ format(item.updatedAt, "short") }}
@@ -104,7 +103,6 @@ export default {
   min-height: min-content;
 }
 .info {
-  opacity: 0.5;
   font-size: 0.7em;
   display: flex;
   align-items: center;

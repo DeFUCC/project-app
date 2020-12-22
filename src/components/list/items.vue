@@ -71,7 +71,6 @@ export default {
     watchEffect(() => {
       items = useItems({
         type: props.type,
-        mode: "private",
         root: props.parent,
       });
     });
@@ -123,6 +122,7 @@ export default {
   margin: 0;
   overflow: scroll;
   scroll-snap-type: y mandatory;
+  height: 100%;
 }
 .card {
   scroll-snap-align: start end;

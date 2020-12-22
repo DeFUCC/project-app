@@ -5,7 +5,7 @@
       <div class="sus">
         <ItemAsyncCard
           :id="id"
-          v-for="(value, id) in user.rating"
+          v-for="(value, id) in user.rates.star"
           :key="id"
         ></ItemAsyncCard>
       </div>
@@ -18,15 +18,9 @@ import { reactive } from "vue";
 import { user } from "../../store/user";
 
 export default {
-  props: {
-    user: String,
-  },
   setup(props) {
-    const items = reactive([]);
-
     return {
       user,
-      items,
     };
   },
 };
@@ -34,3 +28,4 @@ export default {
 
 <style>
 </style>
+
