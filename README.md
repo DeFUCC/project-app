@@ -59,14 +59,22 @@ If you have any ideas or proposals – feel free to create an issue or send me a
 
 - [ ] Feed columns as the main interface
   - [x] Universal items feeds
+    - [x] List sorter in a Web Worker
+    - [x] Filter by search
+    - [ ] Filter feed by ratings
   - [ ] Users feeds
 - [ ] Item editor
   - [x] Basic item creation 
   - [x] Title input
 - [ ] Full rating system
-  - [x] pluses
-  - [ ] seens
-  - [ ] minuses
+  - [x] 3 types
+    - [x] star
+    - [x] seen
+    - [x] trash
+  - [ ] User rating pages
+    - [x] My Stars
+    - [ ] My Seen
+    - [ ] My Trash
 - [ ] UKT rating
 - [ ] item logs
 - [ ] comments

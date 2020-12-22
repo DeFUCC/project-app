@@ -8,7 +8,7 @@ function sort({ data }) {
 
   if (search) {
     list = list.filter((item) => {
-      return item.title.includes(search)
+      return item.title.toLowerCase().includes(search.toLowerCase())
     })
   }
 
