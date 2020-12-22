@@ -4,8 +4,8 @@
     <Suspense>
       <div class="sus">
         <ItemAsyncCard
-          :id="id"
-          v-for="(value, id) in user.rates.star"
+          :id="value"
+          v-for="(value, id) in stars"
           :key="id"
         ></ItemAsyncCard>
       </div>
@@ -14,13 +14,22 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { computed, reactive, ref, watchEffect } from "vue";
 import { user } from "../../store/user";
 
 export default {
   setup(props) {
+    const stars = computed(() => {
+      return (
+        user?.rates?.star &&
+        Object.values(user.rates.star).filter((star) => {
+          return star;
+        })
+      );
+    });
     return {
       user,
+      stars,
     };
   },
 };

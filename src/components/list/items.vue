@@ -71,7 +71,7 @@ export default {
     watchEffect(() => {
       items = useItems({
         type: props.type,
-        root: props.parent,
+        parent: props.parent,
       });
     });
 

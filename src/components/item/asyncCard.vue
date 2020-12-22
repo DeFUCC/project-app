@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-if="item">
+  <div class="card" v-if="item && item.title">
     {{ item.type }} - {{ item.title }} - {{ item.createdAt }}
   </div>
 </template>
