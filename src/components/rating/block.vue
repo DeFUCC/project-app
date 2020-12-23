@@ -23,14 +23,10 @@
       :class="{ active: myRate.seen }"
     >
       <i v-show="!myRate.seen">
-        <span class="iconify" data-icon="la:eye" data-inline="false"></span>
+        <span class="iconify" data-icon="la:eye"></span>
       </i>
       <i v-show="!!myRate.seen">
-        <span
-          class="iconify"
-          data-icon="la:eye-slash"
-          data-inline="false"
-        ></span>
+        <span class="iconify" data-icon="la:eye-slash"></span>
       </i>
       {{ count.seen }}
     </div>
@@ -83,15 +79,19 @@ export default defineComponent({
   flex-flow: column nowrap;
   align-items: stretch;
   justify-items: stretch;
-  font-size: 0.8em;
+  font-size: 1em;
 }
-.rating div {
+.rating > div {
   padding: 0em 0.5em;
   display: flex;
   flex: 1 1 1em;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   opacity: 0.5;
+}
+i {
+  padding-top: 2px;
 }
 .star {
   background-color: hsla(0, 0%, 100%, 0.4);
