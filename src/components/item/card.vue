@@ -4,17 +4,18 @@
     :style="{
       backgroundColor: itemColor(item.soul),
     }"
+    v-if="item"
   >
     <div class="main">
-      <div class="title">
-        <h2>{{ item.title }}</h2>
-        <div class="info">
-          <IconType :type="item.type" />
+      <div class="content">
+        <h3 class="title"><IconType :type="item.type" />{{ item.title }}</h3>
 
+        <div class="info">
           <UserPill
-            :avatar="item.author.avatar"
-            :alias="item.author.alias"
-            :pub="item.soul.slice(1, 88)"
+            v-if="item.author"
+            :avatar="item.author?.avatar"
+            :alias="item.author?.alias"
+            :pub="item.soul.slice(0, 88)"
           />
 
           {{ format(item.createdAt, "short") }}
@@ -43,6 +44,7 @@
 import { format } from "timeago.js";
 import { model } from "../../store/model";
 import { itemColor } from "../../tools/colors";
+import { computed } from "vue";
 
 export default {
   props: {
@@ -62,7 +64,7 @@ export default {
     },
   },
 
-  setup() {
+  setup(props) {
     return {
       model,
       itemColor,
@@ -83,9 +85,13 @@ export default {
   flex: 1;
   align-items: stretch;
 }
-.title {
+.content {
   padding: 0.5em;
   align-self: center;
+}
+.title {
+  display: flex;
+  align-items: center;
 }
 .counters {
   display: flex;

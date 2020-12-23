@@ -5,7 +5,7 @@
       backgroundColor: itemColor(pub),
     }"
   >
-    <UserAvatar size="small" :pic="avatar" />&nbsp;
+    <UserAvatar size="small" :pic="avatar" class="pad" />
     {{ alias }}
   </div>
 </template>
@@ -33,10 +33,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.pad {
+  padding-right: 0.5em;
+}
 .user {
   display: flex;
   align-items: center;
   border-radius: 1em;
-  padding: 4px;
+  padding: 4px 8px 4px 4px;
 }
 </style>

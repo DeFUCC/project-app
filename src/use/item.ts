@@ -38,13 +38,10 @@ export async function createItem(type: string, data?: any, parent?: string) {
   let item = generateItem(type, data, parent)
   try {
     let privateItem = await gun.user().get(type).set(item)
-    let hash = await sea.work(privateItem, privateItem.createdAt, null, {
-      name: 'sha-1',
-      encode: 'hex',
-    })
-    let publicItem = await db.get(type).get(hash).put(privateItem)
+    let uuid = soul(privateItem).slice(-15)
+    let publicItem = await db.get(type).get(uuid).put(privateItem)
     if (parent) {
-      gun.get(parent).get(type).get(hash).put(privateItem)
+      gun.get(parent).get(type).get(uuid).put(privateItem)
     }
     return soul(publicItem)
   } catch (err) {
