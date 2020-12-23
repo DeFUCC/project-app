@@ -1,12 +1,17 @@
 <template>
   <div class="filters">
     <button
-      v-for="(by, key) in options.orderBy"
-      :key="key"
-      :class="{ active: by }"
-      @click="$emit('order', key)"
+      :class="{ active: options.orderBy.AB }"
+      @click="$emit('order', 'AB')"
     >
-      {{ key }}
+      <span class="iconify" data-icon="la:sort-alpha-down"></span>
+    </button>
+
+    <button
+      :class="{ active: options.orderBy.createdAt }"
+      @click="$emit('order', 'createdAt')"
+    >
+      <span class="iconify" data-icon="la:sort-numeric-up-alt"></span>
     </button>
   </div>
 </template>
@@ -29,6 +34,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.iconify {
+  font-size: 2em;
+}
 .filters {
   display: flex;
 }

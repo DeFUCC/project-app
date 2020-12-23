@@ -4,16 +4,23 @@ import App from './App.vue'
 import { router } from './router'
 import './index.css'
 
+import '@iconify/iconify'
+import '@purge-icons/generated'
+
 const projectApp = createApp(App)
 
 projectApp.use(router)
 projectApp.mount('#app')
 
-const localeFunc = (number: number, index: number, totalSec?:number):[string, string] => {
+const localeFunc = (
+  number: number,
+  index: number,
+  totalSec?: number,
+): [string, string] => {
   // number: the timeago / timein number;
   // index: the index of array below;
   // totalSec: total seconds between date to be formatted and today's date;
-  let phrase:[string,string] = [
+  let phrase: [string, string] = [
     ['just now', 'right now'],
     ['%s s', 'in %s seconds'],
     ['1 m', 'in 1 minute'],
@@ -28,7 +35,7 @@ const localeFunc = (number: number, index: number, totalSec?:number):[string, st
     ['%s m', 'in %s months'],
     ['1 y', 'in 1 year'],
     ['%s y', 'in %s years'],
-  ][index] as [string,string]
+  ][index] as [string, string]
   return phrase
 }
 // register your locale with timeago

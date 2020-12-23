@@ -85,7 +85,7 @@ export default defineComponent({
   flex-flow: column nowrap;
   max-width: 960px;
   min-width: 360px;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .column:last-child {

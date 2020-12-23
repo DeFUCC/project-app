@@ -12,19 +12,15 @@
         })
       "
       @search="items.options.search = $event"
-    />
+    >
+      <ListHeaderFilters
+        :options="items.options"
+        @order="items.options.orderBy[$event] = !items.options.orderBy[$event]"
+        class="fl"
+      />
+    </ListHeaderBar>
 
     <ul class="item-list">
-      <li class="filters">
-        <ListHeaderFilters
-          :options="items.options"
-          @order="
-            items.options.orderBy[$event] = !items.options.orderBy[$event]
-          "
-          class="fl"
-        />
-      </li>
-
       <transition-group name="list">
         <ItemCard
           class="card"
@@ -141,6 +137,6 @@ export default {
   flex-flow: column nowrap;
   max-width: 960px;
   min-width: 360px;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 </style>

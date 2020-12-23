@@ -1,5 +1,6 @@
 import ViteComponents from 'vite-plugin-components'
 import voie from 'vite-plugin-voie'
+import PurgeIcons from 'vite-plugin-purge-icons'
 
 export default {
   plugins: [
@@ -24,6 +25,9 @@ export default {
       // you will need to pass `alias` and `root` if you set them in vite config
       alias: {},
       root: process.cwd(),
+    }),
+    PurgeIcons({
+      /* PurgeIcons Options */
     }),
   ],
 }

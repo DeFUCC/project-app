@@ -9,8 +9,11 @@
       />
       <span class="tag">{{ count }}</span>
     </div>
+    <slot></slot>
+    <button :disabled="!canAdd" @click="$emit('create')">
+      <span class="iconify" data-icon="la:plus-circle"></span>
+    </button>
 
-    <button :disabled="!canAdd" @click="$emit('create')">create</button>
     <div class="spacer"></div>
     <ListHeaderSearch @search="$emit('search', $event)" />
   </header>
@@ -44,6 +47,7 @@ export default defineComponent({
 <style scoped>
 .bar {
   display: flex;
+  overflow-x: scroll;
   position: sticky;
   z-index: 20;
   top: 0;
