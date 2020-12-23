@@ -5,7 +5,16 @@
       @click.stop="rate('star')"
       :class="{ active: myRate.star }"
     >
-      <IconStar :active="myRate.star" />
+      <i v-show="!myRate.star">
+        <span class="iconify" data-icon="la:star" data-inline="false"></span>
+      </i>
+      <i v-show="!!myRate.star">
+        <span
+          class="iconify"
+          data-icon="la:star-solid"
+          data-inline="false"
+        ></span>
+      </i>
       {{ count.star }}
     </div>
     <div
@@ -13,7 +22,16 @@
       @click.stop="rate('seen')"
       :class="{ active: myRate.seen }"
     >
-      <IconEye :active="myRate.seen" />
+      <i v-show="!myRate.seen">
+        <span class="iconify" data-icon="la:eye" data-inline="false"></span>
+      </i>
+      <i v-show="!!myRate.seen">
+        <span
+          class="iconify"
+          data-icon="la:eye-slash"
+          data-inline="false"
+        ></span>
+      </i>
       {{ count.seen }}
     </div>
     <div
@@ -21,7 +39,20 @@
       @click.stop="rate('trash')"
       :class="{ active: myRate.trash }"
     >
-      <IconTrash :active="myRate.trash" />
+      <i v-show="!myRate.trash">
+        <span
+          class="iconify"
+          data-icon="la:trash-alt"
+          data-inline="false"
+        ></span>
+      </i>
+      <i v-show="!!myRate.trash">
+        <span
+          class="iconify"
+          data-icon="la:trash-restore-alt"
+          data-inline="false"
+        ></span>
+      </i>
       {{ count.trash }}
     </div>
   </div>

@@ -35,7 +35,7 @@
         />
       </div>
 
-      <ItemRating :item="item.soul" />
+      <RatingBlock :item="item.soul" />
     </div>
   </li>
 </template>

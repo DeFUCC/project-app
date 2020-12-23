@@ -10,7 +10,9 @@
       <IconType :type="feed.type" />
       <div class="title">{{ feed.title }}</div>
       <div class="spacer"></div>
-      <div class="close" @click="$emit('close')"><IconClose /></div>
+      <div class="close" @click="$emit('close')">
+        <span class="iconify" data-icon="la:times-circle"></span>
+      </div>
     </div>
 
     <AddItem

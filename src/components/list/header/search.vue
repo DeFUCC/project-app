@@ -1,8 +1,14 @@
 <template>
   <section class="search">
-    <label for="search"><IconSearch /></label>
+    <label for="search">
+      <span class="iconify" data-icon="la:search"></span>
+    </label>
     <input id="search" type="text" placeholder="search" v-model="search.text" />
-    <IconClose class="close" @click="search.text = ''" />
+    <span
+      class="iconify close"
+      data-icon="la:times-circle"
+      @click="search.text = ''"
+    ></span>
   </section>
 </template>
 
@@ -45,11 +51,11 @@ export default defineComponent({
 }
 .search label {
   cursor: pointer;
-  margin: 2px -1.5em 0 0;
+  margin: -1px -1.4em 0 0;
   z-index: 10;
 }
 .close {
   cursor: pointer;
-  margin: -1.5em;
+  margin: -1.4em;
 }
 </style>
