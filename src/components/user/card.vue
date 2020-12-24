@@ -1,28 +1,28 @@
 <template>
-  <router-link :to="'/users/' + user.pub" class="card">
+  <router-link
+    :to="'/users/' + user.pub"
+    class="card"
+    :style="{
+      backgroundColor: itemColor(user.pub),
+    }"
+  >
+    <UserAvatar size="small" :pic="profile.avatar" />
     <h3 class="alias">{{ user.alias }}</h3>
-    <UserAvatar size="medium" :pic="data.profile.avatar" />
-    {{ data.rates }}
   </router-link>
 </template>
 
 <script>
 import { computed, reactive } from "vue";
-import { loadUser } from "../../store/user";
+import { useUserProfile } from "../../use/user";
+import { itemColor } from "../../tools/colors";
 export default {
   props: ["user"],
   setup(props) {
-    const data = reactive({
-      profile: {},
-      info: {},
-      rating: {},
-      rates: computed(() => {
-        return Object.entries(data.rating).length;
-      }),
-    });
-    loadUser(data, props.user.pub);
+    const profile = useUserProfile(props.user.pub);
+
     return {
-      data,
+      profile,
+      itemColor,
     };
   },
 };
@@ -30,6 +30,13 @@ export default {
 
 <style scoped>
 .card {
-  padding: 2em;
+  padding: 1em;
+  margin: 0.5em 0;
+  display: flex;
+  align-items: center;
+  background-color: #eee;
+}
+h3 {
+  margin: 0;
 }
 </style>

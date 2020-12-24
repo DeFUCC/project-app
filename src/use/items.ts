@@ -1,11 +1,12 @@
-import { reactive, ref, unref } from 'vue'
+import { reactive } from 'vue'
 import { useSorter } from './sorter'
-import { db, soul, gun, sea } from '../store/gun-db'
-import { error, notify } from '../store/history'
-import { createItem, generateItem } from './item'
-import { useItemRating } from './rating'
+import { db, soul, gun } from '../store/gun-db'
 
-export function useItems({ type = 'project', parent = null } = {}) {
+export function useItems({
+  type = 'project',
+  parent = null,
+  user = null,
+} = {}) {
   const items = reactive({})
 
   const { sorted, options } = useSorter(items)
@@ -16,6 +17,8 @@ export function useItems({ type = 'project', parent = null } = {}) {
     let query: any
     if (parent) {
       query = gun.get(parent)
+    } else if (user) {
+      query = gun.user(user)
     } else {
       query = db
     }

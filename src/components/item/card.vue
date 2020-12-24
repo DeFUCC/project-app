@@ -103,7 +103,7 @@ export default {
   flex-flow: column;
   align-items: stretch;
   padding: 0;
-  flex: 1 0 5em;
+  flex: 0 0 5em;
   min-height: min-content;
 }
 .info {

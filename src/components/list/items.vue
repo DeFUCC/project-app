@@ -10,29 +10,34 @@
         />
         <span class="tag">{{ items.sorted.count }}</span>
       </div>
-      <button
-        :class="{ active: items.options.orderBy == 'AB' }"
-        @click="items.options.orderBy = 'AB'"
-      >
-        <span class="iconify" data-icon="la:sort-alpha-down"></span>
-      </button>
+      <div class="order" v-show="items.sorted.count > 0">
+        <button
+          :class="{ active: items.options.orderBy == 'AB' }"
+          @click="items.options.orderBy = 'AB'"
+        >
+          <span class="iconify" data-icon="la:sort-alpha-down"></span>
+        </button>
 
-      <button
-        :class="{ active: items.options.orderBy == 'createdAt' }"
-        @click="items.options.orderBy = 'createdAt'"
-      >
-        <span class="iconify" data-icon="la:sort-numeric-up-alt"></span>
-      </button>
+        <button
+          :class="{ active: items.options.orderBy == 'createdAt' }"
+          @click="items.options.orderBy = 'createdAt'"
+        >
+          <span class="iconify" data-icon="la:sort-numeric-up-alt"></span>
+        </button>
 
-      <button
-        :class="{ active: items.options.orderBy == 'rating' }"
-        @click="items.options.orderBy = 'rating'"
-      >
-        <span class="iconify" data-icon="la:star"></span>
-      </button>
+        <button
+          :class="{ active: items.options.orderBy == 'rating' }"
+          @click="items.options.orderBy = 'rating'"
+        >
+          <span class="iconify" data-icon="la:star"></span>
+        </button>
+      </div>
 
       <div class="spacer"></div>
-      <ListHeaderSearch @search="items.options.search = $event" />
+      <ListHeaderSearch
+        @search="items.options.search = $event"
+        v-show="items.sorted.count > 0"
+      />
       <button
         v-if="canAdd"
         @click="
@@ -81,12 +86,10 @@ export default {
   props: {
     type: {
       type: String,
-      default: "design",
+      required: true,
     },
-    parent: {
-      type: String,
-      default: null,
-    },
+    parent: String,
+    user: String,
   },
 
   setup(props) {
@@ -95,6 +98,7 @@ export default {
       items = useItems({
         type: props.type,
         parent: props.parent,
+        user: props.user,
       });
     });
 
@@ -106,7 +110,6 @@ export default {
     );
 
     return {
-      user,
       items,
       canAdd,
       format,

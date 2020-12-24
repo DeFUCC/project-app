@@ -27,12 +27,12 @@ function sort({ data }) {
 }
 
 function sortByRating(a, b) {
-  let aS = countRates(a, 'star')
-  let bS = countRates(b, 'star')
-  if (aS > bS) {
-    return -1
+  let aS = countRates(a, 'star') - countRates(a, 'trash')
+  let bS = countRates(b, 'star') - countRates(b, 'trash')
+  if (aS == bS) {
+    return countRates(a, 'seen') - countRates(b, 'seen')
   } else {
-    return 1
+    return bS - aS
   }
 }
 
@@ -61,9 +61,5 @@ function sortByAB(a, b) {
 }
 
 function sortByCreated(a, b) {
-  if (a.createdAt > b.createdAt) {
-    return -1
-  } else {
-    return 1
-  }
+  return b.createdAt - a.createdAt
 }

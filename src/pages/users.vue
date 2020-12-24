@@ -23,6 +23,9 @@ export default {
 </script>
 
 <style scoped>
+.column {
+  flex: 1 1 420px;
+}
 .columns {
   overflow-x: scroll;
   padding: 2em;
@@ -30,6 +33,7 @@ export default {
   flex-flow: row nowrap;
   align-items: flex-start;
   justify-content: space-between;
+  width: 100%;
 }
 .panel {
   display: flex;

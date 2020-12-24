@@ -6,7 +6,7 @@ export function useSorter(obj: object) {
     return
   }
 
-  const sorter = new Worker('./workers/sorter.js')
+  const sorter = new Worker('/workers/sorter.js')
 
   const sorted = reactive({
     data: null,
