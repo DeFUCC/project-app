@@ -1,6 +1,4 @@
-<template>
-  <UserCard :user="user" v-for="user in users" :key="user?.alias" />
-</template>
+<template>Select a user</template>
 
 <script>
 import { itemColor } from "../../tools/colors";
