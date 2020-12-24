@@ -61,12 +61,16 @@ If you have any ideas or proposals – feel free to create an issue or send me a
   - [x] Universal items feeds
     - [x] List sorter in a Web Worker
     - [x] Filter by search
-    - [ ] Filter feed by ratings
+    - [x] Filter feed by ratings
   - [ ] Users feeds
 - [ ] Item editor
   - [x] Basic item creation 
   - [x] Title input
 - [ ] Full rating system
+  - [ ] global rating sort
+    - [x] star
+    - [ ] seen
+    - [ ] trash
   - [x] 3 types
     - [x] star
     - [x] seen
@@ -78,4 +82,6 @@ If you have any ideas or proposals – feel free to create an issue or send me a
 - [ ] UKT rating
 - [ ] item logs
 - [ ] comments
-- [ ] User role system
+- [ ] User
+  - [ ] roles
+  - [x] page
