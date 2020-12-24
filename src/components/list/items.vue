@@ -23,6 +23,14 @@
       >
         <span class="iconify" data-icon="la:sort-numeric-up-alt"></span>
       </button>
+
+      <button
+        :class="{ active: items.options.orderBy == 'rating' }"
+        @click="items.options.orderBy = 'rating'"
+      >
+        <span class="iconify" data-icon="la:star"></span>
+      </button>
+
       <div class="spacer"></div>
       <ListHeaderSearch @search="items.options.search = $event" />
       <button

@@ -19,7 +19,25 @@ function sort({ data }) {
     list.sort(sortByCreated)
   }
 
+  if (orderBy == 'rating') {
+    list.sort(sortByRating)
+  }
+
   postMessage(list)
+}
+
+function sortByRating(a, b) {
+  let aS = countRates(a, 'star')
+  let bS = countRates(b, 'star')
+  if (aS > bS) {
+    return -1
+  } else {
+    return 1
+  }
+}
+
+function countRates(item, type) {
+  return Object.keys(item.rated[type]).length
 }
 
 function sortByAB(a, b) {

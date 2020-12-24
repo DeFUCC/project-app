@@ -1,14 +1,16 @@
-import { reactive, ref } from 'vue'
+import { reactive, ref, unref } from 'vue'
 import { useSorter } from './sorter'
 import { db, soul, gun, sea } from '../store/gun-db'
 import { error, notify } from '../store/history'
 import { createItem, generateItem } from './item'
+import { useItemRating } from './rating'
 
 export function useItems({ type = 'project', parent = null } = {}) {
   const items = reactive({})
-  getItems()
 
   const { sorted, options } = useSorter(items)
+
+  getItems()
 
   function getItems() {
     let query: any
@@ -25,7 +27,31 @@ export function useItems({ type = 'project', parent = null } = {}) {
           items[key] = null
         }
         items[key] = data
-        items[key].soul = soul(data)
+        let item = items[key]
+        item.soul = soul(data)
+        item.rated = {
+          star: {},
+          seen: {},
+          trash: {},
+        }
+        db.get('user')
+          .map()
+          .on((userData, userId) => {
+            for (let rate in item.rated) {
+              gun
+                .user(userId)
+                .get('rate')
+                .get(rate)
+                .get(soul(data))
+                .on((rated: any, rateType: string) => {
+                  if (rated) {
+                    item.rated[rate][userId] = true
+                  } else {
+                    delete item.rated[rate][userId]
+                  }
+                })
+            }
+          })
       })
   }
 
