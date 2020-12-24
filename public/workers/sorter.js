@@ -12,10 +12,10 @@ function sort({ data }) {
     })
   }
 
-  if (orderBy.AB) {
+  if (orderBy == 'AB') {
     list.sort(sortByAB)
   }
-  if (orderBy.createdAt) {
+  if (orderBy == 'createdAt') {
     list.sort(sortByCreated)
   }
 

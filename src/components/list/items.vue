@@ -1,24 +1,43 @@
 <template>
   <article class="column">
-    <ListHeaderBar
-      :count="items.sorted.count"
-      :canAdd="canAdd"
-      :type="type"
-      @create="
-        $emit('open', {
-          view: 'add',
-          type: type,
-          id: parent,
-        })
-      "
-      @search="items.options.search = $event"
-    >
-      <ListHeaderFilters
-        :options="items.options"
-        @order="items.options.orderBy[$event] = !items.options.orderBy[$event]"
-        class="fl"
-      />
-    </ListHeaderBar>
+    <header class="bar">
+      <div class="title">
+        <img
+          v-if="type"
+          class="icon bigger"
+          :src="'/svg/' + type + '.svg'"
+          alt=""
+        />
+        <span class="tag">{{ items.sorted.count }}</span>
+      </div>
+      <button
+        :class="{ active: items.options.orderBy == 'AB' }"
+        @click="items.options.orderBy = 'AB'"
+      >
+        <span class="iconify" data-icon="la:sort-alpha-down"></span>
+      </button>
+
+      <button
+        :class="{ active: items.options.orderBy == 'createdAt' }"
+        @click="items.options.orderBy = 'createdAt'"
+      >
+        <span class="iconify" data-icon="la:sort-numeric-up-alt"></span>
+      </button>
+      <div class="spacer"></div>
+      <ListHeaderSearch @search="items.options.search = $event" />
+      <button
+        v-if="canAdd"
+        @click="
+          $emit('open', {
+            view: 'add',
+            type: type,
+            id: parent,
+          })
+        "
+      >
+        <span class="iconify" data-icon="la:plus-circle"></span>
+      </button>
+    </header>
 
     <ul class="item-list">
       <transition-group name="list">
@@ -101,7 +120,10 @@ export default {
   padding: 1em;
   background-color: var(--bar-color);
 }
-
+.tag {
+  font-size: 0.8em;
+  color: var(--text-light);
+}
 .bar > .title {
   padding: 0 1em 0 0;
   font-size: 1.2em;
@@ -138,5 +160,8 @@ export default {
   max-width: 960px;
   min-width: 360px;
   overflow-x: hidden;
+}
+.iconify {
+  font-size: 1.4em;
 }
 </style>

@@ -10,12 +10,6 @@
       <span class="tag">{{ count }}</span>
     </div>
     <slot></slot>
-    <button :disabled="!canAdd" @click="$emit('create')">
-      <span class="iconify" data-icon="la:plus-circle"></span>
-    </button>
-
-    <div class="spacer"></div>
-    <ListHeaderSearch @search="$emit('search', $event)" />
   </header>
 </template>
 

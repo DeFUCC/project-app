@@ -1,33 +1,48 @@
 <template>
-  <div
+  <router-link
+    :to="'/users/' + profile.pub"
     class="user"
     :style="{
-      backgroundColor: itemColor(pub),
+      backgroundColor: itemColor(profile.pub),
     }"
   >
-    <UserAvatar size="small" :pic="avatar" class="pad" />
-    {{ alias }}
-  </div>
+    <UserAvatar size="small" :pic="profile.avatar" class="pad" />
+    {{ profile.alias }}
+  </router-link>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
+import { gun } from "../../store/gun-db";
 import { itemColor } from "../../tools/colors";
 
 export default defineComponent({
   props: {
-    avatar: {
-      type: String,
-    },
-    alias: {
-      type: String,
-    },
-    pub: {
-      type: String,
-    },
+    avatar: String,
+    alias: String,
+    pub: String,
+    author: String,
   },
-  setup() {
-    return { itemColor };
+  setup(props) {
+    const profile = reactive({ ...props });
+
+    if (props.author) {
+      gun
+        .user(props.author)
+        .on((userIs) => {
+          if (userIs) {
+            profile.alias = userIs.alias;
+            profile.pub = userIs.pub;
+          }
+        })
+        .get("profile")
+        .get("avatar")
+        .on((d: string) => {
+          profile.avatar = d;
+        });
+    }
+
+    return { profile, itemColor };
   },
 });
 </script>

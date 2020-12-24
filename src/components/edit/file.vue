@@ -50,12 +50,13 @@
 
 <script>
 // https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue
-import { state, handleChanges } from "../../tools/fileUpload";
+import { useFileUpload } from "../../use/fileUpload";
 import { watch } from "vue";
 export default {
   name: "FileUploader",
   emits: ["loaded", "close"],
   setup(props, { emit }) {
+    const { state, handleChanges } = useFileUpload();
     watch(state, () => {
       if (state.status == 2) {
         emit("loaded", state.output);

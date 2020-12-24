@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <AddItem
+    <EditItem
       v-if="feed.view == 'add'"
       :parent="feed.id"
       :type="feed.type"

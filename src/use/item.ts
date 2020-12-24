@@ -22,6 +22,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
     parent: parent,
     createdAt: Date.now(),
     createdBy: gun.user()?.is?.pub,
+    ...data,
   }
 }
 

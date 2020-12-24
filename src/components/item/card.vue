@@ -7,16 +7,14 @@
     v-if="item"
   >
     <div class="main">
+      <div class="logo" v-if="item.logo">
+        <img class="logo" :src="item.logo" />
+      </div>
       <div class="content">
         <h3 class="title"><IconType :type="item.type" />{{ item.title }}</h3>
 
         <div class="info">
-          <UserPill
-            v-if="item.author"
-            :avatar="item.author?.avatar"
-            :alias="item.author?.alias"
-            :pub="item.soul.slice(0, 88)"
-          />
+          <UserPill :author="item.soul.slice(1, 88)" />
 
           {{ format(item.createdAt, "short") }}
           <span v-if="item.updatedAt">

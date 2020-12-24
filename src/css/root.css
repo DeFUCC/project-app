@@ -3,8 +3,10 @@
   --top-bar: #aaa;
   --body-padding: 1em;
   --secondary-button: #cccccc;
+  --button: #999;
   --bar-color: #ddd;
   --small-radius: 4px;
+  --text-light: #555;
 }
 
 body {

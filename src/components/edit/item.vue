@@ -16,12 +16,17 @@
         Gen
       </button>
     </div>
+    <div class="row">
+      <img class="logo" v-if="data.logo" :src="data.logo" />
+      <EditFile @loaded="process"></EditFile>
+    </div>
     <button type="submit" @click="addItem()" class="bottom">Create</button>
   </form>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from "vue";
+import { gun } from "../../store/gun-db";
 import { generateWords } from "../../tools/randomWords";
 import { createItem } from "../../use/item";
 
@@ -41,13 +46,20 @@ export default defineComponent({
     const data = reactive({
       title: "",
       description: "",
+      logo: "",
     });
+
+    function process(img) {
+      if (!img.content) return;
+      data.logo = img.content;
+    }
 
     async function addItem() {
       let added = await createItem(props.type, data, props.parent);
       emit("added");
     }
     return {
+      process,
       data,
       addItem,
       generateWords,

@@ -14,11 +14,7 @@ export function useSorter(obj: object) {
   })
 
   const options = reactive({
-    orderBy: {
-      AB: true,
-      createdAt: true,
-      modifiedAt: false,
-    },
+    orderBy: 'createdAt',
     search: '',
   })
 
