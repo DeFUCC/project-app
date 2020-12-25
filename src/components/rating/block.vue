@@ -100,7 +100,7 @@ i {
   background-color: hsla(0, 0%, 50%, 0.4);
 }
 .trash {
-  background-color: hsla(0, 0%, 0%, 0.4);
+  background-color: hsla(0, 0%, 0%, 0.7);
 }
 .rating img {
   max-height: 1.4em;
@@ -108,6 +108,6 @@ i {
   padding: 0em 0.2em 0 0;
 }
 .rating div.active {
-  opacity: 0.7;
+  opacity: 1;
 }
 </style>

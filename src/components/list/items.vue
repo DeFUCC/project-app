@@ -8,7 +8,9 @@
           :src="'/svg/' + type + '.svg'"
           alt=""
         />
-        <span class="tag">{{ items.sorted.count }}</span>
+        <span class="tag"
+          >{{ items.sorted.count }}/{{ items.sorted.countAll }}
+        </span>
       </div>
 
       <ListHeaderOrder
@@ -57,7 +59,7 @@
               parent: parent,
             })
           "
-          v-for="item in items.sorted.data"
+          v-for="item in items.sorted.list"
           :key="item.soul"
           :item="item"
         ></ItemCard>
@@ -119,14 +121,17 @@ export default {
   z-index: 20;
   top: 0;
   flex-flow: row nowrap;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
   padding: 1em;
   background-color: var(--bar-color);
+  overflow-x: scroll;
 }
 .tag {
   font-size: 0.8em;
+  display: block;
   color: var(--text-light);
+  white-space: nowrap;
 }
 .bar > .title {
   padding: 0 1em 0 0;

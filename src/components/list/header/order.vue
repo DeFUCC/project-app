@@ -57,10 +57,14 @@ export default defineComponent({
 
 <style scoped>
 .order {
+  display: flex;
   border: 1px solid #555;
   border-radius: 2em;
   padding: 4px 0;
   transition: all 300ms ease-in-out;
+}
+.order button {
+  margin: 0 4px;
 }
 .iconify {
   font-size: 1.4em;

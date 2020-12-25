@@ -9,8 +9,9 @@ export function useSorter(obj: object) {
   const sorter = new Worker('/workers/sorter.js')
 
   const sorted = reactive({
-    data: null,
+    list: null,
     count: 0,
+    countAll: 0,
   })
 
   const options = reactive({
@@ -45,8 +46,9 @@ export function useSorter(obj: object) {
   }
 
   sorter.onmessage = (e) => {
-    sorted.data = e.data
-    sorted.count = e.data.length
+    sorted.list = e.data.list
+    sorted.count = e.data.count
+    sorted.countAll = e.data.countAll
   }
 
   function throttle(fn: Function, wait: number) {

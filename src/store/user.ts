@@ -1,9 +1,9 @@
+import { useRouter } from 'vue-router'
 import { gun, db } from './gun-db'
 import { notify, error } from './history'
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 
 export const user = reactive({
-  isLoggedIn: false,
   is: null,
   profile: {
     createdAt: null,
@@ -14,22 +14,18 @@ export const user = reactive({
 })
 
 gun.user().recall({ sessionStorage: true }, (ack: { err: string }) => {
-  console.log('recalling')
   if (!ack.err) {
     logIn()
-    console.log('recalling')
   } else {
     error("Couldn't recall a user")
   }
 })
 
 gun.on('auth', () => {
-  console.log('authed')
   loadUser(gun.user().is.pub)
 })
 
 export function loadUser(pub: string) {
-  console.log('loading')
   gun
     .user(pub)
     .get('profile')
@@ -53,10 +49,8 @@ export function loadUser(pub: string) {
 }
 
 export function logIn() {
-  user.isLoggedIn = true
   user.is = gun.user().is
-  loadUser(gun.user().is.pub)
-  console.log('logging in', user.is)
+  loadUser(user.is.pub)
   notify('You successfully logged in as ' + user.is.alias + '.')
 }
 
@@ -77,7 +71,7 @@ export async function createUser(alias: string, pass: string) {
         pub: ack.pub,
         createdAt: Date.now(),
       })
-      logIn()
+      window.location.reload()
     }
   })
 }
@@ -96,7 +90,6 @@ export function logOut() {
   gun.user().leave()
   setTimeout(() => {
     if (!gun.user()._?.sea) {
-      user.isLoggedIn = false
       user.is = null
       notify('User logged out')
       window.location.reload()

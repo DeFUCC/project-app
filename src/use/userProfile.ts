@@ -1,4 +1,4 @@
-import { gun } from './../store/gun-db'
+import { gun } from '../store/gun-db'
 import { reactive } from 'vue'
 
 export function useUserProfile(id: string) {

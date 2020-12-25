@@ -37,7 +37,7 @@ export function useItemRating(id: string) {
     }),
   })
 
-  if (user.isLoggedIn) {
+  if (user.is) {
     types.forEach((type) => {
       gun
         .user()

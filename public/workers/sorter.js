@@ -4,6 +4,7 @@ onmessage = (e) => {
 
 function sort({ data }) {
   let list = Object.values(data.list)
+  let countAll = list.length
   let { orderBy, search, filterMy } = data.options
 
   if (search) {
@@ -23,37 +24,21 @@ function sort({ data }) {
     list.sort(sortByRating)
   }
 
-  if (filterMy?.trash) {
+  if (filterMy) {
     list = list.filter((item) => {
-      if (item.myRate.trash) {
+      if (
+        (filterMy.star && item.myRate.star) ||
+        (filterMy.seen && item.myRate.seen) ||
+        (filterMy.trash && item.myRate.trash)
+      ) {
         return false
       } else {
         return true
       }
     })
   }
-
-  if (filterMy?.star) {
-    list = list.filter((item) => {
-      if (item.myRate.star) {
-        return false
-      } else {
-        return true
-      }
-    })
-  }
-
-  if (filterMy?.seen) {
-    list = list.filter((item) => {
-      if (item.myRate.seen) {
-        return false
-      } else {
-        return true
-      }
-    })
-  }
-
-  postMessage(list)
+  let count = list.length
+  postMessage({ list, count, countAll })
 }
 
 function sortByRating(a, b) {

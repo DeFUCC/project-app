@@ -43,8 +43,9 @@ export default {
   flex-flow: column nowrap;
   padding: 1em;
   background-color: var(--top-bar);
-  overflow-y: scroll;
+
   padding-bottom: 4em;
+  position: relative;
 }
 .spacer {
   flex: 10 1 100px;
@@ -62,5 +63,21 @@ export default {
   padding: 60px 40px;
   background-color: var(--top-bar);
   border-radius: 20px;
+  z-index: 30;
+}
+@media screen and (max-width: 500px) {
+  #app-bar {
+    position: absolute;
+    height: 100vh;
+    transform: translateX(-160px);
+    transition: all 300ms ease;
+    z-index: 100;
+  }
+  #app-bar.open {
+    transform: translateX(0);
+  }
+  #app-bar .handle {
+    display: block;
+  }
 }
 </style>

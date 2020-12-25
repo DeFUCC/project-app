@@ -3,7 +3,7 @@
     <label for="search">
       <span class="iconify" data-icon="la:search"></span>
     </label>
-    <input id="search" type="text" placeholder="search" v-model="search.text" />
+    <input id="search" type="text" v-model="search.text" />
     <i @click.prevent="search.text = ''" class="close"
       ><span class="iconify" data-icon="la:times-circle"></span
     ></i>
@@ -39,7 +39,7 @@ export default defineComponent({
 .search {
   display: flex;
   align-items: center;
-  margin: 0 2em;
+  margin: 0;
   position: relative;
 }
 .search input {

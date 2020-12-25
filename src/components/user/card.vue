@@ -13,7 +13,7 @@
 
 <script>
 import { computed, reactive } from "vue";
-import { useUserProfile } from "../../use/user";
+import { useUserProfile } from "../../use/userProfile";
 import { itemColor } from "../../tools/colors";
 export default {
   props: ["user"],

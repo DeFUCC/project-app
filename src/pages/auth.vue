@@ -40,7 +40,7 @@ export default {
     watch(
       () => user.is,
       () => {
-        if (user.isLoggedIn) {
+        if (user.is) {
           router.push("/my");
         }
       }
