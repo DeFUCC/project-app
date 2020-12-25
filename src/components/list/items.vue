@@ -13,12 +13,6 @@
         </span>
       </div>
 
-      <ListHeaderOrder
-        :by="items.options.orderBy"
-        @order="items.options.orderBy = $event"
-        v-show="items.sorted.count > 0"
-      />
-
       <ListHeaderFilter
         :my="items.options.filterMy"
         @star="items.options.filterMy.star = !items.options.filterMy.star"
@@ -26,12 +20,14 @@
         @trash="items.options.filterMy.trash = !items.options.filterMy.trash"
         v-if="user.is"
       />
-
-      <div class="spacer"></div>
-      <ListHeaderSearch
-        @search="items.options.search = $event"
+      <ListHeaderOrder
+        :by="items.options.orderBy"
+        @order="items.options.orderBy = $event"
         v-show="items.sorted.count > 0"
       />
+
+      <ListHeaderSearch @search="items.options.search = $event" />
+      <div class="spacer"></div>
       <button
         v-if="canAdd"
         @click="
@@ -134,7 +130,7 @@ export default {
   white-space: nowrap;
 }
 .bar > .title {
-  padding: 0 1em 0 0;
+  padding: 0;
   font-size: 1.2em;
   font-weight: bold;
   display: flex;

@@ -4,7 +4,7 @@
       <span class="iconify" data-icon="la:search"></span>
     </label>
     <input id="search" type="text" v-model="search.text" />
-    <i @click.prevent="search.text = ''" class="close"
+    <i @click.prevent.stop="search.text = ''" class="close"
       ><span class="iconify" data-icon="la:times-circle"></span
     ></i>
   </section>
@@ -39,12 +39,12 @@ export default defineComponent({
 .search {
   display: flex;
   align-items: center;
-  margin: 0;
+  margin: 0 0 0 1em;
   position: relative;
 }
 .search input {
   margin: 0;
-  padding: 0.5em 1em;
+  padding: 1em 1.4em;
   text-indent: 1.4em;
   border-radius: 2em;
   width: 4px;
@@ -55,7 +55,7 @@ export default defineComponent({
 }
 .search label {
   cursor: pointer;
-  margin: -1px -1.4em 0 0;
+  margin: -1px -1.7em 0 0;
   z-index: 10;
 }
 
@@ -63,7 +63,7 @@ export default defineComponent({
   cursor: pointer;
   right: 0.5em;
   display: none;
-  z-index: 10;
+  z-index: 20;
 }
 .open .close {
   position: absolute;

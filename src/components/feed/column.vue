@@ -76,6 +76,7 @@ export default defineComponent({
 }
 .close {
   font-size: 1.4em;
+  cursor: pointer;
 }
 .bordered {
   border-left: 6px solid #eee;

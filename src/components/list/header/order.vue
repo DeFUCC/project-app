@@ -65,6 +65,7 @@ export default defineComponent({
 }
 .order button {
   margin: 0 4px;
+  padding: 0.5em;
 }
 .iconify {
   font-size: 1.4em;

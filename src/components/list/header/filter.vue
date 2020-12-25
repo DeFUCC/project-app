@@ -47,7 +47,7 @@ export default defineComponent({
 .filter button {
   margin: 0;
   border-radius: 0;
-  padding: 4px 8px;
+  padding: 0.5em 0.7em;
 }
 .filter button:first-child {
   border-radius: 4em 0 0 4em;
