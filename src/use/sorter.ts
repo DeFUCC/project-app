@@ -17,9 +17,9 @@ export function useSorter(obj: object) {
     orderBy: 'createdAt',
     search: '',
     filterMy: {
-      star: true,
+      star: false,
       seen: true,
-      trash: false,
+      trash: true,
     },
   })
 

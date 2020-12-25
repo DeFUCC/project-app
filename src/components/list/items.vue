@@ -19,7 +19,10 @@
 
       <ListHeaderFilter
         :my="items.options.filterMy"
-        v-if="items.sorted.count > 0 && user.is"
+        @star="items.options.filterMy.star = !items.options.filterMy.star"
+        @seen="items.options.filterMy.seen = !items.options.filterMy.seen"
+        @trash="items.options.filterMy.trash = !items.options.filterMy.trash"
+        v-if="user.is"
       />
 
       <div class="spacer"></div>

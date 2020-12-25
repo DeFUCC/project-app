@@ -33,6 +33,26 @@ function sort({ data }) {
     })
   }
 
+  if (filterMy?.star) {
+    list = list.filter((item) => {
+      if (item.myRate.star) {
+        return false
+      } else {
+        return true
+      }
+    })
+  }
+
+  if (filterMy?.seen) {
+    list = list.filter((item) => {
+      if (item.myRate.seen) {
+        return false
+      } else {
+        return true
+      }
+    })
+  }
+
   postMessage(list)
 }
 
