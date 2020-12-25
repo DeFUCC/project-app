@@ -24,7 +24,7 @@ export function useFileUpload() {
   ]
 
   const options = {
-    maxFileSize: 500000,
+    maxFileSize: 10240000,
   }
 
   const state = reactive({

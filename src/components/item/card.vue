@@ -21,6 +21,7 @@
             , upd {{ format(item.updatedAt, "short") }}
           </span>
         </div>
+        {{ item.myRate }}
       </div>
 
       <div class="spacer"></div>

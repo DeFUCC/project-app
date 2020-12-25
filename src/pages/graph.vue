@@ -1,63 +1,37 @@
 <template>
-  <article>
-    <div
-      :style="{
-        backgroundColor: itemColor(i),
-      }"
-      class="record"
-      v-for="(g, i) in graph"
-      :key="i"
-    >
-      <div class="key" @click="g.show = !g.show">{{ i }}</div>
-      <transition name="fade">
-        <section v-if="g.show">
-          <div
-            class="prop"
-            v-for="(r, j) in g"
-            :key="j"
-            v-show="j != '_' && j != 'show'"
-          >
-            <div class="key">{{ j }}</div>
-            <div class="content">{{ r }}</div>
-          </div>
-        </section>
-      </transition>
+  <article class="page">
+    <div class="panel">
+      <router-link to="/graph">Graph</router-link>
+      <router-link to="/graph/network">Network</router-link>
     </div>
+
+    <router-view></router-view>
   </article>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-import { gun } from "../store/gun-db";
-import { itemColor } from "../tools/colors";
-
-export default defineComponent({
+<script>
+export default {
   setup() {
-    const graph = ref({});
-    setInterval(() => {
-      graph.value = gun._.graph;
-    }, 500);
-    return {
-      graph,
-      itemColor,
-    };
+    return {};
   },
-});
+};
 </script>
 
 <style scoped>
+.page {
+  width: 100%;
+}
+.panel {
+  padding: 1em;
+  background-color: #aaa;
+  position: sticky;
+  top: 0;
+  display: flex;
+}
+.panel a {
+  margin: 0 0.5em;
+}
 article {
   overflow-y: scroll;
-}
-.record {
-  font-size: 12px;
-  border: 1px solid #aaa;
-  cursor: pointer;
-}
-.prop {
-  padding: 0.5em;
-}
-.key {
-  font-weight: bold;
 }
 </style>

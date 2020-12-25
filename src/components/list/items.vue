@@ -10,28 +10,12 @@
         />
         <span class="tag">{{ items.sorted.count }}</span>
       </div>
-      <div class="order" v-show="items.sorted.count > 0">
-        <button
-          :class="{ active: items.options.orderBy == 'AB' }"
-          @click="items.options.orderBy = 'AB'"
-        >
-          <span class="iconify" data-icon="la:sort-alpha-down"></span>
-        </button>
 
-        <button
-          :class="{ active: items.options.orderBy == 'createdAt' }"
-          @click="items.options.orderBy = 'createdAt'"
-        >
-          <span class="iconify" data-icon="la:sort-numeric-up-alt"></span>
-        </button>
-
-        <button
-          :class="{ active: items.options.orderBy == 'rating' }"
-          @click="items.options.orderBy = 'rating'"
-        >
-          <span class="iconify" data-icon="la:star"></span>
-        </button>
-      </div>
+      <ListHeaderOrder
+        :by="items.options.orderBy"
+        @order="items.options.orderBy = $event"
+        v-show="items.sorted.count > 0"
+      />
 
       <div class="spacer"></div>
       <ListHeaderSearch
@@ -171,8 +155,5 @@ export default {
   max-width: 960px;
   min-width: 360px;
   overflow-x: hidden;
-}
-.iconify {
-  font-size: 1.4em;
 }
 </style>

@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { useSorter } from './sorter'
 import { db, soul, gun } from '../store/gun-db'
+import { user as currentUser } from '../store/user'
 
 export function useItems({
   type = 'project',
@@ -8,8 +9,6 @@ export function useItems({
   user = null,
 } = {}) {
   const items = reactive({})
-
-  const { sorted, options } = useSorter(items)
 
   getItems()
 
@@ -37,6 +36,13 @@ export function useItems({
           seen: {},
           trash: {},
         }
+
+        item.myRate = {
+          star: false,
+          seen: false,
+          trash: false,
+        }
+
         db.get('user')
           .map()
           .on((userData, userId) => {
@@ -49,14 +55,22 @@ export function useItems({
                 .on((rated: any, rateType: string) => {
                   if (rated) {
                     item.rated[rate][userId] = true
+                    if (userId == currentUser?.is?.pub) {
+                      item.myRate[rate] = true
+                    }
                   } else {
                     delete item.rated[rate][userId]
+                    if (userId == currentUser?.is?.pub) {
+                      item.myRate[rate] = false
+                    }
                   }
                 })
             }
           })
       })
   }
+
+  const { sorted, options } = useSorter(items)
 
   return {
     options,
