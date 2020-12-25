@@ -17,6 +17,11 @@
         v-show="items.sorted.count > 0"
       />
 
+      <ListHeaderFilter
+        :my="items.options.filterMy"
+        v-if="items.sorted.count > 0 && user.is"
+      />
+
       <div class="spacer"></div>
       <ListHeaderSearch
         @search="items.options.search = $event"
@@ -94,6 +99,7 @@ export default {
     );
 
     return {
+      user,
       items,
       canAdd,
       format,

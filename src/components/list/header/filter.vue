@@ -1,21 +1,15 @@
 <template>
   <div class="filter">
-    <button :class="{ active: by == 'AB' }" @click="$emit('order', 'AB')">
-      <span class="iconify" data-icon="la:sort-alpha-down"></span>
-    </button>
-
-    <button
-      :class="{ active: by == 'createdAt' }"
-      @click="$emit('order', 'createdAt')"
-    >
-      <span class="iconify" data-icon="la:sort-numeric-up-alt"></span>
-    </button>
-
-    <button
-      :class="{ active: by == 'rating' }"
-      @click="$emit('order', 'rating')"
-    >
+    <button :class="{ active: my.star }" @click="$emit('star')">
       <span class="iconify" data-icon="la:star"></span>
+    </button>
+
+    <button :class="{ active: my.seen }" @click="$emit('seen')">
+      <span class="iconify" data-icon="la:eye"></span>
+    </button>
+
+    <button :class="{ active: my.trash }" @click="$emit('trash')">
+      <span class="iconify" data-icon="la:trash"></span>
     </button>
   </div>
 </template>
@@ -24,10 +18,15 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  emits: ["order"],
+  emits: ["star", "seen", "trash"],
   props: {
-    by: {
-      type: String,
+    my: {
+      type: Object,
+      default: {
+        star: true,
+        seen: true,
+        trash: false,
+      },
       required: true,
     },
   },

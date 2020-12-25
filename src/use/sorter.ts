@@ -16,6 +16,11 @@ export function useSorter(obj: object) {
   const options = reactive({
     orderBy: 'createdAt',
     search: '',
+    filterMy: {
+      star: true,
+      seen: true,
+      trash: false,
+    },
   })
 
   const throttledSort = throttle(sort, 100)
@@ -32,7 +37,7 @@ export function useSorter(obj: object) {
     },
   )
 
-  async function sort(list: object) {
+  function sort(list: object) {
     sorter.postMessage({
       list: toRaw(list),
       options: toRaw(options),

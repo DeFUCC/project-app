@@ -4,7 +4,7 @@ onmessage = (e) => {
 
 function sort({ data }) {
   let list = Object.values(data.list)
-  let { orderBy, search } = data.options
+  let { orderBy, search, filterMy } = data.options
 
   if (search) {
     list = list.filter((item) => {
@@ -21,6 +21,16 @@ function sort({ data }) {
 
   if (orderBy == 'rating') {
     list.sort(sortByRating)
+  }
+
+  if (filterMy?.trash) {
+    list = list.filter((item) => {
+      if (item.myRate.trash) {
+        return false
+      } else {
+        return true
+      }
+    })
   }
 
   postMessage(list)
