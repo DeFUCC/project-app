@@ -11,6 +11,9 @@ const peerList = [
   // 'http://127.0.0.1:4200/gun',
 ]
 
+const dbVersion = 5
+checkDbVersion(localStorage.dbVersion, dbVersion)
+
 export const gun = new window.Gun(peerList)
 window.gun = gun //for debugging
 export const appPath = 'project-app'
@@ -26,4 +29,17 @@ export function uuid(key: string): string {
 
 export function isLink(name: string, field: object): boolean {
   return name != '_' && field instanceof Object && field.hasOwnProperty('#')
+}
+
+function checkDbVersion(local: number, current: number) {
+  if (!local) {
+    localStorage.dbVersion = current
+    console.log('DB version is now ' + local)
+  } else if (local < current) {
+    console.log(`New DB version ${current} detected. Clearing local database.`)
+    localStorage.clear()
+    localStorage.dbVersion = current
+  } else {
+    console.log('DB version: ' + local)
+  }
 }
