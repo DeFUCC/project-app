@@ -28,7 +28,7 @@ export function useItems({
         if (items[key]) {
           items[key] = null
         }
-        items[key] = data
+        items[key] = { ...data }
         let item = items[key]
         item.soul = soul(data)
         item.rated = {

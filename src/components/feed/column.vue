@@ -19,8 +19,10 @@
       v-if="feed.view == 'add'"
       :parent="feed.id"
       :type="feed.type"
+      :item="feed.item"
       :key="feed.id"
       @added="$emit('close')"
+      @edited="$emit('close')"
     />
 
     <PageView
@@ -50,8 +52,10 @@ export default defineComponent({
     const column = ref(null);
     const mounted = ref(false);
     watchEffect(() => {
-      if (props.feed && mounted.value) {
-        column.value.scrollIntoView({ behavior: "smooth" });
+      if (mounted.value) {
+        setTimeout(() => {
+          column.value.scrollIntoView({ behavior: "smooth" });
+        }, 200);
       }
     });
     onMounted(() => {

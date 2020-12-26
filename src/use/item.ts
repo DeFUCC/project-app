@@ -4,14 +4,17 @@ import { generateWords } from '../tools/randomWords'
 import { error } from '../store/history'
 
 export function useItem(id: string) {
-  const info = reactive({})
+  const item = reactive({
+    soul: null,
+  })
   gun
     .get(id)
     .map()
     .on((data: any, key: string) => {
-      info[key] = data
+      item[key] = data
+      item.soul = id
     })
-  return { info }
+  return item
 }
 
 export function generateItem(type: string, data?: any, parent?: string): Item {

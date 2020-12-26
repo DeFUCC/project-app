@@ -29,7 +29,6 @@
       <ListHeaderSearch @search="items.options.search = $event" />
       <div class="spacer"></div>
       <button
-        v-if="canAdd"
         @click="
           $emit('open', {
             view: 'add',
@@ -37,6 +36,7 @@
             id: parent,
           })
         "
+        v-if="canAdd"
       >
         <span class="iconify" data-icon="la:plus-circle"></span>
       </button>

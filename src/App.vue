@@ -2,7 +2,7 @@
   <AppBar />
   <AppHistory />
   <router-view v-slot="{ Component }">
-    <transition name="opacity">
+    <transition name="slide-right">
       <component :is="Component" />
     </transition>
   </router-view>
