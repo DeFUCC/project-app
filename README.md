@@ -80,7 +80,12 @@ If you have any ideas or proposals – feel free to create an issue or send me a
     - [ ] My Seen
     - [ ] My Trash
 - [ ] UKT rating
-- [ ] item logs
+- [ ] item features
+  - [ ] log
+  - [ ] comment
+  - [ ] qna
+  - [ ] ukt
+  - [ ] parent
 - [ ] comments
 - [ ] User
   - [ ] roles

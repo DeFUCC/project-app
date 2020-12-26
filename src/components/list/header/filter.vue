@@ -1,5 +1,9 @@
 <template>
-  <div class="filter" :style="{ backgroundColor: itemColor(user.is.pub) }">
+  <div
+    class="filter"
+    v-if="user.is"
+    :style="{ backgroundColor: itemColor(user.is.pub) }"
+  >
     <button :class="{ active: my.star }" @click="$emit('star')">
       <span class="iconify" data-icon="la:star"></span>
     </button>

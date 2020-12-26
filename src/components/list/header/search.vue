@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watch } from "vue";
+import { defineComponent, reactive, watch, watchEffect } from "vue";
 
 export default defineComponent({
   emits: ["search"],
@@ -21,12 +21,9 @@ export default defineComponent({
       open: false,
     });
 
-    watch(
-      () => search.text,
-      (val) => {
-        emit("search", search.text);
-      }
-    );
+    watchEffect(() => {
+      emit("search", search.text);
+    });
 
     return {
       search,

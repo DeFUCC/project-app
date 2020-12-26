@@ -22,7 +22,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
     title: data.title || generateWords(2),
     description: data.description || generateWords(100),
     type: type,
-    parent: parent,
+    parent: parent || null,
     createdAt: Date.now(),
     createdBy: gun.user()?.is?.pub,
     ...data,
@@ -50,6 +50,6 @@ export async function createItem(type: string, data?: any, parent?: string) {
     }
     return soul(publicItem)
   } catch (err) {
-    error(err)
+    console.error(err)
   }
 }

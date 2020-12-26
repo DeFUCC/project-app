@@ -18,7 +18,7 @@
         @star="items.options.filterMy.star = !items.options.filterMy.star"
         @seen="items.options.filterMy.seen = !items.options.filterMy.seen"
         @trash="items.options.filterMy.trash = !items.options.filterMy.trash"
-        v-if="user.is"
+        v-if="items.sorted.countAll > 0"
       />
       <ListHeaderOrder
         :by="items.options.orderBy"
@@ -26,20 +26,17 @@
         v-show="items.sorted.count > 0"
       />
 
-      <ListHeaderSearch @search="items.options.search = $event" />
       <div class="spacer"></div>
-      <button
-        @click="
-          $emit('open', {
-            view: 'add',
-            type: type,
-            id: parent,
-          })
-        "
-        v-if="canAdd"
-      >
-        <span class="iconify" data-icon="la:plus-circle"></span>
-      </button>
+      <AddForm
+        key="add"
+        :type="type"
+        :parent="parent"
+        @search="items.options.search = $event"
+      />
+      <ListHeaderSearch
+        @search="items.options.search = $event"
+        v-if="items.sorted.countAll > 0"
+      />
     </header>
 
     <ul class="item-list">
@@ -66,10 +63,10 @@
 
 <script>
 import { format } from "timeago.js";
-import { computed, ref, watchEffect } from "vue";
+import { computed, reactive, ref, watchEffect } from "vue";
 import { itemColor } from "../../tools/colors";
 import { useItems } from "../../use/items";
-import { user } from "../../store/user";
+
 export default {
   name: "FeedItems",
   emits: ["open"],
@@ -79,7 +76,6 @@ export default {
       required: true,
     },
     parent: String,
-    user: String,
   },
 
   setup(props) {
@@ -92,17 +88,8 @@ export default {
       });
     });
 
-    const canAdd = computed(() =>
-      Boolean(
-        (!props.parent && user.is) ||
-          (props.parent && user.is?.pub == props.parent.slice(1, 88))
-      )
-    );
-
     return {
-      user,
       items,
-      canAdd,
       format,
       itemColor,
     };
