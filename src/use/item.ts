@@ -1,4 +1,4 @@
-import { gun, db, sea, soul } from '../store/gun-db'
+import { gun, db, sea, soul, appPath } from '../store/gun-db'
 import { reactive } from 'vue'
 import { generateWords } from '../tools/randomWords'
 import { error } from '../store/history'
@@ -37,8 +37,9 @@ export interface Item {
 
 export async function createItem(type: string, data?: any, parent?: string) {
   let item = generateItem(type, data, parent)
+
   try {
-    let privateItem = await gun.user().get(type).set(item)
+    let privateItem = await gun.user().get(appPath).get(type).set(item)
     let uuid = soul(privateItem).slice(-15)
     let publicItem = await db.get(type).get(uuid).put(privateItem)
     if (parent) {

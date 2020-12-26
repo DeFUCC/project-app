@@ -1,5 +1,5 @@
 import { useRouter } from 'vue-router'
-import { gun, db } from './gun-db'
+import { gun, db, appPath } from './gun-db'
 import { notify, error } from './history'
 import { reactive, watch } from 'vue'
 
@@ -41,6 +41,7 @@ export function loadUser(pub: string) {
     })
   gun
     .user(pub)
+    .get(appPath)
     .get('rate')
     .map()
     .on((data, key) => {

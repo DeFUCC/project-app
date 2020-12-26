@@ -1,4 +1,4 @@
-import { isNode } from './../store/gun-db'
+import { appPath, isNode } from './../store/gun-db'
 import { reactive, computed, ref } from 'vue'
 import { db, gun, soul } from '../store/gun-db'
 import { user } from '../store/user'
@@ -41,6 +41,7 @@ export function useItemRating(id: string) {
     types.forEach((type) => {
       gun
         .user()
+        .get(appPath)
         .get('rate')
         .get(type)
         .map()
@@ -65,6 +66,7 @@ export function useItemRating(id: string) {
       .once((d) => {
         userProfile = d
       })
+      .get(appPath)
       .get('rate')
     types.forEach((type) => {
       userRating
@@ -88,6 +90,7 @@ export function useItemRating(id: string) {
     let item = gun.get(id)
     gun
       .user()
+      .get(appPath)
       .get('rate')
       .get(type)
       .get(id)

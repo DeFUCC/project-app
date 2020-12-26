@@ -1,4 +1,5 @@
 import { reactive, computed, ref } from 'vue'
+import { error } from '../store/history'
 
 // to be upgraded with this code https://github.com/powerbot15/image-compressor/blob/master/image-compressor.js
 // https://github.com/dhhb/vue-base64-file-upload
@@ -169,9 +170,9 @@ export function useFileUpload() {
 
   function flashErrors(errors) {
     if (errors.length === 2) {
-      console.log('File upload failed due to size and type!', notifications[2])
+      error('File upload failed due to size and type!' + notifications[2])
     } else {
-      console.log(errors[0].message, errors[0].type)
+      error(errors[0].message + errors[0].type)
     }
   }
 

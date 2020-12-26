@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { useSorter } from './sorter'
-import { db, soul, gun } from '../store/gun-db'
+import { db, soul, gun, appPath } from '../store/gun-db'
 import { user as currentUser } from '../store/user'
 
 export function useItems({
@@ -17,7 +17,7 @@ export function useItems({
     if (parent) {
       query = gun.get(parent)
     } else if (user) {
-      query = gun.user(user)
+      query = gun.user(user).get(appPath)
     } else {
       query = db
     }
@@ -49,6 +49,7 @@ export function useItems({
             for (let rate in item.rated) {
               gun
                 .user(userId)
+                .get(appPath)
                 .get('rate')
                 .get(rate)
                 .get(soul(data))

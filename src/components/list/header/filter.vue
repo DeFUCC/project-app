@@ -1,5 +1,5 @@
 <template>
-  <div class="filter">
+  <div class="filter" :style="{ backgroundColor: itemColor(user.is.pub) }">
     <button :class="{ active: my.star }" @click="$emit('star')">
       <span class="iconify" data-icon="la:star"></span>
     </button>
@@ -16,6 +16,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { user } from "../../../store/user";
+import { itemColor } from "../../../tools/colors";
 
 export default defineComponent({
   emits: ["star", "seen", "trash"],
@@ -31,7 +33,10 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    return {
+      user,
+      itemColor,
+    };
   },
 });
 </script>

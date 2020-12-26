@@ -46,7 +46,6 @@ export default {
         .get("profile")
         .get("avatar")
         .put(img.content, (st) => {
-          console.log(st);
           if (!st.err) {
             update.value = false;
             notify("User avatar updated");

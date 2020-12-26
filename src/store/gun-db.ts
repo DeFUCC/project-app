@@ -13,7 +13,7 @@ const peerList = [
 
 export const gun = new window.Gun(peerList)
 window.gun = gun //for debugging
-const appPath = 'project-app'
+export const appPath = 'project-app'
 export const db = gun.get(appPath)
 export const soul = window.Gun.node.soul
 export const isNode = window.Gun.node.is

@@ -28,10 +28,6 @@ function sorter({
     let key = entry[0]
     let item = entry[1]
 
-    if (!item) {
-      console.log(item)
-    }
-
     if (!item || item.VOID || !item[typeField]) {
       continue
     }

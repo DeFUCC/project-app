@@ -13,9 +13,9 @@
       <div class="content">
         <h3 class="title"><IconType :type="item.type" />{{ item.title }}</h3>
 
-        <div class="info">
+        <div class="info" @click.stop>
           <UserPill :author="item.soul.slice(1, 88)" />
-
+          &nbsp;
           {{ format(item.createdAt, "short") }}
           <span v-if="item.updatedAt">
             , upd {{ format(item.updatedAt, "short") }}
