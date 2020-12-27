@@ -25,7 +25,16 @@ export function useItem(id: string) {
 
   function update(field: string, content: string) {
     gun.get(id).get(field).put(content)
+    let now = new Date()
     gun.get(id).get('updatedAt').put(Date.now())
+    gun
+      .get(id)
+      .get('log')
+      .set({
+        type: 'edit',
+        date: now.toLocaleDateString('sv-SE'),
+        text: `${field} edited`,
+      })
     edit[field] = false
     notify(`You updated ${field} of ${item.title} with ${truncate(content)}.`)
   }
@@ -47,16 +56,16 @@ export interface Item {
 
 export function generateItem(type: string, data?: any, parent?: string): Item {
   const item = { ...data }
-  let now = Date.now()
+  let now = new Date()
   Object.assign(item, {
     title: truncate(data.title) || generateWords(2),
     description: data.description || generateWords(100),
     type: type,
     parent: parent || null,
-    createdAt: now,
+    createdAt: now.getTime(),
     log: {
-      [now]: {
-        date: now,
+      [now.getTime()]: {
+        date: now.toLocaleDateString('sv-SE'),
         type: 'created',
         text: data.title,
       },
