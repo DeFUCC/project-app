@@ -47,12 +47,20 @@ export interface Item {
 
 export function generateItem(type: string, data?: any, parent?: string): Item {
   const item = { ...data }
+  let now = Date.now()
   Object.assign(item, {
     title: truncate(data.title) || generateWords(2),
     description: data.description || generateWords(100),
     type: type,
     parent: parent || null,
-    createdAt: Date.now(),
+    createdAt: now,
+    log: {
+      [now]: {
+        date: now,
+        type: 'created',
+        text: data.title,
+      },
+    },
   })
   return item
 }
@@ -74,5 +82,8 @@ export async function createItem(type: string, data?: any, parent?: string) {
 }
 
 export function truncate(input: string, num = 24) {
+  if (!input) {
+    return ' '
+  }
   return input.length > num ? `${input.substring(0, num)}...` : input
 }

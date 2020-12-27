@@ -6,14 +6,6 @@
       borderColor: itemColor(feed.parent),
     }"
   >
-    <div :style="{ backgroundColor: itemColor(feed.id) }" class="sticky bar">
-      <div class="close" @click="$emit('close')">
-        <span class="iconify" data-icon="la:angle-left-solid"></span>
-      </div>
-      <IconType :type="feed.type" />
-      <div class="title">{{ feed.title }}</div>
-    </div>
-
     <PageView
       v-if="feed.view == 'page'"
       @open="$emit('open', $event)"

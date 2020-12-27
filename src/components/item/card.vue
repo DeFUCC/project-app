@@ -4,7 +4,6 @@
     :style="{
       backgroundColor: itemColor(item.soul),
     }"
-    v-if="item"
   >
     <div class="main">
       <div class="icon" v-if="item.icon">
@@ -16,7 +15,7 @@
         </h3>
 
         <div class="info" @click.stop>
-          <UserPill :author="item.soul.slice(1, 88)" />
+          <UserPill :author="item?.soul.slice(1, 88)" />
           &nbsp;
           <ItemInfoDate :item="item" />
         </div>

@@ -13,6 +13,8 @@ function sort({ data }) {
     })
   }
 
+  list = list.filter(Boolean)
+
   if (orderBy == 'AB') {
     list.sort(sortByAB)
   }

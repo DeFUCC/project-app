@@ -1,5 +1,16 @@
 <template>
   <article class="page">
+    <section
+      :style="{
+        backgroundColor: itemColor(item.soul),
+      }"
+      class="row"
+    >
+      <span class="close" @click="$emit('close')">
+        <span class="iconify" data-icon="la:angle-left-solid"></span> </span
+      ><ItemLink class="pill" :editable="editable" :link="item.parent" />
+      <div class="pill">{{ item.title }}</div>
+    </section>
     <header
       :style="{
         backgroundColor: itemColor(item.soul),
@@ -50,6 +61,8 @@
       :type="type"
       :parent="item.soul"
     />
+
+    <LogList :id="item.soul" :editable="editable" />
   </article>
 </template>
 
@@ -118,7 +131,19 @@ export default {
   display: flex;
   align-items: center;
 }
-
+.row {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  font-size: 12px;
+}
+.pill {
+  margin: 4px;
+  border-radius: 2em;
+  padding: 0 8px 0 4px;
+}
 .info {
   font-size: 0.7em;
   display: flex;

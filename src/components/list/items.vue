@@ -1,37 +1,10 @@
 <template>
-  <section class="bar">
-    <div class="title">
-      <img
-        v-if="type"
-        class="icon bigger"
-        :src="'/svg/' + type + '.svg'"
-        alt=""
-      />
-      <span class="tag"
-        >{{ items.sorted.count }}/{{ items.sorted.countAll }}
-      </span>
-    </div>
-
-    <ListHeaderFilter
-      :my="items.options.filterMy"
-      @star="items.options.filterMy.star = !items.options.filterMy.star"
-      @seen="items.options.filterMy.seen = !items.options.filterMy.seen"
-      @trash="items.options.filterMy.trash = !items.options.filterMy.trash"
-      v-if="items.sorted.countAll > 0"
-    />
-    <ListHeaderOrder
-      :by="items.options.orderBy"
-      @order="items.options.orderBy = $event"
-      v-show="items.sorted.count > 0"
-    />
-
-    <div class="spacer"></div>
-    <AddForm key="add" :type="type" :parent="parent" />
-    <ListHeaderSearch
-      @search="items.options.search = $event"
-      v-if="items.sorted.countAll > 0"
-    />
-  </section>
+  <ListHeader
+    :parent="parent"
+    :type="type"
+    :options="items.options"
+    :sorted="items.sorted"
+  />
 
   <ul class="item-list">
     <transition-group name="list">
@@ -55,9 +28,7 @@
 </template>
 
 <script>
-import { format } from "timeago.js";
 import { computed, reactive, ref, watchEffect } from "vue";
-import { itemColor } from "../../tools/colors";
 import { useItems } from "../../use/items";
 
 export default {
@@ -83,39 +54,12 @@ export default {
 
     return {
       items,
-      format,
-      itemColor,
     };
   },
 };
 </script>
 
 <style scoped>
-.bar {
-  display: flex;
-  position: sticky;
-  z-index: 20;
-  top: 0;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 1em;
-  background-color: var(--bar-color);
-}
-.tag {
-  font-size: 0.8em;
-  display: block;
-  color: var(--text-light);
-  white-space: nowrap;
-}
-.bar > .title {
-  padding: 0;
-  font-size: 1.2em;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-}
-
 .item-list {
   display: flex;
   align-items: stretch;

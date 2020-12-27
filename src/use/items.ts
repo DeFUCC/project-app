@@ -25,6 +25,9 @@ export function useItems({
       .get(type)
       .map()
       .on((data: any, key: string) => {
+        if (!data) {
+          return
+        }
         if (items[key]) {
           items[key] = null
         }

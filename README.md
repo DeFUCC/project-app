@@ -17,9 +17,9 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) may be used for static pages...
 - [GUN](https://gun.eco/) for the reactive p2p graph database
 - [Icônes](https://icones.js.org/) for svg icons
-- timeago-js to render short dates
-- color-hash to get colors for item UUIDs
-- image-compressor to create small user avatars
+- [timeago-js](https://www.npmjs.com/package/timeago.js) to render short dates
+- [color-hash](https://www.npmjs.com/package/color-hash) to get colors for item UUIDs
+- [image-compressor](https://www.npmjs.com/package/image-compressor) to create small user avatars
 - [remarkable](https://www.npmjs.com/package/remarkable) for MarkDown parsing
 
 ## Basic structure
@@ -87,6 +87,9 @@ If you have any ideas or proposals – feel free to create an issue or send me a
   - [ ] qna
   - [ ] ukt
   - [ ] parent
+    - [x] parent in path
+    - [x] parent edit -> select
+    - [ ] actually transfer parent
   - [ ] status
 - [ ] comments
 - [ ] User
