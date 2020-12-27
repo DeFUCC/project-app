@@ -30,9 +30,10 @@ export function useItem(id: string) {
     gun
       .get(id)
       .get('log')
-      .set({
+      .get(Date.now())
+      .put({
         type: 'edit',
-        date: now.toLocaleDateString('sv-SE'),
+        timestamp: Date.now(),
         text: `${field} edited`,
       })
     edit[field] = false
@@ -56,16 +57,15 @@ export interface Item {
 
 export function generateItem(type: string, data?: any, parent?: string): Item {
   const item = { ...data }
-  let now = new Date()
   Object.assign(item, {
     title: truncate(data.title) || generateWords(2),
     description: data.description || generateWords(100),
     type: type,
     parent: parent || null,
-    createdAt: now.getTime(),
+    createdAt: Date.now(),
     log: {
-      [now.getTime()]: {
-        date: now.toLocaleDateString('sv-SE'),
+      [Date.now()]: {
+        timestamp: Date.now(),
         type: 'created',
         text: data.title,
       },
@@ -83,6 +83,15 @@ export async function createItem(type: string, data?: any, parent?: string) {
     let publicItem = await db.get(type).get(uuid).put(privateItem)
     if (parent) {
       gun.get(parent).get(type).get(uuid).put(privateItem)
+      gun
+        .get(parent)
+        .get('log')
+        .get(Date.now())
+        .put({
+          timestamp: Date.now(),
+          type: 'added',
+          text: `${type} ${generated.title} added.`,
+        })
     }
     return soul(publicItem)
   } catch (err) {

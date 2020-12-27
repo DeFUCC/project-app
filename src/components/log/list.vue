@@ -13,7 +13,8 @@
     </header>
 
     <form v-if="state.edit" @submit.prevent>
-      <input id="date" type="date" v-model="log.date" />
+      <input type="date" v-model="state.date" />
+      <input type="time" v-model="state.time" />
       <select name="type" v-model="log.type">
         <option :value="type" v-for="type in types" :key="type">
           {{ type }}
@@ -29,11 +30,11 @@
       <div
         class="log"
         v-for="log in chronoLogs"
-        :key="log.date"
+        :key="log.timestamp"
         :class="{ [log.type]: true }"
       >
         <div class="type">{{ log.type }}</div>
-        <div class="date">{{ log.date }}</div>
+        <div class="date">{{ format(log.timestamp) }}</div>
         <div class="text">{{ log.text }}</div>
       </div>
     </transition-group>
@@ -44,7 +45,7 @@
 import { defineComponent, reactive, ref, watchEffect } from "vue";
 import { format } from "timeago.js";
 import { gun } from "../../store/gun-db";
-import { notify } from "../../store/history";
+import { error, notify } from "../../store/history";
 
 interface Log {
   date: string;
@@ -59,7 +60,7 @@ export default defineComponent({
   },
   setup(props) {
     const log = reactive({
-      date: null,
+      timestamp: Date.now(),
       type: "update",
       text: "logged",
     });
@@ -67,6 +68,8 @@ export default defineComponent({
       open: false,
       edit: false,
       total: 0,
+      date: new Date().toLocaleDateString("sv-SE"),
+      time: `${new Date().getHours()}:${new Date().getMinutes()}`,
     });
     const types = ["create", "edit", "update", "start", "finish"];
     const logs = reactive({});
@@ -81,16 +84,18 @@ export default defineComponent({
     const chronoLogs = ref([]);
 
     watchEffect(() => {
-      let values = Object.values(logs).filter((l: any) => l.date && l.type);
+      let values = Object.values(logs).filter(
+        (l: any) => l.timestamp && l.type
+      );
       state.total = values.length;
       let sorted = values.sort((a: any, b: any) => {
-        if (!a.date) {
+        if (!a.timestamp) {
           return -1;
         }
-        if (!b.date) {
+        if (!b.timestamp) {
           return 1;
         }
-        let diff = Number(Date.parse(b.date)) - Number(Date.parse(a.date));
+        let diff = b.timestamp - a.timestamp;
         return diff;
       });
       if (!state.open) {
@@ -101,13 +106,17 @@ export default defineComponent({
     });
 
     function addLog() {
-      if (Date.parse(log.date) > Date.now()) {
-        notify("Logs are for past events, not future plans.");
+      if (Date.parse(state.date + "T" + state.time)) {
+        log.timestamp = Date.parse(state.date + "T" + state.time);
+      } else {
+        error("Incorrect date and time");
+      }
+      if (log.timestamp > Date.now()) {
+        error("Logs are for past events, not future plans.");
         return;
       }
-      let now = log.date ? log.date : Date.now();
-      gun.get(props.id).get("log").set(log);
-      log.date = log.type = log.text = null;
+      gun.get(props.id).get("log").get(Date.now()).put(log);
+      state.open = false;
     }
     return {
       chronoLogs,
