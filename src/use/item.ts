@@ -51,7 +51,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
     title: truncate(data.title) || generateWords(2),
     description: data.description || generateWords(100),
     type: type,
-    parent: parent,
+    parent: parent || null,
     createdAt: Date.now(),
   })
   return item

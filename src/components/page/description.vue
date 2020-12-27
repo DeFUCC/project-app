@@ -8,7 +8,7 @@
         <i class="iconify" data-icon="la:times"></i>
       </span>
     </div>
-    <div v-if="!editor.open" v-html="md"></div>
+    <div v-if="!editor.open" class="markdown" v-html="md"></div>
     <form v-if="editable && editor.open" @submit.prevent>
       <textarea
         v-model="editor.text"
@@ -79,6 +79,7 @@ export default defineComponent({
   position: relative;
   hyphens: auto;
 }
+
 .description .edit {
   font-size: 1.4em;
   position: absolute;

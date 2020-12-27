@@ -41,3 +41,7 @@ a.router-link-active {
 .spacer {
   flex: 10;
 }
+
+.markdown img {
+  max-width: 100%;
+}

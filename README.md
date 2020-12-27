@@ -20,6 +20,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 - timeago-js to render short dates
 - color-hash to get colors for item UUIDs
 - image-compressor to create small user avatars
+- [remarkable](https://www.npmjs.com/package/remarkable) for MarkDown parsing
 
 ## Basic structure
 
@@ -67,10 +68,10 @@ If you have any ideas or proposals – feel free to create an issue or send me a
   - [x] Basic item creation 
   - [x] Title input
 - [ ] Full rating system
-  - [ ] global rating sort
+  - [x] global rating sort
     - [x] star
-    - [ ] seen
-    - [ ] trash
+    - [x] seen
+    - [x] trash
   - [x] 3 types
     - [x] star
     - [x] seen
@@ -86,6 +87,7 @@ If you have any ideas or proposals – feel free to create an issue or send me a
   - [ ] qna
   - [ ] ukt
   - [ ] parent
+  - [ ] status
 - [ ] comments
 - [ ] User
   - [ ] roles

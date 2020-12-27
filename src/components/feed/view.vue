@@ -56,6 +56,7 @@ export default {
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   overscroll-behavior-x: none;
+  width: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-overflow-scrolling: touch;
 }

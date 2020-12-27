@@ -32,3 +32,11 @@ export const model = {
   event: ['task', 'purchase'],
   object: ['task', 'purchase'],
 }
+
+export const statuses = {
+  dev: 'Development',
+  process: 'Process',
+  pause: 'Paused',
+  ondemand: 'On demand',
+  finish: 'Finished',
+}

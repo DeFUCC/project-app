@@ -26,12 +26,7 @@
     />
 
     <div class="spacer"></div>
-    <AddForm
-      key="add"
-      :type="type"
-      :parent="parent"
-      @search="items.options.search = $event"
-    />
+    <AddForm key="add" :type="type" :parent="parent" />
     <ListHeaderSearch
       @search="items.options.search = $event"
       v-if="items.sorted.countAll > 0"

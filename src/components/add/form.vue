@@ -1,11 +1,6 @@
 <template>
   <form class="add" v-if="canAdd" @submit.prevent>
-    <input
-      class="title"
-      :placeholder="'New ' + type"
-      type="text"
-      v-model.trim="add.title"
-    />
+    <input class="title" placeholder="+" type="text" v-model.trim="add.title" />
     <button v-if="add.title" @click="addItem()">
       <span class="iconify" data-icon="la:plus"></span>
     </button>
@@ -69,7 +64,7 @@ form {
   font-size: 1em;
   border: 1px solid #aaa;
   outline: none;
-  width: 2em;
+  width: 1em;
   transition: all 300ms ease-in-out;
 }
 .title:focus {
