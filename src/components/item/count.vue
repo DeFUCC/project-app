@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .count {
   display: flex;
   flex-flow: row nowrap;
@@ -34,5 +34,8 @@ export default {
   background-color: hsla(0, 0%, 100%, 0.2);
   opacity: 0.9;
   flex: 1;
+}
+.icon {
+  width: 1.5em;
 }
 </style>

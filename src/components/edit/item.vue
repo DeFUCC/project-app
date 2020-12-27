@@ -59,7 +59,7 @@ export default defineComponent({
     const data = reactive({
       title: "",
       description: "",
-      logo: "",
+      icon: "",
     });
 
     watchEffect(() => {
@@ -75,7 +75,7 @@ export default defineComponent({
 
     function process(img) {
       if (!img.content) return;
-      data.logo = img.content;
+      data.icon = img.content;
     }
 
     async function editItem() {

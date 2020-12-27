@@ -1,5 +1,5 @@
 <template>
-  <div class="rating">
+  <div class="rating" :class="{ horizontal }">
     <div
       class="star"
       @click.stop="rate('star')"
@@ -60,6 +60,7 @@ import { useItemRating } from "../../use/rating";
 export default defineComponent({
   props: {
     item: String,
+    horizontal: Boolean,
   },
   setup(props) {
     let { count, myRate, rate } = useItemRating(props.item);
@@ -80,6 +81,9 @@ export default defineComponent({
   align-items: stretch;
   justify-items: stretch;
   font-size: 1em;
+}
+.rating.horizontal {
+  flex-flow: row nowrap;
 }
 .rating > div {
   padding: 0em 0.5em;

@@ -1,26 +1,46 @@
 <template>
-  <article ref="page" class="page">
-    <ItemCard
-      @click="$emit('close')"
-      @open="$emit('open', $event)"
-      :item="item"
-    />
+  <article class="page">
+    <header
+      :style="{
+        backgroundColor: itemColor(item.soul),
+      }"
+    >
+      <div class="main">
+        <ItemInfoIcon
+          :editable="editable"
+          :icon="item.icon"
+          @edit="edit.icon = !edit.icon"
+        />
+        <div class="info">
+          <PageTitle
+            :editable="editable"
+            :type="item.type"
+            :text="item.title"
+            @update="update('title', $event)"
+          />
+          <div class="author">
+            <UserPill :author="item.soul.slice(1, 88)" />
+            &nbsp;
+            <ItemInfoDate :item="item" />
+          </div>
+        </div>
+      </div>
+      <RatingBlock :horizontal="true" :item="item.soul" />
+    </header>
+    <section class="features">
+      <EditFile
+        v-if="edit.icon"
+        @loaded="update('icon', $event.content)"
+        @close="edit.icon = false"
+      />
+    </section>
 
     <section class="content">
-      <button
-        @click="
-          $emit('open', {
-            view: 'add',
-            item: item.soul,
-          })
-        "
-        v-if="canEdit"
-      >
-        <span class="iconify" data-icon="la:pen-alt"></span>
-      </button>
-      <div class="description" v-if="item.description">
-        {{ item.description }}
-      </div>
+      <PageDescription
+        :text="item.description"
+        :editable="editable"
+        @update="update('description', $event)"
+      />
     </section>
 
     <ListItems
@@ -34,32 +54,40 @@
 </template>
 
 <script lang="ts">
-import { ref, watchEffect, computed } from "vue";
+import { ref, watch, watchEffect, computed, reactive } from "vue";
 import { useItem } from "../../use/item";
 import { model } from "../../store/model";
 import { user } from "../../store/user";
+import { itemColor } from "../../tools/colors";
+import { gun } from "../../store/gun-db";
 
 export default {
   props: ["id"],
-  emits: ["open", "close"],
+  emits: ["open", "close", "renamed"],
   setup(props) {
-    const item = ref({
-      soul: null,
-    });
-    const page = ref(null);
-    watchEffect(() => {
-      item.value = useItem(props.id);
-    });
+    const title = ref(null);
 
-    const canEdit = computed(() => {
-      return user.is && user.is.pub == item.value.soul.slice(1, 88);
-    });
+    const { item, edit, update, editable } = useItem(props.id);
+
+    watch(
+      () => edit.title,
+      (val) => {
+        if (val) {
+          setTimeout(() => {
+            title.value.focus();
+          }, 100);
+        }
+      }
+    );
 
     return {
-      canEdit,
-      item,
+      itemColor,
+      editable,
+      update,
+      title,
       model,
-      page,
+      item,
+      edit,
     };
   },
 };
@@ -70,12 +98,32 @@ export default {
   color: #333;
   overflow-y: scroll;
   overflow-x: hidden;
+  display: flex;
+  flex-flow: column nowrap;
 }
-.page > .card {
-  margin: 0;
+.main {
+  display: flex;
+  align-items: center;
+  padding: 1em 0;
+}
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 1.8em;
+}
+.title h3 {
+  margin: 0.5em 0;
+}
+.author {
+  display: flex;
+  align-items: center;
 }
 
-.description {
-  padding: 2em;
+.info {
+  font-size: 0.7em;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+  padding: 4px;
 }
 </style>

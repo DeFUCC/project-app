@@ -7,19 +7,18 @@
     v-if="item"
   >
     <div class="main">
-      <div class="logo" v-if="item.logo">
-        <img class="logo" :src="item.logo" />
+      <div class="icon" v-if="item.icon">
+        <img :src="item.icon" />
       </div>
       <div class="content">
-        <h3 class="title"><IconType :type="item.type" />{{ item.title }}</h3>
+        <h3 class="title">
+          <IconType :type="item.type" />{{ truncate(item.title) }}
+        </h3>
 
         <div class="info" @click.stop>
           <UserPill :author="item.soul.slice(1, 88)" />
           &nbsp;
-          {{ format(item.createdAt, "short") }}
-          <span v-if="item.updatedAt">
-            , upd {{ format(item.updatedAt, "short") }}
-          </span>
+          <ItemInfoDate :item="item" />
         </div>
       </div>
 
@@ -39,10 +38,10 @@
 </template>
 
 <script>
-import { format } from "timeago.js";
 import { model } from "../../store/model";
 import { itemColor } from "../../tools/colors";
 import { computed } from "vue";
+import { truncate } from "../../use/item";
 
 export default {
   props: {
@@ -65,8 +64,8 @@ export default {
   setup(props) {
     return {
       model,
+      truncate,
       itemColor,
-      format,
     };
   },
 };
@@ -112,5 +111,13 @@ export default {
   align-items: center;
   display: flex;
   padding: 4px;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  padding: 8px 0 8px 8px;
+}
+.icon img {
+  border-radius: 5em;
 }
 </style>

@@ -11,6 +11,7 @@
     "@vueuse/core": "^4.0.0",
     "color-hash": "^1.0.3",
     "image-compressor": "^2.0.3",
+    "remarkable": "^2.0.1",
     "timeago.js": "^4.0.2",
     "vue": "^3.0.4",
     "vue-router": "^4.0.1"

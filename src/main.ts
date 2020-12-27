@@ -8,7 +8,6 @@ import '@iconify/iconify'
 import '@purge-icons/generated'
 
 const projectApp = createApp(App)
-
 projectApp.use(router)
 projectApp.mount('#app')
 

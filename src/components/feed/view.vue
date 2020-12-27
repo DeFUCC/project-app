@@ -1,11 +1,10 @@
 <template>
   <main class="columns">
     <transition-group name="feed">
-      <ListItems
-        @open="openFeed($event, -1)"
-        :type="item"
-        key="starter"
-      ></ListItems>
+      <article class="column" key="starter">
+        <ListItems @open="openFeed($event, -1)" :type="item"></ListItems>
+      </article>
+
       <FeedColumn
         v-for="(feed, num) in feeds"
         :key="num"
@@ -43,6 +42,14 @@ export default {
 </script>
 
 <style scoped>
+.column {
+  scroll-snap-align: start;
+  display: flex;
+  flex: 1 0 400px;
+  flex-flow: column nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .columns {
   display: flex;
   overflow-x: scroll;

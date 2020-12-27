@@ -7,23 +7,12 @@
     }"
   >
     <div :style="{ backgroundColor: itemColor(feed.id) }" class="sticky bar">
+      <div class="close" @click="$emit('close')">
+        <span class="iconify" data-icon="la:angle-left-solid"></span>
+      </div>
       <IconType :type="feed.type" />
       <div class="title">{{ feed.title }}</div>
-      <div class="spacer"></div>
-      <div class="close" @click="$emit('close')">
-        <span class="iconify" data-icon="la:times-circle"></span>
-      </div>
     </div>
-
-    <EditItem
-      v-if="feed.view == 'add'"
-      :parent="feed.id"
-      :type="feed.type"
-      :item="feed.item"
-      :key="feed.id"
-      @added="$emit('close')"
-      @edited="$emit('close')"
-    />
 
     <PageView
       v-if="feed.view == 'page'"
@@ -88,7 +77,7 @@ export default defineComponent({
 .column {
   scroll-snap-align: start;
   display: flex;
-  flex: 1 0 360px;
+  flex: 1 0 minmax(100wh, 420px);
   flex-flow: column nowrap;
   max-width: 960px;
   min-width: 360px;
