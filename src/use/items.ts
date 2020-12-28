@@ -1,77 +1,90 @@
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 import { useSorter } from './sorter'
 import { db, soul, gun, appPath } from '../store/gun-db'
-import { user as currentUser } from '../store/user'
+import { user } from '../store/user'
 
-export function useItems({
-  type = 'project',
-  parent = null,
-  user = null,
-} = {}) {
+export function useItems({ type = 'project', parent = null } = {}) {
   const items = reactive({})
-
+  const team = reactive({})
   getItems()
 
   function getItems() {
     let query: any
     if (parent) {
       query = gun.get(parent)
-    } else if (user) {
-      query = gun.user(user).get(appPath)
     } else {
       query = db
     }
-    query
-      .get(type)
-      .map()
-      .on((data: any, key: string) => {
-        if (!data) {
-          return
-        }
-        if (items[key]) {
-          items[key] = null
-        }
-        items[key] = { ...data }
-        let item = items[key]
-        item.soul = soul(data)
-        item.rated = {
-          star: {},
-          seen: {},
-          trash: {},
-        }
+    query.get(type).map().on(loadItem)
 
-        item.myRate = {
-          star: false,
-          seen: false,
-          trash: false,
+    if (parent) {
+      gun
+        .get(parent)
+        .get('team')
+        .map()
+        .on((data, key) => {
+          team[key] = data
+        })
+    }
+    watch(team, () => {
+      for (let member in team) {
+        console.info(
+          'very basic team work is in development here. Need to figure out the rights to check add feature. Fow now all items of teammates are loaded for demo purposes. Then they will be filtered by parent - need to make the parent changing work first',
+        )
+        if (team[member]) {
+          gun.user(member).get(appPath).get(type).map().on(loadItem)
         }
+      }
+    })
 
-        db.get('user')
-          .map()
-          .on((userData, userId) => {
-            for (let rate in item.rated) {
-              gun
-                .user(userId)
-                .get(appPath)
-                .get('rate')
-                .get(rate)
-                .get(soul(data))
-                .on((rated: any, rateType: string) => {
-                  if (rated) {
-                    item.rated[rate][userId] = true
-                    if (userId == currentUser?.is?.pub) {
-                      item.myRate[rate] = true
-                    }
-                  } else {
-                    delete item.rated[rate][userId]
-                    if (userId == currentUser?.is?.pub) {
-                      item.myRate[rate] = false
-                    }
+    function loadItem(data: any, key: string) {
+      if (!data) {
+        return
+      }
+      if (items[key]) {
+        items[key] = null
+      }
+      items[key] = { ...data }
+      let item = items[key]
+      item.soul = soul(data)
+      item.rated = {
+        star: {},
+        seen: {},
+        trash: {},
+      }
+
+      item.myRate = {
+        star: false,
+        seen: false,
+        trash: false,
+      }
+
+      db.get('user')
+        .map()
+        .on((userData, userId) => {
+          for (let rate in item.rated) {
+            gun
+              .user(userId)
+              .get(appPath)
+              .get('rate')
+              .get(rate)
+              .get(soul(data))
+              .on((rated: any, rateType: string) => {
+                if (rated) {
+                  item.rated[rate][userId] = true
+                  if (userId == user?.is?.pub) {
+                    item.myRate[rate] = true
                   }
-                })
-            }
-          })
-      })
+                } else {
+                  delete item.rated[rate][userId]
+                  if (userId == user?.is?.pub) {
+                    item.myRate[rate] = false
+                  }
+                }
+              })
+          }
+        })
+    }
   }
 
   const { sorted, options } = useSorter(items)

@@ -53,7 +53,6 @@ export default defineComponent({
     });
 
     function addMember(val) {
-      console.log(val.target.value);
       let pub = val.target.value;
       itemTeam.get(pub).put(true);
     }

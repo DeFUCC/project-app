@@ -49,6 +49,7 @@ export function useItem(id: string) {
         (item.type == 'user' && user.is.pub == item.pub))
     )
   })
+
   return { item, edit, update, editable }
 }
 
