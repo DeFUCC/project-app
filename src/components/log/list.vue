@@ -1,6 +1,6 @@
 <template>
   <article class="logs">
-    <header class="panel">
+    <header class="log-panel">
       Logs {{ chronoLogs.length }} / {{ state.total }}
 
       <div class="spacer"></div>
@@ -15,9 +15,9 @@
     <form v-if="state.edit" @submit.prevent>
       <input type="date" v-model="state.date" />
       <input type="time" v-model="state.time" />
-      <select name="type" v-model="log.type">
-        <option :value="type" v-for="type in types" :key="type">
-          {{ type }}
+      <select name="tag" v-model="log.tag">
+        <option :value="tag" v-for="tag in tags" :key="tag">
+          {{ tag }}
         </option>
       </select>
 
@@ -31,10 +31,10 @@
         class="log"
         v-for="log in chronoLogs"
         :key="log.timestamp"
-        :class="{ [log.type]: true }"
+        :class="{ [log.tag]: true }"
       >
-        <div class="type">{{ log.type }}</div>
         <div class="date">{{ format(log.timestamp) }}</div>
+        <div class="tag">{{ log.tag }}</div>
         <div class="text">{{ log.text }}</div>
       </div>
     </transition-group>
@@ -49,7 +49,7 @@ import { error, notify } from "../../store/history";
 
 interface Log {
   date: string;
-  type: string;
+  tag: string;
   text: string;
 }
 
@@ -61,7 +61,7 @@ export default defineComponent({
   setup(props) {
     const log = reactive({
       timestamp: Date.now(),
-      type: "update",
+      tag: "update",
       text: "logged",
     });
     const state = reactive({
@@ -71,7 +71,14 @@ export default defineComponent({
       date: new Date().toLocaleDateString("sv-SE"),
       time: `${new Date().getHours()}:${new Date().getMinutes()}`,
     });
-    const types = ["create", "edit", "update", "start", "finish"];
+    const tags = [
+      "created",
+      "edited",
+      "updated",
+      "happened",
+      "started",
+      "finished",
+    ];
     const logs = reactive({});
     gun
       .get(props.id)
@@ -84,9 +91,7 @@ export default defineComponent({
     const chronoLogs = ref([]);
 
     watchEffect(() => {
-      let values = Object.values(logs).filter(
-        (l: any) => l.timestamp && l.type
-      );
+      let values = Object.values(logs).filter((l: any) => l.timestamp && l.tag);
       state.total = values.length;
       let sorted = values.sort((a: any, b: any) => {
         if (!a.timestamp) {
@@ -120,7 +125,7 @@ export default defineComponent({
     }
     return {
       chronoLogs,
-      types,
+      tags,
       log,
       logs,
       addLog,
@@ -142,13 +147,15 @@ form {
   flex-flow: column nowrap;
   font-size: 0.9em;
 }
-.panel {
+.log-panel {
   padding: 0.5em;
   display: flex;
   align-items: center;
+  flex: 1 0 2em;
 }
 .log {
   display: flex;
+  flex: 1 1 2em;
 }
 .log div {
   padding: 4px;

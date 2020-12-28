@@ -1,12 +1,8 @@
 <template>
   <header class="bar">
     <div class="title">
-      <img
-        v-if="type"
-        class="icon bigger"
-        :src="'/svg/' + type + '.svg'"
-        alt=""
-      />
+      <IconType :type="type" />
+
       <span class="tag">{{ count }}</span>
     </div>
     <slot></slot>

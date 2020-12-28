@@ -43,9 +43,9 @@ export default {
   },
 
   setup(props) {
-    let items;
+    const items = ref({});
     watchEffect(() => {
-      items = useItems({
+      items.value = useItems({
         type: props.type,
         parent: props.parent,
         user: props.user,

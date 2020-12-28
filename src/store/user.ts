@@ -70,6 +70,9 @@ export async function createUser(alias: string, pass: string) {
       let dbUser = db.get('user').get(ack.pub).put({
         alias: alias,
         pub: ack.pub,
+        type: 'user',
+        title: alias,
+        description: ack.pub,
         createdAt: Date.now(),
       })
       window.location.reload()

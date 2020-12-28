@@ -8,16 +8,29 @@
       v-for="(g, i) in graph"
       :key="i"
     >
-      <div class="key" @click="g.show = !g.show">{{ i }}</div>
+      <div class="key" @click="g.show = !g.show">
+        <div
+          :style="{
+            backgroundColor: itemColor(i.slice(1, 88)),
+          }"
+          v-if="i[0] == '~'"
+          class="user"
+        >
+          {{ i.slice(1, 6) }}...
+        </div>
+
+        <div class="item">{{ i[0] == "~" ? i.slice(88) : i }}</div>
+      </div>
       <transition name="fade">
         <section v-if="g.show">
+          <div class="id">{{ i }}</div>
           <div
             class="prop"
             v-for="(r, j) in g"
             :key="j"
             v-show="j != '_' && j != 'show'"
           >
-            <div class="key">{{ j }}</div>
+            <div class="title">{{ j }}</div>
             <div class="content">{{ r }}</div>
           </div>
         </section>
@@ -27,13 +40,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { gun } from "../../store/gun-db";
 import { itemColor } from "../../tools/colors";
 
 export default defineComponent({
   setup() {
     const graph = ref({});
+
     setInterval(() => {
       graph.value = gun._.graph;
     }, 500);
@@ -58,6 +72,12 @@ article {
   padding: 0.5em;
 }
 .key {
+  display: flex;
+}
+.user {
+  padding: 0 1em;
+}
+.title {
   font-weight: bold;
 }
 </style>

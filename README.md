@@ -57,7 +57,7 @@ If you have any ideas or proposals – feel free to create an issue or send me a
 
 ## Features
 
-- [ ] Feed columns as the main interface
+- [x] Feed columns as the main interface
   - [x] Universal items feeds
     - [x] List sorter in a Web Worker
     - [x] Filter by search
@@ -66,6 +66,7 @@ If you have any ideas or proposals – feel free to create an issue or send me a
 - [ ] Item editor
   - [x] Basic item creation 
   - [x] Title input
+  - [x] editors embedded in the item page entities themselves
 - [ ] Full rating system
   - [x] global rating sort
     - [x] star
@@ -80,7 +81,7 @@ If you have any ideas or proposals – feel free to create an issue or send me a
     - [ ] My Seen
     - [ ] My Trash
 - [ ] UKT rating
-- [ ] item features
+- [ ] item page features
   - [x] log
     - [x] log item changes
     - [ ] log events

@@ -2,7 +2,18 @@
   <main class="columns">
     <transition-group name="feed">
       <article class="column" key="starter">
-        <ListItems @open="openFeed($event, -1)" :type="item"></ListItems>
+        <div class="row">
+          <div
+            class="type"
+            v-for="type in types"
+            :key="type"
+            @click="list = type"
+            :class="{ active: type == list }"
+          >
+            <IconType :type="type" />
+          </div>
+        </div>
+        <ListItems @open="openFeed($event, -1)" :type="list"></ListItems>
       </article>
 
       <FeedColumn
@@ -17,6 +28,8 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import { types } from "../../store/model";
 import { useFeeds } from "../../use/feeds";
 export default {
   props: {
@@ -32,7 +45,11 @@ export default {
       item: props.item,
     });
 
+    const list = ref("design");
+
     return {
+      list,
+      types,
       feeds,
       closeFeed,
       openFeed,
@@ -49,6 +66,22 @@ export default {
   flex-flow: column nowrap;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+.row {
+  display: flex;
+  align-items: center;
+}
+.type {
+  font-size: 2em;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+.type:hover {
+  opacity: 0.7;
+}
+.type.active {
+  opacity: 1;
 }
 .columns {
   display: flex;

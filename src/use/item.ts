@@ -8,6 +8,8 @@ export function useItem(id: string) {
   const item = reactive({
     soul: id,
     title: null,
+    type: 'design',
+    pub: null,
   })
 
   gun
@@ -32,16 +34,20 @@ export function useItem(id: string) {
       .get('log')
       .get(Date.now())
       .put({
-        type: 'edit',
+        tag: 'edited',
         timestamp: Date.now(),
-        text: `${field} edited`,
+        text: `${field}`,
       })
     edit[field] = false
     notify(`You updated ${field} of ${item.title} with ${truncate(content)}.`)
   }
 
   const editable = computed(() => {
-    return user.is && user.is.pub == id.slice(1, 88)
+    return (
+      user.is &&
+      (user.is.pub == id.slice(1, 88) ||
+        (item.type == 'user' && user.is.pub == item.pub))
+    )
   })
   return { item, edit, update, editable }
 }
@@ -66,7 +72,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
     log: {
       [Date.now()]: {
         timestamp: Date.now(),
-        type: 'created',
+        tag: 'created',
         text: data.title,
       },
     },
@@ -78,8 +84,8 @@ export async function createItem(type: string, data?: any, parent?: string) {
   let generated = generateItem(type, data, parent)
 
   try {
-    let privateItem = await gun.user().get(appPath).get(type).set(generated)
-    let uuid = soul(privateItem).slice(-15)
+    let privateItem = gun.user().get(appPath).get(type).set(generated)
+    let uuid = soul(await privateItem).slice(-15)
     let publicItem = await db.get(type).get(uuid).put(privateItem)
     if (parent) {
       gun.get(parent).get(type).get(uuid).put(privateItem)
@@ -89,7 +95,7 @@ export async function createItem(type: string, data?: any, parent?: string) {
         .get(Date.now())
         .put({
           timestamp: Date.now(),
-          type: 'added',
+          tag: 'added',
           text: `${type} ${generated.title} added.`,
         })
     }

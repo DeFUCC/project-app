@@ -45,7 +45,6 @@
         @close="edit.icon = false"
       />
     </section>
-
     <section class="content">
       <PageDescription
         :text="item.description"
@@ -53,13 +52,13 @@
         @update="update('description', $event)"
       />
     </section>
-
+    <CommentList :id="item.soul" />
     <ListItems
       @open="$emit('open', $event)"
       v-for="type in model[item.type]"
       :key="type"
       :type="type"
-      :parent="item.soul"
+      :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
     />
 
     <LogList :id="item.soul" :editable="editable" />
@@ -72,7 +71,7 @@ import { useItem } from "../../use/item";
 import { model } from "../../store/model";
 import { user } from "../../store/user";
 import { itemColor } from "../../tools/colors";
-import { gun } from "../../store/gun-db";
+import { appPath, gun } from "../../store/gun-db";
 
 export default {
   props: ["id"],
@@ -96,6 +95,7 @@ export default {
     return {
       itemColor,
       editable,
+      appPath,
       update,
       title,
       model,

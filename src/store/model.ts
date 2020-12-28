@@ -27,6 +27,7 @@ export const types = [
 ]
 
 export const model = {
+  user: ['design', 'project'],
   design: ['project'],
   project: ['event', 'object'],
   event: ['task', 'purchase'],

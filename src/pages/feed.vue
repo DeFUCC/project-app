@@ -1,10 +1,11 @@
 <template>
-  <FeedView item="project" />
+  <FeedView item="design" />
 </template>
 
 <script>
 export default {
-  name: "Projects",
+  name: "Feed",
+
   setup() {
     return {};
   },

@@ -13,7 +13,14 @@
       <textarea
         v-model="editor.text"
         name="description"
-        id=""
+        @keyup.enter.meta="
+          $emit('update', editor.text);
+          editor.open = false;
+        "
+        @keyup.ctrl.enter="
+          $emit('update', editor.text);
+          editor.open = false;
+        "
         cols="30"
         rows="10"
       ></textarea>
