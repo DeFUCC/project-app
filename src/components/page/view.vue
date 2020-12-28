@@ -52,6 +52,7 @@
         @update="update('description', $event)"
       />
     </section>
+    <UserTeam :id="item.soul" :editable="editable" />
     <CommentList :id="item.soul" />
     <ListItems
       @open="$emit('open', $event)"

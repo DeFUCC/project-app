@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
-import { gun } from "../../store/gun-db";
+import { defineComponent, reactive, watchEffect } from "vue";
+import { db, gun } from "../../store/gun-db";
 import { itemColor } from "../../tools/colors";
 
 export default defineComponent({
@@ -26,21 +26,17 @@ export default defineComponent({
   setup(props) {
     const profile = reactive({ ...props });
 
-    if (props.author) {
-      gun
-        .user(props.author)
-        .on((userIs) => {
-          if (userIs) {
-            profile.alias = userIs.alias;
-            profile.pub = userIs.pub;
-          }
-        })
-        .get("profile")
-        .get("avatar")
-        .on((d: string) => {
-          profile.avatar = d;
-        });
-    }
+    watchEffect(() => {
+      if (props.author) {
+        db.get("user")
+          .get(props.author)
+          .on((data, key) => {
+            profile.alias = data.alias;
+            profile.pub = data.pub;
+            profile.avatar = data.icon;
+          });
+      }
+    });
 
     return { profile, itemColor };
   },
