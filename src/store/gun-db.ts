@@ -40,6 +40,6 @@ function checkDbVersion(local: number, current: number) {
     localStorage.clear()
     localStorage.dbVersion = current
   } else {
-    console.log('DB version: ' + local)
+    console.info('DB version: ' + local)
   }
 }
