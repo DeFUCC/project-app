@@ -85,6 +85,7 @@ If you have any ideas or proposals – feel free to create an issue or send me a
   - [x] log
     - [x] log item changes
     - [ ] log events
+    - [ ] Data: Date.now() : "String"
   - [ ] comment
   - [ ] qna
   - [ ] ukt

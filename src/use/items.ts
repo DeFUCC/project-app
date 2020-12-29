@@ -29,7 +29,7 @@ export function useItems({ type = 'project', parent = null } = {}) {
     watch(team, () => {
       for (let member in team) {
         console.info(
-          'very basic team work is in development here. Need to figure out the rights to check add feature. Fow now all items of teammates are loaded for demo purposes. Then they will be filtered by parent - need to make the parent changing work first',
+          'very basic team work is in development here. Need to figure out the rights to check add feature. Fow now all items of teammates are loaded for demo purposes. Then they will be filtered by parent - need to make the parent changing work first. And also items need to be reloaded when team changes',
         )
         if (team[member]) {
           gun.user(member).get(appPath).get(type).map().on(loadItem)

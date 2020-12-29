@@ -8,7 +8,12 @@
     >
       <span class="close" @click="$emit('close')">
         <span class="iconify" data-icon="la:angle-left-solid"></span> </span
-      ><ItemLink class="pill" :editable="editable" :link="item.parent" />
+      ><ItemParent
+        class="pill"
+        :editable="editable"
+        :link="item.parent"
+        :id="item.soul"
+      />
       <div class="pill">{{ item.title }}</div>
     </section>
     <header
@@ -53,7 +58,7 @@
       />
     </section>
     <UserTeam :id="item.soul" :editable="editable" />
-    <CommentList :id="item.soul" />
+
     <ListItems
       @open="$emit('open', $event)"
       v-for="type in model[item.type]"
@@ -61,7 +66,7 @@
       :type="type"
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
     />
-
+    <CommentList :id="item.soul" />
     <LogList :id="item.soul" :editable="editable" />
   </article>
 </template>

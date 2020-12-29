@@ -48,7 +48,7 @@ export default defineComponent({
   padding-right: 0.5em;
 }
 .user {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   border-radius: 1em;
   padding: 4px 8px 4px 4px;

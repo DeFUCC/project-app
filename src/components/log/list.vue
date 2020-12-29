@@ -29,13 +29,13 @@
     <transition-group name="list">
       <div
         class="log"
-        v-for="log in chronoLogs"
-        :key="log.timestamp"
-        :class="{ [log.tag]: true }"
+        v-for="(log, key) in chronoLogs"
+        :key="key"
+        :class="{ [log[1].split('|')[0]]: true }"
       >
-        <div class="date">{{ format(log.timestamp) }}</div>
-        <div class="tag">{{ log.tag }}</div>
-        <div class="text">{{ log.text }}</div>
+        <div class="date">{{ format(log[0]) }}</div>
+        <div class="tag">{{ log[1].split("|")[0] }}</div>
+        <div class="text">{{ log[1].split("|")[1] }}</div>
       </div>
     </transition-group>
   </article>
@@ -52,6 +52,8 @@ interface Log {
   tag: string;
   text: string;
 }
+
+let logString = "tag | info";
 
 export default defineComponent({
   props: {
@@ -91,16 +93,16 @@ export default defineComponent({
     const chronoLogs = ref([]);
 
     watchEffect(() => {
-      let values = Object.values(logs).filter((l: any) => l.timestamp && l.tag);
-      state.total = values.length;
-      let sorted = values.sort((a: any, b: any) => {
-        if (!a.timestamp) {
+      let entries = Object.entries(logs);
+      state.total = entries.length;
+      let sorted = entries.sort((a: any, b: any) => {
+        if (!a) {
           return -1;
         }
-        if (!b.timestamp) {
+        if (!b) {
           return 1;
         }
-        let diff = b.timestamp - a.timestamp;
+        let diff = b[0] - a[0];
         return diff;
       });
       if (!state.open) {
@@ -120,7 +122,11 @@ export default defineComponent({
         error("Logs are for past events, not future plans.");
         return;
       }
-      gun.get(props.id).get("log").get(Date.now()).put(log);
+      gun
+        .get(props.id)
+        .get("log")
+        .get(log.timestamp)
+        .put(log.tag + "|" + log.text);
       state.open = false;
     }
     return {
@@ -166,10 +172,10 @@ form {
 .created {
   background-color: #ddd;
 }
-.edit {
+.edited {
   opacity: 0.5;
 }
-.update {
+.updated {
   background-color: rgb(157, 180, 147);
 }
 </style>

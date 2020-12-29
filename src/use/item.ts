@@ -33,11 +33,7 @@ export function useItem(id: string) {
       .get(id)
       .get('log')
       .get(Date.now())
-      .put({
-        tag: 'edited',
-        timestamp: Date.now(),
-        text: `${field}`,
-      })
+      .put('edited|' + field)
     edit[field] = false
     notify(`You updated ${field} of ${item.title} with ${truncate(content)}.`)
   }
@@ -71,11 +67,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
     parent: parent || null,
     createdAt: Date.now(),
     log: {
-      [Date.now()]: {
-        timestamp: Date.now(),
-        tag: 'created',
-        text: data.title,
-      },
+      [Date.now()]: 'created|' + data.title,
     },
   })
   return item
@@ -94,11 +86,7 @@ export async function createItem(type: string, data?: any, parent?: string) {
         .get(parent)
         .get('log')
         .get(Date.now())
-        .put({
-          timestamp: Date.now(),
-          tag: 'added',
-          text: `${type} ${generated.title} added.`,
-        })
+        .put('added|' + generated.title)
     }
     return soul(publicItem)
   } catch (err) {
