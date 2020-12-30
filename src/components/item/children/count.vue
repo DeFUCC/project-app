@@ -38,7 +38,8 @@ export default {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  padding: 0.5em;
+  padding: 0.5em 0.5em 0.5em 0.3em;
+  border-radius: 3em;
   color: #444;
   background-color: hsla(0, 0%, 100%, 0.2);
   opacity: 0.9;

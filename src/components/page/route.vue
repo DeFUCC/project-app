@@ -67,11 +67,11 @@ export default defineComponent({
 }
 .path.item .title,
 .path:hover .title {
-  width: auto;
+  width: 200px;
 }
 .title {
   white-space: nowrap;
-  width: 0;
+  width: 4em;
   transition: all 300ms ease-in-out;
 }
 </style>

@@ -11,15 +11,14 @@
       </div>
       <div class="content">
         <div class="title">
-          <h3>
+          <div class="pill">
             <img
               class="type"
               v-if="item.type"
               :src="'/svg/' + item.type + '.svg'"
               alt=""
             />{{ truncate(item.title) }}
-          </h3>
-
+          </div>
           <ItemChildren :id="item.soul" />
         </div>
 
@@ -88,9 +87,18 @@ export default {
   align-self: center;
   width: 100%;
 }
-.title {
+.pill {
   display: flex;
   align-items: center;
+}
+.title {
+  flex-flow: row wrap;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  line-height: 1.4em;
+  flex: 1;
 }
 .title .type {
   height: 2em;

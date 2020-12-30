@@ -1,57 +1,70 @@
 <template>
   <main class="columns">
-    <transition-group name="feed">
-      <article class="column" key="starter">
-        <div class="row">
-          <div
-            class="type"
-            v-for="type in types"
-            :key="type"
-            @click="list = type"
-            :class="{ active: type == list }"
-          >
-            <IconType :type="type" />
-          </div>
-        </div>
-        <List @open="openFeed($event, -1)" :type="list"></List>
-      </article>
-
-      <article
-        v-for="(feed, num) in feeds"
-        :key="num"
-        class="column bordered"
-        :style="{
-          borderColor: itemColor(feed.parent),
-        }"
-      >
-        <Page
-          @open="openFeed($event, num)"
-          @close="closeFeed(num)"
-          :key="feed.id"
-          :id="feed.id"
+    <article class="column" key="starter">
+      <div class="row">
+        <div
+          class="type"
+          v-for="type in types"
+          :key="type"
+          @click="list = type"
+          :class="{ active: type == list }"
         >
-        </Page>
-      </article>
-    </transition-group>
+          <IconType :type="type" />
+        </div>
+      </div>
+
+      <List @open="openFeed($event, -1)" :type="list"></List>
+    </article>
+
+    <article
+      v-for="(feed, num) in feeds"
+      :key="num"
+      class="column bordered"
+      :style="{
+        borderColor: itemColor(feed.parent),
+      }"
+    >
+      <Page
+        @open="openFeed($event, num)"
+        @close="closeFeed(num)"
+        :key="feed"
+        :id="feed"
+      >
+      </Page>
+    </article>
   </main>
 </template>
 
 <script lang="ts">
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref, watch, watchEffect } from "vue";
 import { types } from "../store/model";
-import { useFeeds } from "../use/feeds";
 import { itemColor } from "../tools/colors";
+import { useRoute, useRouter } from "vue-router";
 export default {
-  props: {
-    item: {
-      type: String,
-      default: "design",
-    },
-  },
   name: "Designs",
   setup(props) {
     const feeds = reactive([]);
-
+    const route = useRoute();
+    const router = useRouter();
+    const list = ref("design");
+    onMounted(() => {
+      for (let q in route.query) {
+        if (q == "type") {
+          list.value = route.query[q] as string;
+          continue;
+        }
+        feeds[q] = route.query[q];
+      }
+    });
+    watchEffect(() => {
+      let query = {
+        type: list.value,
+      };
+      feeds.forEach((feed, i) => {
+        query[i] = feed;
+      });
+      router.push({ query: query });
+    });
     function openFeed(feed: any, num: number) {
       feeds[num + 1] = feed;
       feeds.splice(num + 2);
@@ -60,8 +73,6 @@ export default {
     function closeFeed(num: number) {
       feeds.splice(num, 1);
     }
-
-    const list = ref("design");
 
     return {
       list,
@@ -85,7 +96,7 @@ export default {
   scroll-snap-align: start end;
   display: flex;
   flex: 1 0 100%;
-  max-width: 800px;
+  max-width: 600px;
   flex-flow: column nowrap;
   overflow-y: scroll;
   overflow-x: hidden;

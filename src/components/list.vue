@@ -10,15 +10,7 @@
     <transition-group name="list">
       <Item
         class="card"
-        @click="
-          $emit('open', {
-            view: 'page',
-            type: item.type,
-            id: item.soul,
-            title: item.title,
-            parent: parent,
-          })
-        "
+        @click="$emit('open', item.soul)"
         v-for="item in items.sorted.list"
         :key="item.soul"
         :item="item"

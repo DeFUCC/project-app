@@ -1,17 +1,6 @@
 <template>
   <article class="page" ref="page">
-    <aside
-      :style="{
-        backgroundColor: itemColor(item.soul),
-      }"
-      class="row"
-    >
-      <PageRoute :id="item.soul" />
-      <div class="spacer"></div>
-      <span class="close" @click="$emit('close')">
-        <span class="iconify" data-icon="la:times"></span>
-      </span>
-    </aside>
+    <PageBar @close="$emit('close')" :id="item.soul" />
 
     <section class="content">
       <div class="main">
@@ -142,15 +131,7 @@ export default {
   display: flex;
   align-items: center;
 }
-.row {
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  font-size: 12px;
-  height: 24px;
-}
+
 .pill {
   margin: 4px;
   padding: 0 8px 0 4px;
@@ -162,8 +143,5 @@ export default {
   flex-flow: column nowrap;
   padding: 4px;
   flex: 1 1 360px;
-}
-.close {
-  padding: 8px 16px;
 }
 </style>
