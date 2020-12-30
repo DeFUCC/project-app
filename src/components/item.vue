@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import { model } from "../../store/model";
-import { itemColor } from "../../tools/colors";
+import { model } from "../store/model";
+import { itemColor } from "../tools/colors";
 import { computed } from "vue";
-import { truncate } from "../../use/item";
+import { truncate } from "../use/item";
 
 export default {
   props: {

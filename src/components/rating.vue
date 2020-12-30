@@ -6,14 +6,10 @@
       :class="{ active: myRate.star }"
     >
       <i v-show="!myRate.star">
-        <span class="iconify" data-icon="la:star" data-inline="false"></span>
+        <span class="iconify" data-icon="la:star"></span>
       </i>
       <i v-show="!!myRate.star">
-        <span
-          class="iconify"
-          data-icon="la:star-solid"
-          data-inline="false"
-        ></span>
+        <span class="iconify" data-icon="la:star-solid"></span>
       </i>
       {{ count.star }}
     </div>
@@ -36,18 +32,10 @@
       :class="{ active: myRate.trash }"
     >
       <i v-show="!myRate.trash">
-        <span
-          class="iconify"
-          data-icon="la:trash-alt"
-          data-inline="false"
-        ></span>
+        <span class="iconify" data-icon="la:trash-alt"></span>
       </i>
       <i v-show="!!myRate.trash">
-        <span
-          class="iconify"
-          data-icon="la:trash-restore-alt"
-          data-inline="false"
-        ></span>
+        <span class="iconify" data-icon="la:trash-restore-alt"></span>
       </i>
       {{ count.trash }}
     </div>

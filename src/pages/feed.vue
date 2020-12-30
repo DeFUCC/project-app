@@ -13,7 +13,7 @@
             <IconType :type="type" />
           </div>
         </div>
-        <ListItems @open="openFeed($event, -1)" :type="list"></ListItems>
+        <List @open="openFeed($event, -1)" :type="list"></List>
       </article>
 
       <article
@@ -76,10 +76,16 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (min-device-width: 900px) {
+  .column {
+    flex: 1 0 600px !important;
+  }
+}
 .column {
   scroll-snap-align: start end;
   display: flex;
-  flex: 1 0 400px;
+  flex: 1 0 100%;
+  max-width: 800px;
   flex-flow: column nowrap;
   overflow-y: scroll;
   overflow-x: hidden;

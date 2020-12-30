@@ -61,7 +61,16 @@ export interface Item {
 function generateDescription() {
   return `${generateWords(2, 6)}
   ----
-  ${generateWords(40, 100)}`
+  ${generateWords(30, 50)}
+  
+  ${generateWords(1, 10)}
+  ====
+
+  - ${generateWords(1, 10)}
+  - ${generateWords(1, 10)}
+  - ${generateWords(1, 10)}
+
+  ${generateWords(30, 200)}`
 }
 
 export function generateItem(type: string, data?: any, parent?: string): Item {
@@ -100,7 +109,7 @@ export async function createItem(type: string, data?: any, parent?: string) {
   }
 }
 
-export function truncate(input: string, num = 24) {
+export function truncate(input: string, num = 42) {
   if (!input) {
     return ' '
   }

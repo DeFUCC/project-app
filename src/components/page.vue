@@ -6,15 +6,11 @@
       }"
       class="row"
     >
+      <PageRoute :id="item.soul" />
+      <div class="spacer"></div>
       <span class="close" @click="$emit('close')">
-        <span class="iconify" data-icon="la:angle-left-solid"></span> </span
-      ><ItemParent
-        class="pill"
-        :editable="editable"
-        :link="item.parent"
-        :id="item.soul"
-      />
-      <div class="pill">{{ item.title }}</div>
+        <span class="iconify" data-icon="la:times"></span>
+      </span>
     </aside>
 
     <section class="content">
@@ -54,7 +50,7 @@
     </section>
     <UserTeam :id="item.soul" :editable="editable" />
 
-    <ListItems
+    <List
       @open="$emit('open', $event)"
       v-for="type in model[item.type]"
       :key="type"
@@ -62,7 +58,7 @@
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
     />
     <CommentList :id="item.soul" />
-    <LogList :id="item.soul" :editable="editable" />
+    <Log :id="item.soul" :editable="editable" />
   </article>
 </template>
 
@@ -132,7 +128,7 @@ export default {
 .main {
   display: flex;
   align-items: center;
-  padding: 1em 0;
+  padding: 1em;
 }
 .title {
   display: flex;
@@ -153,10 +149,10 @@ export default {
   top: 0;
   z-index: 30;
   font-size: 12px;
+  height: 24px;
 }
 .pill {
   margin: 4px;
-  border-radius: 2em;
   padding: 0 8px 0 4px;
 }
 .info {
@@ -166,5 +162,8 @@ export default {
   flex-flow: column nowrap;
   padding: 4px;
   flex: 1 1 360px;
+}
+.close {
+  padding: 8px 16px;
 }
 </style>

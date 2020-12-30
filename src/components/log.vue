@@ -1,31 +1,14 @@
 <template>
   <article class="logs">
     <header class="log-panel">
-      Logs {{ chronoLogs.length }} / {{ state.total }}
+      Log
 
       <div class="spacer"></div>
-      <button v-if="editable" @click="state.open = !state.open">
-        <span class="iconify" data-icon="la:angle-down-solid"></span>
-      </button>
-      <button v-if="editable" @click="state.edit = !state.edit">
-        <span class="iconify" data-icon="la:plus"></span>
-      </button>
+      {{ state.total }}
+      <span v-if="editable" @click="state.open = !state.open">
+        <i class="iconify" data-icon="la:angle-down-solid"></i>
+      </span>
     </header>
-
-    <form v-if="state.edit" @submit.prevent>
-      <input type="date" v-model="state.date" />
-      <input type="time" v-model="state.time" />
-      <select name="tag" v-model="log.tag">
-        <option :value="tag" v-for="tag in tags" :key="tag">
-          {{ tag }}
-        </option>
-      </select>
-
-      <input type="text" v-model="log.text" />
-      <button v-if="editable" @click="addLog()">
-        <span class="iconify" data-icon="la:plus"></span>
-      </button>
-    </form>
     <transition-group name="list">
       <div
         class="log"
@@ -33,7 +16,7 @@
         :key="key"
         :class="{ [log[1].split('|')[0]]: true }"
       >
-        <div class="date">{{ format(log[0]) }}</div>
+        <div class="date">{{ format(log[0], "short") }}</div>
         <div class="tag">{{ log[1].split("|")[0] }}</div>
         <div class="text">{{ log[1].split("|")[1] }}</div>
       </div>
@@ -44,8 +27,8 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, watchEffect } from "vue";
 import { format } from "timeago.js";
-import { gun } from "../../store/gun-db";
-import { error, notify } from "../../store/history";
+import { gun } from "../store/gun-db";
+import { error, notify } from "../store/history";
 
 interface Log {
   date: string;
@@ -61,26 +44,11 @@ export default defineComponent({
     editable: Boolean,
   },
   setup(props) {
-    const log = reactive({
-      timestamp: Date.now(),
-      tag: "update",
-      text: "logged",
-    });
     const state = reactive({
       open: false,
-      edit: false,
       total: 0,
-      date: new Date().toLocaleDateString("sv-SE"),
-      time: `${new Date().getHours()}:${new Date().getMinutes()}`,
     });
-    const tags = [
-      "created",
-      "edited",
-      "updated",
-      "happened",
-      "started",
-      "finished",
-    ];
+
     const logs = reactive({});
     gun
       .get(props.id)
@@ -112,29 +80,9 @@ export default defineComponent({
       }
     });
 
-    function addLog() {
-      if (Date.parse(state.date + "T" + state.time)) {
-        log.timestamp = Date.parse(state.date + "T" + state.time);
-      } else {
-        error("Incorrect date and time");
-      }
-      if (log.timestamp > Date.now()) {
-        error("Logs are for past events, not future plans.");
-        return;
-      }
-      gun
-        .get(props.id)
-        .get("log")
-        .get(log.timestamp)
-        .put(log.tag + "|" + log.text);
-      state.open = false;
-    }
     return {
       chronoLogs,
-      tags,
-      log,
       logs,
-      addLog,
       format,
       state,
     };

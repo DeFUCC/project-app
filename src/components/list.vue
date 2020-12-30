@@ -8,7 +8,7 @@
 
   <ul class="item-list">
     <transition-group name="list">
-      <ItemCard
+      <Item
         class="card"
         @click="
           $emit('open', {
@@ -22,14 +22,14 @@
         v-for="item in items.sorted.list"
         :key="item.soul"
         :item="item"
-      ></ItemCard>
+      ></Item>
     </transition-group>
   </ul>
 </template>
 
 <script>
 import { computed, reactive, ref, watchEffect } from "vue";
-import { useItems } from "../../use/items";
+import { useItems } from "../use/items";
 
 export default {
   name: "FeedItems",
