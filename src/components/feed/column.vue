@@ -67,13 +67,16 @@ export default defineComponent({
   border-left: 6px solid #eee;
 }
 .column {
-  scroll-snap-align: start;
+  scroll-snap-align: start end;
   display: flex;
   flex: 1 0 minmax(100wh, 420px);
   flex-flow: column nowrap;
   max-width: 960px;
   min-width: 360px;
   overflow-x: hidden;
+  position: sticky;
+  left: 0;
+  background-color: #eee;
 }
 
 .column:last-child {

@@ -82,7 +82,7 @@ export default defineComponent({
   opacity: 1;
 }
 .description {
-  margin: 2em;
+  margin: 0 2em;
   position: relative;
   hyphens: auto;
 }

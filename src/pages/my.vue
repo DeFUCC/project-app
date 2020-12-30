@@ -1,8 +1,6 @@
 <template>
   <article class="page" v-if="user.is">
     <header class="bar" :style="{ backgroundColor: itemColor(user.is?.pub) }">
-      <UserAvatar size="medium" :pic="user.profile.avatar" />
-
       <div class="title">{{ user.is?.alias }}</div>
       <div class="spacer"></div>
       <button @click="logOut()">🚪 Log out</button>

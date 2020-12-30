@@ -9,26 +9,23 @@
       />
       <span class="tag">{{ sorted.count }}/{{ sorted.countAll }} </span>
     </div>
-
+    <div class="spacer"></div>
+    <AddForm key="add" :type="type" :parent="parent" />
+  </section>
+  <section class="bar" v-if="sorted.countAll > 0">
     <ListHeaderFilter
       :my="options.filterMy"
       @star="options.filterMy.star = !options.filterMy.star"
       @seen="options.filterMy.seen = !options.filterMy.seen"
       @trash="options.filterMy.trash = !options.filterMy.trash"
-      v-if="sorted.countAll > 0"
     />
     <ListHeaderOrder
       :by="options.orderBy"
       @order="options.orderBy = $event"
       v-show="sorted.count > 0"
     />
-
     <div class="spacer"></div>
-    <AddForm key="add" :type="type" :parent="parent" />
-    <ListHeaderSearch
-      @search="options.search = $event"
-      v-if="sorted.countAll > 0"
-    />
+    <ListHeaderSearch @search="options.search = $event" />
   </section>
 </template>
 
@@ -57,7 +54,7 @@ export default defineComponent({
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
-  padding: 1em;
+  padding: 0.5em;
   background-color: var(--bar-color);
 }
 .tag {

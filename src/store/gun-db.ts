@@ -11,7 +11,7 @@ const peerList = [
   // 'http://127.0.0.1:4200/gun',
 ]
 
-const dbVersion = 17
+const dbVersion = 18
 checkDbVersion(localStorage.dbVersion, dbVersion)
 
 export const gun = new window.Gun(peerList)

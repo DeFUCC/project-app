@@ -56,7 +56,7 @@
 
 <script>
 import { defineComponent, ref, watchEffect } from "vue";
-import { useItemRating } from "../../use/rating";
+import { useItemRating } from "../use/rating";
 export default defineComponent({
   props: {
     item: String,
@@ -86,26 +86,23 @@ export default defineComponent({
   flex-flow: row nowrap;
 }
 .rating > div {
-  padding: 0em 0.5em;
+  padding: 0.5em;
+  margin: 0 0.5em;
   display: flex;
   flex: 1 1 1em;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   opacity: 0.5;
+  border-radius: 5em;
+  border-width: 1px;
+  border-style: solid;
+  border-color: hsla(0, 0%, 0%, 0.7);
 }
 i {
   padding-top: 2px;
 }
-.star {
-  background-color: hsla(0, 0%, 100%, 0.4);
-}
-.seen {
-  background-color: hsla(0, 0%, 50%, 0.4);
-}
-.trash {
-  background-color: hsla(0, 0%, 0%, 0.7);
-}
+
 .rating img {
   max-height: 1.4em;
   height: 2em;

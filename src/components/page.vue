@@ -1,6 +1,6 @@
 <template>
-  <article class="page">
-    <section
+  <article class="page" ref="page">
+    <aside
       :style="{
         backgroundColor: itemColor(item.soul),
       }"
@@ -15,14 +15,11 @@
         :id="item.soul"
       />
       <div class="pill">{{ item.title }}</div>
-    </section>
-    <header
-      :style="{
-        backgroundColor: itemColor(item.soul),
-      }"
-    >
+    </aside>
+
+    <section class="content">
       <div class="main">
-        <ItemInfoIcon
+        <PageIcon
           :editable="editable"
           :icon="item.icon"
           @edit="edit.icon = !edit.icon"
@@ -41,21 +38,19 @@
           </div>
         </div>
       </div>
-      <RatingBlock :horizontal="true" :item="item.soul" />
-    </header>
-    <section class="features">
+
       <EditFile
         v-if="edit.icon"
         @loaded="update('icon', $event.content)"
         @close="edit.icon = false"
       />
-    </section>
-    <section class="content">
       <PageDescription
         :text="item.description"
         :editable="editable"
         @update="update('description', $event)"
       />
+
+      <Rating :horizontal="true" :item="item.soul" />
     </section>
     <UserTeam :id="item.soul" :editable="editable" />
 
@@ -72,18 +67,31 @@
 </template>
 
 <script lang="ts">
-import { ref, watch, watchEffect, computed, reactive } from "vue";
-import { useItem } from "../../use/item";
-import { model } from "../../store/model";
-import { user } from "../../store/user";
-import { itemColor } from "../../tools/colors";
-import { appPath, gun } from "../../store/gun-db";
+import { ref, watch, watchEffect, computed, reactive, onMounted } from "vue";
+import { useItem } from "../use/item";
+import { model } from "../store/model";
+import { user } from "../store/user";
+import { itemColor } from "../tools/colors";
+import { appPath, gun } from "../store/gun-db";
 
 export default {
   props: ["id"],
   emits: ["open", "close", "renamed"],
   setup(props) {
     const title = ref(null);
+
+    const page = ref(null);
+    const mounted = ref(false);
+    watchEffect(() => {
+      if (mounted.value) {
+        setTimeout(() => {
+          page.value.scrollIntoView({ behavior: "smooth" });
+        }, 200);
+      }
+    });
+    onMounted(() => {
+      mounted.value = true;
+    });
 
     const { item, edit, update, editable } = useItem(props.id);
 
@@ -107,6 +115,7 @@ export default {
       model,
       item,
       edit,
+      page,
     };
   },
 };
@@ -156,5 +165,6 @@ export default {
   align-items: flex-start;
   flex-flow: column nowrap;
   padding: 4px;
+  flex: 1 1 360px;
 }
 </style>

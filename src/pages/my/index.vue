@@ -2,59 +2,21 @@
   <article id="profile">
     <h1>My profile</h1>
     <section class="avatar-editor">
-      <div
-        class="edit-avatar"
-        @click="update = true"
-        :style="{
-          backgroundImage:
-            'linear-gradient(hsla(0,100%,100%,0.7), hsla(0,100%,100%,0.5)), url(' +
-            user.profile.avatar +
-            ')',
-        }"
-        :src="user.profile.avatar"
-        :alt="user.is?.alias"
-      >
-        &#10000;
-      </div>
-
-      <EditFile
-        v-if="!user.profile.avatar || update"
-        @loaded="process"
-        @close="update = false"
-      ></EditFile>
+      {{ user }}
     </section>
   </article>
 </template>
 
 <script>
 import { user } from "../../store/user";
-import { gun } from "../../store/gun-db";
-import { ref } from "vue";
-import { notify } from "../../store/history";
+
 export default {
   props: {
     alias: String,
   },
 
   setup() {
-    const update = ref(false);
-
-    function process(img) {
-      if (!img.content) return;
-      gun
-        .user()
-        .get("profile")
-        .get("avatar")
-        .put(img.content, (st) => {
-          if (!st.err) {
-            update.value = false;
-            notify("User avatar updated");
-          }
-        });
-    }
     return {
-      update,
-      process,
       user,
     };
   },

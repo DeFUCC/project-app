@@ -5,15 +5,24 @@
   </div>
 </template>
 
-<script>
-import { useCount } from "../../use/count";
+<script lang="ts">
+import { computed, reactive } from "vue";
+import { gun } from "../../../store/gun-db";
 export default {
   props: {
     id: String,
     type: String,
   },
   setup(props) {
-    const { count } = useCount(props.id, props.type);
+    const items = reactive({});
+    gun
+      .get(props.id)
+      .get(props.type)
+      .map()
+      .on((data: any, key: string) => {
+        items[key] = data;
+      });
+    const count = computed(() => Object.keys(items).length);
     const icon = `/svg/${props.type}.svg`;
     return {
       count,
@@ -23,7 +32,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .count {
   display: flex;
   flex-flow: row nowrap;

@@ -10,28 +10,27 @@
         <img :src="item.icon" />
       </div>
       <div class="content">
-        <h3 class="title">
-          <IconType :type="item.type" />{{ truncate(item.title) }}
-        </h3>
+        <div class="title">
+          <h3>
+            <img
+              class="type"
+              v-if="item.type"
+              :src="'/svg/' + item.type + '.svg'"
+              alt=""
+            />{{ truncate(item.title) }}
+          </h3>
+
+          <ItemChildren :id="item.soul" />
+        </div>
 
         <div class="info" @click.stop>
           <UserPill :author="item?.soul.slice(1, 88)" />
           &nbsp;
           <ItemInfoDate :item="item" />
+          <div class="spacer"></div>
+          <Rating :item="item.soul" :horizontal="true" />
         </div>
       </div>
-
-      <div class="spacer"></div>
-      <div class="counters">
-        <ItemCount
-          :id="item.soul"
-          :type="type"
-          v-for="type in model[item.type]"
-          :key="type"
-        />
-      </div>
-
-      <RatingBlock :item="item.soul" />
     </div>
   </li>
 </template>
@@ -71,10 +70,13 @@ export default {
 </script>
 
 <style scoped>
-.title h2 {
+.title h3 {
   margin: 0;
+  display: flex;
+  align-items: center;
   font-size: 1.2em;
   line-height: 1.4em;
+  flex: 1;
 }
 .main {
   display: flex;
@@ -84,16 +86,14 @@ export default {
 .content {
   padding: 0.5em;
   align-self: center;
+  width: 100%;
 }
 .title {
   display: flex;
   align-items: center;
 }
-.counters {
-  display: flex;
-  justify-content: stretch;
-  align-items: stretch;
-  flex-flow: column nowrap;
+.title .type {
+  height: 2em;
 }
 .item {
   cursor: pointer;
@@ -103,18 +103,21 @@ export default {
   padding: 0;
   flex: 0 0 5em;
   min-height: min-content;
+  border-radius: var(--small-radius);
 }
 .info {
+  width: 100%;
   font-size: 0.7em;
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
-  display: flex;
   padding: 4px;
 }
 .icon {
   display: flex;
   align-items: center;
-  padding: 8px 0 8px 8px;
+  padding: 8px;
+  flex: 1 0 90px;
 }
 .icon img {
   border-radius: 5em;

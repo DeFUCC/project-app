@@ -35,6 +35,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1 1 100px;
 }
 .icon.editable {
   cursor: pointer;

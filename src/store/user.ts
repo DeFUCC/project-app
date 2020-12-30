@@ -28,6 +28,7 @@ gun.on('auth', () => {
 export function loadUser(pub: string) {
   gun
     .user(pub)
+    .get(appPath)
     .get('profile')
     .map()
     .on((data, key) => {

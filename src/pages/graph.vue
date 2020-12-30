@@ -34,4 +34,7 @@ export default {
 article {
   overflow-y: scroll;
 }
+.router-link-exact-active {
+  color: #222;
+}
 </style>

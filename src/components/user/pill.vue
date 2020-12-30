@@ -1,13 +1,14 @@
 <template>
-  <router-link
-    :to="'/users/' + profile.pub"
-    class="user"
-    :style="{
-      backgroundColor: itemColor(profile.pub),
-    }"
-  >
+  <router-link :to="'/users/' + profile.pub" class="user">
     <UserAvatar size="small" :pic="profile.avatar" class="pad" />
-    {{ profile.alias }}
+    <span
+      class="alias"
+      :style="{
+        borderColor: itemColor(profile.pub),
+      }"
+    >
+      {{ profile.alias }}
+    </span>
   </router-link>
 </template>
 
@@ -46,6 +47,11 @@ export default defineComponent({
 <style scoped>
 .pad {
   padding-right: 0.5em;
+}
+.alias {
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  padding-bottom: -6px;
 }
 .user {
   display: inline-flex;

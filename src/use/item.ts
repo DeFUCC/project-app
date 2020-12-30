@@ -58,11 +58,17 @@ export interface Item {
   createdBy: string
 }
 
+function generateDescription() {
+  return `${generateWords(2, 6)}
+  ----
+  ${generateWords(40, 100)}`
+}
+
 export function generateItem(type: string, data?: any, parent?: string): Item {
   const item = { ...data }
   Object.assign(item, {
     title: truncate(data.title) || generateWords(2),
-    description: data.description || generateWords(100),
+    description: data.description || generateDescription(),
     type: type,
     parent: parent || null,
     createdAt: Date.now(),
