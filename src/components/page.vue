@@ -37,7 +37,7 @@
 
       <Rating :horizontal="true" :item="item.soul" />
     </section>
-    <UserTeam :id="item.soul" :editable="editable" />
+    <UserTeam v-if="false" :id="item.soul" :editable="editable" />
 
     <List
       @open="$emit('open', $event)"

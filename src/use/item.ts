@@ -70,7 +70,10 @@ function generateDescription() {
   - ${generateWords(1, 10)}
   - ${generateWords(1, 10)}
 
-  ${generateWords(30, 200)}`
+  ${generateWords(1, 10)}
+  ====
+  
+  ${generateWords(10, 80)}`
 }
 
 export function generateItem(type: string, data?: any, parent?: string): Item {

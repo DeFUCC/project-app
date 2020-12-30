@@ -69,11 +69,9 @@ export default {
       feeds[num + 1] = feed;
       feeds.splice(num + 2);
     }
-
     function closeFeed(num: number) {
       feeds.splice(num, 1);
     }
-
     return {
       list,
       types,
