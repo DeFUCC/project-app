@@ -1,5 +1,5 @@
 <template>
-  <section class="state" v-if="state.status">
+  <section class="state">
     <div
       class="status"
       :class="{ [state.status]: true }"
