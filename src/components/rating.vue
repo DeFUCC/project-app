@@ -11,7 +11,7 @@
       <i v-show="!!myRate.star">
         <span class="iconify" data-icon="la:star-solid"></span>
       </i>
-      {{ count.star }}
+      <span v-show="count.star">{{ count.star }}</span>
     </div>
     <div
       class="seen"
@@ -24,7 +24,7 @@
       <i v-show="!!myRate.seen">
         <span class="iconify" data-icon="la:eye-slash"></span>
       </i>
-      {{ count.seen }}
+      <span v-show="count.seen">{{ count.seen }}</span>
     </div>
     <div
       class="trash"
@@ -37,7 +37,7 @@
       <i v-show="!!myRate.trash">
         <span class="iconify" data-icon="la:trash-restore-alt"></span>
       </i>
-      {{ count.trash }}
+      <span v-show="count.trash">{{ count.trash }}</span>
     </div>
   </div>
 </template>
@@ -82,10 +82,6 @@ export default defineComponent({
   justify-content: center;
   cursor: pointer;
   opacity: 0.5;
-  border-radius: 5em;
-  border-width: 1px;
-  border-style: solid;
-  border-color: hsla(0, 0%, 0%, 0.7);
 }
 i {
   padding-top: 2px;

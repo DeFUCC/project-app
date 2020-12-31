@@ -20,6 +20,7 @@
             <UserPill :author="item.soul.slice(1, 88)" />
             &nbsp;
             <ItemInfoDate :item="item" />
+            <ItemStatus :id="item.soul" :editable="editable" />
           </div>
         </div>
       </div>
@@ -29,6 +30,7 @@
         @loaded="update('icon', $event.content)"
         @close="edit.icon = false"
       />
+
       <PageDescription
         :text="item.description"
         :editable="editable"
@@ -46,7 +48,7 @@
       :type="type"
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
     />
-    <CommentList :id="item.soul" />
+    <Comments :id="item.soul" />
     <Log :id="item.soul" :editable="editable" />
   </article>
 </template>

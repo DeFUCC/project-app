@@ -26,6 +26,8 @@
           <UserPill :author="item?.soul.slice(1, 88)" />
           &nbsp;
           <ItemInfoDate :item="item" />
+          <ItemStatus :id="item.soul" />
+          <CommentCount :id="item.soul" />
           <div class="spacer"></div>
           <Rating :item="item.soul" :horizontal="true" />
         </div>
@@ -115,7 +117,7 @@ export default {
 }
 .info {
   width: 100%;
-  font-size: 0.7em;
+  font-size: 0.8em;
   display: flex;
   flex-flow: row wrap;
   align-items: center;

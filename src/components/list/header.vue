@@ -48,13 +48,13 @@ export default defineComponent({
   position: sticky;
   z-index: 20;
   top: 24px;
-  height: 3em;
+  min-height: 3em;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-start;
   padding: 0.5em;
   background-color: var(--bar-color);
-  margin: 0 0.5em;
+  margin: 2em 0.5em 0.5em 0.5em;
 }
 .tag {
   font-size: 0.8em;

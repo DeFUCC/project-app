@@ -35,6 +35,7 @@ export const model = {
 }
 
 export const statuses = {
+  new: 'New',
   dev: 'Development',
   process: 'Process',
   pause: 'Paused',

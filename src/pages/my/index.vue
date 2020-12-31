@@ -2,7 +2,7 @@
   <article id="profile">
     <h1>My profile</h1>
     <section class="avatar-editor">
-      {{ user }}
+      {{ user.info.createdAt }}
     </section>
   </article>
 </template>

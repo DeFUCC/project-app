@@ -1,16 +1,13 @@
 <template>
-  <section class="comments" :class="{ open: state.open, add: state.add }">
+  <section class="comments" :class="{ open: state.open }">
     <header class="row" @click="state.open = !state.open">
-      Comments
+      <i class="iconify" data-icon="fe:comment-o"></i>&nbsp; Comments
       <div class="spacer"></div>
       <div class="counter">
         {{ state.count }}
       </div>
       <span class="chevron">
         <i class="iconify" data-icon="la:angle-down"></i>
-      </span>
-      <span class="plus" @click.stop="state.add = !state.add">
-        <i class="iconify" data-icon="la:plus"></i>
       </span>
     </header>
 
@@ -30,22 +27,18 @@
           </transition-group>
         </div>
 
-        <form v-if="state.add" @submit.prevent>
+        <form v-if="state.open" @submit.prevent>
           <textarea
             class="input"
             name="text"
-            rows="3"
+            rows="1"
             v-model="state.text"
             @keyup.ctrl.enter="addComment()"
           ></textarea>
-          <div class="buttons">
-            <button @click="state.add = false">
-              <span class="iconify" data-icon="la:times"></span>
-            </button>
-            <button @click="addComment()">
-              <span class="iconify" data-icon="la:plus"></span>
-            </button>
-          </div>
+
+          <button class="send" @click="addComment()">
+            <span class="iconify" data-icon="fe:commenting"></span>
+          </button>
         </form>
       </main>
     </transition>
@@ -55,9 +48,9 @@
 <script lang="ts">
 import { format } from "timeago.js";
 import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
-import { appPath, db, gun, soul } from "../../store/gun-db";
-import { error } from "../../store/history";
-import { user } from "../../store/user";
+import { appPath, db, gun, soul } from "../store/gun-db";
+import { error } from "../store/history";
+import { user } from "../store/user";
 import { Remarkable } from "remarkable";
 import { linkify } from "remarkable/linkify";
 
@@ -69,7 +62,6 @@ export default defineComponent({
     const textarea = ref();
     const state = reactive({
       open: false,
-      add: false,
       text: "",
       count: computed(() => {
         return Object.keys(comments).length;
@@ -120,7 +112,6 @@ export default defineComponent({
         .get(Date.now())
         .put(state.text);
       state.text = "";
-      state.add = false;
     }
 
     return {
@@ -145,6 +136,7 @@ export default defineComponent({
   position: sticky;
   cursor: pointer;
   top: 0;
+  font-size: 1.2em;
   padding: 1em;
   background-color: var(--bar-color);
   font-weight: bold;
@@ -173,9 +165,6 @@ header {
 form textarea {
   flex: 1 1 80%;
 }
-.buttons {
-  flex: 1 1 20%;
-}
 .comment {
   padding: 0.5em;
   background-color: #fcfcfc;
@@ -190,16 +179,17 @@ form textarea {
 .counter {
   padding: 0 0.5em;
 }
-.chevron,
-.plus {
+.chevron {
   transition: all 300ms ease-out;
-  font-size: 1.2em;
   padding: 0.5em;
 }
 .open .chevron {
-  transform: rotate(180deg);
+  transform: rotateZ(180deg);
 }
-.add .plus {
-  transform: rotate(45deg);
+.send {
+  font-size: 2em;
+  border: none;
+  padding: 0.5em;
+  margin: 0 0.5em 0 0;
 }
 </style>

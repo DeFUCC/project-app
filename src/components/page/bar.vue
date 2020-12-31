@@ -5,11 +5,11 @@
     }"
     class="row"
   >
-    <PageRoute :id="id" />
-    <div class="spacer"></div>
     <span class="close" @click="$emit('close')">
       <span class="iconify" data-icon="la:times"></span>
     </span>
+    <PageRoute :id="id" />
+    <div class="spacer"></div>
   </aside>
 </template>
 

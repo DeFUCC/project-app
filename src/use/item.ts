@@ -83,6 +83,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
     description: data.description || generateDescription(),
     type: type,
     parent: parent || null,
+    status: 'new',
     createdAt: Date.now(),
     log: {
       [Date.now()]: 'created|' + data.title,
