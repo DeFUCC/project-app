@@ -7,7 +7,7 @@ declare global {
 }
 
 const peerList = [
-  //'https://gun-feeds.glitch.me/gun',
+  'https://gun-feeds.glitch.me/gun',
   // 'http://127.0.0.1:4200/gun',
 ]
 
