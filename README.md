@@ -15,6 +15,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [vite-plugin-components](https://github.com/antfu/vite-plugin-components) automatically import components from *./src/components* **done**
   - [purgeIcons](https://github.com/antfu/purge-icons) **done** with [Icônes](https://icones.js.org/) VS code extension for fast icons workflow
   - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) may be used for static pages... **TBD**
+  - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience **TBD** [Issue with inline GUN](https://github.com/antfu/vite-plugin-pwa/issues/10) to be solved.
 - [GUN](https://gun.eco/) for the reactive p2p graph database
 - [timeago-js](https://www.npmjs.com/package/timeago.js) to render short dates
 - [color-hash](https://www.npmjs.com/package/color-hash) to get colors for item UUIDs

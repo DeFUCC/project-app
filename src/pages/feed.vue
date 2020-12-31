@@ -40,6 +40,8 @@ import { onMounted, reactive, ref, watch, watchEffect } from "vue";
 import { types } from "../store/model";
 import { itemColor } from "../tools/colors";
 import { useRoute, useRouter } from "vue-router";
+import { useTitle } from "@vueuse/core";
+import { gun } from "../store/gun-db";
 export default {
   name: "Designs",
   setup(props) {
@@ -47,6 +49,7 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const list = ref("design");
+    const title = useTitle();
     onMounted(() => {
       for (let q in route.query) {
         if (q == "type") {
@@ -64,6 +67,11 @@ export default {
         query[i] = feed;
       });
       router.push({ query: query });
+      if (feeds.length > 0) {
+        setTitle(feeds[feeds.length - 1]);
+      } else {
+        title.value = "Project app: " + list.value;
+      }
     });
     function openFeed(feed: any, num: number) {
       feeds[num + 1] = feed;
@@ -71,6 +79,9 @@ export default {
     }
     function closeFeed(num: number) {
       feeds.splice(num, 1);
+    }
+    async function setTitle(id) {
+      title.value = await gun.get(id).get("title");
     }
     return {
       list,

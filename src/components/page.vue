@@ -65,8 +65,7 @@ export default {
   props: ["id"],
   emits: ["open", "close", "renamed"],
   setup(props) {
-    const title = ref(null);
-
+    const { item, edit, update, editable } = useItem(props.id);
     const page = ref(null);
     const mounted = ref(false);
     watchEffect(() => {
@@ -80,25 +79,11 @@ export default {
       mounted.value = true;
     });
 
-    const { item, edit, update, editable } = useItem(props.id);
-
-    watch(
-      () => edit.title,
-      (val) => {
-        if (val) {
-          setTimeout(() => {
-            title.value.focus();
-          }, 100);
-        }
-      }
-    );
-
     return {
       itemColor,
       editable,
       appPath,
       update,
-      title,
       model,
       item,
       edit,
