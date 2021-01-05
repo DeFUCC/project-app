@@ -62,7 +62,7 @@ export function findUser(alias: string, cb: (data: any) => void) {
 
 export async function createUser(alias: string, pass: string) {
   console.log('creating')
-  let newUser = gun.user().create(alias, pass, (ack) => {
+  gun.user().create(alias, pass, (ack) => {
     if (!ack.err) {
       let dbUser = db.get('user').get(ack.pub).put({
         alias: alias,
@@ -72,10 +72,10 @@ export async function createUser(alias: string, pass: string) {
         description: ack.pub,
         createdAt: Date.now(),
       })
+      window.location.reload()
     } else {
       error(ack.err)
     }
-    window.location.reload()
   })
 }
 
