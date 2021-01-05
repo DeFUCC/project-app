@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <List @open="openFeed($event, -1)" :type="list"></List>
+      <List @open="openFeed($event, -1)" :key="list" :type="list"></List>
     </article>
 
     <article

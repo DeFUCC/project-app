@@ -7,7 +7,7 @@
         :src="'/svg/' + type + '.svg'"
         alt=""
       />
-      <span class="tag">{{ sorted.count }}/{{ sorted.countAll }} </span>
+      <span class="tag">{{ sorted.count }}/{{ sorted.total }} </span>
     </div>
     <ListFilter
       :my="options.filterMy"

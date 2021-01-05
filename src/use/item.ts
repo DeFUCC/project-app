@@ -1,6 +1,6 @@
 import { user } from './../store/user'
 import { computed, watchEffect, reactive } from 'vue'
-import { gun, db, sea, soul, appPath } from '../store/gun-db'
+import { gun, db, sea, genUuid, soul, appPath } from '../store/gun-db'
 import { generateWords } from '../tools/randomWords'
 import { error, notify } from '../store/history'
 
@@ -92,25 +92,27 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
   return item
 }
 
-export async function createItem(type: string, data?: any, parent?: string) {
+export function createItem(type: string, data?: any, parent?: string) {
   let generated = generateItem(type, data, parent)
-
-  try {
-    let privateItem = gun.user().get(appPath).get(type).set(generated)
-    let uuid = soul(await privateItem).slice(-15)
-    let publicItem = await db.get(type).get(uuid).put(privateItem)
-    if (parent) {
-      gun.get(parent).get(type).get(uuid).put(privateItem)
-      gun
-        .get(parent)
-        .get('log')
-        .get(Date.now())
-        .put('added|' + generated.title)
-    }
-    return soul(publicItem)
-  } catch (err) {
-    console.error(err)
-  }
+  let id = genUuid()
+  let publicItem
+  let privateItem = gun
+    .user()
+    .get(appPath)
+    .get(type)
+    .set(generated, function (ack) {
+      if (!ack.err) {
+        publicItem = db.get(type).get(id).put(privateItem)
+        if (parent) {
+          gun.get(parent).get(type).get(id).put(privateItem)
+          gun
+            .get(parent)
+            .get('log')
+            .get(Date.now())
+            .put('added|' + generated.title)
+        }
+      }
+    })
 }
 
 export function truncate(input: string, num = 42) {

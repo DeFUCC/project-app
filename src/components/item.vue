@@ -27,9 +27,9 @@
           &nbsp;
           <ItemInfoDate :item="item" />
           <ItemStatus :id="item.soul" />
-          <CommentCount :id="item.soul" />
           <div class="spacer"></div>
-          <Rating :item="item.soul" :horizontal="true" />
+
+          <CommentCount :id="item.soul" />
         </div>
       </div>
     </div>
@@ -39,20 +39,16 @@
 <script>
 import { model } from "../store/model";
 import { itemColor } from "../tools/colors";
-import { computed } from "vue";
+import { computed, defineComponent } from "vue";
 import { truncate } from "../use/item";
 
-export default {
+export default defineComponent({
   props: {
     item: {
       type: Object,
       default: {
         type: "item",
         title: "Basic item",
-        author: {
-          alias: "No author",
-          avatar: null,
-        },
         createdAt: 345298357,
         updatedAt: 3482489005,
         soul: "example",
@@ -67,7 +63,7 @@ export default {
       itemColor,
     };
   },
-};
+});
 </script>
 
 <style scoped>

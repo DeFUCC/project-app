@@ -6,23 +6,23 @@ declare global {
   }
 }
 // @ts-ignore
-import OPTIONS from '/app.config.json'
+import CONFIG from '/app.config.json'
 
-console.log(OPTIONS)
+console.log(CONFIG)
 
-const peerList = OPTIONS.peers
+const peerList = [...CONFIG.peers]
 
-const dbVersion = 18
-checkDbVersion(localStorage.dbVersion, dbVersion)
+checkDbVersion(localStorage.dbVersion, CONFIG.dbVersion)
 
 export const gun = new window.Gun(peerList)
 window.gun = gun //for debugging
-export const appPath = OPTIONS.appPath
+export const appPath = CONFIG.appPath
 export const db = gun.get(appPath)
 export const soul = window.Gun.node.soul
 export const isNode = window.Gun.node.is
 export const getState = window.Gun.state
 export const sea = window.SEA
+export const genUuid = window.Gun.text.random
 
 export function uuid(key: string): string {
   return key.substring(key.lastIndexOf('/') + 1)
@@ -37,7 +37,9 @@ function checkDbVersion(local: number, current: number) {
     localStorage.dbVersion = current
     console.log('DB version is now ' + local)
   } else if (local < current) {
-    console.log(`New DB version ${current} detected. Clearing local database.`)
+    console.error(
+      `New DB version ${current} detected. Clearing local database.`,
+    )
     localStorage.clear()
     localStorage.dbVersion = current
   } else {

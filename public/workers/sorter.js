@@ -4,7 +4,9 @@ onmessage = (e) => {
 
 function sort({ data }) {
   let list = Object.values(data.list)
-  let countAll = list.length
+  let clean = 0
+  let shown = 0
+  let total = list.length
   let { orderBy, search, filterMy } = data.options
 
   if (search) {
@@ -41,7 +43,7 @@ function sort({ data }) {
     })
   }
   let count = list.length
-  postMessage({ list, count, countAll })
+  postMessage({ list, count, total })
 }
 
 function sortByRating(a, b) {

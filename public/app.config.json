@@ -1,6 +1,5 @@
 {
   "appPath": "project-app",
-  "peers": [
-    "https: //gun-feeds.glitch.me/gun"
-  ]
+  "dbVersion": 19,
+  "peers": []
 }

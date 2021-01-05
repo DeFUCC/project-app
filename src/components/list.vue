@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import { computed, reactive, ref, watchEffect } from "vue";
+import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import { useItems } from "../use/items";
 
-export default {
+export default defineComponent({
   name: "FeedItems",
   emits: ["open"],
   props: {
@@ -35,20 +35,17 @@ export default {
   },
 
   setup(props) {
-    const items = ref({});
-    watchEffect(() => {
-      items.value = useItems({
-        type: props.type,
-        parent: props.parent,
-        user: props.user,
-      });
+    const items = useItems({
+      type: props.type,
+      parent: props.parent,
+      user: props.user,
     });
 
     return {
       items,
     };
   },
-};
+});
 </script>
 
 <style scoped>

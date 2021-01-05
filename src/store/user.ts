@@ -61,14 +61,10 @@ export function findUser(alias: string, cb: (data: any) => void) {
 }
 
 export async function createUser(alias: string, pass: string) {
-  let exists = await gun.get('~@' + alias)
-  if (exists) {
-    error('user already exists!')
-    return
-  }
-  let newUser = gun.user().create(alias, pass, async (ack) => {
+  console.log('creating')
+  let newUser = gun.user().create(alias, pass, (ack) => {
     if (!ack.err) {
-      let dbUser = await db.get('user').get(ack.pub).put({
+      let dbUser = db.get('user').get(ack.pub).put({
         alias: alias,
         pub: ack.pub,
         type: 'user',
@@ -76,8 +72,10 @@ export async function createUser(alias: string, pass: string) {
         description: ack.pub,
         createdAt: Date.now(),
       })
-      window.location.reload()
+    } else {
+      error(ack.err)
     }
+    window.location.reload()
   })
 }
 

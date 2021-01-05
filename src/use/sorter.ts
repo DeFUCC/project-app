@@ -11,7 +11,7 @@ export function useSorter(obj: object) {
   const sorted = reactive({
     list: null,
     count: 0,
-    countAll: 0,
+    total: 0,
   })
 
   const options = reactive({
@@ -24,7 +24,7 @@ export function useSorter(obj: object) {
     },
   })
 
-  const throttledSort = throttle(sort, 100)
+  const throttledSort = throttle(sort, 400)
 
   watch(
     [obj, options],
@@ -48,7 +48,7 @@ export function useSorter(obj: object) {
   sorter.onmessage = (e) => {
     sorted.list = e.data.list
     sorted.count = e.data.count
-    sorted.countAll = e.data.countAll
+    sorted.total = e.data.total
   }
 
   function throttle(fn: Function, wait: number) {
