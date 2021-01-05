@@ -5,18 +5,19 @@ declare global {
     gun: any
   }
 }
+// @ts-ignore
+import OPTIONS from '/app.config.json'
 
-const peerList = [
-  'https://gun-feeds.glitch.me/gun',
-  // 'http://127.0.0.1:4200/gun',
-]
+console.log(OPTIONS)
+
+const peerList = OPTIONS.peers
 
 const dbVersion = 18
 checkDbVersion(localStorage.dbVersion, dbVersion)
 
 export const gun = new window.Gun(peerList)
 window.gun = gun //for debugging
-export const appPath = 'project-app'
+export const appPath = OPTIONS.appPath
 export const db = gun.get(appPath)
 export const soul = window.Gun.node.soul
 export const isNode = window.Gun.node.is

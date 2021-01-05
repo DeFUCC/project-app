@@ -23,15 +23,16 @@ function sort({ data }) {
   }
 
   if (orderBy == 'rating') {
-    list.sort(sortByRating)
+    //   list.sort(sortByRating)
   }
 
   if (filterMy) {
     list = list.filter((item) => {
       if (
-        (filterMy.star && item.myRate.star) ||
-        (filterMy.seen && item.myRate.seen) ||
-        (filterMy.trash && item.myRate.trash)
+        item.myRate &&
+        ((filterMy.star && item.myRate.star) ||
+          (filterMy.seen && item.myRate.seen) ||
+          (filterMy.trash && item.myRate.trash))
       ) {
         return false
       } else {

@@ -1,0 +1,6 @@
+{
+  "appPath": "project-app",
+  "peers": [
+    "https: //gun-feeds.glitch.me/gun"
+  ]
+}

@@ -27,7 +27,7 @@
           </transition-group>
         </div>
 
-        <form v-if="state.open" @submit.prevent>
+        <form v-if="user.is && state.open" @submit.prevent>
           <textarea
             class="input"
             name="text"
@@ -116,6 +116,7 @@ export default defineComponent({
 
     return {
       md,
+      user,
       format,
       state,
       comments,

@@ -7,7 +7,7 @@ export function useItems({ type = 'project', parent = null } = {}) {
   const items = reactive({})
   const team = reactive({})
   getItems()
-
+  const { sorted, options } = useSorter(items)
   function getItems() {
     let query: any
     if (parent) {
@@ -37,7 +37,7 @@ export function useItems({ type = 'project', parent = null } = {}) {
       }
     })
 
-    function loadItem(data: any, key: string) {
+    async function loadItem(data: any, key: string) {
       if (!data) {
         return
       }
@@ -47,6 +47,8 @@ export function useItems({ type = 'project', parent = null } = {}) {
       items[key] = { ...data }
       let item = items[key]
       item.soul = soul(data)
+      /*
+
       item.rated = {
         star: {},
         seen: {},
@@ -84,10 +86,9 @@ export function useItems({ type = 'project', parent = null } = {}) {
               })
           }
         })
+        */
     }
   }
-
-  const { sorted, options } = useSorter(items)
 
   return {
     options,

@@ -3,7 +3,7 @@
     <label for="search">
       <span class="iconify" data-icon="la:search"></span>
     </label>
-    <input id="search" type="text" v-model="search.text" />
+    <input type="text" v-model="search.text" />
     <i @click.prevent.stop="search.text = ''" class="close"
       ><span class="iconify" data-icon="la:times-circle"></span
     ></i>

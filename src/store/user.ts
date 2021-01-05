@@ -66,9 +66,9 @@ export async function createUser(alias: string, pass: string) {
     error('user already exists!')
     return
   }
-  let newUser = await gun.user().create(alias, pass, (ack) => {
+  let newUser = gun.user().create(alias, pass, async (ack) => {
     if (!ack.err) {
-      let dbUser = db.get('user').get(ack.pub).put({
+      let dbUser = await db.get('user').get(ack.pub).put({
         alias: alias,
         pub: ack.pub,
         type: 'user',
