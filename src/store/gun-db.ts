@@ -14,7 +14,7 @@ const peerList = [...CONFIG.peers]
 
 checkDbVersion(localStorage.dbVersion, CONFIG.dbVersion)
 
-export const gun = new window.Gun(peerList)
+export const gun = window.Gun(peerList)
 window.gun = gun //for debugging
 export const appPath = CONFIG.appPath
 export const db = gun.get(appPath)

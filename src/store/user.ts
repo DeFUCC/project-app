@@ -21,7 +21,8 @@ gun.user().recall({ sessionStorage: true }, (ack: { err: string }) => {
   }
 })
 
-gun.on('auth', () => {
+gun.on('auth', async () => {
+  console.log('auth')
   loadUser(gun.user().is.pub)
 })
 
@@ -57,22 +58,34 @@ export function logIn() {
 }
 
 export function findUser(alias: string, cb: (data: any) => void) {
-  gun.get('~@' + alias).once(cb)
+  gun.get('~@' + alias).once((val) => {
+    cb(val)
+  })
 }
 
-export async function createUser(alias: string, pass: string) {
+export function createUser(alias: string, pass: string) {
   console.log('creating')
+  findUser(alias, (val) => {
+    console.log(val)
+  })
   gun.user().create(alias, pass, (ack) => {
     if (!ack.err) {
-      let dbUser = db.get('user').get(ack.pub).put({
-        alias: alias,
-        pub: ack.pub,
-        type: 'user',
-        title: alias,
-        description: ack.pub,
-        createdAt: Date.now(),
-      })
-      window.location.reload()
+      let dbUser = db
+        .get('user')
+        .get(ack.pub)
+        .put(
+          {
+            alias: alias,
+            pub: ack.pub,
+            type: 'user',
+            title: alias,
+            description: ack.pub,
+            createdAt: Date.now(),
+          },
+          (ack) => {
+            window.location.reload()
+          },
+        )
     } else {
       error(ack.err)
     }

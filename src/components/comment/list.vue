@@ -48,9 +48,9 @@
 <script lang="ts">
 import { format } from "timeago.js";
 import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
-import { appPath, db, gun, soul } from "../store/gun-db";
-import { error } from "../store/history";
-import { user } from "../store/user";
+import { appPath, db, gun, soul } from "../../store/gun-db";
+import { error } from "../../store/history";
+import { user } from "../../store/user";
 import { Remarkable } from "remarkable";
 import { linkify } from "remarkable/linkify";
 
@@ -96,7 +96,7 @@ export default defineComponent({
       return list;
     });
 
-    async function addComment() {
+    function addComment() {
       if (!user.is) {
         return;
       }
@@ -104,7 +104,7 @@ export default defineComponent({
         error("empty comment!");
         return;
       }
-      let privateComment = await gun
+      let privateComment = gun
         .user()
         .get(appPath)
         .get("comment")

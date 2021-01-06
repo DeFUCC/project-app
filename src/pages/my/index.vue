@@ -3,11 +3,13 @@
     <h1>My profile</h1>
     <section class="avatar-editor">
       {{ user.info.createdAt }}
+      <button @click="publish()">Publish</button>
     </section>
   </article>
 </template>
 
-<script>
+<script lang="ts">
+import { db } from "../../store/gun-db";
 import { user } from "../../store/user";
 
 export default {
@@ -15,8 +17,13 @@ export default {
     alias: String,
   },
 
-  setup() {
+  setup(props) {
+    function publish() {
+      console.log(user);
+    }
+
     return {
+      publish,
       user,
     };
   },

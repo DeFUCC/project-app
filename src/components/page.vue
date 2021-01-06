@@ -48,7 +48,7 @@
       :type="type"
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
     />
-    <Comments :id="item.soul" />
+    <CommentList :id="item.soul" />
     <Log :id="item.soul" :editable="editable" />
   </article>
 </template>

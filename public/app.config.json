@@ -1,5 +1,7 @@
 {
   "appPath": "project-app",
   "dbVersion": 19,
-  "peers": []
+  "peers": [
+    "https://aware-pollen-brontomerus.glitch.me/gun"
+  ]
 }
