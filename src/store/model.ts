@@ -33,6 +33,8 @@ export const model = {
   project: ['event', 'object'],
   event: ['task', 'purchase'],
   object: ['task', 'purchase'],
+  task: [],
+  purchase: [],
 }
 
 export const statuses = {

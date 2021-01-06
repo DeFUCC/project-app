@@ -16,7 +16,7 @@
         :key="key"
         :class="{ [log[1].split('|')[0]]: true }"
       >
-        <div class="date">{{ format(log[0], "short") }}</div>
+        <div class="date">{{ format(log[0], "short").date }}</div>
         <div class="tag">{{ log[1].split("|")[0] }}</div>
         <div class="text">{{ log[1].split("|")[1] }}</div>
       </div>
@@ -26,9 +26,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, watchEffect } from "vue";
-import { format } from "timeago.js";
-import { gun } from "../store/gun-db";
-import { error, notify } from "../store/history";
+import { format } from "../../tools/locale";
+import { gun } from "../../store/gun-db";
+import { error, notify } from "../../store/history";
 
 interface Log {
   date: string;

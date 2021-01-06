@@ -19,6 +19,7 @@
 
   <keep-alive>
     <ItemsList
+      v-if="types.list.length > 0"
       @open="$emit('open', $event)"
       :key="types.active"
       :type="types.active"
@@ -37,15 +38,14 @@ export default defineComponent({
   props: {
     type: {
       type: String,
-      required: true,
-      default: "task",
+      default: "event",
     },
     active: String,
     parent: String,
   },
   setup(props) {
     const types = reactive({
-      active: props.active || model[props.type][0],
+      active: props.active || model[props.type]?.[0],
       list: model[props.type],
       count: {},
     });
@@ -57,7 +57,9 @@ export default defineComponent({
       } else {
         query = db;
       }
+
       if (model[props.type]) {
+        types.list = model[props.type];
         for (let type of model[props.type]) {
           types.count[type] = {};
           query

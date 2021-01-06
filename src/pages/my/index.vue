@@ -23,7 +23,7 @@ export default {
     db.get("user")
       .get(user.is.pub)
       .once((val) => {
-        published.value = true;
+        published.value = val;
       });
     return {
       publishUser,

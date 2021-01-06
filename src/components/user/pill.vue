@@ -8,6 +8,7 @@
       }"
     >
       {{ profile.alias }}
+      <slot></slot>
     </span>
   </router-link>
 </template>

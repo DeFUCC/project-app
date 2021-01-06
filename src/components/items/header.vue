@@ -64,7 +64,7 @@ export default defineComponent({
   white-space: nowrap;
 }
 .bar > .title {
-  padding: 0;
+  padding-right: 3em;
   font-size: 1.2em;
   font-weight: bold;
   display: flex;

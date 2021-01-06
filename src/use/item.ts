@@ -35,7 +35,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
   const item = { ...data }
   Object.assign(item, {
     title: truncate(data.title) || generateWords(2),
-    description: data.description || generateDescription(),
+    description: '',
     type: type,
     parent: parent || null,
     status: 'new',

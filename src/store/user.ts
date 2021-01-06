@@ -109,7 +109,7 @@ export function publishUser() {
           createdAt: Date.now(),
         },
         (ack) => {
-          notify(`User &{user.is.alias} is published`)
+          notify(`User ${user.is.alias} is published`)
         },
       )
   }

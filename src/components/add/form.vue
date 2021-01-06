@@ -18,6 +18,7 @@ export default defineComponent({
   props: {
     type: String,
     parent: String,
+    editable: Boolean,
   },
   setup(props, { emit }) {
     const add = reactive({

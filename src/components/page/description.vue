@@ -85,6 +85,7 @@ export default defineComponent({
   margin: 0 2em;
   position: relative;
   hyphens: auto;
+  min-height: 4em;
 }
 
 .description .edit {

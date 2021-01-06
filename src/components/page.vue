@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-
+      <PageTeam v-if="false" :id="item.soul" :editable="editable" />
       <EditFile
         v-if="edit.icon"
         @loaded="update('icon', $event.content)"
@@ -52,10 +52,8 @@
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
     />
 
-    <UserTeam :id="item.soul" :editable="editable" />
-
     <CommentList :id="item.soul" />
-    <Log :id="item.soul" :editable="editable" />
+    <PageLog :id="item.soul" :editable="editable" />
   </article>
 </template>
 
@@ -77,14 +75,14 @@ export default {
       title: null,
       type: "design",
       pub: null,
+      team: {},
     });
 
-    gun
-      .get(props.id)
-      .map()
-      .on((data: any, key: string) => {
-        item[key] = data;
-      });
+    const gunItem = gun.get(props.id);
+
+    gunItem.map().on((data: any, key: string) => {
+      item[key] = data;
+    });
 
     const edit = reactive({
       icon: false,
@@ -93,14 +91,17 @@ export default {
     });
 
     function update(field: string, content: string) {
-      gun.get(props.id).get(field).put(content);
-      let now = new Date();
-      gun.get(props.id).get("updatedAt").put(Date.now());
-      gun
-        .get(props.id)
+      let cert = null;
+      if (item.team[user.is.pub]) {
+        cert = item.team[user.is.pub];
+        console.log(cert);
+      }
+      gunItem.get(field).put(content, null, { opt: { cert: cert } });
+      gunItem.get("updatedAt").put(Date.now(), null, { opt: { cert: cert } });
+      gunItem
         .get("log")
         .get(Date.now())
-        .put("edited|" + field);
+        .put("edited|" + field, null, { opt: { cert: cert } });
       edit[field] = false;
       notify(
         `You updated ${field} of ${item.title} with ${truncate(content)}.`
@@ -108,11 +109,10 @@ export default {
     }
 
     const editable = computed(() => {
-      return (
-        user.is &&
-        (user.is.pub == props.id.slice(1, 88) ||
-          (item.type == "user" && user.is.pub == item.pub))
-      );
+      let my = user?.is?.pub == props?.id.slice(1, 88);
+      let me = item.type == "user" && user?.is?.pub == item.pub;
+      let teammate = false && Boolean(item.team[user?.is?.pub]); //TBD
+      return user.is && (my || me || teammate);
     });
 
     const page = ref(null);
