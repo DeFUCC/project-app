@@ -92,6 +92,29 @@ export function createUser(alias: string, pass: string) {
   })
 }
 
+export function publishUser() {
+  let user = gun.user()
+  let pub = user?.is?.pub
+  if (pub) {
+    let dbUser = db
+      .get('user')
+      .get(pub)
+      .put(
+        {
+          alias: user.is.alias,
+          pub: pub,
+          type: 'user',
+          title: user.is.alias,
+          description: pub,
+          createdAt: Date.now(),
+        },
+        (ack) => {
+          notify(`User &{user.is.alias} is published`)
+        },
+      )
+  }
+}
+
 export function authUser(alias, pass) {
   gun.user().auth(alias, pass, (ack) => {
     if (!ack.err) {

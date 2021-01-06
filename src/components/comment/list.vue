@@ -61,7 +61,7 @@ export default defineComponent({
   setup(props) {
     const textarea = ref();
     const state = reactive({
-      open: false,
+      open: true,
       text: "",
       count: computed(() => {
         return Object.keys(comments).length;

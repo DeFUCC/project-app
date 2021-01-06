@@ -72,8 +72,8 @@ export default defineComponent({
 .status {
   display: flex;
   align-items: center;
-  padding: 4px 8px;
-  border-radius: 2em;
+  padding: 2px 4px;
+  border-radius: 4px;
   font-size: 0.9em;
   background-color: #ccc;
   width: min-content;

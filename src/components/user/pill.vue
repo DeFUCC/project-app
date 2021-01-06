@@ -16,6 +16,7 @@
 import { defineComponent, reactive, watchEffect } from "vue";
 import { db, gun } from "../../store/gun-db";
 import { itemColor } from "../../tools/colors";
+import { truncate } from "../../use/item";
 
 export default defineComponent({
   props: {
@@ -32,7 +33,7 @@ export default defineComponent({
         db.get("user")
           .get(props.author)
           .on((data, key) => {
-            profile.alias = data.alias;
+            profile.alias = truncate(String(data.alias), 24);
             profile.pub = data.pub;
             profile.avatar = data.icon;
           });

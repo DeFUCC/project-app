@@ -1,47 +1,113 @@
 <template>
-  <div class="row">
+  <div class="row" v-if="types.list">
     <div
       class="type"
       v-for="type in types.list"
       :key="type"
-      @click="types.active = type"
+      @click="
+        types.active = type;
+        $emit('select', type);
+      "
       :class="{ active: type == types.active }"
     >
       <IconType :type="type" />
+      <span class="count">
+        {{ countItems(types.count[type]) }}
+      </span>
     </div>
   </div>
 
-  <ItemsList
-    @open="$emit('open', $event)"
-    :key="types.active"
-    :type="types.active"
-  ></ItemsList>
+  <keep-alive>
+    <ItemsList
+      @open="$emit('open', $event)"
+      :key="types.active"
+      :type="types.active"
+      :parent="parent"
+    ></ItemsList>
+  </keep-alive>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, watchEffect } from "vue";
+import { db, gun } from "../store/gun-db";
 import { model } from "../store/model";
 
 export default defineComponent({
-  emits: ["open"],
+  emits: ["open", "select"],
   props: {
     type: {
       type: String,
       required: true,
+      default: "task",
     },
+    active: String,
     parent: String,
   },
   setup(props) {
     const types = reactive({
-      active: props.type,
+      active: props.active || model[props.type][0],
       list: model[props.type],
+      count: {},
     });
+
+    watchEffect(() => {
+      let query;
+      if (props.parent) {
+        query = gun.get(props.parent);
+      } else {
+        query = db;
+      }
+      if (model[props.type]) {
+        for (let type of model[props.type]) {
+          types.count[type] = {};
+          query
+            .get(type)
+            .map()
+            .once((item, key) => {
+              types.count[type][key] = item;
+            });
+        }
+      }
+    });
+
+    function countItems(obj) {
+      return Object.values(obj).length;
+    }
+
     return {
       types,
+      countItems,
     };
   },
 });
 </script>
 
 <style scoped>
+.row {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 0.5em 0 0.5em;
+}
+.type {
+  border-radius: 0.5em 0.5em 0 0;
+  font-size: 2em;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 300ms ease;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  background-color: #ccc;
+  padding: 0 0.4em 0 0;
+}
+.type .count {
+  font-size: 18px;
+  white-space: nowrap;
+}
+.type:hover {
+  opacity: 0.7;
+}
+.type.active {
+  opacity: 1;
+}
 </style>

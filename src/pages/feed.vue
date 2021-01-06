@@ -1,24 +1,12 @@
 <template>
   <main class="columns">
-    <article class="column" key="starter">
-      <div class="row">
-        <div
-          class="type"
-          v-for="type in types"
-          :key="type"
-          @click="feeds.type = type"
-          :class="{ active: type == feeds.type }"
-        >
-          <IconType :type="type" />
-        </div>
-      </div>
-      <keep-alive>
-        <ItemsList
-          @open="feeds.open($event, -1)"
-          :key="feeds.type"
-          :type="feeds.type"
-        ></ItemsList>
-      </keep-alive>
+    <article class="column">
+      <Items
+        type="all"
+        :active="feeds.type"
+        @select="feeds.type = $event"
+        @open="feeds.open($event, -1)"
+      />
     </article>
 
     <article v-for="(feed, num) in feeds.list" :key="num" class="column">
@@ -43,8 +31,12 @@ import { gun } from "../store/gun-db";
 export default {
   name: "Designs",
   setup(props) {
+    const route = useRoute();
+    const router = useRouter();
+    const title = useTitle();
+
     const feeds = reactive({
-      type: "design",
+      type: route.query["type"] || "design",
       list: [],
       open(feed: any, num: number) {
         this.list[num + 1] = feed;
@@ -54,10 +46,6 @@ export default {
         this.list.splice(num, 1);
       },
     });
-
-    const route = useRoute();
-    const router = useRouter();
-    const title = useTitle();
 
     onMounted(() => {
       for (let q in route.query) {

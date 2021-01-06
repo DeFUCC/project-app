@@ -17,7 +17,6 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) may be used for static pages... **TBD**
   - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience **TBD** [Issue with inline GUN](https://github.com/antfu/vite-plugin-pwa/issues/10) to be solved.
 - [GUN](https://gun.eco/) for the reactive p2p graph database
-- [timeago-js](https://www.npmjs.com/package/timeago.js) to render short dates
 - [color-hash](https://www.npmjs.com/package/color-hash) to get colors for item UUIDs
 - [image-compressor](https://www.npmjs.com/package/image-compressor) to create small user avatars
 - [remarkable](https://www.npmjs.com/package/remarkable) for MarkDown parsing
@@ -103,4 +102,11 @@ If you have any ideas or proposals – feel free to create an issue or send me a
 
 ## Inspiration found
 - [Notes](https://notes.andymatuschak.org/) by Andy Matuschak
-- 
+
+
+Certify
+====
+
+item - team - pub - certificate
+
+page: user.is ??? user.is.pub == id.slice(88) || team[user.is.pub]

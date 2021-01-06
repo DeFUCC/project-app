@@ -40,7 +40,7 @@ export default defineComponent({
         }
         route[p] = await gun.get(id);
         route[p].soul = id;
-        id = route[p].parent;
+        id = route[p]?.parent;
       }
       route.reverse();
     }

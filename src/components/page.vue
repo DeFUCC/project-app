@@ -43,17 +43,17 @@
         @update="update('description', $event)"
       />
 
-      <Rating :horizontal="true" :item="item.soul" />
+      <Rating :horizontal="true" :id="item.soul" />
     </section>
-    <UserTeam v-if="false" :id="item.soul" :editable="editable" />
 
-    <ItemsList
+    <Items
+      :type="item.type"
       @open="$emit('open', $event)"
-      v-for="type in model[item.type]"
-      :key="type"
-      :type="type"
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
     />
+
+    <UserTeam :id="item.soul" :editable="editable" />
+
     <CommentList :id="item.soul" />
     <Log :id="item.soul" :editable="editable" />
   </article>

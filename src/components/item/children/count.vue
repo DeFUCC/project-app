@@ -32,7 +32,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .count {
   display: flex;
   flex-flow: row nowrap;

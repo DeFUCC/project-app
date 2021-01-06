@@ -29,7 +29,6 @@
           <ItemDate :item="item" />
           <ItemStatus :id="item.soul" />
           <div class="spacer"></div>
-
           <CommentCount :id="item.soul" />
         </div>
       </div>
@@ -38,10 +37,10 @@
 </template>
 
 <script>
-import { model } from "../store/model";
-import { itemColor } from "../tools/colors";
+import { model } from "../../store/model";
+import { itemColor } from "../../tools/colors";
 import { computed, defineComponent } from "vue";
-import { truncate } from "../use/item";
+import { truncate } from "../../use/item";
 
 export default defineComponent({
   props: {

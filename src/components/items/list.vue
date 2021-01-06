@@ -8,13 +8,13 @@
 
   <ul class="item-list">
     <transition-group name="list">
-      <Item
+      <ItemCard
         class="card"
         @click="$emit('open', item.soul)"
         v-for="item in items.sorted.list"
         :key="item.soul"
         :item="item"
-      ></Item>
+      ></ItemCard>
     </transition-group>
   </ul>
 </template>

@@ -55,7 +55,7 @@ export default defineComponent({
   justify-content: flex-start;
   padding: 0.5em;
   background-color: var(--bar-color);
-  margin: 2em 0.5em 0.5em 0.5em;
+  margin: 0;
 }
 .tag {
   font-size: 0.8em;

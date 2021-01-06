@@ -33,6 +33,7 @@ export default {
   position: fixed;
   bottom: 2em;
   left: 130px;
+  z-index: 50;
 }
 .message {
   font-size: 0.7em;

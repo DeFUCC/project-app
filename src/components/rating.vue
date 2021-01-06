@@ -47,11 +47,11 @@ import { defineComponent, ref, watchEffect } from "vue";
 import { useItemRating } from "../use/rating";
 export default defineComponent({
   props: {
-    item: String,
+    id: String,
     horizontal: Boolean,
   },
   setup(props) {
-    let { count, myRate, rate } = useItemRating(props.item);
+    let { count, myRate, rate } = useItemRating(props.id);
 
     return {
       count,

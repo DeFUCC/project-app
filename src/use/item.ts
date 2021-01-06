@@ -74,5 +74,5 @@ export function truncate(input: string, num = 42) {
   if (!input) {
     return ' '
   }
-  return input.length > num ? `${input.substring(0, num)}...` : input
+  return input.length > num ? `${input.substring(0, num)}` : input
 }
