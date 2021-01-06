@@ -16,5 +16,5 @@ export function itemColor(item: any): string {
   if (typeof item == 'string') {
     return color.hex(uuid(item))
   }
-  return '#ccc'
+  return 'hsla(0,100%,100%,0.2)'
 }

@@ -3,6 +3,7 @@
     class="item"
     :style="{
       backgroundColor: itemColor(item.soul),
+      borderColor: itemColor(item.parent),
     }"
   >
     <div class="main">
@@ -25,7 +26,7 @@
         <div class="info" @click.stop>
           <UserPill :author="item?.soul.slice(1, 88)" />
           &nbsp;
-          <ItemInfoDate :item="item" />
+          <ItemDate :item="item" />
           <ItemStatus :id="item.soul" />
           <div class="spacer"></div>
 
@@ -110,6 +111,7 @@ export default defineComponent({
   flex: 0 0 5em;
   min-height: min-content;
   border-radius: var(--small-radius);
+  border-left: 6px solid #999;
 }
 .info {
   width: 100%;

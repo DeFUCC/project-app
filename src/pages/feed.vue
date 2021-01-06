@@ -6,27 +6,25 @@
           class="type"
           v-for="type in types"
           :key="type"
-          @click="list = type"
-          :class="{ active: type == list }"
+          @click="feeds.type = type"
+          :class="{ active: type == feeds.type }"
         >
           <IconType :type="type" />
         </div>
       </div>
-
-      <List @open="openFeed($event, -1)" :key="list" :type="list"></List>
+      <keep-alive>
+        <ItemsList
+          @open="feeds.open($event, -1)"
+          :key="feeds.type"
+          :type="feeds.type"
+        ></ItemsList>
+      </keep-alive>
     </article>
 
-    <article
-      v-for="(feed, num) in feeds"
-      :key="num"
-      class="column bordered"
-      :style="{
-        borderColor: itemColor(feed.parent),
-      }"
-    >
+    <article v-for="(feed, num) in feeds.list" :key="num" class="column">
       <Page
-        @open="openFeed($event, num)"
-        @close="closeFeed(num)"
+        @open="feeds.open($event, num)"
+        @close="feeds.close(num)"
         :key="feed"
         :id="feed"
       >
@@ -45,51 +43,59 @@ import { gun } from "../store/gun-db";
 export default {
   name: "Designs",
   setup(props) {
-    const feeds = reactive([]);
+    const feeds = reactive({
+      type: "design",
+      list: [],
+      open(feed: any, num: number) {
+        this.list[num + 1] = feed;
+        this.list.splice(num + 2);
+      },
+      close(num: number) {
+        this.list.splice(num, 1);
+      },
+    });
+
     const route = useRoute();
     const router = useRouter();
-    const list = ref("design");
     const title = useTitle();
+
     onMounted(() => {
       for (let q in route.query) {
         if (q == "type") {
-          list.value = route.query[q] as string;
+          feeds.type = route.query[q] as string;
           continue;
         }
-        feeds[q] = route.query[q];
+        feeds.list[q] = route.query[q];
       }
     });
+
     watchEffect(() => {
       let query = {
-        type: list.value,
+        type: feeds.type,
       };
-      feeds.forEach((feed, i) => {
+      feeds.list.forEach((feed, i) => {
         query[i] = feed;
       });
       router.push({ query: query });
-      if (feeds.length > 0) {
-        setTitle(feeds[feeds.length - 1]);
+      if (feeds.list.length > 0) {
+        setTitle();
       } else {
-        title.value = "Project app: " + list.value;
+        title.value = "Project app: " + feeds.type;
       }
     });
-    function openFeed(feed: any, num: number) {
-      feeds[num + 1] = feed;
-      feeds.splice(num + 2);
-    }
-    function closeFeed(num: number) {
-      feeds.splice(num, 1);
-    }
-    async function setTitle(id) {
-      title.value = await gun.get(id).get("title");
+
+    function setTitle() {
+      let id = feeds.list[feeds.list.length - 1];
+      if (id) {
+        gun.get(id).once((val) => {
+          title.value = val.type + " " + val.title;
+        });
+      }
     }
     return {
-      list,
       types,
       feeds,
       itemColor,
-      closeFeed,
-      openFeed,
     };
   },
 };

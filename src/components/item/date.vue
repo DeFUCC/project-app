@@ -1,15 +1,13 @@
 <template>
   <span v-if="item.createdAt">
-    {{ format(item.createdAt, "short") }}
-    <span v-if="item.updatedAt">
-      , upd {{ format(item.updatedAt, "short") }}
-    </span>
+    {{ format(item.createdAt).date }}
+    <span v-if="item.updatedAt"> , upd {{ format(item.updatedAt).date }} </span>
   </span>
 </template>
 
 <script lang="ts">
-import { format } from "timeago.js";
 import { defineComponent } from "vue";
+import { format } from "../../tools/locale";
 
 export default defineComponent({
   props: {

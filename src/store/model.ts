@@ -27,7 +27,8 @@ export const types = [
 ]
 
 export const model = {
-  user: ['design', 'project'],
+  all: ['user', 'design', 'project', 'object', 'event', 'task', 'purchase'],
+  user: ['design', 'project', 'object', 'event', 'task', 'purchase'],
   design: ['project'],
   project: ['event', 'object'],
   event: ['task', 'purchase'],

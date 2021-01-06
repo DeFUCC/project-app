@@ -22,7 +22,9 @@
             >
               <UserPill :author="comment.author" />
               <div class="text">{{ comment.text }}</div>
-              <div class="time">{{ format(comment.timestamp, "short") }}</div>
+              <div class="time">
+                {{ format(comment.timestamp).date }}
+              </div>
             </div>
           </transition-group>
         </div>
@@ -46,13 +48,11 @@
 </template>
 
 <script lang="ts">
-import { format } from "timeago.js";
 import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import { appPath, db, gun, soul } from "../../store/gun-db";
 import { error } from "../../store/history";
 import { user } from "../../store/user";
-import { Remarkable } from "remarkable";
-import { linkify } from "remarkable/linkify";
+import { format } from "../../tools/locale";
 
 export default defineComponent({
   props: {
@@ -67,7 +67,6 @@ export default defineComponent({
         return Object.keys(comments).length;
       }),
     });
-    const md = new Remarkable().use(linkify);
     const comments = reactive({});
 
     db.get("user")
@@ -115,9 +114,8 @@ export default defineComponent({
     }
 
     return {
-      md,
-      user,
       format,
+      user,
       state,
       comments,
       addComment,

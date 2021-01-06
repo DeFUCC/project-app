@@ -1,5 +1,11 @@
 <template>
-  <article class="page" ref="page">
+  <article
+    class="page"
+    ref="page"
+    :style="{
+      borderColor: itemColor(item.parent),
+    }"
+  >
     <PageBar @close="$emit('close')" :id="item.soul" />
 
     <section class="content">
@@ -19,7 +25,7 @@
           <div class="author">
             <UserPill :author="item.soul.slice(1, 88)" />
             &nbsp;
-            <ItemInfoDate :item="item" />
+            <ItemDate :item="item" />
             <ItemStatus :id="item.soul" :editable="editable" />
           </div>
         </div>
@@ -41,7 +47,7 @@
     </section>
     <UserTeam v-if="false" :id="item.soul" :editable="editable" />
 
-    <List
+    <ItemsList
       @open="$emit('open', $event)"
       v-for="type in model[item.type]"
       :key="type"
@@ -55,17 +61,60 @@
 
 <script lang="ts">
 import { ref, watch, watchEffect, computed, reactive, onMounted } from "vue";
-import { useItem } from "../use/item";
+import { truncate } from "../use/item";
 import { model } from "../store/model";
 import { user } from "../store/user";
 import { itemColor } from "../tools/colors";
 import { appPath, gun } from "../store/gun-db";
+import { notify } from "../store/history";
 
 export default {
   props: ["id"],
   emits: ["open", "close", "renamed"],
   setup(props) {
-    const { item, edit, update, editable } = useItem(props.id);
+    const item = reactive({
+      soul: props.id,
+      title: null,
+      type: "design",
+      pub: null,
+    });
+
+    gun
+      .get(props.id)
+      .map()
+      .on((data: any, key: string) => {
+        item[key] = data;
+      });
+
+    const edit = reactive({
+      icon: false,
+      title: false,
+      description: false,
+    });
+
+    function update(field: string, content: string) {
+      gun.get(props.id).get(field).put(content);
+      let now = new Date();
+      gun.get(props.id).get("updatedAt").put(Date.now());
+      gun
+        .get(props.id)
+        .get("log")
+        .get(Date.now())
+        .put("edited|" + field);
+      edit[field] = false;
+      notify(
+        `You updated ${field} of ${item.title} with ${truncate(content)}.`
+      );
+    }
+
+    const editable = computed(() => {
+      return (
+        user.is &&
+        (user.is.pub == props.id.slice(1, 88) ||
+          (item.type == "user" && user.is.pub == item.pub))
+      );
+    });
+
     const page = ref(null);
     const mounted = ref(false);
     watchEffect(() => {
@@ -100,6 +149,7 @@ export default {
   overflow-x: hidden;
   display: flex;
   flex-flow: column nowrap;
+  border-left: 6px solid #999;
 }
 .main {
   display: flex;

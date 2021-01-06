@@ -1,5 +1,5 @@
 <template>
-  <ListHeader
+  <ItemsHeader
     :parent="parent"
     :type="type"
     :options="items.options"
@@ -21,7 +21,7 @@
 
 <script>
 import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
-import { useItems } from "../use/items";
+import { useItems } from "../../use/items";
 
 export default defineComponent({
   name: "FeedItems",

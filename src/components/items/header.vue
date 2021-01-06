@@ -9,20 +9,21 @@
       />
       <span class="tag">{{ sorted.count }}/{{ sorted.total }} </span>
     </div>
-    <ListFilter
+    <ItemsFilter
       :my="options.filterMy"
       @star="options.filterMy.star = !options.filterMy.star"
       @seen="options.filterMy.seen = !options.filterMy.seen"
       @trash="options.filterMy.trash = !options.filterMy.trash"
+      v-show="sorted.total > 0"
     />
-    <ListOrder
+    <ItemsOrder
       :by="options.orderBy"
       @order="options.orderBy = $event"
-      v-show="sorted.count > 0"
+      v-show="sorted.total > 0"
     />
     <div class="spacer"></div>
     <AddForm key="add" :type="type" :parent="parent" />
-    <ListSearch @search="options.search = $event" />
+    <ItemsSearch @search="options.search = $event" v-show="sorted.total > 3" />
   </section>
 </template>
 

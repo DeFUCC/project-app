@@ -5,7 +5,7 @@ import { user } from '../store/user'
 
 export function useItems({ type = 'project', parent = null } = {}) {
   const items = reactive({})
-  const team = reactive({})
+
   getItems()
   const { sorted, options } = useSorter(items)
   function getItems() {
@@ -17,6 +17,9 @@ export function useItems({ type = 'project', parent = null } = {}) {
     }
     query.get(type).map().on(loadItem)
 
+    /* team
+
+    const team = reactive({})
     if (parent) {
       gun
         .get(parent)
@@ -36,6 +39,8 @@ export function useItems({ type = 'project', parent = null } = {}) {
         }
       }
     })
+
+    */
 
     async function loadItem(data: any, key: string) {
       if (!data) {

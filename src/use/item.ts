@@ -4,51 +4,6 @@ import { gun, db, sea, genUuid, soul, appPath } from '../store/gun-db'
 import { generateWords } from '../tools/randomWords'
 import { error, notify } from '../store/history'
 
-export function useItem(id: string) {
-  const item = reactive({
-    soul: id,
-    title: null,
-    type: 'design',
-    pub: null,
-  })
-
-  gun
-    .get(id)
-    .map()
-    .on((data: any, key: string) => {
-      item[key] = data
-    })
-
-  const edit = reactive({
-    icon: false,
-    title: false,
-    description: false,
-  })
-
-  function update(field: string, content: string) {
-    gun.get(id).get(field).put(content)
-    let now = new Date()
-    gun.get(id).get('updatedAt').put(Date.now())
-    gun
-      .get(id)
-      .get('log')
-      .get(Date.now())
-      .put('edited|' + field)
-    edit[field] = false
-    notify(`You updated ${field} of ${item.title} with ${truncate(content)}.`)
-  }
-
-  const editable = computed(() => {
-    return (
-      user.is &&
-      (user.is.pub == id.slice(1, 88) ||
-        (item.type == 'user' && user.is.pub == item.pub))
-    )
-  })
-
-  return { item, edit, update, editable }
-}
-
 export interface Item {
   title: string
   description: string
