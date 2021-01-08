@@ -13,9 +13,9 @@
             />
 
             <ul class="box-notes">
-              <li class="first">Drag a new image here</li>
+              <li class="first">Drop</li>
               <li class="second">or</li>
-              <li class="third link">Browse files</li>
+              <li class="third link">Browse an image</li>
             </ul>
           </div>
           <div class="status" v-if="state.isLoading">
@@ -44,7 +44,6 @@
       <img :src="state.output.content" alt="" />
       {{ state.output.size }}
     </div>
-    <button class="close" @click="$emit('close')">close</button>
   </div>
 </template>
 
@@ -105,14 +104,15 @@ export default {
 }
 .box .box-inner .box-notes li.link {
   color: #fff;
-  padding: 10px 20px;
+  text-align: center;
+  padding: 10px;
   border-radius: 5px;
   background: #777;
   box-shadow: 0 0 35px rgba(140, 150, 160, 0.2);
   transition: all 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 .box .box-inner .box-notes li:not(:last-child) {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 .box .loader {
   position: absolute;
@@ -147,7 +147,6 @@ export default {
 }
 .box::after {
   content: "";
-  background: #f6f9fe;
   width: 100%;
   height: 100%;
   border-radius: 5px;

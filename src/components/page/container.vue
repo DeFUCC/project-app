@@ -15,6 +15,11 @@
     <section class="content">
       <RatingBar :horizontal="true" :id="item.soul" />
       <div class="main">
+        <EditFile
+          v-if="edit.icon"
+          @loaded="update('icon', $event.content)"
+          @close="edit.icon = false"
+        />
         <EditIcon
           :editable="editable"
           :icon="item.icon"
@@ -39,12 +44,8 @@
         </div>
       </div>
       <EditTeam v-if="false" :id="item.soul" :editable="editable" />
-      <EditFile
-        v-if="edit.icon"
-        @loaded="update('icon', $event.content)"
-        @close="edit.icon = false"
-      />
-      <EditDates :id="item.soul" />
+
+      <EditDates :id="item.soul" :editable="editable" />
       <EditDescription
         :text="item.description"
         :editable="editable"
