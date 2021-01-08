@@ -6,7 +6,11 @@
       borderColor: itemColor(item.parent),
     }"
   >
-    <PageBar @close="$emit('close')" :id="item.soul" />
+    <PageBar
+      @close="$emit('close')"
+      @open="$emit('open', $event)"
+      :id="item.soul"
+    />
 
     <section class="content">
       <div class="main">
@@ -27,6 +31,9 @@
             &nbsp;
             <ItemDate :item="item" />
             <ItemStatus :id="item.soul" :editable="editable" />
+            <router-link :to="{ path: '/item', query: { id: item.soul } }"
+              ><i class="iconify" data-icon="la:link"></i
+            ></router-link>
           </div>
         </div>
       </div>
@@ -43,10 +50,10 @@
         @update="update('description', $event)"
       />
 
-      <Rating :horizontal="true" :id="item.soul" />
+      <RatingBar :horizontal="true" :id="item.soul" />
     </section>
 
-    <Items
+    <ItemsContainer
       :type="item.type"
       @open="$emit('open', $event)"
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
@@ -59,12 +66,12 @@
 
 <script lang="ts">
 import { ref, watch, watchEffect, computed, reactive, onMounted } from "vue";
-import { truncate } from "../use/item";
-import { model } from "../store/model";
-import { user } from "../store/user";
-import { itemColor } from "../tools/colors";
-import { appPath, gun } from "../store/gun-db";
-import { notify } from "../store/history";
+import { truncate } from "../../use/item";
+import { model } from "../../store/model";
+import { user } from "../../store/user";
+import { itemColor } from "../../tools/colors";
+import { appPath, gun } from "../../store/gun-db";
+import { notify } from "../../store/history";
 
 export default {
   props: ["id"],
@@ -120,7 +127,7 @@ export default {
     watchEffect(() => {
       if (mounted.value) {
         setTimeout(() => {
-          page.value.scrollIntoView({ behavior: "smooth" });
+          page.value?.scrollIntoView({ behavior: "smooth" });
         }, 200);
       }
     });

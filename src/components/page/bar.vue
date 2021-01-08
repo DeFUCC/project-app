@@ -8,7 +8,7 @@
     <span class="close" @click="$emit('close')">
       <span class="iconify" data-icon="la:times"></span>
     </span>
-    <PageRoute :id="id" />
+    <PageRoute :id="id" @open="$emit('open', $event)" />
     <div class="spacer"></div>
   </aside>
 </template>
@@ -38,7 +38,7 @@ export default defineComponent({
   top: 0;
   z-index: 30;
   font-size: 14px;
-  height: 32px;
+  min-height: 32px;
 }
 .close {
   padding: 8px 16px;

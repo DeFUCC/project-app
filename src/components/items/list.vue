@@ -55,6 +55,7 @@ export default defineComponent({
   flex-flow: column nowrap;
   padding: 0;
   margin: 0;
+  min-height: max-content;
 }
 .card {
   scroll-snap-align: start end;

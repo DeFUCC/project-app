@@ -2,6 +2,7 @@
 <template>
   <div class="row">
     <span
+      @click="$emit('open', parent.soul)"
       v-for="(parent, i) in route"
       :key="parent"
       :style="{
@@ -17,16 +18,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, watchEffect } from "vue";
-import { appPath, db, gun, soul } from "../../store/gun-db";
+import { defineComponent, reactive } from "vue";
+import { gun } from "../../store/gun-db";
 import { itemColor } from "../../tools/colors";
 
 export default defineComponent({
-  emits: ["select"],
+  emits: ["open"],
   props: {
     id: String,
   },
-  setup(props, { emit }) {
+  setup(props) {
     const route = reactive([]);
 
     getParents();
@@ -64,6 +65,7 @@ export default defineComponent({
   flex: 1 1 auto;
   word-wrap: none;
   overflow: hidden;
+  cursor: pointer;
 }
 .path.item .title,
 .path:hover .title {

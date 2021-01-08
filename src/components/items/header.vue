@@ -1,6 +1,6 @@
 <template>
   <section class="bar">
-    <div class="title">
+    <header class="title">
       <img
         v-if="type"
         class="icon bigger"
@@ -8,7 +8,7 @@
         alt=""
       />
       <span class="tag">{{ sorted.count }}/{{ sorted.total }} </span>
-    </div>
+    </header>
     <ItemsFilter
       :my="options.filterMy"
       @star="options.filterMy.star = !options.filterMy.star"

@@ -6,33 +6,29 @@
       borderColor: itemColor(item.parent),
     }"
   >
-    <div class="main">
-      <div class="icon" v-if="item.icon">
+    <main class="main">
+      <header class="icon" v-if="item.icon">
         <img :src="item.icon" />
-      </div>
-      <div class="content">
+      </header>
+      <article class="content">
         <div class="title">
           <div class="pill">
-            <img
-              class="type"
-              v-if="item.type"
-              :src="'/svg/' + item.type + '.svg'"
-              alt=""
-            />{{ truncate(item.title) }}
+            {{ truncate(item.title) }}
           </div>
-          <ItemChildren :id="item.soul" />
         </div>
 
         <div class="info" @click.stop>
+          <IconType :type="item.type" class="type-icon" />
           <UserPill :author="item?.soul.slice(1, 88)" />
-          &nbsp;
-          <ItemDate :item="item" />
           <ItemStatus :id="item.soul" />
-          <div class="spacer"></div>
+          <ItemDate :item="item" />
           <CommentCount :id="item.soul" />
         </div>
-      </div>
-    </div>
+      </article>
+      <aside class="side">
+        <ItemChildren :id="item.soul" />
+      </aside>
+    </main>
   </li>
 </template>
 
@@ -84,6 +80,9 @@ export default defineComponent({
   padding: 0.5em;
   align-self: center;
   width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
 }
 .pill {
   display: flex;
@@ -96,7 +95,10 @@ export default defineComponent({
   align-items: center;
   font-size: 1.2em;
   line-height: 1.4em;
-  flex: 1;
+  flex: 1 0 150px;
+}
+.type-icon {
+  height: 2em;
 }
 .title .type {
   height: 2em;
@@ -113,20 +115,26 @@ export default defineComponent({
   border-left: 6px solid #999;
 }
 .info {
-  width: 100%;
   font-size: 0.8em;
   display: flex;
+  flex: 1 0 300px;
   flex-flow: row wrap;
   align-items: center;
-  padding: 4px;
 }
 .icon {
   display: flex;
   align-items: center;
   padding: 8px;
-  flex: 1 0 90px;
+  flex: 1 0 60px;
 }
 .icon img {
-  border-radius: 5em;
+  border-radius: 4em;
+  height: 4em;
+}
+.side {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: stretch;
+  align-items: center;
 }
 </style>

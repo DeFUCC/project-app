@@ -24,23 +24,38 @@ export const types = [
   'event',
   'task',
   'purchase',
+  'result',
+  'thing',
 ]
 
 export const model = {
-  all: ['user', 'design', 'project', 'object', 'event', 'task', 'purchase'],
+  all: [
+    'user',
+    'design',
+    'project',
+    'object',
+    'event',
+    'task',
+    'purchase',
+    'result',
+    'thing',
+  ],
   user: ['design', 'project', 'object', 'event', 'task', 'purchase'],
   design: ['project'],
-  project: ['event', 'object'],
+  project: ['object', 'event'],
   event: ['task', 'purchase'],
   object: ['task', 'purchase'],
-  task: [],
-  purchase: [],
+  task: ['result'],
+  purchase: ['thing'],
+  result: [],
+  thing: [],
 }
 
 export const statuses = {
   new: 'New',
   dev: 'Development',
   process: 'Process',
+  product: 'Product',
   pause: 'Paused',
   ondemand: 'On demand',
   finish: 'Finished',

@@ -53,12 +53,11 @@ export default defineComponent({
 .alias {
   border-bottom-style: solid;
   border-bottom-width: 4px;
-  padding-bottom: -6px;
 }
 .user {
   display: inline-flex;
   align-items: center;
   border-radius: 1em;
-  padding: 4px 8px 4px 4px;
+  padding: 4px;
 }
 </style>

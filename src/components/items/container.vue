@@ -1,5 +1,5 @@
 <template>
-  <div class="row" v-if="types.list">
+  <section class="type-row" v-if="types.list">
     <div
       class="type"
       v-for="type in types.list"
@@ -15,7 +15,7 @@
         {{ countItems(types.count[type]) }}
       </span>
     </div>
-  </div>
+  </section>
 
   <keep-alive>
     <ItemsList
@@ -30,8 +30,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, watchEffect } from "vue";
-import { db, gun } from "../store/gun-db";
-import { model } from "../store/model";
+import { db, gun } from "../../store/gun-db";
+import { model } from "../../store/model";
 
 export default defineComponent({
   emits: ["open", "select"],
@@ -85,10 +85,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.row {
+.type-row {
   display: flex;
   align-items: center;
   padding: 0.5em 0.5em 0 0.5em;
+  overflow-x: scroll;
+  min-height: 3em;
 }
 .type {
   border-radius: 0.5em 0.5em 0 0;
@@ -97,7 +99,6 @@ export default defineComponent({
   cursor: pointer;
   transition: all 300ms ease;
   display: flex;
-  flex-flow: row wrap;
   align-items: center;
   background-color: #ccc;
   padding: 0 0.4em 0 0;

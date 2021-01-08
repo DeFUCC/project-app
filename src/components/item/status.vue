@@ -100,6 +100,9 @@ export default defineComponent({
 .pause {
   background-color: rgb(179, 179, 179);
 }
+.product {
+  background-color: rgb(115, 211, 152);
+}
 .ondemand {
   background-color: rgb(202, 143, 120);
 }

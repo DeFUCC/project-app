@@ -1,5 +1,5 @@
 <template>
-  <img v-if="type" class="icon" :src="'/svg/' + type + '.svg'" alt="" />
+  <img v-if="type" class="type-icon" :src="'/svg/' + type + '.svg'" alt="" />
 </template>
 
 <script lang="ts">
@@ -19,7 +19,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.icon {
+.type-icon {
   width: 1.5em;
 }
 </style>

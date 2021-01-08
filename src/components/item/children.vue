@@ -40,7 +40,8 @@ export default defineComponent({
 
 <style scoped>
 .counters {
-  margin: 0 0.5em;
+  flex: 1 1 100%;
+  margin: 0;
   display: flex;
   justify-content: stretch;
   align-items: stretch;

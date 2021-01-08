@@ -1,7 +1,7 @@
 <template>
   <main class="columns">
     <article class="column">
-      <Items
+      <ItemsContainer
         type="all"
         :active="feeds.type"
         @select="feeds.type = $event"
@@ -10,13 +10,13 @@
     </article>
 
     <article v-for="(feed, num) in feeds.list" :key="num" class="column">
-      <Page
+      <PageContainer
         @open="feeds.open($event, num)"
         @close="feeds.close(num)"
         :key="feed"
         :id="feed"
       >
-      </Page>
+      </PageContainer>
     </article>
   </main>
 </template>
@@ -58,6 +58,9 @@ export default {
     });
 
     watchEffect(() => {
+      if (route.query.id) {
+        return;
+      }
       let query = {
         type: feeds.type,
       };

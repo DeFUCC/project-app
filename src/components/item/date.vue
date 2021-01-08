@@ -1,12 +1,16 @@
 <template>
-  <span v-if="item.createdAt">
+  <span v-if="item.createdAt && !item.updatedAt">
     {{ format(item.createdAt).date }}
-    <span v-if="item.updatedAt"> , upd {{ format(item.updatedAt).date }} </span>
+  </span>
+  <span v-if="item.updatedAt">
+    <span class="iconify" data-icon="la:pen"></span>
+    {{ format(item.updatedAt).date }}
   </span>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { getState } from "../../store/gun-db";
 import { format } from "../../tools/locale";
 
 export default defineComponent({
@@ -15,6 +19,7 @@ export default defineComponent({
   },
   setup() {
     return {
+      getState,
       format,
     };
   },
