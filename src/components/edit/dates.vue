@@ -1,10 +1,10 @@
 <template>
   <section>
     <div class="row" v-for="(date, key) in dates" :key="key">
-      <div>{{ key }}</div>
-      <div>
+      <div class="type">{{ key }}</div>
+      <div class="date">
         {{ getDate(date) }}
-        <span v-if="editable" @click="state.edit = true"
+        <span v-if="editable" @click="state.edit = !state.edit"
           ><i class="iconify" data-icon="la:pen"></i
         ></span>
         <form v-if="editable && state.edit" @submit.prevent>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="row" v-if="editable">
-      <button v-show="!state.add" @click="state.add = true">add date</button>
+      <button v-show="!state.add" @click="state.add = true">add a date</button>
       <button
         v-show="state.add"
         v-for="type in types"
@@ -94,5 +94,15 @@ section {
 }
 .row {
   display: flex;
+}
+.row > div {
+  padding: 0.5em;
+}
+.date {
+  display: flex;
+  align-items: center;
+}
+form {
+  margin: 0 0.5em;
 }
 </style>
