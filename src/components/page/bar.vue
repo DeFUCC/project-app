@@ -18,7 +18,7 @@ import { defineComponent } from "vue";
 import { itemColor } from "../../tools/colors";
 
 export default defineComponent({
-  emits: ["close"],
+  emits: ["close", "open"],
   props: {
     id: String,
   },

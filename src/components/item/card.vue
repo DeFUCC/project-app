@@ -10,6 +10,7 @@
       <header class="icon" v-if="item.icon">
         <img :src="item.icon" />
       </header>
+
       <article class="content">
         <div class="title">
           <div class="pill">
@@ -20,11 +21,12 @@
         <div class="info" @click.stop>
           <IconType :type="item.type" class="type-icon" />
           <UserPill :author="item?.soul.slice(1, 88)" />
-          <ItemStatus :id="item.soul" />
+          <EditStatus :id="item.soul" />
           <ItemDate :item="item" />
           <CommentCount :id="item.soul" />
         </div>
       </article>
+
       <aside class="side">
         <ItemChildren :id="item.soul" />
       </aside>
@@ -132,9 +134,10 @@ export default defineComponent({
   height: 4em;
 }
 .side {
+  flex: 0;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row nowrap;
   justify-content: stretch;
-  align-items: center;
+  align-items: stretch;
 }
 </style>

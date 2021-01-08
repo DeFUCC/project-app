@@ -13,14 +13,15 @@
     />
 
     <section class="content">
+      <RatingBar :horizontal="true" :id="item.soul" />
       <div class="main">
-        <PageIcon
+        <EditIcon
           :editable="editable"
           :icon="item.icon"
           @edit="edit.icon = !edit.icon"
         />
         <div class="info">
-          <PageTitle
+          <EditTitle
             :editable="editable"
             :type="item.type"
             :text="item.title"
@@ -30,27 +31,25 @@
             <UserPill :author="item.soul.slice(1, 88)" />
             &nbsp;
             <ItemDate :item="item" />
-            <ItemStatus :id="item.soul" :editable="editable" />
+            <EditStatus :id="item.soul" :editable="editable" />
             <router-link :to="{ path: '/item', query: { id: item.soul } }"
               ><i class="iconify" data-icon="la:link"></i
             ></router-link>
           </div>
         </div>
       </div>
-      <PageTeam v-if="false" :id="item.soul" :editable="editable" />
+      <EditTeam v-if="false" :id="item.soul" :editable="editable" />
       <EditFile
         v-if="edit.icon"
         @loaded="update('icon', $event.content)"
         @close="edit.icon = false"
       />
-
-      <PageDescription
+      <EditDates :id="item.soul" />
+      <EditDescription
         :text="item.description"
         :editable="editable"
         @update="update('description', $event)"
       />
-
-      <RatingBar :horizontal="true" :id="item.soul" />
     </section>
 
     <ItemsContainer

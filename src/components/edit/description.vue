@@ -13,26 +13,12 @@
       <textarea
         v-model="editor.text"
         name="description"
-        @keyup.enter.meta="
-          $emit('update', editor.text);
-          editor.open = false;
-        "
-        @keyup.ctrl.enter="
-          $emit('update', editor.text);
-          editor.open = false;
-        "
-        cols="30"
-        rows="10"
+        @keyup.enter.meta="update"
+        @keyup.ctrl.enter="update"
+        :cols="30"
+        :rows="10"
       ></textarea>
-      <button
-        @click="
-          $emit('update', editor.text);
-          editor.open = false;
-        "
-        class="save"
-      >
-        Save
-      </button>
+      <button @click="update" class="save">Save</button>
     </form>
   </div>
   <section></section>
@@ -50,7 +36,7 @@ export default defineComponent({
     id: String,
     editable: Boolean,
   },
-  setup(props) {
+  setup(props, context) {
     const md = ref("");
     const editor = reactive({
       text: "",
@@ -62,7 +48,13 @@ export default defineComponent({
       editor.text = props.text;
     });
 
+    function update() {
+      context.emit("update", editor.text);
+      editor.open = false;
+    }
+
     return {
+      update,
       md,
       editor,
     };

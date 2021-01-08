@@ -88,12 +88,12 @@ export default defineComponent({
 .type-row {
   display: flex;
   align-items: center;
-  padding: 0.5em 0.5em 0 0.5em;
+  padding: 0;
   overflow-x: scroll;
   min-height: 3em;
 }
 .type {
-  border-radius: 0.5em 0.5em 0 0;
+  border-radius: 4px;
   font-size: 2em;
   opacity: 0.4;
   cursor: pointer;
@@ -102,6 +102,7 @@ export default defineComponent({
   align-items: center;
   background-color: #ccc;
   padding: 0 0.4em 0 0;
+  height: 2em;
 }
 .type .count {
   font-size: 18px;

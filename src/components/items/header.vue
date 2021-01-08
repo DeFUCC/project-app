@@ -1,14 +1,5 @@
 <template>
   <section class="bar">
-    <header class="title">
-      <img
-        v-if="type"
-        class="icon bigger"
-        :src="'/svg/' + type + '.svg'"
-        alt=""
-      />
-      <span class="tag">{{ sorted.count }}/{{ sorted.total }} </span>
-    </header>
     <ItemsFilter
       :my="options.filterMy"
       @star="options.filterMy.star = !options.filterMy.star"
@@ -62,12 +53,5 @@ export default defineComponent({
   display: block;
   color: var(--text-light);
   white-space: nowrap;
-}
-.bar > .title {
-  padding-right: 3em;
-  font-size: 1.2em;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
 }
 </style>

@@ -63,7 +63,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   flex: 1 1 auto;
-  word-wrap: none;
   overflow: hidden;
   cursor: pointer;
 }
