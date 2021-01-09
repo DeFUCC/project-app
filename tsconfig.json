@@ -9,6 +9,7 @@
       "sourceMap": true,
       "allowJs": true,
       "outDir": "diste",
-      "isolatedModules": true
+      "isolatedModules": true,
+      "allowSyntheticDefaultImports": true
     }
   }

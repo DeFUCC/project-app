@@ -5,6 +5,7 @@
       <span class="iconify" data-icon="la:plus"></span>
     </button>
   </form>
+  {{ type }}
 </template>
 
 <script lang="ts">
@@ -29,8 +30,8 @@ export default defineComponent({
       emit("search", add.title);
     });
 
-    async function addItem() {
-      let added = await createItem(props.type, add, props.parent);
+    function addItem() {
+      createItem(props.type, add, props.parent);
       add.title = "";
     }
 

@@ -47,27 +47,29 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
   return item
 }
 
-export function createItem(type: string, data?: any, parent?: string) {
+export async function createItem(type: string, data?: any, parent?: string) {
   let generated = generateItem(type, data, parent)
+
   let id = genUuid()
-  let publicItem
-  let privateItem = gun
-    .user()
-    .get(appPath)
+  let privateItem = gun.user().get(appPath).get(type).get(id).put(generated)
+
+  let publicItem = db
     .get(type)
-    .set(generated, function (ack) {
-      if (!ack.err) {
-        publicItem = db.get(type).get(id).put(privateItem)
-        if (parent) {
-          gun.get(parent).get(type).get(id).put(privateItem)
-          gun
-            .get(parent)
-            .get('log')
-            .get(Date.now())
-            .put('added|' + generated.title)
-        }
-      }
-    })
+    .get(id)
+    .put(await privateItem)
+
+  if (parent) {
+    gun
+      .get(parent)
+      .get(type)
+      .get(id)
+      .put(await privateItem)
+    gun
+      .get(parent)
+      .get('log')
+      .get(Date.now())
+      .put('added|' + generated.title)
+  }
 }
 
 export function truncate(input: string, num = 42) {

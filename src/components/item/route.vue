@@ -57,18 +57,23 @@ export default defineComponent({
 <style scoped>
 .row {
   display: flex;
-  align-items: stretch;
+  flex-flow: row wrap;
+  flex: 1 1 100%;
+  align-items: flex-start;
 }
 .path {
   display: flex;
   align-items: center;
   flex: 1 1 auto;
+  min-width: min-content;
+  max-width: max-content;
   overflow: hidden;
   cursor: pointer;
+  transition: all 300ms ease;
 }
-.path.item .title,
+
 .path:hover .title {
-  width: 200px;
+  min-width: max-content;
 }
 .title {
   white-space: nowrap;

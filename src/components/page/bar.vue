@@ -8,7 +8,7 @@
     <span class="close" @click="$emit('close')">
       <span class="iconify" data-icon="la:times"></span>
     </span>
-    <PageRoute :id="id" @open="$emit('open', $event)" />
+    <ItemRoute :id="id" @open="$emit('open', $event)" />
     <div class="spacer"></div>
   </aside>
 </template>

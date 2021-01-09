@@ -37,7 +37,7 @@
             &nbsp;
             <ItemDate :item="item" />
             <EditStatus :id="item.soul" :editable="editable" />
-            <router-link :to="{ path: '/item', query: { id: item.soul } }"
+            <router-link :to="{ path: '/page', query: { id: item.soul } }"
               ><i class="iconify" data-icon="la:link"></i
             ></router-link>
           </div>

@@ -13,15 +13,18 @@
 
       <article class="content">
         <div class="title">
+          <div class="route">
+            <ItemRoute :id="item.parent" />
+          </div>
           <div class="pill">
+            <IconType :type="item.type" class="type-icon" />
             {{ truncate(item.title) }}
           </div>
         </div>
 
         <div class="info" @click.stop>
-          <IconType :type="item.type" class="type-icon" />
-          <UserPill :author="item?.soul.slice(1, 88)" />
           <EditStatus :id="item.soul" />
+          <UserPill :author="item?.soul.slice(1, 88)" />
           <ItemDate :item="item" />
           <CommentCount :id="item.soul" />
         </div>
@@ -96,8 +99,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   font-size: 1.2em;
-  line-height: 1.4em;
-  flex: 1 0 150px;
+  flex: 1 1 100%;
 }
 .type-icon {
   height: 2em;
@@ -139,5 +141,9 @@ export default defineComponent({
   flex-flow: row nowrap;
   justify-content: stretch;
   align-items: stretch;
+}
+.route {
+  font-size: 10px;
+  flex: 1 1 100%;
 }
 </style>
