@@ -29,7 +29,7 @@
 import { useTitle } from "@vueuse/core";
 import { defineComponent, reactive, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { gun } from "../store/gun-db";
+import { gun } from "../../store/gun-db";
 
 export default defineComponent({
   setup() {
@@ -39,7 +39,7 @@ export default defineComponent({
     const id = ref();
     const item = ref({});
     watchEffect(() => {
-      id.value = route.query.id;
+      id.value = route.query.id || "feed";
       item.value = {};
       if (id.value) {
         gun

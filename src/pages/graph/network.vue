@@ -1,7 +1,8 @@
 <template>
   <article ref="graph">
     <section class="nodes">
-      <div
+      <router-link
+        :to="{ path: '/page', query: { id: node.id } }"
         class="node"
         v-for="node in nodes"
         :key="node"
@@ -10,7 +11,7 @@
       >
         <IconType :type="node.type" />
         {{ node.name }} {{ node.x }} {{ node.y }}
-      </div>
+      </router-link>
     </section>
     <section class="links">
       <div class="link" v-for="link in links" :key="link">
@@ -61,7 +62,7 @@ export default defineComponent({
           if (data && typeof data == "object" && data.title) {
             if (!nodes.find((node) => node.id == soul(data))) {
               nodes.push({
-                name: (data.title || data.description).slice(0, 24),
+                name: data.title || data.description,
                 id: soul(data),
                 type: data.type,
                 data: data,
