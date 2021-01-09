@@ -2,7 +2,25 @@
   <article>
     <header>Export</header>
     <main>
-      {{ item }}
+      <div class="row" v-for="(data, key) in item" :key="data">
+        <div class="key">{{ key }}</div>
+        <div v-if="typeof data != 'object' && data[0] != '~'" class="data">
+          {{ data }}
+        </div>
+        <router-link v-if="data?.[0] == '~'" :to="{ query: { id: data } }">{{
+          data
+        }}</router-link>
+        <div class="data" v-if="typeof data == 'object'">
+          <div v-show="!d['>']" class="detail" v-for="d in data" :key="d">
+            <div v-if="typeof d != 'object'">{{ d }}</div>
+            <div v-if="typeof d == 'object'">
+              <router-link :to="{ query: { id: d['#'] } }">{{
+                d["#"]
+              }}</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   </article>
 </template>
@@ -19,23 +37,33 @@ export default defineComponent({
     const router = useRouter();
     const title = useTitle();
     const id = ref();
+    const item = ref({});
     watchEffect(() => {
       id.value = route.query.id;
+      item.value = {};
+      if (id.value) {
+        gun
+          .get(id.value)
+          .map()
+          .on((d, k) => {
+            item.value[k] = d;
+            if (k == "title") {
+              title.value = d;
+            }
+          });
+      }
     });
     function close() {
       router.push({ path: "feed" });
     }
     function open(val) {
+      if (val[0] != "~") {
+        return;
+      }
       router.push({
         query: {
           id: val,
         },
-      });
-    }
-    const item = ref({});
-    if (id.value) {
-      gun.get(id.value).open((d) => {
-        item.value = d;
       });
     }
 
@@ -50,4 +78,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+}
 </style>
