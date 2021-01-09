@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/DeFUCC/project-app.git"
   },
-  "version": "0.3.1",
+  "version": "0.3.3",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
@@ -22,7 +22,6 @@
     "@mattkrick/sanitize-svg": "^0.3.1",
     "@vueuse/core": "^4.0.4",
     "color-hash": "^1.0.3",
-    "gun": "^0.2020.520",
     "image-compressor": "^2.0.3",
     "remarkable": "^2.0.1",
     "vue": "^3.0.5",

@@ -3,20 +3,19 @@ declare global {
     Gun: any
     SEA: any
     gun: any
+    FEEDSCONFIG: any
   }
 }
-// @ts-ignore
-import CONFIG from '../app.config.json'
 
-console.log(CONFIG)
+console.log(window.FEEDSCONFIG)
 
-const peerList = [...CONFIG.peers]
+const peerList = [...window.FEEDSCONFIG.peers]
 
-checkDbVersion(localStorage.dbVersion, CONFIG.dbVersion)
+checkDbVersion(localStorage.dbVersion, window.FEEDSCONFIG.dbVersion)
 
 export const gun = window.Gun(peerList)
 window.gun = gun //for debugging
-export const appPath = CONFIG.appPath
+export const appPath = window.FEEDSCONFIG.appPath
 export const db = gun.get(appPath)
 export const soul = window.Gun.node.soul
 export const isNode = window.Gun.node.is
