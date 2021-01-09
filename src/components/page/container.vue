@@ -45,7 +45,8 @@
       </div>
       <EditTeam v-if="false" :id="item.soul" :editable="editable" />
 
-      <EditDates :id="item.soul" :editable="editable" />
+      <EditDate type="start" :id="item.soul" :editable="editable" />
+      <EditDate type="finish" :id="item.soul" :editable="editable" />
       <EditDescription
         :text="item.description"
         :editable="editable"
