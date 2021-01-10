@@ -1,4 +1,4 @@
-# Project App
+# Project App [DeFUCC/project-app](https://github.com/DeFUCC/project-app)
 
 The tool for people to collaborate on shared ideas. Everyone can create and publish their projects and everyone can engage in cocreation of them. It can be used to better understand each other and synchronize our intentions in order to reach common goals.
 
