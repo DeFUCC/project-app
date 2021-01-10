@@ -13,7 +13,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 - [Vite 2](https://github.com/vitejs/vite) as the fast development environment with modular bundling, with magic plugins by [Antifu](https://github.com/antfu)
   - [voie](https://github.com/vamplate/vite-plugin-voie)  enables file system based routing (all routes are parsed from file structure under the *./src/pages* folder) 
   - [vite-plugin-components](https://github.com/antfu/vite-plugin-components) automatically import components from *./src/components* **done**
-  - [purgeIcons](https://github.com/antfu/purge-icons) **done** with [Icônes](https://icones.js.org/) VS code extension for fast icons workflow
+  - [purgeIcons](https://github.com/antfu/purge-icons) with [Icônes](https://icones.js.org/) VS code extension for fast icons workflow
   - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) for static pages in docs 
   - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience **TBD** [Issue with inline GUN](https://github.com/antfu/vite-plugin-pwa/issues/10) to be solved.
 - [GUN](https://gun.eco/) for the reactive p2p graph database
