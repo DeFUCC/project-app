@@ -1,15 +1,15 @@
 <template>
   <nav id="app-bar" :class="{ open }" @click="toggle()">
     <router-link class="logo" to="/">PROJECT APP</router-link>
-    <router-link to="/feed">Feed</router-link>
+    <router-link to="/app">app</router-link>
 
-    <router-link to="/users">Users</router-link>
-    <router-link v-if="!user.is" to="/auth">Auth</router-link>
-    <router-link v-else to="/my">{{
+    <router-link to="/app/users">Users</router-link>
+    <router-link v-if="!user.is" to="/app/auth">Auth</router-link>
+    <router-link v-else to="/app/my">{{
       String(user.is.alias).slice(0, 24)
     }}</router-link>
     <div class="spacer"></div>
-    <router-link to="/graph">Graph</router-link>
+    <router-link to="/app/graph">Graph</router-link>
     <div class="handle"></div>
   </nav>
 </template>

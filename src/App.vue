@@ -1,8 +1,6 @@
 <template>
-  <AppBar />
-  <AppHistory />
   <router-view v-slot="{ Component }">
-    <transition name="slide-right">
+    <transition name="fade">
       <component :is="Component" />
     </transition>
   </router-view>
@@ -10,22 +8,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { itemColor } from "./tools/colors";
+
 export default defineComponent({
   name: "Project app",
   setup() {
-    return {
-      itemColor,
-    };
+    return {};
   },
 });
 </script>
 
 <style scoped>
-.low {
-  height: 2em;
-  font-size: 10px;
-  text-align: center;
-  background-color: #eee;
-}
 </style>

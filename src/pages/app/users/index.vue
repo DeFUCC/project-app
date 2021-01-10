@@ -1,8 +1,8 @@
 <template>Select a user</template>
 
 <script>
-import { itemColor } from "../../tools/colors";
-import { useUsers } from "../../use/users";
+import { itemColor } from "../../../tools/colors";
+import { useUsers } from "../../../use/users";
 export default {
   setup() {
     let { users } = useUsers();

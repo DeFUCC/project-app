@@ -29,7 +29,7 @@
 import { useTitle } from "@vueuse/core";
 import { defineComponent, reactive, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { gun, appPath } from "../../store/gun-db";
+import { gun, appPath } from "../../../store/gun-db";
 
 export default defineComponent({
   setup() {
@@ -54,7 +54,7 @@ export default defineComponent({
       }
     });
     function close() {
-      router.push({ path: appPath });
+      router.push({ path: "app" });
     }
     function open(val) {
       if (val[0] != "~") {

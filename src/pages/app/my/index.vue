@@ -10,8 +10,8 @@
 
 <script lang="ts">
 import { ref } from "vue";
-import { db } from "../../store/gun-db";
-import { user, publishUser } from "../../store/user";
+import { db } from "../../../store/gun-db";
+import { user, publishUser } from "../../../store/user";
 
 export default {
   props: {

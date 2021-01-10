@@ -15,6 +15,11 @@ body {
   height: 100vh;
   background-color: var(--background);
   touch-action: pan-x;
+  font-family: 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  word-break: break-word;
 }
 
 html {
@@ -24,11 +29,6 @@ html {
 }
 
 #app {
-  font-family: 'Noto Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 15px;
-  word-break: break-word;
   overscroll-behavior-x: none !important;
   display: flex;
   height: 100vh;

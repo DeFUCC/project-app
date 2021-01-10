@@ -2,7 +2,7 @@
   <article ref="graph">
     <section class="nodes">
       <router-link
-        :to="{ path: '/page', query: { id: node.id } }"
+        :to="{ path: '/app/page', query: { id: node.id } }"
         class="node"
         v-for="node in nodes"
         :key="node"
@@ -31,11 +31,11 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive, watchEffect } from "vue";
-import { itemColor } from "../../tools/colors";
-import { useGraph } from "../../use/graph";
+import { itemColor } from "../../../tools/colors";
+import { useGraph } from "../../../use/graph";
 import { throttledWatch, useResizeObserver } from "@vueuse/core";
-import { db, gun, soul } from "../../store/gun-db";
-import { types } from "../../store/model";
+import { db, gun, soul } from "../../../store/gun-db";
+import { types } from "../../../store/model";
 
 export default defineComponent({
   setup() {

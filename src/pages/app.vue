@@ -1,31 +1,30 @@
 <template>
-  <article>
-    <div class="row">{{ app.pub }}</div>
+  <article id="main">
+    <AppBar />
+    <AppHistory />
+    <router-view v-slot="{ Component }">
+      <transition name="slide-right">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
-import { appPath, gun } from "../store/gun-db";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   setup() {
-    const app = reactive({});
-    gun
-      .get(appPath)
-      .map()
-      .on((data, key) => {
-        app[key] = data;
-      });
-    return {
-      app,
-    };
+    return {};
   },
 });
 </script>
 
 <style scoped>
-article {
-  padding: 2em;
+#main {
+  overscroll-behavior-x: none !important;
+  display: flex;
+  height: 100vh;
+  width: 100%;
 }
 </style>

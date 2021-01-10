@@ -41,8 +41,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
-import { gun } from "../../store/gun-db";
-import { itemColor } from "../../tools/colors";
+import { gun } from "../../../store/gun-db";
+import { itemColor } from "../../../tools/colors";
 
 export default defineComponent({
   setup() {

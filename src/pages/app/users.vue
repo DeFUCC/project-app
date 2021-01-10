@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { useUsers } from "../use/users";
+import { useUsers } from "../../use/users";
 export default {
   setup() {
     let { users } = useUsers();

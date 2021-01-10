@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="'/users/' + user.pub"
+    :to="'/app/users/' + user.pub"
     class="card"
     :style="{
       backgroundColor: itemColor(user.pub),

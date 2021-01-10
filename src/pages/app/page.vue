@@ -9,7 +9,7 @@
 import { useTitle } from "@vueuse/core";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, reactive, ref, watchEffect } from "vue";
-import { gun } from "../store/gun-db";
+import { gun } from "../../store/gun-db";
 
 export default {
   setup() {
@@ -21,7 +21,7 @@ export default {
       id.value = route.query.id;
     });
     function close() {
-      router.push({ path: "feed" });
+      router.push({ path: "/app" });
     }
     function open(val) {
       router.push({

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="'/users/' + profile.pub" class="user">
+  <router-link :to="'/app/users/' + profile.pub" class="user">
     <UserAvatar size="small" :pic="profile.avatar" class="pad" />
     <span
       class="alias"

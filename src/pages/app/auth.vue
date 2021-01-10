@@ -31,7 +31,7 @@
 
 <script>
 import { ref, watch } from "vue";
-import { user, findUser, authUser, createUser } from "../store/user";
+import { user, findUser, authUser, createUser } from "../../store/user";
 import { useRouter } from "vue-router";
 export default {
   components: {},
@@ -41,7 +41,7 @@ export default {
       () => user.is,
       () => {
         if (user.is) {
-          router.push("/my");
+          router.push("/app/my");
         }
       }
     );
