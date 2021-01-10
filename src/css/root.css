@@ -13,6 +13,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100vh;
+  width: 100%;
   background-color: var(--background);
   touch-action: pan-x;
   font-family: 'Noto Sans', sans-serif;
@@ -26,11 +27,11 @@ html {
   scroll-behavior: smooth;
   overflow: hidden;
   overscroll-behavior-x: none;
+  width: 100%;
 }
 
 #app {
   overscroll-behavior-x: none !important;
-  display: flex;
   height: 100vh;
   width: 100%;
 }

@@ -8,8 +8,9 @@
     <router-link v-else to="/app/my">{{
       String(user.is.alias).slice(0, 24)
     }}</router-link>
+    <router-link to="/docs/">Docs</router-link>
     <div class="spacer"></div>
-    <router-link to="/app/graph">Graph</router-link>
+    <router-link to="/app/graph/">Graph</router-link>
     <div class="handle"></div>
   </nav>
 </template>

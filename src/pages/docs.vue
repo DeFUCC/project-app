@@ -1,6 +1,9 @@
 <template>
   <main>
-    <div class="bar">Project app docs</div>
+    <div class="bar">
+      <router-link to="/">Project app</router-link> /
+      <router-link to="/docs/">Docs</router-link>
+    </div>
     <article class="content">
       <router-view v-slot="{ Component }">
         <transition name="fade">
@@ -32,5 +35,6 @@ main {
 }
 .content {
   padding: 1em 2em;
+  max-width: 620px;
 }
 </style>
