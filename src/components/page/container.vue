@@ -119,7 +119,7 @@ export default {
     const editable = computed(() => {
       let my = user?.is?.pub == props?.id.slice(1, 88);
       let me = item.type == "user" && user?.is?.pub == item.pub;
-      let teammate = false && Boolean(item.team[user?.is?.pub]); //TBD
+      let teammate = Boolean(item.team[user?.is?.pub]);
       return user.is && (my || me || teammate);
     });
 
