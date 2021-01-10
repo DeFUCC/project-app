@@ -17,43 +17,11 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) for static pages in docs 
   - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience **TBD** [Issue with inline GUN](https://github.com/antfu/vite-plugin-pwa/issues/10) to be solved.
 - [GUN](https://gun.eco/) for the reactive p2p graph database
+  - with a free peer at [Glitch.com](https://glitch.com/edit/#!/gun-feeds)
 - [color-hash](https://www.npmjs.com/package/color-hash) to get colors for item UUIDs
 - [image-compressor](https://www.npmjs.com/package/image-compressor) to compress images to store them as base64 strings in the db
 - [remarkable](https://www.npmjs.com/package/remarkable) for MarkDown parsing
 
-## Basic structure
-
-It's one of the most difficult questions. I'm in the process of formulating the exact structure. We have so much data about the process, that it's hard to condence all that into one source of truth. And it's definitely not a regular tree, but a complex graph of relations. Let's try.
-
-
-- design
-  - project
-- project
-  - object
-  - event
-- event
-  - task
-  - purchase
-- object
-  - task
-  - purchase
-- task
-  - tool
-  - material
-  - result
-- purchase
-  - quality
-  - quantity
-  - thing
-- course
-  - class
-- page
-  - comment
-
-
-It's the most basic structure, but it's needs to be filled with all field and relations schema. A lot of work, but how interesting it is!
-
-If you have any ideas or proposals – feel free to create an issue or send me a message. 
 
 ## Features
 
@@ -86,18 +54,18 @@ If you have any ideas or proposals – feel free to create an issue or send me a
     - [x] log item changes
     - [ ] log events
     - [ ] Data: Date.now() : "String"
-  - [ ] comment
   - [ ] qna
   - [ ] ukt
-  - [ ] parent
+  - [x] parent
     - [x] parent in path
     - [x] parent edit -> select
     - [ ] actually transfer parent between user's items
-  - [ ] status
-- [ ] comments
+  - [x] status
+- [x] comments
 - [ ] User
   - [ ] roles
   - [x] page
+  - [x] Docs in markdown
 
 
 ## Inspiration found
