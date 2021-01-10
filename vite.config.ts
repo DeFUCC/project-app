@@ -3,6 +3,7 @@ import Voie from 'vite-plugin-voie'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
+import Markdown from 'vite-plugin-md'
 
 export default defineConfig({
   build: {
@@ -28,7 +29,10 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    Voie(),
+    Voie({
+      extensions: ['vue', 'md'],
+    }),
+    Markdown(),
     ViteComponents({
       // relative paths to the directory to search for components.
       dirs: ['src/components'],
@@ -37,6 +41,8 @@ export default defineConfig({
       extensions: ['vue'],
       // search for subdirectories
       deep: true,
+      // allow auto import and register components used in markdown
+      customLoaderMatcher: (path) => path.endsWith('.md'),
 
       // Allow subdirectories as namespace prefix for components.
       directoryAsNamespace: true,

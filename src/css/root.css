@@ -32,4 +32,5 @@ html {
   overscroll-behavior-x: none !important;
   display: flex;
   height: 100vh;
+  width: 100%;
 }
