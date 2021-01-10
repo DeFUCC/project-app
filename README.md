@@ -18,7 +18,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience **TBD** [Issue with inline GUN](https://github.com/antfu/vite-plugin-pwa/issues/10) to be solved.
 - [GUN](https://gun.eco/) for the reactive p2p graph database
 - [color-hash](https://www.npmjs.com/package/color-hash) to get colors for item UUIDs
-- [image-compressor](https://www.npmjs.com/package/image-compressor) to create small user avatars
+- [image-compressor](https://www.npmjs.com/package/image-compressor) to compress images to store them as base64 strings in the db
 - [remarkable](https://www.npmjs.com/package/remarkable) for MarkDown parsing
 
 ## Basic structure
