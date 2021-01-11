@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { history, warn, eventColors, clear } from "../../store/history";
+import { history, warn, eventColors, clear } from "../store/history";
 
 export default {
   setup() {

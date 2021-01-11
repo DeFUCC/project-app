@@ -14,6 +14,10 @@ a:hover {
   flex: 10;
 }
 
+.markdown {
+  max-width: 620px;
+}
+
 .markdown img {
   max-width: 100%;
 }
