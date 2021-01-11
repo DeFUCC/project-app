@@ -4,6 +4,7 @@ import PurgeIcons from 'vite-plugin-purge-icons'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
+import tasklists from 'markdown-it-task-lists'
 
 export default defineConfig({
   build: {
@@ -32,7 +33,15 @@ export default defineConfig({
     Voie({
       extensions: ['vue', 'md'],
     }),
-    Markdown(),
+    Markdown({
+      markdownItOptions: {
+        linkify: true,
+        typographer: true,
+      },
+      markdownItSetup(md) {
+        md.use(tasklists)
+      },
+    }),
     ViteComponents({
       // relative paths to the directory to search for components.
       dirs: ['src/components'],

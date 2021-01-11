@@ -1,11 +1,12 @@
 <template>
   <main class="columns">
+    <router-view></router-view>
     <article class="column">
       <AppBar />
       <ItemsContainer
         type="all"
         :active="feeds.type"
-        @select="feeds.type = $event"
+        @select="$router.push({ path: $event })"
         @open="feeds.open($event, -1)"
       />
     </article>
@@ -31,6 +32,9 @@ import { useTitle } from "@vueuse/core";
 import { gun } from "../../store/gun-db";
 export default {
   name: "Designs",
+  props: {
+    type: String,
+  },
   setup(props) {
     const route = useRoute();
     const router = useRouter();
@@ -62,9 +66,7 @@ export default {
       if (route.query.id) {
         return;
       }
-      let query = {
-        type: feeds.type,
-      };
+      let query = {};
       feeds.list.forEach((feed, i) => {
         query[i] = feed;
       });

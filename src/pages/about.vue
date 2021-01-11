@@ -1,6 +1,6 @@
 <template>
   <main>
-    <article class="content">
+    <article class="markdown">
       <router-view v-slot="{ Component }">
         <transition name="fade">
           <component :is="Component" />
@@ -29,7 +29,7 @@ main {
   background-color: #333;
   color: #eee;
 }
-.content {
+.markdown {
   padding: 1em 2em;
   max-width: 620px;
 }

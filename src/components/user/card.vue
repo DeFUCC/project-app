@@ -6,7 +6,7 @@
       backgroundColor: itemColor(user.pub),
     }"
   >
-    <UserAvatar size="small" :pic="profile.avatar" />
+    <UserAvatar size="small" :pic="profile.icon" />
     <h3 class="alias">{{ user.alias }}</h3>
   </router-link>
 </template>

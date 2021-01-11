@@ -6,8 +6,8 @@
       <button @click="logOut()">🚪 Log out</button>
     </header>
     <div class="bar">
-      <router-link to="/app/my">Profile</router-link>
-      <router-link to="/app/my/stars">Stars</router-link>
+      <router-link to="/my">Profile</router-link>
+      <router-link to="/my/stars">Stars</router-link>
     </div>
 
     <router-view v-slot="{ Component }">
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import { itemColor } from "../../tools/colors";
-import { user, logOut } from "../../store/user";
+import { itemColor } from "../tools/colors";
+import { user, logOut } from "../store/user";
 import { useRouter } from "vue-router";
 import { watchEffect } from "vue";
 export default {
@@ -30,7 +30,7 @@ export default {
     const router = useRouter();
     watchEffect(() => {
       if (!user.is) {
-        router.push("/app/auth");
+        router.push("/auth");
       }
     });
 

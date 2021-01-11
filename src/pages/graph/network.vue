@@ -31,11 +31,11 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive, watchEffect } from "vue";
-import { itemColor } from "../../../tools/colors";
-import { useGraph } from "../../../use/graph";
+import { itemColor } from "../../tools/colors";
+import { useGraph } from "../../use/graph";
 import { throttledWatch, useResizeObserver } from "@vueuse/core";
-import { db, gun, soul } from "../../../store/gun-db";
-import { types } from "../../../store/model";
+import { db, gun, soul } from "../../store/gun-db";
+import { types } from "../../store/model";
 
 export default defineComponent({
   setup() {

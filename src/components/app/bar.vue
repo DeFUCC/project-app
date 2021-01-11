@@ -3,12 +3,14 @@
     <router-link class="logo" to="/"
       ><img src="/icons/feeds.svg" alt=""
     /></router-link>
-    <router-link to="/app">app</router-link>
+    <router-link to="/browse/"
+      ><span
+        class="iconify"
+        data-icon="la:poll-h-solid"
+        data-inline="false"
+      ></span
+    ></router-link>
 
-    <router-link to="/app/users">Users</router-link>
-
-    <router-link to="/app/graph/">Graph</router-link>
-    <router-link to="/about/">About</router-link>
     <div class="spacer"></div>
     <router-link v-if="!user.is" to="/app/auth"
       ><span
@@ -17,9 +19,24 @@
         data-inline="false"
       ></span
     ></router-link>
-    <router-link v-else to="/app/my">
+    <router-link v-else to="/my">
       {{ String(user.is.alias).slice(0, 24) || "noname" }}</router-link
     >
+    <div class="spacer"></div>
+    <router-link to="/about/"
+      ><span
+        class="iconify"
+        data-icon="la:info-circle-solid"
+        data-inline="false"
+      ></span
+    ></router-link>
+    <router-link to="/graph/"
+      ><span
+        class="iconify"
+        data-icon="mdi:graph-outline"
+        data-inline="false"
+      ></span
+    ></router-link>
   </nav>
 </template>
 
@@ -58,6 +75,9 @@ export default {
   white-space: nowrap;
   width: 100%;
 }
+.router-link-active svg {
+  color: #000;
+}
 .spacer {
   flex: 10 1 100px;
 }
@@ -65,33 +85,8 @@ export default {
   padding: 0.5em;
 }
 a svg {
-  font-size: 2em;
-}
-.handle {
-  display: none;
-  opacity: 0.8;
-  cursor: pointer;
-  position: absolute;
-  right: -30px;
-  bottom: calc(50% - 60px);
-  padding: 60px 40px;
-  background-color: var(--top-bar);
-  border-radius: 20px;
-  z-index: 30;
-}
-@media screen and (max-width: 500px) {
-  #app-bar {
-    position: absolute;
-    height: 100vh;
-    transform: translateX(-160px);
-    transition: all 300ms ease;
-    z-index: 100;
-  }
-  #app-bar.open {
-    transform: translateX(0);
-  }
-  #app-bar .handle {
-    display: block;
-  }
+  font-size: 1.4em;
+  color: #555;
+  transition: all 300ms ease;
 }
 </style>

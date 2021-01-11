@@ -10,14 +10,19 @@ a:hover {
   text-decoration: underline;
 }
 
-a.router-link-active {
-  color: #000;
-}
-
 .spacer {
   flex: 10;
 }
 
 .markdown img {
   max-width: 100%;
+}
+
+.markdown .task-list-item::marker {
+  content: '';
+  margin-left: 0;
+}
+
+.markdown .contains-task-list {
+  margin: 0;
 }

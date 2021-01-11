@@ -10,7 +10,7 @@
 import { useTitle } from "@vueuse/core";
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, reactive, ref, watchEffect } from "vue";
-import { gun } from "../../store/gun-db";
+import { gun } from "../store/gun-db";
 
 export default {
   setup() {

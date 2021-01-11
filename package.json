@@ -23,6 +23,7 @@
     "@vueuse/core": "^4.0.5",
     "color-hash": "^1.0.3",
     "image-compressor": "^2.0.3",
+    "markdown-it-task-lists": "^2.1.1",
     "remarkable": "^2.0.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.2"
