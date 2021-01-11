@@ -36,7 +36,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [x] Title input
   - [x] editors embedded in the item page entities themselves
 - [ ] Full rating system
-  - [x] global rating sort
+  - [-] global rating sort //needs to be optimized
     - [x] star
     - [x] seen
     - [x] trash
@@ -66,15 +66,27 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [ ] roles
   - [x] page
   - [x] Docs in markdown
+- [ ] Teams
+  - [ ] 
 
 
 ## Inspiration found
 - [Notes](https://notes.andymatuschak.org/) by Andy Matuschak
 
+# App structure
 
-Certify
-====
+```
+- / - root - Logo, title, a short description and links to all features
+  - /browse - lists of certain type items
+  - /[type]/?0=ID1,1=ID2... items of the type with graph navigation
+- /page?id=ID - item presentation as a whole. Just a starting panel for the same browsing
+```
 
+
+### SEA.Certify **TBD**
+The problem for now is the uncertainty of GUN versions and problems with using it with vite. 
+```
 item - team - pub - certificate
 
 page: user.is ??? user.is.pub == id.slice(88) || team[user.is.pub]
+```

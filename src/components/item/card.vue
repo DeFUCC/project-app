@@ -24,7 +24,7 @@
 
         <div class="info" @click.stop>
           <EditStatus :id="item.soul" />
-          <UserPill :author="item?.soul.slice(1, 88)" />
+          <UserPill :id="item?.soul.slice(1, 88)" />
           <ItemDate :item="item" />
           <CommentCount :id="item.soul" />
         </div>

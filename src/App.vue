@@ -1,4 +1,5 @@
 <template>
+  <AppBar v-if="$route.path != '/app' && $route.path != '/app/page'" />
   <router-view v-slot="{ Component }">
     <transition name="fade">
       <component :is="Component" />

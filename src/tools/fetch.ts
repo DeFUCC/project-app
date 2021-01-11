@@ -13,7 +13,7 @@ export default function (url, options) {
       const json = await res.json()
       state.page = json
     } catch (errors) {
-      state.error = error
+      state.error = errors
     } finally {
       state.fetching = false
     }

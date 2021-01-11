@@ -1,6 +1,7 @@
 <template>
   <main class="columns">
     <article class="column">
+      <AppBar />
       <ItemsContainer
         type="all"
         :active="feeds.type"

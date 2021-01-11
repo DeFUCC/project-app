@@ -1,6 +1,5 @@
 <template>
   <article id="main">
-    <AppBar />
     <AppHistory />
     <router-view v-slot="{ Component }">
       <transition name="slide-right">
@@ -24,6 +23,7 @@ export default defineComponent({
 #main {
   overscroll-behavior-x: none !important;
   display: flex;
+  flex-flow: column nowrap;
   height: 100vh;
   width: 100%;
 }

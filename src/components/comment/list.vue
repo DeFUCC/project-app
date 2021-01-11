@@ -20,7 +20,7 @@
               v-for="comment in sorted"
               :key="comment.timestamp"
             >
-              <UserPill :author="comment.author" />
+              <UserPill :id="comment.author" />
               <div class="text">{{ comment.text }}</div>
               <div class="time">
                 {{ format(comment.timestamp).date }}
@@ -29,18 +29,17 @@
           </transition-group>
         </div>
 
-        <form v-if="user.is && state.open" @submit.prevent>
-          <textarea
-            class="input"
-            name="text"
-            rows="1"
-            v-model="state.text"
-            @keyup.ctrl.enter="addComment()"
-          ></textarea>
+        <form v-if="user.is && state.open" @submit.prevent="addComment()">
+          <UserPill :id="user.is.pub" />
+          <input class="input" name="text" rows="1" v-model="state.text" />
 
-          <button class="send" @click="addComment()">
-            <span class="iconify" data-icon="fe:commenting"></span>
-          </button>
+          <span class="send" type="submit">
+            <i
+              class="iconify"
+              data-icon="ri:send-plane-line"
+              data-inline="false"
+            ></i>
+          </span>
         </form>
       </main>
     </transition>
@@ -156,13 +155,22 @@ main,
   flex-flow: column nowrap;
   align-items: stretch;
 }
+form {
+  padding: 0 1em;
+}
 form,
 header {
   display: flex;
   align-items: center;
 }
-form textarea {
-  flex: 1 1 80%;
+form input {
+  flex: 1 1 320px;
+  padding: 1em;
+  border-radius: 1em;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  margin: 0 0.5em 0 1em;
 }
 .comment {
   padding: 0.5em;
@@ -189,6 +197,6 @@ form textarea {
   font-size: 2em;
   border: none;
   padding: 0.5em;
-  margin: 0 0.5em 0 0;
+  margin: 0;
 }
 </style>

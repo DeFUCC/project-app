@@ -1,17 +1,25 @@
 <template>
   <nav id="app-bar" :class="{ open }" @click="toggle()">
-    <router-link class="logo" to="/">PROJECT APP</router-link>
+    <router-link class="logo" to="/"
+      ><img src="/icons/feeds.svg" alt=""
+    /></router-link>
     <router-link to="/app">app</router-link>
 
     <router-link to="/app/users">Users</router-link>
-    <router-link v-if="!user.is" to="/app/auth">Auth</router-link>
-    <router-link v-else to="/app/my">{{
-      String(user.is.alias).slice(0, 24)
-    }}</router-link>
-    <router-link to="/docs/">Docs</router-link>
-    <div class="spacer"></div>
+
     <router-link to="/app/graph/">Graph</router-link>
-    <div class="handle"></div>
+    <router-link to="/about/">About</router-link>
+    <div class="spacer"></div>
+    <router-link v-if="!user.is" to="/app/auth"
+      ><span
+        class="iconify"
+        data-icon="la:sign-in-alt-solid"
+        data-inline="false"
+      ></span
+    ></router-link>
+    <router-link v-else to="/app/my">
+      {{ String(user.is.alias).slice(0, 24) || "noname" }}</router-link
+    >
   </nav>
 </template>
 
@@ -36,24 +44,28 @@ export default {
 
 <style scoped>
 .logo {
-  font-weight: bold;
+  height: 32px;
+  width: 32px;
+  flex: 0 0 32px;
 }
 #app-bar {
   scroll-snap-align: start;
-  flex: 0 0 120px;
+  flex: 0 0 42px;
   display: flex;
-  flex-flow: column nowrap;
-  padding: 1em;
+  align-items: center;
+  flex-flow: row nowrap;
   background-color: var(--top-bar);
-
-  padding-bottom: 4em;
-  position: relative;
+  white-space: nowrap;
+  width: 100%;
 }
 .spacer {
   flex: 10 1 100px;
 }
 #app-bar a {
-  padding: 1em;
+  padding: 0.5em;
+}
+a svg {
+  font-size: 2em;
 }
 .handle {
   display: none;

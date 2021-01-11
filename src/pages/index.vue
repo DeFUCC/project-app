@@ -1,11 +1,14 @@
 <template>
   <article id="main">
-    <h1>Welcome!</h1>
-    <p>This is Project App – the new approach to social collaboration</p>
-    <section>
-      <router-link class="button" to="/app">Go to the app</router-link>
-      <router-link class="button" to="/docs/">Docs</router-link>
+    <section class="content">
+      <div class="logo"><img src="/icons/feeds.svg" alt="Feeds logo" /></div>
+      <div class="text">
+        <h1>Welcome to the feeds!</h1>
+        <p>This is Project App – the new approach to social collaboration</p>
+      </div>
     </section>
+
+    <section></section>
   </article>
 </template>
 
@@ -19,15 +22,18 @@ export default {
 
 <style scoped>
 #main {
-  padding: 2em;
   overscroll-behavior-x: none !important;
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
+  flex-flow: row nowrap;
+  justify-content: stretch;
   align-items: flex-start;
-  height: 100vh;
 }
-section {
+.logo {
+  flex: 0 0 192px;
+}
+.content {
+  flex: 1 1 auto;
+  padding: 2em;
   display: flex;
   flex-flow: row wrap;
 }
@@ -36,6 +42,5 @@ section {
   background-color: #333;
   color: #eee;
   border-radius: 1em;
-  margin: 1em;
 }
 </style>

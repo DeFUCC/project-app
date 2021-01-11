@@ -1,5 +1,6 @@
 <template>
   <article>
+    <AppBar />
     <PageContainer v-if="id" @open="open" @close="close" :key="id" :id="id">
     </PageContainer>
   </article>

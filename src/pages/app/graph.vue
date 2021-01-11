@@ -1,9 +1,9 @@
 <template>
   <article class="page">
     <div class="panel">
-      <router-link to="/graph">Graph</router-link>
-      <router-link to="/graph/network">Network</router-link>
-      <router-link to="/graph/export">Export</router-link>
+      <router-link to="./">Graph</router-link>
+      <router-link to="network">Network</router-link>
+      <router-link to="export">Export</router-link>
     </div>
 
     <router-view></router-view>

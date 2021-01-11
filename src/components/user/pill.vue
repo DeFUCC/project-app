@@ -24,15 +24,15 @@ export default defineComponent({
     avatar: String,
     alias: String,
     pub: String,
-    author: String,
+    id: String,
   },
   setup(props) {
     const profile = reactive({ ...props });
 
     watchEffect(() => {
-      if (props.author) {
+      if (props.id) {
         db.get("user")
-          .get(props.author)
+          .get(props.id)
           .on((data, key) => {
             profile.alias = truncate(String(data.alias), 24);
             profile.pub = data.pub;
