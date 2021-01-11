@@ -113,7 +113,7 @@ export default defineComponent({
   flex-flow: column;
   align-items: stretch;
   padding: 0;
-  flex: 0 0 5em;
+  flex: 1 1 300px;
   min-height: min-content;
   border-radius: var(--small-radius);
   border-left: 6px solid #999;

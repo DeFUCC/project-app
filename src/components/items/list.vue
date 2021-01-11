@@ -52,7 +52,7 @@ export default defineComponent({
 .item-list {
   display: flex;
   align-items: stretch;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   padding: 0;
   margin: 0;
   min-height: max-content;

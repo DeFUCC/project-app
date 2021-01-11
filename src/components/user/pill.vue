@@ -59,5 +59,6 @@ export default defineComponent({
   align-items: center;
   border-radius: 1em;
   padding: 4px;
+  white-space: nowrap;
 }
 </style>

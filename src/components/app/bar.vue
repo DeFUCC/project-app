@@ -12,7 +12,7 @@
     ></router-link>
 
     <div class="spacer"></div>
-    <router-link v-if="!user.is" to="/app/auth"
+    <router-link v-if="!user.is" to="/auth"
       ><span
         class="iconify"
         data-icon="la:sign-in-alt-solid"

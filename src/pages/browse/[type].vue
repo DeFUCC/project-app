@@ -105,7 +105,6 @@ export default {
   scroll-snap-align: start end;
   display: flex;
   flex: 1 0 100%;
-  max-width: 600px;
   flex-flow: column nowrap;
   overflow-y: scroll;
   overflow-x: hidden;
