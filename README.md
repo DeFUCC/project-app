@@ -10,7 +10,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 - [TypeScript](https://www.typescriptlang.org/) 
 - [Vue 3](https://v3.vuejs.org/) 
   - [Vue router](https://github.com/vuejs/vue-router-next) for page routing [docs](https://next.router.vuejs.org/)
-  - [i18n](https://vue-i18n-next.intlify.dev/advanced/composition.html#basic-usage) internationalization via global yaml files
+  - [i18n](https://vue-i18n-next.intlify.dev/) internationalization via global yaml files
   - [VueUse](https://vueuse.js.org) helpers 
     - `useTitle()` for page title manipulations
 - [Vite 2](https://vitejs.dev/) as the fast development environment with modular bundling, with magic plugins by [Antfu](https://github.com/antfu)
@@ -18,6 +18,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [vite-plugin-components](https://github.com/antfu/vite-plugin-components) automatically import components from *./src/components* **done**
   - [purgeIcons](https://github.com/antfu/purge-icons) with [Icônes](https://icones.js.org/) VS code extension for fast icons workflow
   - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) for static pages in docs 
+  - -[vite-plugin-vue-i18n](https://github.com/intlify/vite-plugin-vue-i18n) to improve i18n features in sfcs
   - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience **TBD** [Issue with inline scripts](https://github.com/antfu/vite-plugin-pwa/issues/10) to be solved.
 - [GUN](https://gun.eco/) for the reactive p2p graph database
   - with a free peer at [Glitch.com](https://glitch.com/edit/#!/gun-feeds)
