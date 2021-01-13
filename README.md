@@ -10,8 +10,9 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 - [TypeScript](https://www.typescriptlang.org/) 
 - [Vue 3](https://v3.vuejs.org/) 
   - [Vue router](https://github.com/vuejs/vue-router-next) for page routing [docs](https://next.router.vuejs.org/)
-  - [i18n](https://vue-i18n-next.intlify.dev/advanced/composition.html#basic-usage) **TBD**
+  - [i18n](https://vue-i18n-next.intlify.dev/advanced/composition.html#basic-usage) internationalization via global yaml files
   - [VueUse](https://vueuse.js.org) helpers 
+    - `useTitle()` for page title manipulations
 - [Vite 2](https://vitejs.dev/) as the fast development environment with modular bundling, with magic plugins by [Antfu](https://github.com/antfu)
   - [voie](https://github.com/vamplate/vite-plugin-voie)  enables file system based routing (all routes are parsed from file structure under the *./src/pages* folder) 
   - [vite-plugin-components](https://github.com/antfu/vite-plugin-components) automatically import components from *./src/components* **done**
@@ -32,10 +33,10 @@ This app is intended to be fast, reliable and free. So it's developed only by th
     - [x] List sorter in a Web Worker
     - [x] Filter by search
     - [x] Filter feed by ratings
-  - [ ] Users feeds
-- [ ] Item editor
+  - [x] Users feeds
+- [x] Item edit
   - [x] Basic item creation 
-  - [x] Title input
+  - [x] Title edit
   - [x] editors embedded in the item page entities themselves
 - [ ] Full rating system
   - [-] global rating sort //needs to be optimized
@@ -55,7 +56,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [x] log
     - [x] log item changes
     - [ ] log events
-    - [ ] Data: Date.now() : "String"
+    - [x] Data: Date.now() : "String"
   - [ ] qna
   - [ ] ukt
   - [x] parent
@@ -75,20 +76,15 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 ## Inspiration found
 - [Notes](https://notes.andymatuschak.org/) by Andy Matuschak
 
-# App structure
-
-```
-- / - root - Logo, title, a short description and links to all features
-  - /[type] - lists of certain type items
-  - /[type]/?0=ID1,1=ID2... items of the type with graph navigation
-- /page?id=ID - item presentation as a whole. Just a starting panel for the same browsing
-```
-
 
 ### SEA.Certify **TBD**
-The problem for now is the uncertainty of GUN versions and problems with using it with vite. 
+The problem for now is the uncertainty of GUN versions and problems with using it with vite. Certify is available in recent gun version from git repo, but it has `vite.config.ts` for some reason... Will try again later.
+
 ```
 item - team - pub - certificate
 
 page: user.is ??? user.is.pub == id.slice(88) || team[user.is.pub]
 ```
+https://gun.eco/docs/SEA#certify
+https://gun.eco/docs/SEA.Certify
+
