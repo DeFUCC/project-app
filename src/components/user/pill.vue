@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="'/app/users/' + profile.pub" class="user">
+  <router-link :to="'/users/' + profile.pub" class="user">
     <UserAvatar size="small" :pic="profile.avatar" class="pad" />
     <span
       class="alias"
@@ -21,13 +21,14 @@ import { truncate } from "../../use/item";
 
 export default defineComponent({
   props: {
-    avatar: String,
-    alias: String,
-    pub: String,
     id: String,
   },
   setup(props) {
-    const profile = reactive({ ...props });
+    const profile = reactive({
+      alias: null,
+      pub: null,
+      avatar: null,
+    });
 
     watchEffect(() => {
       if (props.id) {

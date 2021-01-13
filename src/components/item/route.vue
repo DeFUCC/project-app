@@ -38,7 +38,7 @@ export default defineComponent({
           break;
         }
         gun.get(id).once((item) => {
-          if (item) {
+          if (item && item.type && item.title) {
             route[p] = item;
             route[p].soul = id;
             id = item?.parent;

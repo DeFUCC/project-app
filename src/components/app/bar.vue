@@ -26,10 +26,11 @@
         data-inline="false"
       ></span
     ></router-link>
-    <router-link v-else to="/my">
-      {{ String(user.is.alias).slice(0, 24) || "noname" }}</router-link
-    >
+    <router-link v-else to="/my" class="username">
+      <UserPill :id="user.is.pub" />
+    </router-link>
     <div class="spacer"></div>
+    <AppLocale />
     <router-link to="/about/"
       ><span
         class="iconify"
@@ -88,6 +89,10 @@ nav {
 .router-link-active svg {
   color: #000;
 }
+.username {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
 .spacer {
   flex: 10 1 100px;
 }
@@ -111,6 +116,10 @@ a svg {
     background-color: var(--top-bar);
     white-space: nowrap;
     width: 100%;
+  }
+  .username {
+    writing-mode: horizontal-tb;
+    transform: rotate(0);
   }
 }
 </style>

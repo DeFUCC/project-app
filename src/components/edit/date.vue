@@ -2,7 +2,7 @@
   <section>
     <div class="row">
       <div class="type">
-        {{ type }}
+        {{ $t("date." + type) }}
         <span @click="add()" v-if="!date.timestamp && editable"
           ><i class="iconify" data-icon="la:plus"></i
         ></span>

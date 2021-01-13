@@ -5,21 +5,21 @@
       :class="{ [state.status]: true }"
       @click="state.open = !state.open"
     >
-      {{ state.name }}
-      <span v-if="editable">
+      {{ $t("status." + state.status) }}
+      <span v-show="editable">
         <i class="iconify" data-icon="la:pen"></i>
       </span>
     </div>
     <transition name="fade">
-      <div class="choose" v-if="state.open && editable">
+      <div class="choose" v-if="editable" v-show="state.open">
         <span
-          v-for="(status, s) in statuses"
-          :key="status"
+          v-for="st in statuses"
+          :key="st"
           class="status"
-          :class="{ [s]: true }"
-          @click="setStatus(s)"
-          >{{ status }}</span
-        >
+          :class="{ [st]: true }"
+          @click="setStatus(st)"
+          v-t="'status.' + st"
+        ></span>
       </div>
     </transition>
   </section>
@@ -38,18 +38,15 @@ export default defineComponent({
   setup(props) {
     const state = reactive({
       status: null,
-      edit: false,
-      name: computed(() => {
-        return statuses[state.status];
-      }),
+      open: false,
     });
     const itemStatus = gun.get(props.id).get("status");
 
     itemStatus.on((data) => {
       state.status = data;
     });
-    function setStatus(status) {
-      itemStatus.put(status);
+    function setStatus(st) {
+      itemStatus.put(st);
       state.open = false;
     }
     return {
@@ -74,7 +71,7 @@ export default defineComponent({
   align-items: center;
   padding: 2px 4px;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 1em;
   background-color: #ccc;
   width: min-content;
   white-space: nowrap;
@@ -87,6 +84,11 @@ export default defineComponent({
   position: absolute;
   top: 0;
   z-index: 40;
+  border-radius: 8px;
+  background-color: hsla(0, 0%, 100%, 0.8);
+}
+.choose .status {
+  margin: 4px;
 }
 .new {
   background-color: rgb(154, 184, 93);

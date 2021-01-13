@@ -1,0 +1,24 @@
+app:
+  title: Project app
+type:
+  user: User | Users
+  design: Design | Designs
+  project: Project | Projects
+  object: Object | Objects
+  event: Event | Events
+  task: Task | Tasks
+  purchase: Purchase | Purchases
+  result: Result | Results
+  thing: Thing | Things
+status:
+  new: New
+  dev: Development
+  process: Process
+  product: Product
+  pause: Paused
+  ondemand: On demand
+  finish: Finished
+  null: no status
+date:
+  start: Start date
+  finish: Finish date

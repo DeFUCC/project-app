@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/DeFUCC/project-app.git"
   },
-  "version": "0.4.0",
+  "version": "0.4.2",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
@@ -26,10 +26,13 @@
     "markdown-it-task-lists": "^2.1.1",
     "remarkable": "^2.0.1",
     "vue": "^3.0.5",
+    "vue-i18n": "^9.0.0-rc.2",
     "vue-router": "^4.0.2"
   },
   "devDependencies": {
     "@iconify/json": "^1.1.284",
+    "@intlify/vite-plugin-vue-i18n": "^1.0.0-beta.12",
+    "@types/node": "^14.14.20",
     "@vitejs/plugin-vue": "^1.0.5",
     "@vue/compiler-sfc": "^3.0.5",
     "vite": "^2.0.0-beta.19",

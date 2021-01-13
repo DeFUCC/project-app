@@ -33,7 +33,7 @@
             @update="update('title', $event)"
           />
           <div class="author">
-            <UserPill :author="item.soul.slice(1, 88)" />
+            <UserPill :id="item.soul.slice(1, 88)" />
             &nbsp;
             <ItemDate :item="item" />
             <EditStatus :id="item.soul" :editable="editable" />
@@ -54,11 +54,13 @@
       <EditDate type="finish" :id="item.soul" :editable="editable" />
     </section>
 
-    <ItemsContainer
-      :type="item.type"
+    <ItemsList
+      v-for="type in model[item.type]"
       @open="$emit('open', $event)"
+      :key="type"
+      :type="type"
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
-    />
+    ></ItemsList>
 
     <CommentList :id="item.soul" />
     <PageLog :id="item.soul" :editable="editable" />

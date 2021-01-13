@@ -51,12 +51,12 @@ export const model = {
   thing: [],
 }
 
-export const statuses = {
-  new: 'New',
-  dev: 'Development',
-  process: 'Process',
-  product: 'Product',
-  pause: 'Paused',
-  ondemand: 'On demand',
-  finish: 'Finished',
-}
+export const statuses = [
+  'new',
+  'dev',
+  'process',
+  'product',
+  'pause',
+  'ondemand',
+  'finish',
+]

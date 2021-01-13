@@ -1,6 +1,8 @@
+import path from 'path'
 import ViteComponents from 'vite-plugin-components'
 import Voie from 'vite-plugin-voie'
 import PurgeIcons from 'vite-plugin-purge-icons'
+import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
@@ -58,6 +60,10 @@ export default defineConfig({
       // Subdirectory paths for ignoring namespace prefixes
       // works when `directoryAsNamespace: true`
       globalNamespaces: [],
+    }),
+    vueI18n({
+      compositionOnly: false,
+      include: path.resolve(__dirname, './src/locales/**'),
     }),
     PurgeIcons({
       /* PurgeIcons Options */

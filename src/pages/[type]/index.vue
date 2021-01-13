@@ -8,7 +8,7 @@
         :class="{ active: atype == type }"
         @click="$router.push({ path: '/' + atype })"
       >
-        <IconType :type="atype" /> {{ atype }}s
+        <IconType :type="atype" /> {{ $t("type." + atype) }}
         <span class="count"> </span>
       </div>
     </aside>
@@ -50,6 +50,7 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const title = useTitle();
+
     const types = model.all;
 
     const feeds = reactive({
@@ -142,7 +143,7 @@ export default {
 }
 .types {
   min-width: max-content;
-  scroll-snap-align: start end;
+  scroll-snap-align: start;
   overflow-y: scroll;
   height: 100%;
   display: flex;
@@ -180,6 +181,7 @@ export default {
   scroll-snap-type: x mandatory;
   overscroll-behavior-x: none;
   width: 100%;
+  scroll-snap-stop: always;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-overflow-scrolling: touch;
 }
