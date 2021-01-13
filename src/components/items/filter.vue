@@ -21,7 +21,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { user } from "../../store/user";
-import { itemColor } from "../../tools/colors";
+import { itemColor } from "../../use/colors";
 
 export default defineComponent({
   emits: ["star", "seen", "trash"],

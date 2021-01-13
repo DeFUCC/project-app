@@ -39,7 +39,7 @@
 
 <script>
 import { model } from "../../store/model";
-import { itemColor } from "../../tools/colors";
+import { itemColor } from "../../use/colors";
 import { computed, defineComponent } from "vue";
 import { truncate } from "../../use/item";
 

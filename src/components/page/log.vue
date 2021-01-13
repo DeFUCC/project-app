@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, watchEffect } from "vue";
-import { format } from "../../tools/locale";
+import { format } from "../../use/locale";
 import { gun } from "../../store/gun-db";
 import { error, notify } from "../../store/history";
 

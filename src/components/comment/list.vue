@@ -51,7 +51,7 @@ import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import { appPath, db, gun, soul } from "../../store/gun-db";
 import { error } from "../../store/history";
 import { user } from "../../store/user";
-import { format } from "../../tools/locale";
+import { format } from "../../use/locale";
 
 export default defineComponent({
   props: {

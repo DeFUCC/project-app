@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { itemColor } from "../tools/colors";
+import { itemColor } from "../use/colors";
 import { user, logOut } from "../store/user";
 import { useRouter } from "vue-router";
 import { watchEffect } from "vue";

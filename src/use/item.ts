@@ -1,7 +1,7 @@
 import { user } from './../store/user'
 import { computed, watchEffect, reactive } from 'vue'
 import { gun, db, sea, genUuid, soul, appPath } from '../store/gun-db'
-import { generateWords } from '../tools/randomWords'
+import { generateWords } from '../use/randomWords'
 import { error, notify } from '../store/history'
 
 export interface Item {
@@ -37,7 +37,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
     title: truncate(data.title) || generateWords(2),
     description: '',
     type: type,
-    parent: parent || null,
+    parent: parent || user?.is?.pub,
     status: 'new',
     createdAt: Date.now(),
     log: {

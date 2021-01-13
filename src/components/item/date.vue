@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { getState } from "../../store/gun-db";
-import { format } from "../../tools/locale";
+import { format } from "../../use/locale";
 
 export default defineComponent({
   props: {

@@ -70,7 +70,7 @@ import { ref, watch, watchEffect, computed, reactive, onMounted } from "vue";
 import { truncate } from "../../use/item";
 import { model } from "../../store/model";
 import { user } from "../../store/user";
-import { itemColor } from "../../tools/colors";
+import { itemColor } from "../../use/colors";
 import { appPath, gun } from "../../store/gun-db";
 import { notify } from "../../store/history";
 

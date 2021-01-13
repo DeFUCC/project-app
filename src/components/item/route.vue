@@ -18,9 +18,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
-import { gun } from "../../store/gun-db";
-import { itemColor } from "../../tools/colors";
+import { defineComponent, reactive, watchEffect } from "vue";
+import { gun, soul } from "../../store/gun-db";
+import { itemColor } from "../../use/colors";
 
 export default defineComponent({
   emits: ["open"],
@@ -30,21 +30,23 @@ export default defineComponent({
   setup(props) {
     const route = reactive([]);
 
-    getParents();
-
-    async function getParents() {
+    watchEffect(() => {
       route.length = 0;
       let id = props.id;
       for (let p = 0; p < 12; p++) {
         if (!id) {
           break;
         }
-        route[p] = await gun.get(id);
-        route[p].soul = id;
-        id = route[p]?.parent;
+        gun.get(id).once((item) => {
+          if (item) {
+            route[p] = item;
+            route[p].soul = id;
+            id = item?.parent;
+          }
+        });
       }
       route.reverse();
-    }
+    });
 
     return {
       itemColor,

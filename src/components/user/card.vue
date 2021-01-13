@@ -14,7 +14,7 @@
 <script>
 import { computed, reactive } from "vue";
 import { useUserProfile } from "../../use/userProfile";
-import { itemColor } from "../../tools/colors";
+import { itemColor } from "../../use/colors";
 export default {
   props: ["user"],
   setup(props) {

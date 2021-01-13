@@ -25,7 +25,7 @@
 <script lang="ts">
 import { onMounted, reactive, ref, watch, watchEffect } from "vue";
 import { types } from "../store/model";
-import { itemColor } from "../tools/colors";
+import { itemColor } from "../use/colors";
 import { useRoute, useRouter } from "vue-router";
 import { useTitle } from "@vueuse/core";
 import { gun } from "../store/gun-db";

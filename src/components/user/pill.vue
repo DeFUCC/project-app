@@ -16,7 +16,7 @@
 <script lang="ts">
 import { defineComponent, reactive, watchEffect } from "vue";
 import { db, gun } from "../../store/gun-db";
-import { itemColor } from "../../tools/colors";
+import { itemColor } from "../../use/colors";
 import { truncate } from "../../use/item";
 
 export default defineComponent({

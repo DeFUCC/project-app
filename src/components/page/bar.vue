@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { itemColor } from "../../tools/colors";
+import { itemColor } from "../../use/colors";
 
 export default defineComponent({
   emits: ["close", "open"],
