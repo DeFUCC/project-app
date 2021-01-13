@@ -79,7 +79,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 
 ```
 - / - root - Logo, title, a short description and links to all features
-  - /browse - lists of certain type items
+  - /[type] - lists of certain type items
   - /[type]/?0=ID1,1=ID2... items of the type with graph navigation
 - /page?id=ID - item presentation as a whole. Just a starting panel for the same browsing
 ```

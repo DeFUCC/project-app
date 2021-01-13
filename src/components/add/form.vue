@@ -5,7 +5,6 @@
       <span class="iconify" data-icon="la:plus"></span>
     </button>
   </form>
-  {{ type }}
 </template>
 
 <script lang="ts">

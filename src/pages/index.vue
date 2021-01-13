@@ -27,6 +27,7 @@ article {
   overflow-x: hidden;
   height: 100%;
   scroll-margin-bottom: 20px;
+  width: 100%;
 }
 .logo {
   width: 192px;

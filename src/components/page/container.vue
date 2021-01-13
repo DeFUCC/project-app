@@ -45,13 +45,13 @@
       </div>
       <EditTeam v-if="false" :id="item.soul" :editable="editable" />
 
-      <EditDate type="start" :id="item.soul" :editable="editable" />
-      <EditDate type="finish" :id="item.soul" :editable="editable" />
       <EditDescription
         :text="item.description"
         :editable="editable"
         @update="update('description', $event)"
       />
+      <EditDate type="start" :id="item.soul" :editable="editable" />
+      <EditDate type="finish" :id="item.soul" :editable="editable" />
     </section>
 
     <ItemsContainer

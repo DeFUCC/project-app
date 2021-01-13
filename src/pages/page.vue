@@ -21,7 +21,7 @@ export default {
       id.value = route.query.id;
     });
     function close() {
-      router.push({ path: "/browse" });
+      router.push({ path: "/app" });
     }
     function open(val) {
       router.push({

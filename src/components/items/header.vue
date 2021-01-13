@@ -1,5 +1,6 @@
 <template>
   <section class="bar">
+    <IconType :type="type" />
     <ItemsFilter
       :my="options.filterMy"
       @star="options.filterMy.star = !options.filterMy.star"

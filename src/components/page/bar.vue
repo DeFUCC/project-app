@@ -5,11 +5,11 @@
     }"
     class="row"
   >
+    <ItemRoute :id="id" @open="$emit('open', $event)" />
+    <div class="spacer"></div>
     <span class="close" @click="$emit('close')">
       <span class="iconify" data-icon="la:times"></span>
     </span>
-    <ItemRoute :id="id" @open="$emit('open', $event)" />
-    <div class="spacer"></div>
   </aside>
 </template>
 

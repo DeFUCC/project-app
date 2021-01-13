@@ -3,7 +3,7 @@ import routes from 'voie-pages'
 
 export const router = createRouter({
   history: createWebHistory(),
-  routes: [{ path: '/browse', redirect: '/browse/design' }, ...routes],
+  routes: [{ path: '/app', redirect: '/design' }, ...routes],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return new Promise((res, rej) => {
@@ -17,13 +17,14 @@ export const router = createRouter({
   },
 })
 
+/*
 router.afterEach((to, from) => {
   const toDepth = to.path.split('/').length
   const fromDepth = from.path.split('/').length
   to.meta.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
 })
 
-/*
+
 router.beforeEach((to, from) => {
   // instead of having to check every route record with
   // to.matched.some(record => record.meta.requiresAuth)

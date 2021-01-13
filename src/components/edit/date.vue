@@ -3,27 +3,29 @@
     <div class="row">
       <div class="type">
         {{ type }}
-        <span @click="date.add()" v-if="!date.timestamp"
+        <span @click="add()" v-if="!date.timestamp && editable"
           ><i class="iconify" data-icon="la:plus"></i
         ></span>
       </div>
       <div class="date" v-if="date.timestamp">
-        {{ date.local }}
-        <span v-if="editable" @click="date.edit = !date.edit"
-          ><i class="iconify" data-icon="la:pen"></i
-        ></span>
-        <span @click="date.remove"
-          ><i class="iconify" data-icon="la:trash"></i
-        ></span>
-        <form v-if="editable" v-show="date.edit" @submit.prevent>
-          <input
-            type="date"
-            name="date"
-            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-            @input="date.set($event)"
-            :value="date.value"
-          />
-        </form>
+        {{ parsed.toLocaleDateString() }}
+        <div class="edit" v-if="editable">
+          <span @click="date.edit = !date.edit"
+            ><i class="iconify" data-icon="la:pen"></i
+          ></span>
+          <span @click="remove()"
+            ><i class="iconify" data-icon="la:trash"></i
+          ></span>
+          <form v-show="date.edit" @submit.prevent>
+            <input
+              type="date"
+              name="date"
+              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+              @input="set($event)"
+              :value="parsed.toLocaleDateString('en-CA')"
+            />
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -45,31 +47,35 @@ export default defineComponent({
   setup(props) {
     const date = reactive({
       edit: false,
-      timestamp: Date.now(),
-      gun: computed(() => gun.get(props.id).get(`date-${props.type}`)),
-      value: computed(() =>
-        new Date(date.timestamp).toLocaleDateString("en-CA")
-      ),
-      local: computed(() => new Date(date.timestamp).toLocaleDateString()),
-      add() {
-        date.gun.put(Date.now());
-      },
-      remove() {
-        date.gun.put(null);
-      },
-      set(ev) {
-        let timestamp = Date.parse(ev.target.value);
-        date.gun.put(timestamp);
-        date.edit = false;
-      },
+      timestamp: undefined,
     });
 
-    date.gun.on((t) => {
+    const dateGun = gun.get(props.id).get(`date-${props.type}`);
+
+    const parsed = computed(() => new Date(date.timestamp));
+
+    function add() {
+      dateGun.put(Date.now());
+    }
+    function remove() {
+      dateGun.put(null);
+    }
+    function set(ev) {
+      let timestamp = Date.parse(ev.target.value);
+      dateGun.put(timestamp);
+      date.edit = false;
+    }
+
+    dateGun.on((t) => {
       date.timestamp = t;
     });
 
     return {
       date,
+      parsed,
+      add,
+      remove,
+      set,
     };
   },
 });

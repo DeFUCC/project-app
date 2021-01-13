@@ -10,7 +10,7 @@
     <router-link class="logo" to="/"
       ><img src="/icons/feeds.svg" alt=""
     /></router-link>
-    <router-link to="/browse/"
+    <router-link to="/design/"
       ><span
         class="iconify"
         data-icon="la:poll-h-solid"
