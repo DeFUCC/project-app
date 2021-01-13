@@ -1,12 +1,25 @@
 <template>
   <main class="columns">
+    <aside class="types">
+      <div
+        class="type"
+        v-for="atype in types"
+        :key="atype"
+        :class="{ active: atype == type }"
+        @click="$router.push({ path: atype })"
+      >
+        <IconType :type="atype" /> {{ atype }}s
+        <span class="count"> </span>
+      </div>
+    </aside>
     <article class="column">
-      <ItemsContainer
-        type="all"
-        :active="feeds.type"
-        @select="$router.push({ path: $event })"
-        @open="feeds.open($event, -1)"
-      />
+      <keep-alive>
+        <ItemsList
+          :key="type"
+          :type="type"
+          @open="feeds.open($event, -1)"
+        ></ItemsList>
+      </keep-alive>
     </article>
 
     <article v-for="(feed, num) in feeds.list" :key="num" class="column">
@@ -23,7 +36,7 @@
 
 <script lang="ts">
 import { onMounted, reactive, ref, watch, watchEffect } from "vue";
-import { types } from "../../store/model";
+import { model, types } from "../../store/model";
 import { itemColor } from "../../use/colors";
 import { useRoute, useRouter } from "vue-router";
 import { useTitle } from "@vueuse/core";
@@ -37,6 +50,7 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const title = useTitle();
+    const types = model.all;
 
     const feeds = reactive({
       type: route.query["type"] || "design",
@@ -110,6 +124,9 @@ export default {
   left: 0;
   background-color: var(--background);
 }
+.column.items {
+  flex-flow: column wrap;
+}
 .bordered {
   border-left-width: 6px;
   border-left-style: solid;
@@ -118,11 +135,27 @@ export default {
   display: flex;
   align-items: center;
 }
+.types {
+  min-width: max-content;
+  scroll-snap-align: start end;
+}
 .type {
-  font-size: 2em;
+  font-size: 1em;
   opacity: 0.4;
   cursor: pointer;
   transition: all 300ms ease;
+  display: flex;
+  align-items: center;
+  background-color: #ccc;
+  padding: 0 0.4em 0 0;
+}
+.type img {
+  font-size: 2em;
+  height: 2em;
+}
+.type .count {
+  font-size: 18px;
+  white-space: nowrap;
 }
 .type:hover {
   opacity: 0.7;

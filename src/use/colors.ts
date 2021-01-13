@@ -2,8 +2,8 @@ import ColorHash from 'color-hash'
 import { soul, isNode, uuid } from '../store/gun-db'
 
 const color = new ColorHash({
-  saturation: [0.1, 0.2, 0.2],
-  lightness: [0.75, 0.85, 0.9],
+  saturation: [0.12, 0.15, 0.2],
+  lightness: [0.85, 0.9, 0.92],
 })
 
 export function itemColor(item: any): string {

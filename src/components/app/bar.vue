@@ -77,7 +77,7 @@ export default {
 }
 nav {
   scroll-snap-align: start;
-  flex: 0 0 42px;
+  flex: 0 0 60px;
   display: flex;
   align-items: center;
   flex-flow: column nowrap;
@@ -91,8 +91,8 @@ nav {
 .spacer {
   flex: 10 1 100px;
 }
-#app-bar a {
-  padding: 0.5em;
+nav a {
+  padding: 1em;
 }
 a svg {
   font-size: 1.4em;

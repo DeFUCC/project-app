@@ -39,7 +39,8 @@ export default defineComponent({
   display: flex;
   position: sticky;
   z-index: 20;
-  top: 24px;
+  top: 0;
+  flex: 0 0 60px;
   min-height: 3em;
   flex-flow: row nowrap;
   align-items: center;
