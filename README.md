@@ -75,6 +75,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 
 ## Inspiration found
 - [Notes](https://notes.andymatuschak.org/) by Andy Matuschak
+- [Gun-iris starter page](https://gun-iris.herokuapp.com) by Marti Malmi
 
 
 ### SEA.Certify **TBD**
