@@ -15,7 +15,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
     - `useTitle()` for page title manipulations
   - [Vetur](https://vuejs.github.io/vetur/) as a VSCode extenion for highlighting and formatting code in vue SFCs
     - [Pug](https://pugjs.org) - a template language for shorter html templates
-    - [Stylus](https://stylus-lang.com/) - a preprocessor for more compact CSS code with [Stylus Supremacy]() VSCode extension
+    - [Stylus](https://stylus-lang.com/) - a preprocessor for more compact CSS code with [Stylus Supremacy](https://thisismanta.github.io/stylus-supremacy/) VSCode extension
       -   `"stylusSupremacy.insertColons": false,
     "stylusSupremacy.insertSemicolons": false,
     "stylusSupremacy.insertBraces": false,`
