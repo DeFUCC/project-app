@@ -1,5 +1,5 @@
 <template lang="pug">
-section
+.list-holder
   items-header(
     :parent="parent",
     :type="type",

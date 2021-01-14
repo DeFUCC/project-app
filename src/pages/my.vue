@@ -1,6 +1,7 @@
 <template lang="pug">
 article.page(v-if="user.is")
   header.bar(:style="{ background: pubGradient(user.is?.pub, -90) }")
+    user-avatar(:pic="user?.info?.icon", size="medium")
     .title {{ user.is?.alias }}
     .spacer
     button(@click="logOut()") Log out

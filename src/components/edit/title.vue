@@ -11,6 +11,7 @@
       type="text",
       v-model="newTitle"
     )
+  slot
 </template>
 
 <script lang="ts">

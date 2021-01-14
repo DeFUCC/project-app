@@ -58,7 +58,7 @@ nav
   flex-flow column nowrap
   background-color var(--top-bar)
   white-space nowrap
-  width 100%
+  width 60px
 
 .router-link-active svg
   color #000

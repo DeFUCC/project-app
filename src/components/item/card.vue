@@ -15,7 +15,6 @@ li.item(
       .info
         edit-status(:id="item.soul")
         user-pill(:id="item?.soul.slice(1, 88)")
-        item-date(:item="item")
         comment-count(:id="item.soul")
     aside.side
       item-children(:id="item.soul")

@@ -31,11 +31,15 @@ export default {
 .avatar
   border-radius 8em
 
-.avatar.small
+.small
   width 1.5em
   height 1.5em
 
-.avatar.medium
+.medium
   width 4em
   height 4em
+
+.big
+  width 8em
+  height 8em
 </style>

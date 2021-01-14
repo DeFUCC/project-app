@@ -1,8 +1,8 @@
 <template lang="pug">
-section
-  article.column
+.columns
+  .column
     items-list(type="user", @open="feeds.open($event, -1)")
-  article.column(v-for="(feed, num) in feeds.list", :key="num")
+  .column(v-for="(feed, num) in feeds.list", :key="num")
     page-container(
       @open="feeds.open($event, num)",
       @close="feeds.close(num)",

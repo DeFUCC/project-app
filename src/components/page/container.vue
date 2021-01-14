@@ -24,12 +24,12 @@ article.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
           :text="item.title",
           @update="update('title', $event)"
         )
+          router-link.link(:to="{ path: '/page', query: { id: item.soul } }")
+            i.iconify(data-icon="la:link")
         .author
+          edit-status(:id="item.soul", :editable="editable")
           user-pill(:id="item.soul.slice(1, 88)")
           item-date(:item="item")
-          edit-status(:id="item.soul", :editable="editable")
-          router-link(:to="{ path: '/page', query: { id: item.soul } }")
-            i.iconify(data-icon="la:link")
     edit-team(v-if="false", :id="item.soul", :editable="editable")
     edit-description(
       :text="item.description",
@@ -164,6 +164,9 @@ export default {
 .pill
   margin 4px
   padding 0 8px 0 4px
+
+.link
+  font-size 1.4em
 
 .info
   font-size 0.7em

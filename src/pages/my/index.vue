@@ -1,12 +1,11 @@
-<template>
-  <article id="profile">
-    <h1>My profile</h1>
-    <section class="avatar-editor">
-      {{ user.info.createdAt }}
-      <button v-if="!published" @click="publishUser()">Publish</button>
-    </section>
-  </article>
+<template lang="pug">
+#profile
+  h1 {{ user.info.title }}
+  button(v-if="!published", @click="publishUser()") Publish
+  user-avatar(:pic="user?.info?.icon", size="big")
 </template>
+
+
 
 <script lang="ts">
 import { ref } from "vue";
@@ -17,11 +16,10 @@ export default {
   props: {
     alias: String,
   },
-
   setup(props) {
     const published = ref(false);
     db.get("user")
-      .get(user.is.pub)
+      .get(user.is?.pub)
       .once((val) => {
         published.value = val;
       });
@@ -37,20 +35,4 @@ export default {
 <style lang="stylus" scoped>
 #profile
   padding 1em
-
-.avatar-editor
-  display flex
-
-.edit-avatar
-  border-radius 80px
-  display flex
-  background-repeat no-repeat
-  height 100px
-  width 100px
-  justify-content center /* align horizontal */
-  align-items center /* align vertical */
-  font-size 4em
-  color black
-  cursor pointer
-  font-weight bold
 </style>
