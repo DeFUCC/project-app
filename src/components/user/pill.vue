@@ -43,19 +43,18 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.pad {
-  padding: 0.5em;
-}
-.alias {
-  border-bottom-style: solid;
-  border-bottom-width: 4px;
-}
-.user {
-  display: flex;
-  align-items: center;
-  border-radius: 1em;
-  padding: 4px;
-  white-space: nowrap;
-}
+<style lang="stylus" scoped>
+.pad
+  padding 0.5em
+
+.alias
+  border-bottom-style solid
+  border-bottom-width 4px
+
+.user
+  display flex
+  align-items center
+  border-radius 1em
+  padding 4px
+  white-space nowrap
 </style>

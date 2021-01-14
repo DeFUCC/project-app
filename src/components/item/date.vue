@@ -1,11 +1,9 @@
-<template>
-  <span v-if="item.createdAt && !item.updatedAt">
-    {{ format(item.createdAt).date }}
-  </span>
-  <span v-if="item.updatedAt">
-    <span class="iconify" data-icon="la:pen"></span>
-    {{ format(item.updatedAt).date }}
-  </span>
+<template lang="pug">
+.date(v-if="item.createdAt && !item.updatedAt")
+  | {{ format(item.createdAt).date }}
+.date(v-if="item.updatedAt")
+  span.iconify(data-icon="la:pen")
+  | {{ format(item.updatedAt).date }}
 </template>
 
 <script lang="ts">
@@ -26,5 +24,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-</style>
+<style lang="stylus" scoped></style>

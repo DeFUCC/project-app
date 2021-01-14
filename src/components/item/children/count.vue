@@ -1,8 +1,7 @@
-<template>
-  <div class="count" v-if="count > 0">
-    <img class="icon" :src="icon" alt="" />
-    {{ count }}
-  </div>
+<template lang="pug">
+.count(v-if="count > 0")
+  img.icon(:src="icon", alt="")
+  | {{ count }}
 </template>
 
 <script lang="ts">
@@ -32,19 +31,18 @@ export default {
 };
 </script>
 
-<style scoped>
-.count {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  color: #444;
-  background-color: hsla(0, 0%, 100%, 0.2);
-  opacity: 0.9;
-  flex: 1;
-  padding: 4px;
-}
-.icon {
-  width: 1.5em;
-}
+<style lang="stylus" scoped>
+.count
+  display flex
+  flex-flow row nowrap
+  align-items center
+  justify-content center
+  color #444
+  background-color hsla(0, 0%, 100%, 0.2)
+  opacity 0.9
+  flex 1
+  padding 4px
+
+.icon
+  width 1.5em
 </style>

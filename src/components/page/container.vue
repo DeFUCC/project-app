@@ -135,43 +135,41 @@ export default {
 };
 </script>
 
-<style scoped>
-.page {
-  color: #333;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  display: flex;
-  flex-flow: column nowrap;
-  border-left: 6px solid #999;
-}
-.main {
-  display: flex;
-  align-items: center;
-  padding: 1em;
-}
-.title {
-  display: flex;
-  align-items: center;
-  font-size: 1.8em;
-}
-.title h3 {
-  margin: 0.5em 0;
-}
-.author {
-  display: flex;
-  align-items: center;
-}
+<style lang="stylus" scoped>
+.page
+  color #333
+  overflow-y scroll
+  overflow-x hidden
+  display flex
+  flex-flow column nowrap
+  border-left 6px solid #999
 
-.pill {
-  margin: 4px;
-  padding: 0 8px 0 4px;
-}
-.info {
-  font-size: 0.7em;
-  display: flex;
-  align-items: flex-start;
-  flex-flow: column nowrap;
-  padding: 4px;
-  flex: 1 1 360px;
-}
+.main
+  display flex
+  align-items center
+  padding 1em
+
+.title
+  display flex
+  align-items center
+  font-size 1.8em
+
+.title h3
+  margin 0.5em 0
+
+.author
+  display flex
+  align-items center
+
+.pill
+  margin 4px
+  padding 0 8px 0 4px
+
+.info
+  font-size 0.7em
+  display flex
+  align-items flex-start
+  flex-flow column nowrap
+  padding 4px
+  flex 1 1 360px
 </style>

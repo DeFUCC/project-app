@@ -1,3 +1,6 @@
+'404':
+  sorry: Sorry!
+  text: Nothing found here.
 app:
   title: Project app
 type:
@@ -18,11 +21,9 @@ status:
   pause: Paused
   ondemand: On demand
   finish: Finished
-  null: no status
+  'null': no status
 date:
   start: Start date
   finish: Finish date
-
-'404':
-  sorry: Sorry!
-  text: Nothing found here.
+log:
+  title: Log

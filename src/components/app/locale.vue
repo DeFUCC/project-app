@@ -1,20 +1,13 @@
-<template>
-  <div class="locale active" @click="edit = !edit" v-show="!edit">
-    {{ locale }}
-  </div>
-  <div class="locale choose" v-if="edit">
-    <span
-      v-for="loc in locales"
-      @click="
-        changeLocale(loc);
-        edit = false;
-      "
-      :key="loc"
-      :class="{ active: loc == locale }"
-      class="locale"
-      >{{ loc }}</span
-    >
-  </div>
+<template lang="pug">
+.locale.active(@click="edit = !edit", v-show="!edit") {{ locale }}
+.locale.choose(v-if="edit")
+  span.locale(
+    v-for="loc in locales",
+    @click="changeLocale(loc); edit = false",
+    :key="loc",
+    :class="{ active: loc == locale }"
+  ).
+    {{ loc }}
 </template>
 
 <script lang="ts">
@@ -37,12 +30,11 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.locale {
-  padding: 0.5em;
-  cursor: pointer;
-}
-.active {
-  font-weight: bold;
-}
+<style lang="stylus" scoped>
+.locale
+  padding 0.5em
+  cursor pointer
+
+.active
+  font-weight bold
 </style>

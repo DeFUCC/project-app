@@ -48,25 +48,21 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.add {
-  scroll-snap-align: start end;
-}
-form {
-  display: flex;
-  align-items: center;
-  padding: 1em;
-}
-.title {
-  margin: 0;
-  flex: 1 0;
-  font-size: 1em;
-  border: 1px solid #aaa;
-  outline: none;
-  width: 1em;
-  transition: all 300ms ease-in-out;
-}
-.title:focus {
-  width: 6em;
-}
+<style lang="stylus" scoped>
+form
+  display flex
+  align-items center
+  padding 1em
+
+.title
+  margin 0
+  flex 1 0
+  font-size 1em
+  border 1px solid #aaa
+  outline none
+  width 1em
+  transition all 300ms ease-in-out
+
+.title:focus
+  width 6em
 </style>

@@ -9,7 +9,7 @@
     )
       icon-type(:type="atype")
       .type-name {{ $t(`type.${atype}`) }}
-      .count 
+
   .column
     transition(name="fade")
       keep-alive
@@ -30,8 +30,9 @@ import { itemColor } from "../../use/colors";
 import { useRoute, useRouter } from "vue-router";
 import { useTitle } from "@vueuse/core";
 import { gun } from "../../store/gun-db";
+
 export default {
-  name: "Designs",
+  name: "Browse",
   props: {
     type: String,
   },

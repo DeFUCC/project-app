@@ -1,14 +1,10 @@
-<template>
-  <router-link
-    :to="'/app/users/' + user.pub"
-    class="card"
-    :style="{
-      backgroundColor: itemColor(user.pub),
-    }"
-  >
-    <UserAvatar size="small" :pic="profile.icon" />
-    <h3 class="alias">{{ user.alias }}</h3>
-  </router-link>
+<template lang="pug">
+router-link.card(
+  :to="'/app/users/' + user.pub",
+  :style="{ backgroundColor: itemColor(user.pub) }"
+)
+  user-avatar(size="small", :pic="profile.icon")
+  h3.alias {{ user.alias }}
 </template>
 
 <script>
@@ -28,15 +24,14 @@ export default {
 };
 </script>
 
-<style scoped>
-.card {
-  padding: 1em;
-  margin: 0.5em 0;
-  display: flex;
-  align-items: center;
-  background-color: #eee;
-}
-h3 {
-  margin: 0;
-}
+<style lang="stylus" scoped>
+.card
+  padding 1em
+  margin 0.5em 0
+  display flex
+  align-items center
+  background-color #eee
+
+h3
+  margin 0
 </style>

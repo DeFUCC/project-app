@@ -27,21 +27,21 @@
     "remarkable": "^2.0.1",
     "vue": "^3.0.5",
     "vue-i18n": "^9.0.0-rc.2",
-    "vue-router": "^4.0.2"
+    "vue-router": "^4.0.3"
   },
   "devDependencies": {
-    "@iconify/json": "^1.1.284",
+    "@iconify/json": "^1.1.286",
     "@intlify/vite-plugin-vue-i18n": "^1.0.0-beta.12",
+    "@prettier/plugin-pug": "^1.13.2",
     "@types/node": "^14.14.20",
     "@vitejs/plugin-vue": "^1.0.5",
     "@vue/compiler-sfc": "^3.0.5",
     "pug": "^3.0.0",
     "stylus": "^0.54.8",
-    "@prettier/plugin-pug": "^1.13.2",
-    "vite": "^2.0.0-beta.19",
+    "vite": "^2.0.0-beta.27",
     "vite-plugin-components": "^0.6.6",
     "vite-plugin-md": "^0.2.1",
-    "vite-plugin-purge-icons": "^0.5.0",
+    "vite-plugin-purge-icons": "^0.5.1",
     "vite-plugin-voie": "^0.7.3"
   }
 }

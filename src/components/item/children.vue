@@ -1,12 +1,11 @@
-<template>
-  <div class="counters">
-    <ItemChildrenCount
-      :id="id"
-      :type="type"
-      v-for="type in types"
-      :key="type"
-    />
-  </div>
+<template lang="pug">
+.counters
+  item-children-count(
+    :id="id",
+    :type="type",
+    v-for="type in types",
+    :key="type"
+  )
 </template>
 
 <script lang="ts">
@@ -38,13 +37,12 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.counters {
-  flex: 1 1 100%;
-  margin: 0;
-  display: flex;
-  justify-content: stretch;
-  align-items: stretch;
-  flex-flow: row wrap;
-}
+<style lang="stylus" scoped>
+.counters
+  flex 1 1 100%
+  margin 0
+  display flex
+  justify-content stretch
+  align-items stretch
+  flex-flow row wrap
 </style>

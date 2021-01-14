@@ -1,27 +1,20 @@
-<template>
-  <article class="logs">
-    <header class="log-panel">
-      Log
-
-      <div class="spacer"></div>
-      {{ state.total }}
-      <span v-if="editable" @click="state.open = !state.open">
-        <i class="iconify" data-icon="la:angle-down-solid"></i>
-      </span>
-    </header>
-    <transition-group name="list">
-      <div
-        class="log"
-        v-for="(log, key) in chronoLogs"
-        :key="key"
-        :class="{ [log[1].split('|')[0]]: true }"
-      >
-        <div class="date">{{ format(log[0], "short").date }}</div>
-        <div class="tag">{{ log[1].split("|")[0] }}</div>
-        <div class="text">{{ log[1].split("|")[1] }}</div>
-      </div>
-    </transition-group>
-  </article>
+<template lang="pug">
+article.logs
+  header.log-panel
+    .title {{ $t('log.title') }}
+    .spacer
+    .count {{ state.total }}
+    span(v-if="editable", @click="state.open = !state.open")
+      i.iconify(data-icon="la:angle-down-solid")
+  transition-group(name="list")
+    .log(
+      v-for="(log, key) in chronoLogs",
+      :key="key",
+      :class="{ [log[1].split('|')[0]]: true }"
+    )
+      .date {{ format(log[0], 'short').date }}
+      .tag {{ log[1].split('|')[0] }}
+      .text {{ log[1].split('|')[1] }}
 </template>
 
 <script lang="ts">
@@ -90,40 +83,39 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-form {
-  display: flex;
-  align-items: center;
-}
-.logs {
-  padding: 1em;
-  display: flex;
-  flex-flow: column nowrap;
-  font-size: 0.9em;
-}
-.log-panel {
-  padding: 0.5em;
-  display: flex;
-  align-items: center;
-  flex: 1 0 2em;
-}
-.log {
-  display: flex;
-  flex: 1 1 2em;
-}
-.log div {
-  padding: 4px;
-}
-.undefined {
-  opacity: 0.2;
-}
-.created {
-  background-color: #ddd;
-}
-.edited {
-  opacity: 0.5;
-}
-.updated {
-  background-color: rgb(157, 180, 147);
-}
+<style lang="stylus" scoped>
+form
+  display flex
+  align-items center
+
+.logs
+  padding 1em
+  display flex
+  flex-flow column nowrap
+  font-size 0.9em
+
+.log-panel
+  padding 0.5em
+  display flex
+  align-items center
+  flex 1 0 2em
+
+.log
+  display flex
+  flex 1 1 2em
+
+.log div
+  padding 4px
+
+.undefined
+  opacity 0.2
+
+.created
+  background-color #ddd
+
+.edited
+  opacity 0.5
+
+.updated
+  background-color rgb(157, 180, 147)
 </style>

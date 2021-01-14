@@ -1,11 +1,10 @@
-<template>
-  <img
-    class="avatar"
-    v-if="pic"
-    :src="pic"
-    :class="{ [size]: true }"
-    :alt="user.is.alias"
-  />
+<template lang="pug">
+img.avatar(
+  v-if="pic",
+  :src="pic",
+  :class="{ [size]: true }",
+  :alt="user.is.alias"
+)
 </template>
 
 <script>
@@ -28,18 +27,15 @@ export default {
 };
 </script>
 
-<style>
-.avatar {
-  border-radius: 8em;
-}
+<style lang="stylus" scoped>
+.avatar
+  border-radius 8em
 
-.avatar.small {
-  width: 1.5em;
-  height: 1.5em;
-}
+.avatar.small
+  width 1.5em
+  height 1.5em
 
-.avatar.medium {
-  width: 4em;
-  height: 4em;
-}
+.avatar.medium
+  width 4em
+  height 4em
 </style>

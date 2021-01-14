@@ -13,6 +13,12 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [i18n](https://vue-i18n-next.intlify.dev/) internationalization via global yaml files
   - [VueUse](https://vueuse.js.org) helpers 
     - `useTitle()` for page title manipulations
+  - [Vetur](https://vuejs.github.io/vetur/) as a VSCode extenion for highlighting and formatting code in vue SFCs
+    - [Pug](https://pugjs.org) - a template language for shorter html templates
+    - [Stylus](https://stylus-lang.com/) - a preprocessor for more compact CSS code with [Stylus Supremacy]() VSCode extension
+      -   `"stylusSupremacy.insertColons": false,
+    "stylusSupremacy.insertSemicolons": false,
+    "stylusSupremacy.insertBraces": false,`
 - [Vite 2](https://vitejs.dev/) as the fast development environment with modular bundling, with magic plugins by [Antfu](https://github.com/antfu)
   - [voie](https://github.com/vamplate/vite-plugin-voie)  enables file system based routing (all routes are parsed from file structure under the *./src/pages* folder) 
   - [vite-plugin-components](https://github.com/antfu/vite-plugin-components) automatically import components from *./src/components* **done**

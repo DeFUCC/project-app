@@ -1,29 +1,24 @@
-<template>
-  <section class="team">
-    <div class="row">Team</div>
-    <div class="role">
-      <UserPill :author="id.slice(1, 88)" />
-      <span v-if="editable" class="edit" @click="edit = !edit"
-        ><i class="iconify" data-icon="la:plus"></i
-      ></span>
-      <UserPill
-        :author="member"
-        v-for="(is, member) in team"
-        :key="member"
+<template lang="pug">
+section.team
+  .row Team
+  .role
+    userpill(:author="id.slice(1, 88)")
+      span.edit(v-if="editable", @click="edit = !edit")
+        i.iconify(data-icon="la:plus")
+      userpill(
+        :author="member",
+        v-for="(is, member) in team",
+        :key="member",
         @click.prevent="removeMember(member)"
-        ><i class="iconify" data-icon="la:times"></i>
-      </UserPill>
-    </div>
-    <div class="list" v-if="editable && edit">
-      <UserPill
-        :author="user.pub"
-        v-for="user in users"
-        :key="user.alias"
-        @click.prevent="addMember(user.pub)"
-      >
-      </UserPill>
-    </div>
-  </section>
+      )
+        i.iconify(data-icon="la:times")
+  .list(v-if="editable && edit")
+    userpill(
+      :author="user.pub",
+      v-for="user in users",
+      :key="user.alias",
+      @click.prevent="addMember(user.pub)"
+    )
 </template>
 
 <script lang="ts">
@@ -90,8 +85,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.team {
-  padding: 1em;
-}
+<style lang="stylus" scoped>
+.team
+  padding 1em
 </style>

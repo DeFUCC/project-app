@@ -1,27 +1,21 @@
-<template>
-  <div class="description">
-    <div class="edit" @click="editor.open = !editor.open" v-if="editable">
-      <span v-if="!editor.open">
-        <i class="iconify" data-icon="la:pen-alt"></i>
-      </span>
-      <span v-if="editor.open">
-        <i class="iconify" data-icon="la:times"></i>
-      </span>
-    </div>
-    <div v-if="!editor.open" class="markdown" v-html="md"></div>
-    <form v-if="editable && editor.open" @submit.prevent>
-      <textarea
-        v-model="editor.text"
-        name="description"
-        @keyup.enter.meta="update"
-        @keyup.ctrl.enter="update"
-        :cols="30"
-        :rows="10"
-      ></textarea>
-      <button @click="update" class="save">Save</button>
-    </form>
-  </div>
-  <section></section>
+<template lang="pug">
+.description
+  .edit(@click="editor.open = !editor.open", v-if="editable")
+    span(v-if="!editor.open")
+      i.iconify(data-icon="la:pen-alt")
+    span(v-if="editor.open")
+      i.iconify(data-icon="la:times")
+  .markdown(v-if="!editor.open", v-html="md")
+  form(v-if="editable && editor.open", @submit.prevent="")
+    textarea(
+      v-model="editor.text",
+      name="description",
+      @keyup.enter.meta="update",
+      @keyup.ctrl.enter="update",
+      :cols="30",
+      :rows="10"
+    )
+    button.save(@click="update") Save
 </template>
 
 <script lang="ts">
@@ -42,9 +36,10 @@ export default defineComponent({
       text: "",
       open: false,
     });
-    const parser = new Remarkable().use(linkify);
+    //  const parser = new Remarkable().use(linkify);
     watchEffect(() => {
-      md.value = parser.render(props.text);
+      //    md.value = parser.render(props.text);
+      md.value = props.text;
       editor.text = props.text;
     });
 

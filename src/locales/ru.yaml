@@ -25,3 +25,5 @@ status:
 date:
   start: Дата начала
   finish: Дата окончания
+log:
+  title: Лог

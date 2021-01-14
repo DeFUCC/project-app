@@ -1,7 +1,6 @@
-<template>
-  <div class="card" v-if="item && item.title">
-    {{ item.type }} - {{ item.title }} - {{ item.createdAt }}
-  </div>
+<template lang="pug">
+.card(v-if="item && item.title")
+  | {{ item.type }} - {{ item.title }} - {{ item.createdAt }}
 </template>
 
 <script>
@@ -17,8 +16,7 @@ export default {
 };
 </script>
 
-<style scoped>
-.card {
-  padding: 1em;
-}
+<style lang="stylus" scoped>
+.card
+  padding 1em
 </style>

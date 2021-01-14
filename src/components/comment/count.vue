@@ -1,8 +1,6 @@
-<template>
-  <div class="counter" v-if="count">
-    <i class="iconify" data-icon="fe:comment-o"></i>
-    {{ count }}
-  </div>
+<template lang="pug">
+.counter(v-if="count")
+  i.iconify(data-icon="fe:comment-o") {{ count }}
 </template>
 
 <script lang="ts">
@@ -45,10 +43,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.counter {
-  padding: 0 0.7em;
-  display: flex;
-  align-items: center;
-}
+<style lang="stylus" scoped>
+.counter
+  padding 0 0.7em
+  display flex
+  align-items center
 </style>

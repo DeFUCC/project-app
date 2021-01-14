@@ -1,19 +1,13 @@
-<template>
-  <section class="notification">
-    <transition-group name="list" tag="div">
-      <div
-        class="message"
-        v-for="(msg, key) in unseen"
-        :key="key"
-        :style="{
-          backgroundColor: eventColors[msg.type],
-        }"
-      >
-        <div class="content">{{ msg.content }}</div>
-        <router-link class="more" to="/history">&equiv; </router-link>
-      </div>
-    </transition-group>
-  </section>
+<template lang="pug">
+section.notification
+  transition-group(name="list", tag="div")
+    .message(
+      v-for="(msg, key) in unseen",
+      :key="key",
+      :style="{ backgroundColor: eventColors[msg.type] }"
+    )
+      .content {{ msg.content }}
+      router-link.more(to="/history") &equiv;
 </template>
 
 <script>
@@ -28,25 +22,24 @@ export default {
 };
 </script>
 
-<style scoped>
-.notification {
-  position: fixed;
-  bottom: 2em;
-  left: 130px;
-  z-index: 50;
-}
-.message {
-  font-size: 0.7em;
-  padding: 0.5em;
-  background-color: #eee;
-  display: flex;
-  flex-flow: row;
-}
-.more {
-  padding: 0 0.4em;
-  text-decoration: none;
-}
-.content:first-letter {
-  text-transform: capitalize;
-}
+<style lang="stylus" scoped>
+.notification
+  position fixed
+  bottom 2em
+  left 130px
+  z-index 50
+
+.message
+  font-size 0.7em
+  padding 0.5em
+  background-color #eee
+  display flex
+  flex-flow row
+
+.more
+  padding 0 0.4em
+  text-decoration none
+
+.content:first-letter
+  text-transform capitalize
 </style>

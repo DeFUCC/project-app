@@ -1,30 +1,16 @@
-<template>
-  <div class="title">
-    <IconType :type="type" />
-    <h3 v-if="!edit">
-      {{ text }}
-      <span v-if="editable" class="edit" @click="edit = true"
-        ><i class="iconify" data-icon="la:pen"></i
-      ></span>
-    </h3>
-    <form
-      @submit.prevent="
-        $emit('update', newTitle);
-        edit = false;
-      "
-      v-if="edit"
-    >
-      <input
-        ref="title"
-        @blur="
-          $emit('update', newTitle);
-          edit = false;
-        "
-        type="text"
-        v-model="newTitle"
-      />
-    </form>
-  </div>
+<template lang="pug">
+.title
+  icon-type(:type="type")
+  h3(v-if="!edit") {{ text }}
+    span.edit(v-if="editable", @click="edit = true")
+      i.iconify(data-icon="la:pen")
+  form(@submit.prevent="$emit('update', newTitle); edit = false", v-if="edit")
+    input(
+      ref="title",
+      @blur="$emit('update', newTitle); edit = false",
+      type="text",
+      v-model="newTitle"
+    )
 </template>
 
 <script lang="ts">
@@ -47,5 +33,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-</style>
+<style lang="stylus" scoped></style>

@@ -1,16 +1,9 @@
-<template>
-  <aside
-    :style="{
-      backgroundColor: itemColor(id),
-    }"
-    class="row"
-  >
-    <ItemRoute :id="id" @open="$emit('open', $event)" />
-    <div class="spacer"></div>
-    <span class="close" @click="$emit('close')">
-      <span class="iconify" data-icon="la:times"></span>
-    </span>
-  </aside>
+<template lang="pug">
+aside.row(:style="{ backgroundColor: itemColor(id) }")
+  item-route(:id="id", @open="$emit('open', $event)")
+  .spacer
+  span.close(@click="$emit('close')")
+    span.iconify(data-icon="la:times")
 </template>
 
 <script lang="ts">
@@ -30,18 +23,17 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.row {
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  font-size: 14px;
-  min-height: 32px;
-}
-.close {
-  padding: 8px 16px;
-  cursor: pointer;
-}
+<style lang="stylus" scoped>
+.row
+  display flex
+  align-items center
+  position sticky
+  top 0
+  z-index 30
+  font-size 14px
+  min-height 32px
+
+.close
+  padding 8px 16px
+  cursor pointer
 </style>
