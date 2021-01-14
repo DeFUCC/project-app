@@ -12,6 +12,7 @@ li.item(
         .pill
           icon-type.type-icon(:type="item.type") 
           .name {{ truncate(item.title) }}
+        .description(v-if="item.description") {{ item.description }}
       .info
         edit-status(:id="item.soul")
         user-pill(:id="item?.soul.slice(1, 88)")
@@ -51,13 +52,29 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-.title h3
+.title
+  flex-flow row wrap
+  margin 0
+  display flex
+  align-items center
+  flex 1 1 100%
+
+.pill
+  display flex
+  align-items center
+
+.pill .name
   margin 0
   display flex
   align-items center
   font-size 1.2em
   line-height 1.4em
   flex 1
+
+.description
+  font-size 14px
+  flex 1 0 100%
+  padding 6px
 
 .main
   display flex
@@ -71,18 +88,6 @@ export default defineComponent({
   display flex
   flex-flow row wrap
   justify-content flex-start
-
-.pill
-  display flex
-  align-items center
-
-.title
-  flex-flow row wrap
-  margin 0
-  display flex
-  align-items center
-  font-size 1.2em
-  flex 1 1 100%
 
 .type-icon
   height 2em
