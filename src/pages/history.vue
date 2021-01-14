@@ -36,21 +36,20 @@ export default {
 };
 </script>
 
-<style scoped>
-article {
-  overflow-y: scroll;
-}
-.line {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  margin: 2px 0;
-}
-.date {
-  font-size: 0.8em;
-  flex: 0 0 10em;
-}
-.content {
-  flex: 4 1;
-}
+<style lang="stylus" scoped>
+article
+  overflow-y scroll
+
+.line
+  display flex
+  flex-flow row wrap
+  align-items center
+  margin 2px 0
+
+.date
+  font-size 0.8em
+  flex 0 0 10em
+
+.content
+  flex 4 1
 </style>

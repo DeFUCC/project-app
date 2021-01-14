@@ -1,26 +1,16 @@
-<template>
-  <router-link
-    :to="{
-      path: profile.pub != user.is?.pub ? `/users/${profile.pub}` : '/my',
-    }"
-    class="user"
-  >
-    <UserAvatar size="small" :pic="profile.avatar" class="pad" />
-    <span
-      class="alias"
-      :style="{
-        borderColor: itemColor(profile.pub),
-      }"
-    >
-      {{ profile.alias }}
-      <slot></slot>
-    </span>
-  </router-link>
+<template lang="pug">
+router-link.user(
+  :to="{ path: profile.pub != user.is?.pub ? `${appPath}/user` : '/my', query: { 0: profile.pub } }"
+)
+  user-avatar.pad(size="small", :pic="profile.avatar")
+  span.alias(:style="{ borderColor: itemColor(profile.pub) }")
+  | {{ profile.alias }}
+  slot
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, watchEffect } from "vue";
-import { db, gun } from "../../store/gun-db";
+import { db, gun, appPath } from "../../store/gun-db";
 import { user } from "../../store/user";
 import { itemColor } from "../../use/colors";
 import { truncate } from "../../use/item";
@@ -48,7 +38,7 @@ export default defineComponent({
       }
     });
 
-    return { profile, itemColor, user };
+    return { profile, itemColor, appPath, user };
   },
 });
 </script>

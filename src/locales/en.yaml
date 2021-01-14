@@ -22,3 +22,7 @@ status:
 date:
   start: Start date
   finish: Finish date
+
+'404':
+  sorry: Sorry!
+  text: Nothing found here.

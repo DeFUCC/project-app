@@ -1,28 +1,18 @@
-<template>
-  <article>
-    <header>Export</header>
-    <main>
-      <div class="row" v-for="(data, key) in item" :key="data">
-        <div class="key">{{ key }}</div>
-        <div v-if="typeof data != 'object' && data[0] != '~'" class="data">
-          {{ data }}
-        </div>
-        <router-link v-if="data?.[0] == '~'" :to="{ query: { id: data } }">{{
-          data
-        }}</router-link>
-        <div class="data" v-if="typeof data == 'object'">
-          <div v-show="!d['>']" class="detail" v-for="d in data" :key="d">
-            <div v-if="typeof d != 'object'">{{ d }}</div>
-            <div v-if="typeof d == 'object'">
-              <router-link :to="{ query: { id: d['#'] } }">{{
-                d["#"]
-              }}</router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </article>
+<template lang="pug">
+article
+  header Export
+  main
+    .row(v-for="(data, key) in item", :key="data")
+      .key {{ key }}
+      .data(v-if="typeof data != 'object' && data[0] != '~'")
+        | {{ data }}
+      router-link(v-if="data?.[0] == '~'", :to="{ query: { id: data } }")
+        | {{ data }}
+      .data(v-if="typeof data == 'object'")
+        .detail(v-for="(dt, k) in data", :key="k")
+          div(v-if="typeof dt != 'object'") {{ dt }}
+          div(v-if="dt && typeof dt == 'object'")
+            router-link(:to="{ query: { id: dt['#'] } }") {{ dt['#'] }}
 </template>
 
 <script lang="ts">
@@ -77,9 +67,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.row {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-}
+<style lang="stylus" scoped>
+.row
+  display grid
+  grid-template-columns 120px 1fr
 </style>

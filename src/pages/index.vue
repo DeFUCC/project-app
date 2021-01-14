@@ -1,8 +1,7 @@
-<template>
-  <article class="markdown">
-    <img class="logo" src="/icons/feeds.svg" alt="" />
-    <readme />
-  </article>
+<template lang="pug">
+article.markdown
+  img.logo(src="/icons/feeds.svg", alt="")
+  readme
 </template>
 
 <script lang="ts">
@@ -20,16 +19,15 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-article {
-  padding: 1em 2em;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 100%;
-  scroll-margin-bottom: 20px;
-  width: 100%;
-}
-.logo {
-  width: 192px;
-}
+<style lang="stylus" scoped>
+article
+  padding 1em 2em
+  overflow-y scroll
+  overflow-x hidden
+  height 100%
+  scroll-margin-bottom 20px
+  width 100%
+
+.logo
+  width 192px
 </style>

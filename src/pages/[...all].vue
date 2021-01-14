@@ -1,7 +1,7 @@
 <template>
   <div class="error">
-    <h1>Sorry!</h1>
-    Nothing is here.
+    <h1>{{ $t("404.sorry") }}</h1>
+    {{ $t("404.text") }}
   </div>
 </template>
 
@@ -9,9 +9,8 @@
 export default {};
 </script>
 
-<style scoped>
-.error {
-  padding: 2em;
-  background-color: rgb(255, 224, 224);
-}
+<style lang="stylus" scoped>
+.error
+  padding 2em
+  background-color rgb(255, 224, 224)
 </style>

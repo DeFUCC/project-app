@@ -36,6 +36,8 @@
     "@vitejs/plugin-vue": "^1.0.5",
     "@vue/compiler-sfc": "^3.0.5",
     "pug": "^3.0.0",
+    "stylus": "^0.54.8",
+    "@prettier/plugin-pug": "^1.13.2",
     "vite": "^2.0.0-beta.19",
     "vite-plugin-components": "^0.6.6",
     "vite-plugin-md": "^0.2.1",

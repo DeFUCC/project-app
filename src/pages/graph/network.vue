@@ -1,32 +1,20 @@
-<template>
-  <article ref="graph">
-    <section class="nodes">
-      <router-link
-        :to="{ path: '/app/page', query: { id: node.id } }"
-        class="node"
-        v-for="node in nodes"
-        :key="node"
-        :id="node.id"
-        :style="{ backgroundColor: itemColor(node.id) }"
-      >
-        <IconType :type="node.type" />
-        {{ node.name }} {{ node.x }} {{ node.y }}
-      </router-link>
-    </section>
-    <section class="links">
-      <div class="link" v-for="link in links" :key="link">
-        <div
-          class="from"
-          :style="{ backgroundColor: itemColor(link.source) }"
-        ></div>
-        <div
-          class="to"
-          :style="{ backgroundColor: itemColor(link.target) }"
-        ></div>
-      </div>
-    </section>
-    <div id="svg"></div>
-  </article>
+<template lang="pug">
+article(ref="graph")
+  section.nodes
+    router-link.node(
+      :to="{ path: '/app/page', query: { id: node.id } }",
+      v-for="node in nodes",
+      :key="node",
+      :id="node.id",
+      :style="{ backgroundColor: itemColor(node.id) }"
+    )
+      icon-type(:type="node.type")
+      |
+      | {{ node.name }} {{ node.x }} {{ node.y }}
+  section.links
+    .link(v-for="link in links", :key="link")
+      .from(:style="{ backgroundColor: itemColor(link.source) }")
+      .to(:style="{ backgroundColor: itemColor(link.target) }")
 </template>
 
 <script lang="ts">
@@ -122,29 +110,25 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.node {
-  padding: 0.5em;
-  border-radius: 2em;
-}
+<style lang="stylus" scoped>
+.node
+  padding 0.5em
+  border-radius 2em
 
-.link,
-.node {
-  display: flex;
-  align-items: center;
-}
-.link div {
-  padding: 1em;
-}
-.link div:first-child {
-  border-radius: 1em 0 0 1em;
-}
-.link div:last-child {
-  border-radius: 0 1em 1em 0;
-}
-.links,
-.nodes {
-  display: flex;
-  flex-flow: row wrap;
-}
+.link, .node
+  display flex
+  align-items center
+
+.link div
+  padding 1em
+
+.link div:first-child
+  border-radius 1em 0 0 1em
+
+.link div:last-child
+  border-radius 0 1em 1em 0
+
+.links, .nodes
+  display flex
+  flex-flow row wrap
 </style>

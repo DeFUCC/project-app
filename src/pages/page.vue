@@ -1,8 +1,6 @@
-<template>
-  <article>
-    <PageContainer v-if="id" @open="open" @close="close" :key="id" :id="id">
-    </PageContainer>
-  </article>
+<template lang="pug">
+article
+  page-container(v-if="id", @open="open", @close="close", :key="id", :id="id")
 </template>
 
 <script lang="ts">
@@ -39,9 +37,8 @@ export default {
 };
 </script>
 
-<style scoped>
-article {
-  width: 100%;
-  overflow-y: scroll;
-}
+<style lang="stylus" scoped>
+article
+  width 100%
+  overflow-y scroll
 </style>

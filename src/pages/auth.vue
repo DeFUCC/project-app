@@ -66,15 +66,14 @@ export default {
 };
 </script>
 
-<style scoped>
-.auth {
-  padding: 1em;
-}
-#auth {
-  display: flex;
-  flex-flow: column;
-}
-button {
-  margin: 1em;
-}
+<style lang="stylus" scoped>
+.auth
+  padding 1em
+
+#auth
+  display flex
+  flex-flow column
+
+button
+  margin 1em
 </style>

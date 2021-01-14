@@ -1,10 +1,8 @@
-<template>
-  <div v-if="icon || editable" class="icon" :class="{ editable }">
-    <img v-if="icon" :src="icon" />
-    <div @click="$emit('edit')" class="plus" v-if="!icon || editable">
-      <span class="iconify" data-icon="la:camera"></span>
-    </div>
-  </div>
+<template lang="pug">
+.icon(v-if="icon || editable", :class="{ editable }")
+  img(v-if="icon", :src="icon")
+  .plus(@click="$emit('edit')", v-if="!icon || editable")
+    span.iconify(data-icon="la:camera")
 </template>
 
 <script lang="ts">

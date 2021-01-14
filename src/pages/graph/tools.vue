@@ -85,34 +85,32 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-section {
-  padding: 1em 2em;
-  font-size: 8px;
-  color: #555;
-}
-.pad {
-  padding: 60px;
-  margin: 1em 0;
-}
-.split {
-  display: flex;
-  width: 100%;
-  padding: 0;
-  justify-content: stretch;
-}
+<style lang="stylus" scoped>
+section
+  padding 1em 2em
+  font-size 8px
+  color #555
 
-.decode {
-  display: flex;
-}
-.bits {
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
-  padding: 1em;
-}
-.bit {
-  height: 32px;
-  flex: 1 1 32px;
-}
+.pad
+  padding 60px
+  margin 1em 0
+
+.split
+  display flex
+  width 100%
+  padding 0
+  justify-content stretch
+
+.decode
+  display flex
+
+.bits
+  display flex
+  flex-flow row wrap
+  width 100%
+  padding 1em
+
+.bit
+  height 32px
+  flex 1 1 32px
 </style>

@@ -1,37 +1,26 @@
-<template>
-  <main class="columns">
-    <aside class="types">
-      <div
-        class="type"
-        v-for="atype in types"
-        :key="atype"
-        :class="{ active: atype == type }"
-        @click="$router.push({ path: '/' + atype })"
-      >
-        <IconType :type="atype" /> {{ $t("type." + atype) }}
-        <span class="count"> </span>
-      </div>
-    </aside>
-    <article class="column">
-      <keep-alive>
-        <ItemsList
-          :key="type"
-          :type="type"
-          @open="feeds.open($event, -1)"
-        ></ItemsList>
-      </keep-alive>
-    </article>
-
-    <article v-for="(feed, num) in feeds.list" :key="num" class="column">
-      <PageContainer
-        @open="feeds.open($event, num)"
-        @close="feeds.close(num)"
-        :key="feed"
-        :id="feed"
-      >
-      </PageContainer>
-    </article>
-  </main>
+<template lang="pug">
+.columns
+  .types
+    .type(
+      v-for="atype in types",
+      :key="atype",
+      :class="{ active: atype == type }",
+      @click="$router.push({ path: '/' + atype })"
+    )
+      icon-type(:type="atype")
+      .type-name {{ $t(`type.${atype}`) }}
+      .count 
+  .column
+    transition(name="fade")
+      keep-alive
+        items-list(:key="type", :type="type", @open="feeds.open($event, -1)")
+  .column(v-for="(feed, num) in feeds.list", :key="num")
+    page-container(
+      @open="feeds.open($event, num)",
+      @close="feeds.close(num)",
+      :key="feed",
+      :id="feed"
+    )
 </template>
 
 <script lang="ts">
@@ -54,7 +43,6 @@ export default {
     const types = model.all;
 
     const feeds = reactive({
-      type: route.query["type"] || "design",
       list: [],
       open(feed: any, num: number) {
         this.list[num + 1] = feed;
@@ -67,10 +55,6 @@ export default {
 
     onMounted(() => {
       for (let q in route.query) {
-        if (q == "type") {
-          feeds.type = route.query[q] as string;
-          continue;
-        }
         feeds.list[q] = route.query[q];
       }
     });
@@ -87,7 +71,7 @@ export default {
       if (feeds.list.length > 0) {
         setTitle();
       } else {
-        title.value = "Project app: " + feeds.type;
+        title.value = "Project app: " + props.type;
       }
     });
 
@@ -108,81 +92,78 @@ export default {
 };
 </script>
 
-<style scoped>
-@media screen and (min-width: 900px) {
-  .column {
-    flex: 1 0 600px !important;
-  }
-}
-@media screen and (max-width: 500px) {
-  .columns {
-    margin-bottom: 64px;
-  }
-}
-.column {
-  scroll-snap-align: start end;
-  display: flex;
-  flex: 0 0 100%;
-  flex-flow: column nowrap;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  position: sticky;
-  left: 0;
-  background-color: var(--background);
-}
-.column.items {
-  flex-flow: column wrap;
-}
-.bordered {
-  border-left-width: 6px;
-  border-left-style: solid;
-}
-.row {
-  display: flex;
-  align-items: center;
-}
-.types {
-  min-width: max-content;
-  scroll-snap-align: start;
-  overflow-y: scroll;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: stretch;
-}
-.type {
-  font-size: 1em;
-  opacity: 0.4;
-  cursor: pointer;
-  transition: all 300ms ease;
-  display: flex;
-  align-items: center;
-  background-color: #ccc;
-  padding: 0 0.4em 0 0;
-}
-.type img {
-  font-size: 2em;
-  height: 2em;
-}
-.type .count {
-  font-size: 18px;
-  white-space: nowrap;
-}
-.type:hover {
-  opacity: 0.7;
-}
-.type.active {
-  opacity: 1;
-}
-.columns {
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-x: none;
-  width: 100%;
-  scroll-snap-stop: always;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  -webkit-overflow-scrolling: touch;
-}
+<style lang="stylus" scoped>
+@media screen and (min-width 900px)
+  .column
+    flex 1 0 600px !important
+
+@media screen and (max-width 500px)
+  .columns
+    margin-bottom 64px
+
+.column
+  scroll-snap-align start end
+  display flex
+  flex 0 0 100%
+  flex-flow column nowrap
+  overflow-y scroll
+  overflow-x hidden
+  position sticky
+  left 0
+  background-color var(--background)
+
+.column.items
+  flex-flow column wrap
+
+.bordered
+  border-left-width 6px
+  border-left-style solid
+
+.row
+  display flex
+  align-items center
+
+.types
+  min-width max-content
+  scroll-snap-align start
+  overflow-y scroll
+  height 100%
+  display flex
+  flex-flow column nowrap
+  justify-content stretch
+
+.type
+  font-size 1em
+  opacity 0.4
+  cursor pointer
+  transition all 300ms ease
+  display flex
+  align-items center
+  background-color #ccc
+  padding 0 0.4em 0 0
+
+.type img
+  font-size 2em
+  height 2em
+
+.type .count
+  font-size 18px
+  white-space nowrap
+
+.type:hover
+  opacity 0.7
+
+.type.active
+  opacity 1
+
+.columns
+  display flex
+  overflow-x scroll
+  overflow-y hidden
+  scroll-snap-type x mandatory
+  overscroll-behavior-x none
+  width 100%
+  scroll-snap-stop always
+  -ms-overflow-style -ms-autohiding-scrollbar
+  -webkit-overflow-scrolling touch
 </style>

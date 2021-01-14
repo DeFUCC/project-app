@@ -1,10 +1,8 @@
-<template>
-  <form class="add" v-if="canAdd" @submit.prevent>
-    <input class="title" placeholder="+" type="text" v-model.trim="add.title" />
-    <button v-if="add.title" @click="addItem()">
-      <span class="iconify" data-icon="la:plus"></span>
-    </button>
-  </form>
+<template lang="pug">
+form.add(v-if="canAdd", @submit.prevent="")
+input.title(placeholder="+", type="text", v-model.trim="add.title")
+button(v-if="add.title", @click="addItem()")
+  span.iconify(data-icon="la:plus")
 </template>
 
 <script lang="ts">

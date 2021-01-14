@@ -1,70 +1,53 @@
-<template>
-  <article
-    class="page"
-    ref="page"
-    :style="{
-      borderColor: itemColor(item.parent),
-    }"
-  >
-    <PageBar
-      @close="$emit('close')"
-      @open="$emit('open', $event)"
-      :id="item.soul"
-    />
-
-    <section class="content">
-      <RatingBar :horizontal="true" :id="item.soul" />
-      <div class="main">
-        <EditFile
-          v-if="edit.icon"
-          @loaded="update('icon', $event.content)"
-          @close="edit.icon = false"
-        />
-        <EditIcon
-          :editable="editable"
-          :icon="item.icon"
-          @edit="edit.icon = !edit.icon"
-        />
-        <div class="info">
-          <EditTitle
-            :editable="editable"
-            :type="item.type"
-            :text="item.title"
-            @update="update('title', $event)"
-          />
-          <div class="author">
-            <UserPill :id="item.soul.slice(1, 88)" />
-            &nbsp;
-            <ItemDate :item="item" />
-            <EditStatus :id="item.soul" :editable="editable" />
-            <router-link :to="{ path: '/page', query: { id: item.soul } }"
-              ><i class="iconify" data-icon="la:link"></i
-            ></router-link>
-          </div>
-        </div>
-      </div>
-      <EditTeam v-if="false" :id="item.soul" :editable="editable" />
-
-      <EditDescription
-        :text="item.description"
-        :editable="editable"
-        @update="update('description', $event)"
-      />
-      <EditDate type="start" :id="item.soul" :editable="editable" />
-      <EditDate type="finish" :id="item.soul" :editable="editable" />
-    </section>
-
-    <ItemsList
-      v-for="type in model[item.type]"
-      @open="$emit('open', $event)"
-      :key="type"
-      :type="type"
-      :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
-    ></ItemsList>
-
-    <CommentList :id="item.soul" />
-    <PageLog :id="item.soul" :editable="editable" />
-  </article>
+<template lang="pug">
+article.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
+  page-bar(
+    @close="$emit('close')",
+    @open="$emit('open', $event)",
+    :id="item.soul"
+  )
+  section.content
+    .main
+      edit-file(
+        v-if="edit.icon",
+        @loaded="update('icon', $event.content)",
+        @close="edit.icon = false"
+      )
+      edit-icon(
+        :editable="editable",
+        :icon="item.icon",
+        @edit="edit.icon = !edit.icon"
+      )
+      .info
+        edit-title(
+          :editable="editable",
+          :type="item.type",
+          :text="item.title",
+          @update="update('title', $event)"
+        )
+        .author
+          user-pill(:id="item.soul.slice(1, 88)")
+          item-date(:item="item")
+          edit-status(:id="item.soul", :editable="editable")
+          router-link(:to="{ path: '/page', query: { id: item.soul } }")
+            i.iconify(data-icon="la:link")
+    edit-team(v-if="false", :id="item.soul", :editable="editable")
+    edit-description(
+      :text="item.description",
+      :editable="editable",
+      @update="update('description', $event)"
+    ) 
+    edit-date(type="start", :id="item.soul", :editable="editable")
+    edit-date(type="finish", :id="item.soul", :editable="editable")
+  items-list(
+    v-for="type in model[item.type]",
+    @open="$emit('open', $event)",
+    :key="type",
+    :type="type",
+    :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
+  )
+  rating-bar(:horizontal="true", :id="item.soul") 
+  comment-list(:id="item.soul")
+  page-log(:id="item.soul", :editable="editable")
 </template>
 
 <script lang="ts">

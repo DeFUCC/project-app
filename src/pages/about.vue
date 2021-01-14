@@ -20,17 +20,16 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-main {
-  width: 100%;
-}
-.bar {
-  padding: 1em;
-  background-color: #333;
-  color: #eee;
-}
-.markdown {
-  padding: 1em 2em;
-  max-width: 620px;
-}
+<style lang="stylus" scoped>
+main
+  width 100%
+
+.bar
+  padding 1em
+  background-color #333
+  color #eee
+
+.markdown
+  padding 1em 2em
+  max-width 620px
 </style>

@@ -2,19 +2,19 @@
 nav#bar(:class='{ open }', @click='toggle()', :style='{\
 background: pubGradient(user.is?.pub, 0),\
 }')
-  router-link.logo(to='/')
+  router-link.logo(to='/design')
     img(src='/icons/feeds.svg', alt='')
-  router-link(to='/design/')
-    span.iconify(data-icon='la:poll-h-solid', data-inline='false')
+  router-link(to='/')
+    span.iconify(data-icon='la:home', data-inline='false')
   .spacer
   router-link(v-if='!user.is', to='/auth')
-    span.iconify(data-icon='la:sign-in-alt-solid', data-inline='false')
+    span.iconify(data-icon='la:sign-in-alt-solid')
   router-link.username(v-else='', to='/my')
     user-pill(:id='user.is.pub')
   .spacer
   app-locale
   router-link(to='/about/')
-    span.iconify(data-icon='la:info-circle-solid', data-inline='false')
+    span.iconify(data-icon='la:info-circle-solid')
   router-link(to='/graph/')
     span.iconify(data-icon='mdi:graph-outline', data-inline='false')
 

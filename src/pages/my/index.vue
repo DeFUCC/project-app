@@ -34,24 +34,23 @@ export default {
 };
 </script>
 
-<style scoped>
-#profile {
-  padding: 1em;
-}
-.avatar-editor {
-  display: flex;
-}
-.edit-avatar {
-  border-radius: 80px;
-  display: flex;
-  background-repeat: no-repeat;
-  height: 100px;
-  width: 100px;
-  justify-content: center; /* align horizontal */
-  align-items: center; /* align vertical */
-  font-size: 4em;
-  color: black;
-  cursor: pointer;
-  font-weight: bold;
-}
+<style lang="stylus" scoped>
+#profile
+  padding 1em
+
+.avatar-editor
+  display flex
+
+.edit-avatar
+  border-radius 80px
+  display flex
+  background-repeat no-repeat
+  height 100px
+  width 100px
+  justify-content center /* align horizontal */
+  align-items center /* align vertical */
+  font-size 4em
+  color black
+  cursor pointer
+  font-weight bold
 </style>
