@@ -1,6 +1,6 @@
 <template>
   <article class="page" v-if="user.is">
-    <header class="bar" :style="{ backgroundColor: itemColor(user.is?.pub) }">
+    <header class="bar" :style="{ background: pubGradient(user.is?.pub, -90) }">
       <div class="title">{{ user.is?.alias }}</div>
       <div class="spacer"></div>
       <button @click="logOut()">🚪 Log out</button>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { itemColor } from "../use/colors";
+import { pubGradient } from "../use/colors";
 import { user, logOut } from "../store/user";
 import { useRouter } from "vue-router";
 import { watchEffect } from "vue";
@@ -37,7 +37,7 @@ export default {
     return {
       user,
       logOut,
-      itemColor,
+      pubGradient,
     };
   },
 };

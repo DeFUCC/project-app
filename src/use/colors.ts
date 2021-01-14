@@ -3,7 +3,12 @@ import { soul, isNode, uuid } from '../store/gun-db'
 
 const color = new ColorHash({
   saturation: [0.12, 0.15, 0.2],
-  lightness: [0.85, 0.9, 0.92],
+  lightness: [0.85, 0.87, 0.9],
+})
+
+const deepColor = new ColorHash({
+  saturation: [0.3, 0.4, 0.5],
+  lightness: [0.7, 0.8, 0.9],
 })
 
 export function itemColor(item: any): string {
@@ -17,4 +22,11 @@ export function itemColor(item: any): string {
     return color.hex(uuid(item))
   }
   return 'hsla(0,100%,100%,0.2)'
+}
+
+export function pubGradient(pub, angle = 0) {
+  if (!pub) return
+  let sp = pub.split('.')
+  let duo = sp.map((s) => deepColor.hex(s))
+  return `linear-gradient(${angle}deg, ${duo[0]} 0%, ${duo[1]} 100%)`
 }

@@ -1,57 +1,29 @@
-<template>
-  <nav
-    id="bar"
-    :class="{ open }"
-    @click="toggle()"
-    :style="{
-      backgroundColor: itemColor(user.is?.pub),
-    }"
-  >
-    <router-link class="logo" to="/"
-      ><img src="/icons/feeds.svg" alt=""
-    /></router-link>
-    <router-link to="/design/"
-      ><span
-        class="iconify"
-        data-icon="la:poll-h-solid"
-        data-inline="false"
-      ></span
-    ></router-link>
+<template lang="pug">
+nav#bar(:class='{ open }', @click='toggle()', :style='{\
+background: pubGradient(user.is?.pub, 0),\
+}')
+  router-link.logo(to='/')
+    img(src='/icons/feeds.svg', alt='')
+  router-link(to='/design/')
+    span.iconify(data-icon='la:poll-h-solid', data-inline='false')
+  .spacer
+  router-link(v-if='!user.is', to='/auth')
+    span.iconify(data-icon='la:sign-in-alt-solid', data-inline='false')
+  router-link.username(v-else='', to='/my')
+    user-pill(:id='user.is.pub')
+  .spacer
+  app-locale
+  router-link(to='/about/')
+    span.iconify(data-icon='la:info-circle-solid', data-inline='false')
+  router-link(to='/graph/')
+    span.iconify(data-icon='mdi:graph-outline', data-inline='false')
 
-    <div class="spacer"></div>
-    <router-link v-if="!user.is" to="/auth"
-      ><span
-        class="iconify"
-        data-icon="la:sign-in-alt-solid"
-        data-inline="false"
-      ></span
-    ></router-link>
-    <router-link v-else to="/my" class="username">
-      <UserPill :id="user.is.pub" />
-    </router-link>
-    <div class="spacer"></div>
-    <AppLocale />
-    <router-link to="/about/"
-      ><span
-        class="iconify"
-        data-icon="la:info-circle-solid"
-        data-inline="false"
-      ></span
-    ></router-link>
-    <router-link to="/graph/"
-      ><span
-        class="iconify"
-        data-icon="mdi:graph-outline"
-        data-inline="false"
-      ></span
-    ></router-link>
-  </nav>
 </template>
 
 <script>
 import { ref } from "vue";
 import { user } from "../../store/user";
-import { itemColor } from "../../use/colors";
+import { itemColor, pubGradient } from "../../use/colors";
 export default {
   name: "AppBar",
   setup() {
@@ -65,6 +37,7 @@ export default {
       toggle,
       user,
       itemColor,
+      pubGradient,
     };
   },
 };

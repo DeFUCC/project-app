@@ -1,5 +1,10 @@
 <template>
-  <router-link :to="'/users/' + profile.pub" class="user">
+  <router-link
+    :to="{
+      path: profile.pub != user.is?.pub ? `/users/${profile.pub}` : '/my',
+    }"
+    class="user"
+  >
     <UserAvatar size="small" :pic="profile.avatar" class="pad" />
     <span
       class="alias"
@@ -16,6 +21,7 @@
 <script lang="ts">
 import { defineComponent, reactive, watchEffect } from "vue";
 import { db, gun } from "../../store/gun-db";
+import { user } from "../../store/user";
 import { itemColor } from "../../use/colors";
 import { truncate } from "../../use/item";
 
@@ -42,21 +48,21 @@ export default defineComponent({
       }
     });
 
-    return { profile, itemColor };
+    return { profile, itemColor, user };
   },
 });
 </script>
 
 <style scoped>
 .pad {
-  padding-right: 0.5em;
+  padding: 0.5em;
 }
 .alias {
   border-bottom-style: solid;
   border-bottom-width: 4px;
 }
 .user {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   border-radius: 1em;
   padding: 4px;

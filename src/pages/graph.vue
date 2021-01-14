@@ -4,6 +4,7 @@
       <router-link to="./">Graph</router-link>
       <router-link to="network">Network</router-link>
       <router-link to="export">Export</router-link>
+      <router-link to="tools">Tools</router-link>
     </div>
 
     <router-view v-slot="{ Component }">
