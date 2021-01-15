@@ -10,13 +10,13 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 - [TypeScript](https://www.typescriptlang.org/) 
 - [Vue 3](https://v3.vuejs.org/) 
   - [Vue router](https://github.com/vuejs/vue-router-next) for page routing [docs](https://next.router.vuejs.org/)
-  - [i18n](https://vue-i18n-next.intlify.dev/) internationalization via global yaml files
+  - [i18n](https://vue-i18n-next.intlify.dev/) internationalization, now via global yaml files in /locales folder
   - [VueUse](https://vueuse.js.org) helpers 
     - `useTitle()` for page title manipulations
   - [Vetur](https://vuejs.github.io/vetur/) as a VSCode extenion for highlighting and formatting code in vue SFCs
     - [Pug](https://pugjs.org) - a template language for shorter html templates
     - [Stylus](https://stylus-lang.com/) - a preprocessor for more compact CSS code with [Stylus Supremacy](https://thisismanta.github.io/stylus-supremacy/) VSCode extension
-      -   `"stylusSupremacy.insertColons": false,
+      - add these lines to VScode settings.json for shorter css `"stylusSupremacy.insertColons": false,
     "stylusSupremacy.insertSemicolons": false,
     "stylusSupremacy.insertBraces": false,`
 - [Vite 2](https://vitejs.dev/) as the fast development environment with modular bundling, with magic plugins by [Antfu](https://github.com/antfu)

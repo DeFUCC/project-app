@@ -1,5 +1,5 @@
 <template lang="pug">
-section
+.tool-case
   h1 Tools
   button(@click="getPair()") Gen Pair
   transition(name="fade")
@@ -20,17 +20,19 @@ section
             :style="{ backgroundColor: 'hsl(0,0%,' + bit * 100 + '%)' }"
           ) 
 
-      .decode
-        .bits(v-for="sp in split", :key="sp")
-          .bit(
-            v-for="bit in chunk(decode(sp), 4)",
-            :key="bit",
-            :style="{ backgroundColor: `hsla(${bit[0] * 360},${bit[1] * 100}%,${bit[2] * 100}%, ${bit[3] * 100}%)` }"
-          ) 
+      user-pub(:pub="pair.pub", :size="420")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, ref } from "vue";
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  reactive,
+  ref,
+  watch,
+  watchEffect,
+} from "vue";
 import { sea } from "../../store/gun-db";
 import ColorHash from "color-hash";
 
@@ -66,17 +68,10 @@ export default defineComponent({
       return `linear-gradient(${angle}deg, ${duo[0]} 0%, ${duo[1]} 100%)`;
     }
 
-    function chunk(list, chunkSize = 3) {
-      return [...Array(Math.ceil(list.length / chunkSize))].map(() =>
-        list.splice(0, chunkSize)
-      );
-    }
-
     return {
       color,
       pair,
       split,
-      chunk,
       getPair,
       decode,
       pubGradient,
@@ -86,14 +81,17 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-section
+.tool-case
   padding 1em 2em
   font-size 8px
   color #555
 
 .pad
-  padding 60px
+  padding 1em
   margin 1em 0
+
+.gradient
+  padding 10em
 
 .split
   display flex

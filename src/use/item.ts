@@ -78,3 +78,14 @@ export function truncate(input: string, num = 42) {
   }
   return input.length > num ? `${input.substring(0, num)}` : input
 }
+
+export function update(id: string, field: string, content: string) {
+  const gunItem = gun.get(id)
+  gunItem.get(field).put(content)
+  gunItem.get('updatedAt').put(Date.now())
+  gunItem
+    .get('log')
+    .get(Date.now())
+    .put('edited|' + field)
+  notify(`You updated ${field} with ${truncate(content)}.`)
+}
