@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-console.log(window.FEEDSCONFIG)
+console.info(window.FEEDSCONFIG)
 
 const peerList = [...window.FEEDSCONFIG.peers]
 
@@ -23,7 +23,7 @@ export const getState = window.Gun.state.is //(node,'key') => timestamp
 export const sea = window.SEA
 export const genUuid = window.Gun.text.random
 
-export function uuid(key: string): string {
+export function cutUuid(key: string): string {
   return key.substring(key.lastIndexOf('/') + 1)
 }
 

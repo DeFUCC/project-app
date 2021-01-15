@@ -2,10 +2,10 @@
 li.item(
   :style="{ backgroundColor: itemColor(item.soul), borderColor: itemColor(item.parent) }"
 )
-  main.main
-    header.icon(v-if="item.icon")
+  .main
+    .icon(v-if="item.icon")
       img(:src="item.icon")
-    article.content
+    .content
       .title
         .route
           item-route(:id="item.parent")
@@ -82,7 +82,7 @@ export default defineComponent({
   align-items stretch
 
 .content
-  padding 0.5em
+  padding 1em 0.5em
   align-self center
   width 100%
   display flex

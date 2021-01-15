@@ -24,6 +24,8 @@
     "color-hash": "^1.0.3",
     "image-compressor": "^2.0.3",
     "markdown-it-task-lists": "^2.1.1",
+    "qrcode": "^1.4.4",
+    "qrcode.vue": "^3.1.0",
     "remarkable": "^2.0.1",
     "vue": "^3.0.5",
     "vue-i18n": "^9.0.0-rc.2",

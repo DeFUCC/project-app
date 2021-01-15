@@ -1,6 +1,7 @@
 <template lang="pug">
 .counter(v-if="count")
-  i.iconify(data-icon="fe:comment-o") {{ count }}
+  i.iconify(data-icon="fe:comment-o") 
+  span {{ count }}
 </template>
 
 <script lang="ts">

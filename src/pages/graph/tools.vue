@@ -4,14 +4,16 @@
   button(@click="getPair()") Gen Pair
   transition(name="fade")
     .tools(v-if="pair", :key="pair")
-      .pair.pad(:style="{ backgroundColor: color.hex(pair.pub) }") {{ pair.pub }}
+      user-pub(:pub="pair.pub", :size="420")
+      .gradient.pad(:style="{ background: pubGradient(pair.pub, 90) }")
+      img(:src="qrcode", v-if="qrcode")
       .split
         .single.pad(
           v-for="sp in split",
           :key="sp",
           :style="{ backgroundColor: color.hex(sp) }"
         ) {{ sp }}
-      .gradient.pad(:style="{ background: pubGradient(pair.pub, 90) }").
+      .pair.pad(:style="{ backgroundColor: color.hex(pair.pub) }") {{ pair.pub }}
       .decode
         .bits(v-for="sp in split", :key="sp")
           .bit(
@@ -19,22 +21,13 @@
             :key="bit",
             :style="{ backgroundColor: 'hsl(0,0%,' + bit * 100 + '%)' }"
           ) 
-
-      user-pub(:pub="pair.pub", :size="420")
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  reactive,
-  ref,
-  watch,
-  watchEffect,
-} from "vue";
+import { computed, defineComponent, ref } from "vue";
 import { sea } from "../../store/gun-db";
 import ColorHash from "color-hash";
+import QRCode from "qrcode";
 
 const color = new ColorHash({
   saturation: [0.3, 0.4, 0.6],
@@ -44,9 +37,13 @@ const color = new ColorHash({
 export default defineComponent({
   setup() {
     const pair = ref(null);
+    const qrcode = ref(null);
     const split = computed(() => pair.value?.pub.split("."));
     async function getPair() {
       pair.value = await sea.pair();
+      qrcode.value = await QRCode.toDataURL(pair.value.pub, {
+        errorCorrectionLevel: "Q",
+      });
     }
     getPair();
 
@@ -72,6 +69,7 @@ export default defineComponent({
       color,
       pair,
       split,
+      qrcode,
       getPair,
       decode,
       pubGradient,

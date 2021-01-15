@@ -46,10 +46,6 @@ export default defineComponent({
 .pad
   padding 0.5em
 
-.alias
-  border-bottom-style solid
-  border-bottom-width 4px
-
 .user
   display flex
   align-items center

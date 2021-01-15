@@ -25,6 +25,8 @@ export default {
   position sticky
   top 0
   display flex
+  overflow-x scroll
+  white-space nowrap
 
 .panel a
   margin 0 0.5em
