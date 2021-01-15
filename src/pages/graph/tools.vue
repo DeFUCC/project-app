@@ -43,6 +43,7 @@ export default defineComponent({
       pair.value = await sea.pair();
       qrcode.value = await QRCode.toDataURL(pair.value.pub, {
         errorCorrectionLevel: "Q",
+        scale: 8,
       });
     }
     getPair();
