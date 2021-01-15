@@ -1,10 +1,11 @@
 <template lang="pug">
-img.avatar(
-  v-if="pic",
-  :src="pic",
-  :class="{ [size]: true }",
-  :alt="user.is.alias"
-)
+.avatar
+  img.avatar(
+    v-if="pic",
+    :src="pic",
+    :class="{ [size]: true }",
+    :alt="user.is.alias"
+  )
 </template>
 
 <script>

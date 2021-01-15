@@ -5,6 +5,7 @@
       .box-inner
         .dropzone(v-if="!state.isLoading")
           input.input-file(
+            ref="editor",
             type="file",
             multiple="",
             accept="image/*",
@@ -33,7 +34,8 @@
 <script>
 // https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue
 import { useFileUpload } from "../../use/fileUpload";
-import { watch } from "vue";
+import { ref, watch } from "vue";
+import { onClickOutside } from "@vueuse/core";
 export default {
   name: "FileUploader",
   emits: ["loaded", "close"],
@@ -44,9 +46,14 @@ export default {
         emit("loaded", state.output);
       }
     });
+    const editor = ref(null);
+    onClickOutside(editor, (ev) => {
+      emit("close");
+    });
     return {
       handleChanges,
       state,
+      editor,
     };
   },
 };

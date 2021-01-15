@@ -7,16 +7,7 @@ article.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
   )
   section.content
     .main
-      edit-file(
-        v-if="edit.icon",
-        @loaded="update('icon', $event.content)",
-        @close="edit.icon = false"
-      )
-      edit-icon(
-        :editable="editable",
-        :icon="item.icon",
-        @edit="edit.icon = !edit.icon"
-      )
+      edit-icon(:id="item.soul", :editable="editable", :icon="item.icon")
       .info
         edit-title(
           :editable="editable",
