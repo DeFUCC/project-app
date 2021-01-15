@@ -1,21 +1,23 @@
 <template lang="pug">
 section.bar
   icon-type(:type="type")
-  items-filter(
+  items-header-filter(
     :my="options.filterMy",
     @star="options.filterMy.star = !options.filterMy.star",
     @seen="options.filterMy.seen = !options.filterMy.seen",
     @trash="options.filterMy.trash = !options.filterMy.trash",
     v-show="sorted.total > 0"
   )
-  items-order(
+  items-header-order(
     :by="options.orderBy",
     @order="options.orderBy = $event",
     v-show="sorted.total > 0"
   )
   .spacer
-  add-form(key="add", :type="type", :parent="parent")
-  items-search(@search="options.search = $event", v-show="sorted.total > 3")
+  items-header-search(
+    @search="options.search = $event",
+    v-show="sorted.total > 3"
+  )
 </template>
 
 <script lang="ts">

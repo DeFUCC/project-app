@@ -13,10 +13,8 @@ article.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
           :editable="editable",
           :type="item.type",
           :text="item.title",
-          @update="update('title', $event)"
+          @update="updateItem('title', $event)"
         )
-          router-link.link(:to="{ path: '/page', query: { id: item.soul } }")
-            i.iconify(data-icon="la:link")
         .author
           edit-status(:id="item.soul", :editable="editable")
           user-pill(:id="item.soul.slice(1, 88)")
@@ -25,7 +23,7 @@ article.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
     edit-description(
       :text="item.description",
       :editable="editable",
-      @update="update('description', $event)"
+      @update="updateItem('description', $event)"
     ) 
     edit-date(type="start", :id="item.soul", :editable="editable")
     edit-date(type="finish", :id="item.soul", :editable="editable")
@@ -34,6 +32,7 @@ article.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
     @open="$emit('open', $event)",
     :key="type",
     :type="type",
+    :editable="editable",
     :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
   )
   rating-bar(:horizontal="true", :id="item.soul") 
@@ -43,7 +42,7 @@ article.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
 
 <script lang="ts">
 import { ref, watch, watchEffect, computed, reactive, onMounted } from "vue";
-import { truncate } from "../../use/item";
+import { isEditable, truncate, update } from "../../store/item";
 import { model } from "../../store/model";
 import { user } from "../../store/user";
 import { itemColor } from "../../use/colors";
@@ -74,29 +73,12 @@ export default {
       description: false,
     });
 
-    function update(field: string, content: string) {
-      let cert = null;
-      if (item.team[user.is.pub]) {
-        cert = item.team[user.is.pub];
-        console.log(cert);
-      }
-      gunItem.get(field).put(content, null, { opt: { cert: cert } });
-      gunItem.get("updatedAt").put(Date.now(), null, { opt: { cert: cert } });
-      gunItem
-        .get("log")
-        .get(Date.now())
-        .put("edited|" + field, null, { opt: { cert: cert } });
-      edit[field] = false;
-      notify(
-        `You updated ${field} of ${item.title} with ${truncate(content)}.`
-      );
+    function updateItem(field: string, content: string) {
+      update(props.id, field, content);
     }
 
     const editable = computed(() => {
-      let my = user?.is?.pub == props?.id.slice(1, 88);
-      let me = item.type == "user" && user?.is?.pub == item.pub;
-      let teammate = Boolean(item.team[user?.is?.pub]);
-      return user.is && (my || me || teammate);
+      return isEditable(item);
     });
 
     const page = ref(null);
@@ -116,7 +98,7 @@ export default {
       itemColor,
       editable,
       appPath,
-      update,
+      updateItem,
       model,
       item,
       edit,

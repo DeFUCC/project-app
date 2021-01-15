@@ -6,6 +6,12 @@
     :options="items.options",
     :sorted="items.sorted"
   )
+  add-form(
+    :type="type",
+    :parent="parent",
+    v-if="editable",
+    @search="items.options.search = $event"
+  )
   ul.item-list
     transition-group(name="list")
       item-card.card(
@@ -29,6 +35,7 @@ export default defineComponent({
       required: true,
     },
     parent: String,
+    editable: Boolean,
   },
 
   setup(props) {

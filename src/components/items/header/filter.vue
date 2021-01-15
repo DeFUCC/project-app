@@ -10,8 +10,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { user } from "../../store/user";
-import { itemColor } from "../../use/colors";
+import { user } from "../../../store/user";
+import { itemColor } from "../../../use/colors";
 
 export default defineComponent({
   emits: ["star", "seen", "trash"],

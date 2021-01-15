@@ -13,7 +13,7 @@
 <script lang="ts">
 import { onClickOutside } from "@vueuse/core";
 import { defineComponent, ref } from "vue";
-import { update } from "../../use/item";
+import { update } from "../../store/item";
 
 export default defineComponent({
   props: {

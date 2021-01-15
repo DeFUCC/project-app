@@ -13,7 +13,7 @@ import { defineComponent, reactive, watchEffect } from "vue";
 import { db, gun, appPath } from "../../store/gun-db";
 import { user } from "../../store/user";
 import { itemColor } from "../../use/colors";
-import { truncate } from "../../use/item";
+import { truncate } from "../../store/item";
 
 export default defineComponent({
   props: {

@@ -1,6 +1,8 @@
 <template lang="pug">
 aside.row(:style="{ backgroundColor: itemColor(id) }")
   item-route(:id="id", @open="$emit('open', $event)")
+  router-link.link(:to="{ path: '/page', query: { id: id } }")
+    i.iconify(data-icon="la:link")
   .spacer
   span.close(@click="$emit('close')")
     span.iconify(data-icon="la:times")
@@ -32,6 +34,9 @@ export default defineComponent({
   z-index 30
   font-size 14px
   min-height 32px
+
+.link
+  margin 0 1em
 
 .close
   padding 8px 16px

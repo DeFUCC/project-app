@@ -25,7 +25,7 @@ li.item(
 import { model } from "../../store/model";
 import { itemColor } from "../../use/colors";
 import { computed, defineComponent } from "vue";
-import { truncate } from "../../use/item";
+import { truncate } from "../../store/item";
 
 export default defineComponent({
   props: {

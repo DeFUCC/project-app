@@ -6,6 +6,7 @@ textarea {
   border-radius: var(--small-radius);
   outline: none;
   border: 1px solid #999;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 button {

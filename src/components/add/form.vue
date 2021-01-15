@@ -1,15 +1,15 @@
 <template lang="pug">
-form.add(v-if="canAdd", @submit.prevent="")
-input.title(placeholder="+", type="text", v-model.trim="add.title")
-button(v-if="add.title", @click="addItem()")
-  span.iconify(data-icon="la:plus")
+form.add(@submit.prevent="")
+  input.title(placeholder="+", type="text", v-model.trim="add.title")
+  button(v-if="add.title", @click="addItem()")
+    span.iconify(data-icon="la:plus")
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, reactive, watchEffect } from "vue";
 import { error } from "../../store/history";
 import { user } from "../../store/user";
-import { createItem } from "../../use/item";
+import { createItem } from "../../store/item";
 
 export default defineComponent({
   emits: ["search"],
@@ -32,15 +32,7 @@ export default defineComponent({
       add.title = "";
     }
 
-    const canAdd = computed(() =>
-      Boolean(
-        (!props.parent && user.is) ||
-          (props.parent && user.is?.pub == props.parent.slice(1, 88))
-      )
-    );
-
     return {
-      canAdd,
       add,
       addItem,
     };
