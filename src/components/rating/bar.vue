@@ -47,6 +47,7 @@ export default defineComponent({
   align-items stretch
   justify-items stretch
   font-size 1em
+  min-height 3em
 
 .rating.horizontal
   flex-flow row nowrap

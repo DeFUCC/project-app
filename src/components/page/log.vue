@@ -91,7 +91,7 @@ export default defineComponent({
 .log
   display flex
   flex 1 1 2em
-  min-height 1em
+  min-height 2em
 
 .log div
   padding 4px
