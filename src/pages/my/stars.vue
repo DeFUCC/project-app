@@ -1,16 +1,9 @@
-<template>
-  <article>
-    <h3>My Stars</h3>
-    <Suspense>
-      <div class="sus">
-        <ItemAsyncCard
-          :id="value"
-          v-for="(value, id) in stars"
-          :key="id"
-        ></ItemAsyncCard>
-      </div>
-    </Suspense>
-  </article>
+<template lang="pug">
+article
+  h3 My Stars
+  suspense
+    .sus
+      item-async-card(:id="value", v-for="(value, id) in stars", :key="id")
 </template>
 
 <script>

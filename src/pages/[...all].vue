@@ -1,8 +1,7 @@
-<template>
-  <div class="error">
-    <h1>{{ $t("404.sorry") }}</h1>
-    {{ $t("404.text") }}
-  </div>
+<template lang="pug">
+main.error
+  h1 {{ $t('404.sorry') }}
+  p {{ $t('404.text') }}
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template lang="pug">
-.columns
+main.columns
   .column
     items-list(type="user", @open="feeds.open($event, -1)")
   .column(v-for="(feed, num) in feeds.list", :key="num")

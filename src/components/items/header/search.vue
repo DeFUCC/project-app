@@ -1,5 +1,5 @@
 <template lang="pug">
-section.search(:class="{ open: search.text }")
+.search(:class="{ open: search.text }")
   label(for="search")
     span.iconify(data-icon="la:search")
   input(type="text", v-model="search.text")

@@ -1,13 +1,8 @@
-<template>
-  <main>
-    <article class="markdown">
-      <router-view v-slot="{ Component }">
-        <transition name="fade">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </article>
-  </main>
+<template lang="pug">
+main.markdown
+  router-view(v-slot="{ Component }")
+    transition(name="fade")
+      component(:is="Component")
 </template>
 
 <script lang="ts">
@@ -21,9 +16,6 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-main
-  width 100%
-
 .bar
   padding 1em
   background-color #333

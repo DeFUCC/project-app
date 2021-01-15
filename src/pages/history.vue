@@ -1,19 +1,13 @@
-<template>
-  <article>
-    <button @click="warn('Checking history')">Check</button>
-    <button @click="clear()">Clear</button>
-    <div
-      class="line"
-      v-for="(line, i) in history.slice().reverse()"
-      :key="i"
-      :style="{
-        backgroundColor: eventColors[line.type],
-      }"
-    >
-      <div class="date">{{ getDate(line.time) }}</div>
-      <div class="content">{{ line.content }}</div>
-    </div>
-  </article>
+<template lang="pug">
+main
+  button(@click="warn('Checking history')") Check
+  button(@click='clear()') Clear
+  .line(v-for='(line, i) in history.slice().reverse()' :key='i' :style='{\
+  backgroundColor: eventColors[line.type],\
+  }')
+    .date {{ getDate(line.time) }}
+    .content {{ line.content }}
+
 </template>
 
 <script>
@@ -37,9 +31,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-article
-  overflow-y scroll
-
 .line
   display flex
   flex-flow row wrap

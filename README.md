@@ -25,12 +25,12 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [purgeIcons](https://github.com/antfu/purge-icons) with [Icônes](https://icones.js.org/) VS code extension for fast icons workflow
   - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) for static pages in docs 
   - [vite-plugin-vue-i18n](https://github.com/intlify/vite-plugin-vue-i18n) to improve i18n features in sfcs
-  - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience **TBD** [Issue with inline scripts](https://github.com/antfu/vite-plugin-pwa/issues/10) to be solved.
+  - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience 
 - [GUN](https://gun.eco/) for the reactive p2p graph database
   - with a free peer at [Glitch.com](https://glitch.com/edit/#!/gun-feeds)
 - [color-hash](https://www.npmjs.com/package/color-hash) to get colors for item UUIDs
 - [image-compressor](https://www.npmjs.com/package/image-compressor) to compress images to store them as base64 strings in the db
-- [remarkable](https://www.npmjs.com/package/remarkable) for MarkDown parsing **NOT WORKING** May be markdown-it may work here
+- [remarkable](https://www.npmjs.com/package/remarkable) for MarkDown parsing **NOT WORKING**. May be `markdown-it` may work here
 
 
 ## Features

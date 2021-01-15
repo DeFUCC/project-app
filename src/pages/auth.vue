@@ -1,32 +1,24 @@
-<template>
-  <section class="auth">
-    <h4>Welcome!</h4>
-    <form id="auth" @submit.prevent>
-      <input class="mv2" type="text" placeholder="Login" v-model="alias" />
-      <input
-        class="mv2"
-        type="password"
-        placeholder="Password"
-        name="password"
-        id=""
-        v-model="pass"
-      />
-      <button
-        key="auth"
-        :disabled="alias && !userExists"
-        @click="authUser(alias, pass)"
-      >
-        Log in
-      </button>
-      <button
-        key="create"
-        :disabled="alias && userExists"
-        @click="createUser(alias, pass)"
-      >
-        Create a new user
-      </button>
-    </form>
-  </section>
+<template lang="pug">
+main.auth
+  h4 Welcome!
+  form#auth(@submit.prevent="")
+    input.mv2(type="text", placeholder="Login", v-model="alias")
+    input.mv2(
+      type="password",
+      placeholder="Password",
+      name="password",
+      v-model="pass"
+    )
+    button(
+      key="auth",
+      :disabled="alias && !userExists",
+      @click="authUser(alias, pass)"
+    ) Log in
+    button(
+      key="create",
+      :disabled="alias && userExists",
+      @click="createUser(alias, pass)"
+    ) Create a new user
 </template>
 
 <script>

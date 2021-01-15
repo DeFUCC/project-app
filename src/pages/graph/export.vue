@@ -1,7 +1,7 @@
 <template lang="pug">
-article
+articke
   header Export
-  main
+  section
     .row(v-for="(data, key) in item", :key="data")
       .key {{ key }}
       .data(v-if="typeof data != 'object' && data[0] != '~'")

@@ -35,6 +35,7 @@ export default defineConfig({
     VitePWA({
       manifest: {
         name: 'Project app',
+        theme_color: '#777',
         icons: [
           {
             src: '/icons/feeds192.png',

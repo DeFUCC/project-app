@@ -1,10 +1,10 @@
 <template lang="pug">
-.page
+main
   .panel
     router-link(to="./") Graph
-    router-link(to="network") Network
-    router-link(to="export") Export
-    router-link(to="tools") Tools
+    router-link(to="/graph/network/") Network
+    router-link(to="/graph/export/") Export
+    router-link(to="/graph/tools/") Tools
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")
@@ -19,10 +19,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.page
-  width 100%
-  overflow-y scroll
-
 .panel
   padding 1em
   background-color #aaa

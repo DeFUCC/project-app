@@ -1,6 +1,6 @@
 <template lang="pug">
-article.logs
-  header.log-panel
+.logs
+  .log-panel
     .title {{ $t('log.title') }}
     .spacer
     .count {{ state.total }}
@@ -22,14 +22,6 @@ import { defineComponent, reactive, ref, watchEffect } from "vue";
 import { format } from "../../use/locale";
 import { gun } from "../../store/gun-db";
 import { error, notify } from "../../store/history";
-
-interface Log {
-  date: string;
-  tag: string;
-  text: string;
-}
-
-let logString = "tag | info";
 
 export default defineComponent({
   props: {
@@ -84,10 +76,6 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-form
-  display flex
-  align-items center
-
 .logs
   padding 1em
   display flex

@@ -1,6 +1,7 @@
 <template lang="pug">
-section.bar
+.bar
   icon-type(:type="type")
+  h3 {{ $t(`type.${type}`) }}
   items-header-filter(
     :my="options.filterMy",
     @star="options.filterMy.star = !options.filterMy.star",

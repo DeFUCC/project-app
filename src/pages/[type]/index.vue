@@ -98,10 +98,6 @@ export default {
   .column
     flex 1 0 600px !important
 
-@media screen and (max-width 500px)
-  .columns
-    margin-bottom 64px
-
 .column
   scroll-snap-align start end
   display flex

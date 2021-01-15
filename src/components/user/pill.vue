@@ -3,9 +3,8 @@ router-link.user(
   :to="{ path: profile.pub != user.is?.pub ? `${appPath}/user` : '/my', query: { 0: profile.pub } }"
 )
   user-avatar.pad(size="small", :pic="profile.avatar")
-  span.alias(:style="{ borderColor: itemColor(profile.pub) }")
-  | {{ profile.alias }}
-  slot
+  span.alias(:style="{ borderColor: itemColor(profile.pub) }") {{ profile.alias }}
+    slot
 </template>
 
 <script lang="ts">

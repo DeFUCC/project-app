@@ -51,6 +51,7 @@ export default {
   flex 0 0 32px
 
 nav
+  grid-area nav
   scroll-snap-align start
   flex 0 0 60px
   display flex
@@ -79,16 +80,11 @@ a svg
 
 @media screen and (max-width 500px)
   nav
-    position fixed
-    z-index 100
-    bottom 0
-    display flex
-    align-items center
     flex-flow row nowrap
-    background-color var(--top-bar)
     white-space nowrap
     width 100%
     height 50px
+    overflow-x scroll
 
   .username
     writing-mode horizontal-tb

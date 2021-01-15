@@ -1,11 +1,11 @@
 <template lang="pug">
-article.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
+.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
   page-bar(
     @close="$emit('close')",
     @open="$emit('open', $event)",
     :id="item.soul"
   )
-  section.content
+  .content
     .main
       edit-icon(:id="item.soul", :editable="editable", :icon="item.icon")
       .info

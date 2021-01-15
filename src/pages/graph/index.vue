@@ -40,9 +40,6 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-article
-  overflow-y scroll
-
 .record
   font-size 12px
   border 1px solid #aaa

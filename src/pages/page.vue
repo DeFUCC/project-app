@@ -1,5 +1,5 @@
 <template lang="pug">
-article
+main
   page-container(v-if="id", @open="open", @close="close", :key="id", :id="id")
 </template>
 
@@ -19,7 +19,7 @@ export default {
       id.value = route.query.id;
     });
     function close() {
-      router.push({ path: "/app" });
+      router.push({ path: "/design" });
     }
     function open(val) {
       router.push({
@@ -37,8 +37,4 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
-article
-  width 100%
-  overflow-y scroll
-</style>
+<style lang="stylus" scoped></style>
