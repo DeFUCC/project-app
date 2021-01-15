@@ -1,5 +1,5 @@
 <template lang="pug">
-.columns
+main.columns
   .types
     .type(
       v-for="atype in types",
