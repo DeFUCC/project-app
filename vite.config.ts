@@ -7,6 +7,7 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import Markdown from 'vite-plugin-md'
 import tasklists from 'markdown-it-task-lists'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   build: {
@@ -31,6 +32,23 @@ export default defineConfig({
     ],
   },
   plugins: [
+    VitePWA({
+      manifest: {
+        name: 'Project app',
+        icons: [
+          {
+            src: '/icons/feeds192.png',
+            type: 'image/png',
+            sizes: '192x192',
+          },
+          {
+            src: '/icons/feeds512.png',
+            type: 'image/png',
+            sizes: '512x512',
+          },
+        ],
+      },
+    }),
     vue(),
     Voie({
       extensions: ['vue', 'md'],

@@ -103,6 +103,7 @@ form
 .log
   display flex
   flex 1 1 2em
+  min-height 1em
 
 .log div
   padding 4px

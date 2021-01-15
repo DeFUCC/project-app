@@ -88,6 +88,7 @@ a svg
     background-color var(--top-bar)
     white-space nowrap
     width 100%
+    height 50px
 
   .username
     writing-mode horizontal-tb
