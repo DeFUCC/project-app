@@ -37,11 +37,11 @@ export default {
   flex-flow row nowrap
   align-items center
   justify-content center
-  color #444
-  background-color hsla(0, 0%, 100%, 0.2)
+  color var(--text-color)
+  background-color hsla(0, 0%, 100%, 0.1)
   opacity 0.9
   flex 1
-  padding 4px
+  padding 1em
 
 .icon
   width 1.5em

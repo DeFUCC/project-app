@@ -98,6 +98,18 @@ export default {
   .column
     flex 1 0 600px !important
 
+.columns
+  display flex
+  overflow-x scroll
+  overflow-y hidden
+  scroll-snap-type x mandatory
+  overscroll-behavior-x none
+  width 100%
+  scroll-behavior smooth
+  scroll-snap-stop always
+  -ms-overflow-style -ms-autohiding-scrollbar
+  -webkit-overflow-scrolling touch
+
 .column
   scroll-snap-align start end
   display flex
@@ -136,7 +148,7 @@ export default {
   transition all 300ms ease
   display flex
   align-items center
-  background-color #ccc
+  background-color var(--top-bar)
   padding 0 0.4em 0 0
 
 .type img
@@ -152,15 +164,4 @@ export default {
 
 .type.active
   opacity 1
-
-.columns
-  display flex
-  overflow-x scroll
-  overflow-y hidden
-  scroll-snap-type x mandatory
-  overscroll-behavior-x none
-  width 100%
-  scroll-snap-stop always
-  -ms-overflow-style -ms-autohiding-scrollbar
-  -webkit-overflow-scrolling touch
 </style>

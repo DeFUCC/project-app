@@ -19,6 +19,8 @@ button {
   transition: all 150ms ease;
   text-transform: capitalize;
   margin: 0 0.5em;
+  color: var(--text-color);
+  background-color: var(--button);
 }
 
 button:hover {

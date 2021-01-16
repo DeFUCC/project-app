@@ -6,12 +6,7 @@
     :options="items.options",
     :sorted="items.sorted"
   )
-  add-form(
-    :type="type",
-    :parent="parent",
-    v-if="editable",
-    @search="items.options.search = $event"
-  )
+  add-form(:type="type", :parent="parent", v-if="editable")
   ul.item-list
     transition-group(name="list")
       item-card.card(
@@ -27,7 +22,7 @@ import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import { useItems } from "../../use/items";
 
 export default defineComponent({
-  name: "FeedItems",
+  name: "ItemsList",
   emits: ["open"],
   props: {
     type: {

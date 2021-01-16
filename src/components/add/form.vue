@@ -1,15 +1,21 @@
 <template lang="pug">
 form.add(@submit.prevent="")
-  input.title(placeholder="+", type="text", v-model.trim="add.title")
+  input.title(
+    ref="adder",
+    placeholder="+",
+    type="text",
+    v-model.trim="add.title"
+  )
   button(v-if="add.title", @click="addItem()")
     span.iconify(data-icon="la:plus")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, watchEffect } from "vue";
+import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import { error } from "../../store/history";
 import { user } from "../../store/user";
 import { createItem } from "../../store/item";
+import { onStartTyping } from "@vueuse/core";
 
 export default defineComponent({
   emits: ["search"],
@@ -32,8 +38,15 @@ export default defineComponent({
       add.title = "";
     }
 
+    const adder = ref();
+
+    onStartTyping(() => {
+      if (!adder.value.active) adder.value.focus();
+    });
+
     return {
       add,
+      adder,
       addItem,
     };
   },
@@ -52,6 +65,8 @@ form
   font-size 1em
   border 1px solid #aaa
   outline none
+  background-color var(--top-bar)
+  color var(--text-color)
   width 1em
   transition all 300ms ease-in-out
 

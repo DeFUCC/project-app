@@ -85,6 +85,7 @@ a svg
     width 100%
     height 50px
     overflow-x scroll
+    overflow-y hidden
 
   .username
     writing-mode horizontal-tb

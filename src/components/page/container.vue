@@ -1,5 +1,5 @@
 <template lang="pug">
-.page(ref="page", :style="{ borderColor: itemColor(item.parent) }")
+.page(ref="page")
   page-bar(
     @close="$emit('close')",
     @open="$emit('open', $event)",
@@ -110,12 +110,10 @@ export default {
 
 <style lang="stylus" scoped>
 .page
-  color #333
   overflow-y scroll
   overflow-x hidden
   display flex
   flex-flow column nowrap
-  border-left 6px solid #999
 
 .main
   display flex

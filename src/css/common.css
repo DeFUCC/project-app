@@ -1,6 +1,6 @@
 a {
   text-decoration: underline dotted;
-  color: #444;
+  color: var(--text-color);
   transition: all 300ms ease;
   font-weight: bold;
 }

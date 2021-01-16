@@ -1,17 +1,32 @@
 import ColorHash from 'color-hash'
 import { soul, isNode, cutUuid } from '../store/gun-db'
+import { usePreferredDark } from '@vueuse/core'
 
-const color = new ColorHash({
-  saturation: [0.12, 0.15, 0.2],
-  lightness: [0.85, 0.87, 0.9],
-})
+const isDark = usePreferredDark()
+const colors = {
+  light: new ColorHash({
+    saturation: [0.12, 0.15, 0.2],
+    lightness: [0.85, 0.87, 0.9],
+  }),
+  dark: new ColorHash({
+    saturation: [0.02, 0.05, 0.08],
+    lightness: [0.18, 0.2, 0.3],
+  }),
+}
 
-const deepColor = new ColorHash({
-  saturation: [0.3, 0.4, 0.5],
-  lightness: [0.7, 0.8, 0.9],
-})
+const deepColors = {
+  light: new ColorHash({
+    saturation: [0.3, 0.4, 0.5],
+    lightness: [0.7, 0.8, 0.9],
+  }),
+  dark: new ColorHash({
+    saturation: [0.3, 0.4, 0.5],
+    lightness: [0.2, 0.3, 0.4],
+  }),
+}
 
 export function itemColor(item: any): string {
+  let color = colors[isDark.value ? 'dark' : 'light']
   if (isNode(item)) {
     return color.hex(cutUuid(soul(item)))
   }
@@ -26,6 +41,7 @@ export function itemColor(item: any): string {
 
 export function pubGradient(pub, angle = 0) {
   if (!pub) return
+  let deepColor = deepColors[isDark.value ? 'dark' : 'light']
   let sp = pub.split('.')
   let duo = sp.map((s) => deepColor.hex(s))
   return `linear-gradient(${angle}deg, ${duo[0]} 0%, ${duo[1]} 100%)`

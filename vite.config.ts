@@ -68,7 +68,7 @@ export default defineConfig({
       dirs: ['src/components'],
 
       // valid file extensions for components.
-      extensions: ['vue'],
+      extensions: ['vue', 'md', 'svg'],
       // search for subdirectories
       deep: true,
       // allow auto import and register components used in markdown

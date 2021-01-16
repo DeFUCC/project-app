@@ -66,6 +66,7 @@ export default defineComponent({
   width min-content
   white-space nowrap
   cursor pointer
+  color #333
 
 .status span
   padding 0 0 0 0.3em

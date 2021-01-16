@@ -144,6 +144,7 @@ form input
   box-shadow none
   border none
   margin 0 0.5em 0 1em
+  background-color var(--top-bar)
 
 .comment
   padding 0.5em

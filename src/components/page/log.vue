@@ -100,11 +100,11 @@ export default defineComponent({
   opacity 0.2
 
 .created
-  background-color #ddd
+  background-color hsla(0, 0%, 30%, 0.4)
 
 .edited
   opacity 0.5
 
 .updated
-  background-color rgb(157, 180, 147)
+  background-color rgba(157, 180, 147, 0.4)
 </style>

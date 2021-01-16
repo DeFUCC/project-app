@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   .panel
-    router-link(to="./") Graph
+    router-link(to="/graph/") Graph
     router-link(to="/graph/network/") Network
     router-link(to="/graph/export/") Export
     router-link(to="/graph/tools/") Tools

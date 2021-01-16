@@ -6,13 +6,30 @@
   --button: #999;
   --bar-color: #ddd;
   --small-radius: 4px;
+  --text-color: #333;
   --text-light: #555;
   --mobile-size: 500px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #444;
+    --top-bar: #666;
+    --body-padding: 1em;
+    --secondary-button: #222;
+    --button: #343434;
+    --bar-color: #333;
+    --small-radius: 4px;
+    --text-color: #eee;
+    --text-light: #aaa;
+    --mobile-size: 500px;
+  }
 }
 
 body {
   padding: 0;
   margin: 0;
+  color: var(--text-color);
   height: 100%;
   width: 100%;
   background-color: var(--background);
