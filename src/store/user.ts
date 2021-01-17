@@ -13,6 +13,10 @@ export const user = reactive({
   rates: {},
 })
 
+export function isMine(soul: string) {
+  return soul.slice(1, 88) == user.is?.pub
+}
+
 gun.user().recall({ sessionStorage: true }, (ack: { err: string }) => {
   if (!ack.err) {
     logIn()

@@ -1,24 +1,23 @@
 <template lang="pug">
-section
-  .row
-    .type
-      | {{  $t(&quot;date.&quot; + type)  }}
-      span(@click="add()", v-if="!date.timestamp && editable")
-        i.iconify(data-icon="la:plus")
-    .date(v-if="date.timestamp") {{ parsed.toLocaleDateString() }}
-      .edit(v-if="editable")
-        span(@click="date.edit = !date.edit")
-          i.iconify(data-icon="la:pen")
-        span(@click="remove()")
-          i.iconify(data-icon="la:trash")
-        form(v-show="date.edit", @submit.prevent="")
-          input(
-            type="date",
-            name="date",
-            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}",
-            @input="set($event)",
-            :value="parsed.toLocaleDateString('en-CA')"
-          )
+.row(v-if="date.timestamp || editable")
+  .type
+    | {{  $t(&quot;date.&quot; + type)  }}
+    button(@click="add()", v-if="!date.timestamp && editable")
+      i.iconify(data-icon="la:plus")
+  .date(v-if="date.timestamp") {{ parsed.toLocaleDateString() }}
+    .edit(v-if="editable")
+      button(@click="date.edit = !date.edit")
+        i.iconify(data-icon="la:pen")
+      button(@click="remove()")
+        i.iconify(data-icon="la:trash")
+      form(v-show="date.edit", @submit.prevent="")
+        input(
+          type="date",
+          name="date",
+          pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}",
+          @input="set($event)",
+          :value="parsed.toLocaleDateString('en-CA')"
+        )
 </template>
 
 <script lang="ts">
@@ -72,14 +71,16 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-section
+.row
+  flex 1 1 50%
+  display flex
+  flex-flow column
   padding 0 2em
 
-.row
-  display flex
-
-.row > div
-  padding 0.5em
+.type
+  font-size 0.8em
+  padding 0.5em 0
+  color var(--text-light)
 
 .date
   display flex

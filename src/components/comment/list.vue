@@ -1,7 +1,8 @@
 <template lang="pug">
 section.comments(:class="{ open: state.open }")
   header.row(@click="state.open = !state.open")
-    i.iconify(data-icon="fe:comment-o") &nbsp; Comments
+    i.iconify(data-icon="fe:comment-o") 
+    .title {{ $tc('comment', state.count) }}
     .spacer
     .counter {{ state.count }}
     span.chevron
@@ -10,14 +11,16 @@ section.comments(:class="{ open: state.open }")
     main(v-if="state.open")
       .list
         transition-group(name="list")
-          .comment(v-for="comment in sorted", :key="comment.timestamp")
-            user-pill(:id="comment.author")
-            .text {{ comment.text }}
-            .time {{ format(comment.timestamp).date }}
+          comment-line(
+            v-for="comment in sorted",
+            :key="comment.timestamp",
+            :comment="comment",
+            @edit="editComment"
+          )
       form(v-if="user.is && state.open", @submit.prevent="addComment()")
         user-pill(:id="user.is.pub")
         input.input(name="text", rows="1", v-model="state.text")
-        span.send(type="submit")
+        button.send(type="submit")
           i.iconify(data-icon="ri:send-plane-line", data-inline="false")
 </template>
 
@@ -69,6 +72,16 @@ export default defineComponent({
       return list;
     });
 
+    function editComment({ timestamp, text }) {
+      let privateComment = gun
+        .user()
+        .get(appPath)
+        .get("comment")
+        .get(props.id.slice(90 + appPath.length))
+        .get(timestamp)
+        .put(text);
+    }
+
     function addComment() {
       if (!user.is) {
         return;
@@ -93,6 +106,7 @@ export default defineComponent({
       state,
       comments,
       addComment,
+      editComment,
       sorted,
     };
   },
@@ -103,7 +117,6 @@ export default defineComponent({
 .comments
   font-size 0.9em
   margin 8px
-  border 1px solid #ccc
 
 .row
   position sticky
@@ -113,16 +126,6 @@ export default defineComponent({
   padding 1em
   background-color var(--bar-color)
   font-weight bold
-
-.text
-  padding 0 0.5em
-
-.time
-  font-size 0.8em
-  color #999
-  position absolute
-  right 0.8em
-  top 1.2em
 
 main, .buttons
   display flex
@@ -145,17 +148,6 @@ form input
   border none
   margin 0 0.5em 0 1em
   background-color var(--top-bar)
-
-.comment
-  padding 0.5em
-  background-color #fcfcfc
-  border-radius 1em
-  margin 0.5em
-  position relative
-  line-height 1.5em
-  display flex
-  flex-flow row wrap
-  align-items center
 
 .counter
   padding 0 0.5em

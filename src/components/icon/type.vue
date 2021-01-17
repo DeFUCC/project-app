@@ -20,6 +20,7 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .type-icon
-  width 1.5em
+  width 2em
+  height 2em
   color #999
 </style>

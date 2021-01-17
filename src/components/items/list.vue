@@ -40,8 +40,16 @@ export default defineComponent({
       user: props.user,
     });
 
+    const ver = ref(1);
+
+    function update() {
+      ver.value++;
+    }
+
     return {
       items,
+      ver,
+      update,
     };
   },
 });

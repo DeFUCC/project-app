@@ -3,19 +3,21 @@ declare global {
     Gun: any
     SEA: any
     gun: any
-    FEEDSCONFIG: any
+    APPCONFIG: any
   }
 }
 
-console.info(window.FEEDSCONFIG)
+const CONFIG = { ...window.APPCONFIG }
 
-const peerList = [...window.FEEDSCONFIG.peers]
+console.info(CONFIG)
 
-checkDbVersion(localStorage.dbVersion, window.FEEDSCONFIG.dbVersion)
+const peerList = [...CONFIG.peers]
+
+checkDbVersion(localStorage.dbVersion, CONFIG.dbVersion)
 
 export const gun = window.Gun(peerList)
 window.gun = gun //for debugging
-export const appPath = window.FEEDSCONFIG.appPath
+export const appPath = CONFIG.appPath
 export const db = gun.get(appPath)
 export const soul = window.Gun.node.soul
 export const isNode = window.Gun.node.is

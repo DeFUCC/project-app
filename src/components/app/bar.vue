@@ -1,13 +1,11 @@
 <template lang="pug">
-nav#bar(
-  :class="{ open }",
-  @click="toggle()",
-  :style="{ background: pubGradient(user.is?.pub, 0) }"
-)
+nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
+  transition(name="fade")
+    user-auth(v-if="state.auth", @close="state.auth = false")
   router-link.logo(to="/design")
     img(src="/icons/feeds.svg", alt="")
   .spacer
-  router-link(v-if="!user.is", to="/auth")
+  .login(v-if="!user.is", @click="state.auth = !state.auth")
     span.iconify(data-icon="la:sign-in-alt")
   router-link.username(v-else="", to="/my")
     user-pill(:id="user.is.pub")
@@ -22,20 +20,19 @@ nav#bar(
 </template>
 
 <script>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import { user } from "../../store/user";
 import { itemColor, pubGradient } from "../../use/colors";
 export default {
   name: "AppBar",
   setup() {
-    const open = ref(false);
-    function toggle() {
-      open.value = !open.value;
-    }
+    const state = reactive({
+      open: false,
+      auth: false,
+    });
 
     return {
-      open,
-      toggle,
+      state,
       user,
       itemColor,
       pubGradient,
@@ -70,8 +67,9 @@ nav
 .spacer
   flex 10 1 100px
 
-nav a
+nav a, nav > div:not(.spacer)
   padding 1em
+  cursor pointer
 
 a svg
   font-size 1.4em

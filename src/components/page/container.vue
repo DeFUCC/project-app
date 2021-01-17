@@ -19,14 +19,17 @@
           edit-status(:id="item.soul", :editable="editable")
           user-pill(:id="item.soul.slice(1, 88)")
           item-date(:item="item")
+        edit-publish(:soul="item.soul", :type="item.type")
     edit-team(v-if="false", :id="item.soul", :editable="editable")
     edit-description(
       :text="item.description",
       :editable="editable",
       @update="updateItem('description', $event)"
-    ) 
-    edit-date(type="start", :id="item.soul", :editable="editable")
-    edit-date(type="finish", :id="item.soul", :editable="editable")
+    )
+    .dates
+      edit-date(type="start", :id="item.soul", :editable="editable")
+      edit-date(type="finish", :id="item.soul", :editable="editable")
+  rating-bar(:horizontal="true", :id="item.soul") 
   items-list(
     v-for="type in model[item.type]",
     @open="$emit('open', $event)",
@@ -35,7 +38,6 @@
     :editable="editable",
     :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
   )
-  rating-bar(:horizontal="true", :id="item.soul") 
   comment-list(:id="item.soul")
   page-log(:id="item.soul", :editable="editable")
 </template>
@@ -146,4 +148,7 @@ export default {
   flex-flow column nowrap
   padding 4px
   flex 1 1 360px
+
+.dates
+  display flex
 </style>

@@ -1,54 +1,14 @@
-export interface Item {
-  title: string
-  description: string
-  type: string
-  createdAt: number
-  createdBy: string
+declare global {
+  interface Window {
+    APPCONFIG: any
+  }
 }
 
-export interface Design extends Item {
-  projects: object
-}
-
-enum Types {
-  design = 'design',
-  project = 'project',
-  event = 'event',
-}
-
-export const types = [
-  'user',
-  'design',
-  'project',
-  'object',
-  'event',
-  'task',
-  'purchase',
-  'result',
-  'thing',
-]
+const CONFIG = { ...window.APPCONFIG }
 
 export const model = {
-  all: [
-    'user',
-    'design',
-    'project',
-    'object',
-    'event',
-    'task',
-    'purchase',
-    'result',
-    'thing',
-  ],
-  user: ['design', 'project', 'object', 'event', 'task', 'purchase'],
-  design: ['project'],
-  project: ['object', 'event'],
-  event: ['task', 'purchase'],
-  object: ['task', 'purchase'],
-  task: ['result'],
-  purchase: ['thing'],
-  result: [],
-  thing: [],
+  all: Object.keys(CONFIG.model),
+  ...CONFIG.model,
 }
 
 export const statuses = [

@@ -9,7 +9,7 @@
   main
     h1 {{ user.info.title }}
     button(v-if="!published", @click="publishUser()") Publish
-    user-pub(:pub="user.is?.pub", :size="320")
+    user-pub(:pub="user.is?.pub", :size="120")
 </template>
 
 <script lang="ts">

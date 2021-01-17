@@ -1,10 +1,8 @@
-<template>
-  <AppBar />
-  <router-view v-slot="{ Component }">
-    <transition name="fade">
-      <component :is="Component" />
-    </transition>
-  </router-view>
+<template lang="pug">
+app-bar
+router-view(v-slot="{Component}")
+  transition(name="fade")
+    component(:is="Component")
 </template>
 
 <script lang="ts">
@@ -18,5 +16,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-</style>
+<style lang="stylus" scoped></style>

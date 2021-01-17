@@ -52,7 +52,6 @@ export function useItems({ type = 'project', parent = null } = {}) {
       items[key] = { ...data }
       let item = items[key]
       item.soul = soul(data)
-      /*
 
       item.rated = {
         star: {},
@@ -91,7 +90,6 @@ export function useItems({ type = 'project', parent = null } = {}) {
               })
           }
         })
-        */
     }
   }
 

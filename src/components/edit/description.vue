@@ -1,21 +1,25 @@
 <template lang="pug">
-.description
-  .edit(@click="editor.open = !editor.open", v-if="editable")
-    span(v-if="!editor.open")
+.description(v-if="md || editable")
+  .title Short Description
+    button.edit(
+      @click="editor.open = !editor.open",
+      v-if="editable && !editor.open"
+    )
       i.iconify(data-icon="la:pen-alt")
-    span(v-if="editor.open")
+    button.save(v-if="editor.open", @click="update()")
+      i.iconify(data-icon="la:check")
+    button(v-if="editor.open")
       i.iconify(data-icon="la:times")
   .markdown(v-if="!editor.open", v-html="md")
-  form(v-if="editable && editor.open", @submit.prevent="")
+  form(v-if="editor.open", @submit.prevent="")
     textarea(
       v-model="editor.text",
       name="description",
-      @keyup.enter.meta="update",
-      @keyup.ctrl.enter="update",
+      @keyup.enter.meta="update()",
+      @keyup.ctrl.enter="update()",
       :cols="30",
       :rows="10"
     )
-    button.save(@click="update") Save
 </template>
 
 <script lang="ts">
@@ -57,27 +61,24 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.edit {
-  cursor: pointer;
-  opacity: 0.7;
-  padding: 4px 8px;
-  background-color: hsla(0, 0%, 80%, 0.6);
-  border-radius: 4em;
-}
-.edit:hover {
-  opacity: 1;
-}
-.description {
-  margin: 0 2em;
-  position: relative;
-  hyphens: auto;
-  min-height: 4em;
-}
+<style lang="stylus" scoped>
+.title
+  font-size 0.8em
+  padding 0.5em 0
+  color var(--text-light)
 
-.description .edit {
-  font-size: 1.4em;
-  position: absolute;
-  right: 0;
-}
+.edit
+  cursor pointer
+  padding 8px
+  border-radius 4em
+  color var(--text-color)
+
+.edit:hover
+  opacity 1
+
+.description
+  margin 0 2em
+  position relative
+  hyphens auto
+  min-height 4em
 </style>

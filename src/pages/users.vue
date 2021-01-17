@@ -13,7 +13,7 @@ main.columns
 
 <script lang="ts">
 import { onMounted, reactive, ref, watch, watchEffect } from "vue";
-import { model, types } from "../store/model";
+import { model } from "../store/model";
 import { itemColor } from "../use/colors";
 import { useRoute, useRouter } from "vue-router";
 import { useTitle } from "@vueuse/core";

@@ -24,7 +24,7 @@ export default {
     const router = useRouter();
     watchEffect(() => {
       if (!user.is) {
-        router.push("/auth");
+        router.push("/");
       }
     });
 

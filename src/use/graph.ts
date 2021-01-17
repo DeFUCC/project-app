@@ -1,6 +1,6 @@
 import { watchEffect, reactive } from 'vue'
 import { db, gun, soul } from '../store/gun-db'
-import { types } from '../store/model'
+import { model } from '../store/model'
 
 export function useGraph() {
   const nodes = reactive([])
@@ -18,7 +18,7 @@ export function useGraph() {
     user: '#0ff',
   }
 
-  for (let type of types) {
+  for (let type of model.all) {
     db.get(type)
       .map()
       .on((data, key) => {
@@ -39,7 +39,7 @@ export function useGraph() {
 
   watchEffect(() => {
     for (let node of nodes) {
-      for (let type of types) {
+      for (let type of model.all) {
         if (node.data[type]) {
           gun
             .get(node.id)

@@ -1,15 +1,13 @@
 <template lang="pug">
 main.columns
   .types
-    .type(
+    .head {{ appPath }}
+    items-type(
       v-for="atype in types",
       :key="atype",
       :class="{ active: atype == type }",
-      @click="$router.push({ path: '/' + atype })"
+      :type="atype"
     )
-      icon-type(:type="atype")
-      .type-name {{ $t(`type.${atype}`) }}
-
   .column
     transition(name="fade")
       keep-alive
@@ -24,12 +22,12 @@ main.columns
 </template>
 
 <script lang="ts">
-import { onMounted, reactive, ref, watch, watchEffect } from "vue";
-import { model, types } from "../../store/model";
+import { computed, onMounted, reactive, ref, watch, watchEffect } from "vue";
+import { model } from "../../store/model";
 import { itemColor } from "../../use/colors";
 import { useRoute, useRouter } from "vue-router";
 import { useTitle } from "@vueuse/core";
-import { gun } from "../../store/gun-db";
+import { appPath, gun } from "../../store/gun-db";
 
 export default {
   name: "Browse",
@@ -84,9 +82,11 @@ export default {
         });
       }
     }
+
     return {
       types,
       feeds,
+      appPath,
       itemColor,
     };
   },
@@ -132,36 +132,16 @@ export default {
   display flex
   align-items center
 
+.head
+  padding 1em
+
 .types
   min-width max-content
+  flex 1 1 100%
   scroll-snap-align start
   overflow-y scroll
   height 100%
   display flex
   flex-flow column nowrap
   justify-content stretch
-
-.type
-  font-size 1em
-  opacity 0.4
-  cursor pointer
-  transition all 300ms ease
-  display flex
-  align-items center
-  background-color var(--top-bar)
-  padding 0 0.4em 0 0
-
-.type img
-  font-size 2em
-  height 2em
-
-.type .count
-  font-size 18px
-  white-space nowrap
-
-.type:hover
-  opacity 0.7
-
-.type.active
-  opacity 1
 </style>
