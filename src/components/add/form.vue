@@ -63,9 +63,8 @@ form
   margin 0
   flex 1 0
   font-size 1em
-  border 1px solid #aaa
   outline none
-  background-color var(--top-bar)
+  background-color var(--secondary-button)
   color var(--text-color)
   width 1em
   transition all 300ms ease-in-out

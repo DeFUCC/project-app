@@ -45,7 +45,7 @@ export default defineComponent({
 <style lang="stylus" scoped>
 .comment
   padding 0.5em
-  background-color var(--top-bar)
+  background-color var(--bar-color)
   border-radius 1em
   margin 0.5em
   position relative
