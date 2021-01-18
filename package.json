@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/DeFUCC/project-app.git"
   },
-  "version": "0.4.6",
+  "version": "0.5.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
@@ -20,7 +20,7 @@
   "dependencies": {
     "@iconify/iconify": "^1.0.7",
     "@mattkrick/sanitize-svg": "^0.3.1",
-    "@vueuse/core": "^4.0.5",
+    "@vueuse/core": "^4.0.8",
     "color-hash": "^1.0.3",
     "image-compressor": "^2.0.3",
     "markdown-it-task-lists": "^2.1.1",
@@ -31,19 +31,19 @@
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
-    "@iconify/json": "^1.1.286",
+    "@iconify/json": "^1.1.288",
     "@intlify/vite-plugin-vue-i18n": "^1.0.0-beta.12",
     "@prettier/plugin-pug": "^1.13.2",
-    "@types/node": "^14.14.20",
-    "@vitejs/plugin-vue": "^1.0.5",
+    "@types/node": "^14.14.21",
+    "@vitejs/plugin-vue": "^1.0.6",
     "@vue/compiler-sfc": "^3.0.5",
     "pug": "^3.0.0",
     "stylus": "^0.54.8",
-    "vite": "^2.0.0-beta.27",
+    "vite": "^2.0.0-beta.31",
     "vite-plugin-components": "^0.6.6",
     "vite-plugin-md": "^0.2.1",
     "vite-plugin-purge-icons": "^0.5.1",
-    "vite-plugin-pwa": "^0.3.7",
+    "vite-plugin-pwa": "^0.3.8",
     "vite-plugin-voie": "^0.7.3"
   }
 }

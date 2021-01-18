@@ -1,13 +1,14 @@
 <template lang="pug">
 main
-  keep-alive
-    page-container(
-      v-if="id",
-      @open="open",
-      @close="close",
-      :key="id",
-      :id="id"
-    )
+  transition(name="fade")
+    keep-alive
+      page-container(
+        v-if="id",
+        @open="open",
+        @close="close",
+        :key="id",
+        :id="id"
+      )
 </template>
 
 <script lang="ts">
