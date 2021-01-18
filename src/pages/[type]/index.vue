@@ -11,7 +11,12 @@ main.columns
   .column
     transition(name="fade")
       keep-alive
-        items-list(:key="type", :type="type", @open="feeds.open($event, -1)")
+        items-list(
+          :key="type",
+          :type="type",
+          @open="feeds.open($event, -1)",
+          :editable="true"
+        )
   .column(v-for="(feed, num) in feeds.list", :key="num")
     page-container(
       @open="feeds.open($event, num)",

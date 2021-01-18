@@ -12,6 +12,8 @@ textarea {
 button {
   border: none;
   border-radius: 2em;
+  padding: 6px;
+  margin: 0 4px;
   cursor: pointer;
   transition: all 150ms ease;
   color: var(--text-color);

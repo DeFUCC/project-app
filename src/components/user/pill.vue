@@ -1,17 +1,18 @@
 <template lang="pug">
 router-link.user(
-  :to="{ path: profile.pub != user.is?.pub ? `${appPath}/user` : '/my', query: { 0: profile.pub } }"
+  :to="{ path: isMe ? '/my' : `/page`, query: { id: `${appPath}/user/${profile.pub}` } }",
+  :style="{ background: isMe ? pubGradient(profile.pub, 90) : 'none' }"
 )
-  user-avatar.pad(size="small", :pic="profile.avatar")
-  span.alias(:style="{ borderColor: itemColor(profile.pub) }") {{ profile.alias }}
+  user-avatar.avatar(size="small", :pic="profile.avatar")
+  span.alias {{ profile.alias }}
     slot
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watchEffect } from "vue";
+import { computed, defineComponent, reactive, watchEffect } from "vue";
 import { db, gun, appPath } from "../../store/gun-db";
 import { user } from "../../store/user";
-import { itemColor } from "../../use/colors";
+import { itemColor, pubGradient } from "../../use/colors";
 import { truncate } from "../../store/item";
 
 export default defineComponent({
@@ -24,6 +25,7 @@ export default defineComponent({
       pub: null,
       avatar: null,
     });
+    const isMe = computed(() => profile.pub == user.is?.pub);
 
     watchEffect(() => {
       if (props.id) {
@@ -37,19 +39,27 @@ export default defineComponent({
       }
     });
 
-    return { profile, itemColor, appPath, user };
+    return { profile, isMe, itemColor, appPath, user, pubGradient };
   },
 });
 </script>
 
 <style lang="stylus" scoped>
-.pad
-  padding 0.5em
+.avatar
+  margin-top 2px
+
+.alias
+  margin 0 8px 0 6px
+  font-weight normal
 
 .user
   display flex
   align-items center
-  border-radius 1em
-  padding 4px
+  border-radius 2em
+  padding 0
   white-space nowrap
+  opacity 0.75
+
+.user:hover
+  opacity 0.9
 </style>

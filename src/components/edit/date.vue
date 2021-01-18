@@ -4,20 +4,20 @@
     | {{  $t(&quot;date.&quot; + type)  }}
     button(@click="add()", v-if="!date.timestamp && editable")
       i.iconify(data-icon="la:plus")
+    button(@click="remove()")
+      i.iconify(data-icon="la:trash")
   .date(v-if="date.timestamp") {{ parsed.toLocaleDateString() }}
     .edit(v-if="editable")
       button(@click="date.edit = !date.edit")
         i.iconify(data-icon="la:pen")
-      button(@click="remove()")
-        i.iconify(data-icon="la:trash")
-      form(v-show="date.edit", @submit.prevent="")
-        input(
-          type="date",
-          name="date",
-          pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}",
-          @input="set($event)",
-          :value="parsed.toLocaleDateString('en-CA')"
-        )
+    form(v-show="date.edit", @submit.prevent="")
+      input(
+        type="date",
+        name="date",
+        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}",
+        @input="set($event)",
+        :value="parsed.toLocaleDateString('en-CA')"
+      )
 </template>
 
 <script lang="ts">
@@ -39,7 +39,9 @@ export default defineComponent({
       timestamp: undefined,
     });
 
-    const dateGun = gun.get(props.id).get(`date-${props.type}`);
+    const dateName = props.type.charAt(0).toUpperCase() + props.type.slice(1);
+
+    const dateGun = gun.get(props.id).get(`date${dateName}`);
 
     const parsed = computed(() => new Date(date.timestamp));
 

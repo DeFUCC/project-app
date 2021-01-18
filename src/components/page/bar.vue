@@ -1,6 +1,6 @@
 <template lang="pug">
 aside.row(:style="{ backgroundColor: itemColor(id) }")
-  item-route(:id="id", @open="$emit('open', $event)")
+  item-route(:id="parent || id", @open="$emit('open', $event)")
   router-link.link(:to="{ path: '/page', query: { id: id } }")
     i.iconify(data-icon="la:link")
   .spacer
@@ -16,6 +16,7 @@ export default defineComponent({
   emits: ["close", "open"],
   props: {
     id: String,
+    parent: String,
   },
   setup() {
     return {

@@ -1,5 +1,5 @@
 <template lang="pug">
-.description(v-if="md || editable")
+.description(v-if="text || editable")
   .title Short Description
     button.edit(
       @click="editor.open = !editor.open",
@@ -8,23 +8,22 @@
       i.iconify(data-icon="la:pen-alt")
     button.save(v-if="editor.open", @click="update()")
       i.iconify(data-icon="la:check")
-    button(v-if="editor.open")
+    button(v-if="editor.open", @click="editor.open = false")
       i.iconify(data-icon="la:times")
-  .markdown(v-if="!editor.open", v-html="md")
+  .markdown(v-if="!editor.open") {{ text }}
   form(v-if="editor.open", @submit.prevent="")
     textarea(
       v-model="editor.text",
       name="description",
       @keyup.enter.meta="update()",
       @keyup.ctrl.enter="update()",
-      :cols="30",
       :rows="10"
     )
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, ref, watchEffect } from "vue";
-import { Remarkable } from "remarkable";
+
 import { linkify } from "remarkable/linkify";
 
 export default defineComponent({
@@ -35,15 +34,12 @@ export default defineComponent({
     editable: Boolean,
   },
   setup(props, context) {
-    const md = ref("");
     const editor = reactive({
       text: "",
       open: false,
     });
-    //  const parser = new Remarkable().use(linkify);
+
     watchEffect(() => {
-      //    md.value = parser.render(props.text);
-      md.value = props.text;
       editor.text = props.text;
     });
 
@@ -54,7 +50,6 @@ export default defineComponent({
 
     return {
       update,
-      md,
       editor,
     };
   },
@@ -77,8 +72,11 @@ export default defineComponent({
   opacity 1
 
 .description
-  margin 0 2em
+  margin 1em 0
   position relative
   hyphens auto
   min-height 4em
+
+textarea
+  width 90%
 </style>

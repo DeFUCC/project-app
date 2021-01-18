@@ -62,7 +62,7 @@ export async function createItem(type: string, data?: any, parent?: string) {
   }
 }
 
-export function truncate(input: string, num = 42) {
+export function truncate(input: string, num = 142) {
   if (!input) {
     return ' '
   }

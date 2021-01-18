@@ -6,15 +6,15 @@ li.item(
     .icon(v-if="item.icon")
       img(:src="item.icon")
     .content
-      .title
+      .header
         .route
           item-route(:id="item.parent")
-        .pill
+        .title
           icon-type.type-icon(:type="item.type") 
-          .name {{ truncate(item.title) }}
+          .name {{ item.title }}
         .description(v-if="item.description") {{ item.description }}
       .info
-        edit-status(:id="item.soul")
+        edit-status(:id="item.soul", :editable="isMine(item.soul)")
         user-pill(:id="item?.soul.slice(1, 88)")
         comment-count(:id="item.soul")
     aside.side
@@ -26,6 +26,7 @@ import { model } from "../../store/model";
 import { itemColor } from "../../use/colors";
 import { computed, defineComponent } from "vue";
 import { truncate } from "../../store/item";
+import { isMine } from "../../store/user";
 
 export default defineComponent({
   props: {
@@ -43,6 +44,7 @@ export default defineComponent({
 
   setup(props) {
     return {
+      isMine,
       model,
       truncate,
       itemColor,
@@ -52,18 +54,18 @@ export default defineComponent({
 </script>
 
 <style lang="stylus" scoped>
-.title
+.header
   flex-flow row wrap
-  margin 0
   display flex
   align-items center
   flex 1 1 100%
 
-.pill
+.title
+  margin 0.5em 0
   display flex
   align-items center
 
-.pill .name
+.title .name
   margin 0
   display flex
   align-items center
@@ -74,7 +76,7 @@ export default defineComponent({
 .description
   font-size 14px
   flex 1 0 100%
-  padding 6px
+  margin 0.5em
 
 .main
   display flex
@@ -97,6 +99,7 @@ export default defineComponent({
 
 .item
   cursor pointer
+  position relative
   display flex
   flex-flow column
   align-items stretch
@@ -104,10 +107,10 @@ export default defineComponent({
   flex 1 1 600px
   min-height min-content
   border-radius var(--small-radius)
-  border-left 6px solid #999
 
 .info
-  font-size 0.8em
+  font-size 0.7em
+  margin 0.5em 0
   display flex
   flex 1 0 300px
   flex-flow row wrap

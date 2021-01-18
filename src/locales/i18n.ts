@@ -28,7 +28,6 @@ const languages = usePreferredLanguages()
 
 for (let i = 0; i < languages.value.length; i++) {
   const lang = languages.value[i]
-  console.log(lang == locales[1])
   if (messages[lang]) {
     changeLocale(lang)
     break

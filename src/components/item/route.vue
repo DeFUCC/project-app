@@ -60,8 +60,8 @@ export default defineComponent({
 .path
   display flex
   align-items center
-  flex 1 1 auto
-  min-width min-content
+  flex 1 1 100%
+  padding 0.1em 0.5em
   max-width max-content
   overflow hidden
   cursor pointer
@@ -72,6 +72,5 @@ export default defineComponent({
 
 .title
   white-space nowrap
-  width 4em
   transition all 300ms ease-in-out
 </style>

@@ -3,21 +3,20 @@ declare global {
     Gun: any
     SEA: any
     gun: any
-    APPCONFIG: any
   }
 }
 
-const CONFIG = { ...window.APPCONFIG }
+const config = {
+  appPath: 'feeds-app',
+  dbVersion: 24,
+  peers: ['http://127.0.0.1:4200/gun', 'https://gun-feeds.glitch.me/gun'],
+}
 
-console.info(CONFIG)
+checkDbVersion(localStorage.dbVersion, config.dbVersion)
 
-const peerList = [...CONFIG.peers]
-
-checkDbVersion(localStorage.dbVersion, CONFIG.dbVersion)
-
-export const gun = window.Gun(peerList)
+export const gun = window.Gun(config.peers)
 window.gun = gun //for debugging
-export const appPath = CONFIG.appPath
+export const appPath = config.appPath
 export const db = gun.get(appPath)
 export const soul = window.Gun.node.soul
 export const isNode = window.Gun.node.is

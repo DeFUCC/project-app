@@ -3,7 +3,8 @@
   page-bar(
     @close="$emit('close')",
     @open="$emit('open', $event)",
-    :id="item.soul"
+    :id="item.soul",
+    :parent="item.parent"
   )
   .content
     .main
@@ -15,7 +16,8 @@
           :text="item.title",
           @update="updateItem('title', $event)"
         )
-        .author
+
+        .data
           edit-status(:id="item.soul", :editable="editable")
           user-pill(:id="item.soul.slice(1, 88)")
           item-date(:item="item")
@@ -120,17 +122,9 @@ export default {
 .main
   display flex
   align-items center
-  padding 1em
 
-.title
-  display flex
-  align-items center
-  font-size 1.8em
-
-.title h3
-  margin 0.5em 0
-
-.author
+.data
+  font-size 0.75em
   display flex
   align-items center
 
@@ -142,7 +136,6 @@ export default {
   font-size 1.4em
 
 .info
-  font-size 0.7em
   display flex
   align-items flex-start
   flex-flow column nowrap
@@ -151,4 +144,7 @@ export default {
 
 .dates
   display flex
+
+.content
+  padding 0 2em 2em 2em
 </style>

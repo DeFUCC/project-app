@@ -1,6 +1,9 @@
 <template lang="pug">
 .state
-  .status(:class="{ [state.status]: true }", @click="state.open = !state.open")
+  .status(
+    :class="{ [state.status]: true }",
+    @click.stop="state.open = !state.open"
+  )
     | {{  $t(&quot;status.&quot; + state.status)  }}
     span(v-show="editable")
       i.iconify(data-icon="la:pen")
@@ -10,7 +13,7 @@
         v-for="st in statuses",
         :key="st",
         :class="{ [st]: true }",
-        @click="setStatus(st)",
+        @click.stop="setStatus(st)",
         v-t="'status.' + st"
       )
 </template>
