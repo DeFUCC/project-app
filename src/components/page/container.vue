@@ -27,6 +27,11 @@
       :text="item.description",
       :editable="editable",
       @update="updateItem('description', $event)"
+    ) {{ $t('description') }}
+    edit-markdown(
+      :text="item.text",
+      :editable="editable",
+      @update="updateItem('text', $event)"
     )
     .dates
       edit-date(type="start", :id="item.soul", :editable="editable")

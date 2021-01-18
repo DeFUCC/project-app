@@ -1,6 +1,13 @@
 <template lang="pug">
 main
-  page-container(v-if="id", @open="open", @close="close", :key="id", :id="id")
+  keep-alive
+    page-container(
+      v-if="id",
+      @open="open",
+      @close="close",
+      :key="id",
+      :id="id"
+    )
 </template>
 
 <script lang="ts">

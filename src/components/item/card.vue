@@ -61,7 +61,7 @@ export default defineComponent({
   flex 1 1 100%
 
 .title
-  margin 0.5em 0
+  margin 4px 0
   display flex
   align-items center
 
