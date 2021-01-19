@@ -39,7 +39,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
   word-break: break-word;
-  min-height: -webkit-fill-available;
 }
 
 html {
@@ -58,7 +57,6 @@ html {
   grid-template-columns: 60px 1fr;
   grid-template-areas: 'nav content';
   overflow-x: hidden;
-  min-height: -webkit-fill-available;
 }
 
 #app > main {

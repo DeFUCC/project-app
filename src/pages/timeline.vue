@@ -12,60 +12,48 @@
       .after
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, reactive } from "vue";
+<script setup lang="ts">
+import { computed, defineComponent, defineEmit, reactive } from "vue";
 import { db, soul } from "../store/gun-db";
 import { itemColor } from "../use/colors";
 import { format } from "../use/locale";
 
-export default defineComponent({
-  setup() {
-    const items = reactive({});
-    db.map()
-      .map()
-      .on((d, k) => {
-        if (d?.dateStart || d?.dateFinish) {
-          items[k] = d;
-          items[k].id = k;
-          items[k].soul = soul(d);
-        }
-      });
-
-    const list = computed(() => {
-      return Object.values(items).sort((a: any, b: any) => {
-        return a.dateStart > b.dateStart ? 1 : -1;
-      });
-    });
-
-    function startPoint(time) {
-      if (!time) return;
-      let now = Date.now();
-      //@ts-ignore
-      let start = list.value[0].dateStart;
-      let full = now - start;
-      let startOffset = time - start;
-      return startOffset / full;
+const items = reactive({});
+db.map()
+  .map()
+  .on((d, k) => {
+    if (d?.dateStart || d?.dateFinish) {
+      items[k] = d;
+      items[k].id = k;
+      items[k].soul = soul(d);
     }
+  });
 
-    function span(start, finish = Date.now()) {
-      let now = Date.now();
-      //@ts-ignore
-      let begin = list.value[0].dateStart;
-      start = start || begin;
-      let full = now - begin;
-      let length = finish - start;
-      return length / full;
-    }
-
-    return {
-      itemColor,
-      list,
-      span,
-      format,
-      startPoint,
-    };
-  },
+const list = computed(() => {
+  return Object.values(items).sort((a: any, b: any) => {
+    return a.dateStart > b.dateStart ? 1 : -1;
+  });
 });
+
+function startPoint(time) {
+  if (!time) return;
+  let now = Date.now();
+  //@ts-ignore
+  let start = list.value[0].dateStart;
+  let full = now - start;
+  let startOffset = time - start;
+  return startOffset / full;
+}
+
+function span(start, finish = Date.now()) {
+  let now = Date.now();
+  //@ts-ignore
+  let begin = list.value[0].dateStart;
+  start = start || begin;
+  let full = now - begin;
+  let length = finish - start;
+  return length / full;
+}
 </script>
 
 <style lang="stylus" scoped>

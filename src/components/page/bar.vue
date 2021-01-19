@@ -8,22 +8,16 @@ aside.row(:style="{ backgroundColor: itemColor(id) }")
     span.iconify(data-icon="la:times")
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineEmit, defineProps } from "vue";
 import { itemColor } from "../../use/colors";
 
-export default defineComponent({
-  emits: ["close", "open"],
-  props: {
-    id: String,
-    parent: String,
-  },
-  setup() {
-    return {
-      itemColor,
-    };
-  },
+defineProps({
+  id: String,
+  parent: String,
 });
+
+defineEmit(["close", "open"]);
 </script>
 
 <style lang="stylus" scoped>
