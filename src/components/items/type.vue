@@ -1,6 +1,6 @@
 <template lang="pug">
 .type(@click="$router.push({ path: '/' + type })")
-  icon-type(:type="type")
+  item-type(:type="type")
   .name {{ $tc(`type.${type}`, count) }}
   .spacer
   .count {{ count }}

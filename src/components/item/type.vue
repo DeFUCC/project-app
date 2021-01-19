@@ -2,18 +2,13 @@
 img.type-icon(v-if="type", :src="'/svg/' + type + '.svg'", alt="")
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineProps } from "vue";
 
-export default defineComponent({
-  props: {
-    type: {
-      type: String,
-      default: "skill",
-    },
-  },
-  setup() {
-    return {};
+defineProps({
+  type: {
+    type: String,
+    default: "skill",
   },
 });
 </script>

@@ -1,6 +1,6 @@
 <template lang="pug">
 .title
-  icon-type(:type="type")
+  item-type(:type="type")
   h2(v-if="!edit") {{ text }}
     span.edit(v-if="editable", @click="edit = true")
       i.iconify(data-icon="la:pen")
@@ -14,25 +14,17 @@
   slot
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { defineEmit, ref, defineProps } from "vue";
 
-export default defineComponent({
-  emits: ["update"],
-  props: {
-    editable: Boolean,
-    text: String,
-    type: String,
-  },
-  setup(props) {
-    const edit = ref(false);
-    const newTitle = ref(props.text);
-    return {
-      edit,
-      newTitle,
-    };
-  },
+defineEmit(["update"]);
+const props = defineProps({
+  editable: Boolean,
+  text: String,
+  type: String,
 });
+const edit = ref(false);
+const newTitle = ref(props.text);
 </script>
 
 <style lang="stylus" scoped>

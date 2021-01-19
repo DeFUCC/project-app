@@ -31,32 +31,23 @@
     | {{ state.output.size }}
 </template>
 
-<script>
-// https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue
+<script setup lang="ts">
 import { useFileUpload } from "../../use/fileUpload";
-import { ref, watch } from "vue";
+import { defineEmit, ref, watch } from "vue";
 import { onClickOutside } from "@vueuse/core";
-export default {
-  name: "FileUploader",
-  emits: ["loaded", "close"],
-  setup(props, { emit }) {
-    const { state, handleChanges } = useFileUpload();
-    watch(state, () => {
-      if (state.status == 2) {
-        emit("loaded", state.output);
-      }
-    });
-    const editor = ref(null);
-    onClickOutside(editor, (ev) => {
-      emit("close");
-    });
-    return {
-      handleChanges,
-      state,
-      editor,
-    };
-  },
-};
+
+const emit = defineEmit(["loaded", "close"]);
+
+const { state, handleChanges } = useFileUpload();
+watch(state, () => {
+  if (state.status == 2) {
+    emit("loaded", state.output);
+  }
+});
+const editor = ref(null);
+onClickOutside(editor, (ev) => {
+  emit("close");
+});
 </script>
 
 <style lang="stylus" scoped>

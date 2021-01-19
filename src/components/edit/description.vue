@@ -2,19 +2,16 @@
 .description(v-if="text || editable")
   .title 
     slot Description
-    button.edit(
-      @click="editor.open = !editor.open",
-      v-if="editable && !editor.open"
-    )
+    button.edit(@click="open = !open", v-if="editable && !open")
       i.iconify(data-icon="la:pen-alt")
-    button.save(v-if="editor.open", @click="update()")
+    button.save(v-if="open", @click="update()")
       i.iconify(data-icon="la:check")
-    button(v-if="editor.open", @click="editor.open = false")
+    button(v-if="open", @click="open = false")
       i.iconify(data-icon="la:times")
-  .markdown(v-if="!editor.open") {{ text }}
-  form(v-if="editor.open", @submit.prevent="")
+  .markdown(v-if="!open") {{ text }}
+  form(v-if="open", @submit.prevent="")
     textarea(
-      v-model="editor.text",
+      v-model="text",
       name="description",
       @keyup.enter.meta="update()",
       @keyup.ctrl.enter="update()",
@@ -22,39 +19,28 @@
     )
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { defineEmit, ref, defineProps, reactive, watchEffect } from "vue";
 
-import { linkify } from "remarkable/linkify";
+const emit = defineEmit(["update"]);
 
-export default defineComponent({
-  emits: ["update"],
-  props: {
-    text: String,
-    id: String,
-    editable: Boolean,
-  },
-  setup(props, context) {
-    const editor = reactive({
-      text: "",
-      open: false,
-    });
-
-    watchEffect(() => {
-      editor.text = props.text;
-    });
-
-    function update() {
-      context.emit("update", editor.text);
-      editor.open = false;
-    }
-
-    return {
-      update,
-      editor,
-    };
-  },
+const props = defineProps({
+  text: String,
+  id: String,
+  editable: Boolean,
 });
+
+const text = ref("");
+const open = ref(false);
+
+watchEffect(() => {
+  text.value = props.text;
+});
+
+function update() {
+  emit("update", text.value);
+  open.value = false;
+}
 </script>
 
 <style lang="stylus" scoped>

@@ -1,14 +1,11 @@
 <template lang="pug">
 .state
-  .status(
-    :class="{ [state.status]: true }",
-    @click.stop="state.open = !state.open"
-  )
-    | {{  $t(&quot;status.&quot; + state.status)  }}
+  .status(:class="{ [status]: true }", @click.stop="open = !open")
+    | {{ $t('status.' + status) }}
     span(v-show="editable")
       i.iconify(data-icon="la:pen")
   transition(name="fade")
-    .choose(v-if="editable", v-show="state.open")
+    .choose(v-if="editable", v-show="open")
       span.status(
         v-for="st in statuses",
         :key="st",
@@ -18,37 +15,28 @@
       )
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, reactive, ref } from "vue";
+<script setup lang="ts">
+import { computed, defineProps, reactive, ref } from "vue";
 import { gun } from "../../store/gun-db";
 import { statuses } from "../../store/model";
 
-export default defineComponent({
-  props: {
-    id: String,
-    editable: Boolean,
-  },
-  setup(props) {
-    const state = reactive({
-      status: null,
-      open: false,
-    });
-    const itemStatus = gun.get(props.id).get("status");
-
-    itemStatus.on((data) => {
-      state.status = data;
-    });
-    function setStatus(st) {
-      itemStatus.put(st);
-      state.open = false;
-    }
-    return {
-      state,
-      statuses,
-      setStatus,
-    };
-  },
+const props = defineProps({
+  id: String,
+  editable: Boolean,
 });
+
+const status = ref("new");
+const open = ref(false);
+
+const statusGun = gun.get(props.id).get("status");
+
+statusGun.on((data) => {
+  status.value = data;
+});
+function setStatus(st) {
+  statusGun.put(st);
+  open.value = false;
+}
 </script>
 
 <style lang="stylus" scoped>

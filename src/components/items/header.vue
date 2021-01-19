@@ -1,6 +1,6 @@
 <template lang="pug">
 .bar
-  icon-type(:type="type")
+  item-type(:type="type")
   h3 {{ $t(`type.${type}`) }}
   items-header-filter(
     :my="options.filterMy",

@@ -10,7 +10,7 @@ li.item(
         .route
           item-route(:id="item.parent")
         .title
-          icon-type.type-icon(:type="item.type") 
+          item-type.type-icon(:type="item.type") 
           .name {{ item.title }}
         .description(v-if="item.description") {{ item.description }}
       .info

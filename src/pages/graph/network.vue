@@ -8,7 +8,7 @@ article(ref="graph")
       :id="node.id",
       :style="{ backgroundColor: itemColor(node.id) }"
     )
-      icon-type(:type="node.type")
+      item-type(:type="node.type")
       |
       | {{ node.name }} {{ node.x }} {{ node.y }}
   section.links

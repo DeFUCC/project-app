@@ -1,16 +1,16 @@
 <template lang="pug">
-.row(v-if="date.timestamp || editable")
+.row(v-if="timestamp || editable")
   .type
-    | {{  $t(&quot;date.&quot; + type)  }}
-    button(@click="add()", v-if="!date.timestamp && editable")
+    | {{ $t('date.' + type) }}
+    button(@click="add()", v-if="!timestamp && editable")
       i.iconify(data-icon="la:plus")
-    button(@click="remove()")
+    button(@click="remove()", v-if="timestamp && editable")
       i.iconify(data-icon="la:trash")
-  .date(v-if="date.timestamp") {{ parsed.toLocaleDateString() }}
+  .date(v-if="timestamp") {{ parsed.toLocaleDateString() }}
     .edit(v-if="editable")
-      button(@click="date.edit = !date.edit")
+      button(@click="edit = !edit")
         i.iconify(data-icon="la:pen")
-    form(v-show="date.edit", @submit.prevent="")
+    form(v-show="edit", @submit.prevent="")
       input(
         type="date",
         name="date",
@@ -20,55 +20,39 @@
       )
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, reactive, ref } from "vue";
+<script setup lang="ts">
+import { computed, defineProps, ref } from "vue";
 import { gun } from "../../store/gun-db";
 
-export default defineComponent({
-  props: {
-    id: String,
-    type: {
-      type: String,
-      default: "start",
-    },
-    editable: Boolean,
+const props = defineProps({
+  id: String,
+  type: {
+    type: String,
+    default: "start",
   },
-  setup(props) {
-    const date = reactive({
-      edit: false,
-      timestamp: undefined,
-    });
+  editable: Boolean,
+});
 
-    const dateName = props.type.charAt(0).toUpperCase() + props.type.slice(1);
+const edit = ref(false);
+const timestamp = ref();
+const dateName = props.type.charAt(0).toUpperCase() + props.type.slice(1);
+const dateGun = gun.get(props.id).get(`date${dateName}`);
+const parsed = computed(() => new Date(timestamp.value));
 
-    const dateGun = gun.get(props.id).get(`date${dateName}`);
+function add() {
+  dateGun.put(Date.now());
+}
+function remove() {
+  dateGun.put(null);
+}
+function set(ev) {
+  let timestamp = Date.parse(ev.target.value);
+  dateGun.put(timestamp);
+  edit.value = false;
+}
 
-    const parsed = computed(() => new Date(date.timestamp));
-
-    function add() {
-      dateGun.put(Date.now());
-    }
-    function remove() {
-      dateGun.put(null);
-    }
-    function set(ev) {
-      let timestamp = Date.parse(ev.target.value);
-      dateGun.put(timestamp);
-      date.edit = false;
-    }
-
-    dateGun.on((t) => {
-      date.timestamp = t;
-    });
-
-    return {
-      date,
-      parsed,
-      add,
-      remove,
-      set,
-    };
-  },
+dateGun.on((t) => {
+  timestamp.value = t;
 });
 </script>
 
@@ -77,7 +61,6 @@ export default defineComponent({
   flex 1 1 50%
   display flex
   flex-flow column
-  padding 0 2em
 
 .type
   font-size 0.8em

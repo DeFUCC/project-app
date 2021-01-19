@@ -1,11 +1,11 @@
 <template lang="pug">
 nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
   transition(name="fade")
-    user-auth(v-if="state.auth", @close="state.auth = false")
+    user-auth(v-if="auth", @close="auth = false")
   router-link.logo(to="/design")
     img(src="/icons/feeds.svg", alt="")
   .spacer
-  .login(v-if="!user.is", @click="state.auth = !state.auth")
+  .login(v-if="!user.is", @click="auth = !auth")
     span.iconify(data-icon="la:sign-in-alt")
   router-link.username(v-else="", to="/my")
     user-pill(:id="user.is.pub")
@@ -19,26 +19,12 @@ nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
     span.iconify(data-icon="mdi:graph-outline", data-inline="false")
 </template>
 
-<script>
-import { reactive, ref } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 import { user } from "../../store/user";
 import { itemColor, pubGradient } from "../../use/colors";
-export default {
-  name: "AppBar",
-  setup() {
-    const state = reactive({
-      open: false,
-      auth: false,
-    });
 
-    return {
-      state,
-      user,
-      itemColor,
-      pubGradient,
-    };
-  },
-};
+const auth = ref(false);
 </script>
 
 <style lang="stylus" scoped>

@@ -7,7 +7,7 @@
     :style="{ backgroundColor: itemColor(parent.soul) }",
     :class="{ item: i == route.length - 1 }"
   )
-    icon-type(:type="parent.type")
+    item-type(:type="parent.type")
     span.title {{ parent.title }}
 </template>
 

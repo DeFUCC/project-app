@@ -10,16 +10,8 @@ section.notification
       router-link.more(to="/history") &equiv;
 </template>
 
-<script>
+<script setup lang="ts">
 import { unseen, eventColors } from "../../store/history";
-export default {
-  setup() {
-    return {
-      unseen,
-      eventColors,
-    };
-  },
-};
 </script>
 
 <style lang="stylus" scoped>

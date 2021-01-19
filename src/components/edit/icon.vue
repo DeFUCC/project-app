@@ -10,26 +10,16 @@
   )
 </template>
 
-<script lang="ts">
-import { onClickOutside } from "@vueuse/core";
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { defineProps, ref } from "vue";
 import { update } from "../../store/item";
 
-export default defineComponent({
-  props: {
-    id: String,
-    icon: String,
-    editable: Boolean,
-  },
-  setup() {
-    const edit = ref(false);
-
-    return {
-      edit,
-      update,
-    };
-  },
+const props = defineProps({
+  id: String,
+  icon: String,
+  editable: Boolean,
 });
+const edit = ref(false);
 </script>
 
 <style lang="stylus" scoped>

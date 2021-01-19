@@ -40,9 +40,10 @@ export function itemColor(item: any): string {
 }
 
 export function pubGradient(pub, angle = 0) {
-  if (!pub) return
+  if (!pub)
+    return `linear-gradient(${angle}deg, var(--top-bar) 0%, var(--bar-color) 100%)`
   let deepColor = deepColors[isDark.value ? 'dark' : 'light']
-  let sp = pub.split('.')
-  let duo = sp.map((s) => deepColor.hex(s))
+  let split = pub.split('.')
+  let duo = split.map((s) => deepColor.hex(s))
   return `linear-gradient(${angle}deg, ${duo[0]} 0%, ${duo[1]} 100%)`
 }

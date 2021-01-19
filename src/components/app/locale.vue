@@ -10,24 +10,13 @@
     {{ loc }}
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { changeLocale, locales } from "../../locales/i18n";
 
-export default defineComponent({
-  setup() {
-    const edit = ref(false);
-    const { locale } = useI18n();
-
-    return {
-      edit,
-      locale,
-      locales,
-      changeLocale,
-    };
-  },
-});
+const edit = ref(false);
+const { locale } = useI18n();
 </script>
 
 <style lang="stylus" scoped>

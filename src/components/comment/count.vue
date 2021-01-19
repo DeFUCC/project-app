@@ -4,43 +4,37 @@
   span {{ count }}
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, computed } from "vue";
+<script setup lang="ts">
+import { reactive, computed, defineProps } from "vue";
 import { gun, db, appPath } from "../../store/gun-db";
 
-export default defineComponent({
-  props: {
-    id: String,
-  },
-  setup(props) {
-    const comments = reactive({});
+const props = defineProps({
+  id: String,
+});
 
-    db.get("user")
+const comments = reactive({});
+
+db.get("user")
+  .map()
+  .get("pub")
+  .on((pub) => {
+    gun
+      .user(pub)
+      .get(appPath)
+      .get("comment")
+      .get(props.id.slice(90 + appPath.length))
       .map()
-      .get("pub")
-      .on((pub) => {
-        gun
-          .user(pub)
-          .get(appPath)
-          .get("comment")
-          .get(props.id.slice(90 + appPath.length))
-          .map()
-          .on((data, key) => {
-            comments[key] = {
-              timestamp: key,
-              author: pub,
-              text: data,
-            };
-          });
+      .on((data, key) => {
+        comments[key] = {
+          timestamp: key,
+          author: pub,
+          text: data,
+        };
       });
+  });
 
-    const count = computed(() => {
-      return Object.keys(comments).length;
-    });
-    return {
-      count,
-    };
-  },
+const count = computed(() => {
+  return Object.keys(comments).length;
 });
 </script>
 

@@ -4,52 +4,41 @@ form.add(@submit.prevent="")
     ref="adder",
     placeholder="+",
     type="text",
-    v-model.trim="add.title"
+    v-model.trim="item.title"
   )
-  button(v-if="add.title", @click="addItem()")
+  button(v-if="item.title", @click="addItem()")
     span.iconify(data-icon="la:plus")
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
-import { error } from "../../store/history";
-import { user } from "../../store/user";
+<script setup lang="ts">
+import { defineEmit, reactive, defineProps, ref, watchEffect } from "vue";
 import { createItem } from "../../store/item";
 import { onStartTyping } from "@vueuse/core";
 
-export default defineComponent({
-  emits: ["search"],
-  props: {
-    type: String,
-    parent: String,
-    editable: Boolean,
-  },
-  setup(props, { emit }) {
-    const add = reactive({
-      title: null,
-    });
+const emit = defineEmit(["search"]);
+const props = defineProps({
+  type: String,
+  parent: String,
+  editable: Boolean,
+});
 
-    watchEffect(() => {
-      emit("search", add.title);
-    });
+const item = reactive({
+  title: null,
+});
 
-    function addItem() {
-      createItem(props.type, add, props.parent);
-      add.title = "";
-    }
+const adder = ref();
 
-    const adder = ref();
+watchEffect(() => {
+  emit("search", item.title);
+});
 
-    onStartTyping(() => {
-      if (!adder.value.active) adder.value.focus();
-    });
+function addItem() {
+  createItem(props.type, item, props.parent);
+  item.title = "";
+}
 
-    return {
-      add,
-      adder,
-      addItem,
-    };
-  },
+onStartTyping(() => {
+  if (!adder.value.active) adder.value.focus();
 });
 </script>
 

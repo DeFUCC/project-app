@@ -1,8 +1,8 @@
 <template lang="pug">
 .comment(:key="comment.text")
   user-pill(:id="comment.author")
-  .text {{ comment.text }}
-  .time {{ format(comment.timestamp).date }}
+  .text(v-if="!edit") {{ comment.text }}
+  .time(v-if="!edit") {{ format(comment.timestamp).date }}
   form
     input(v-if="edit", v-model="text")
     button.edit(
@@ -19,27 +19,21 @@
       span.iconify(data-icon="la:times")
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { defineEmit, ref, defineProps } from "vue";
 import { user } from "../../store/user";
 import { format } from "../../use/locale";
 
-export default defineComponent({
-  emits: ["edit"],
-  props: {
-    comment: Object,
-  },
-  setup(props) {
-    const edit = ref(false);
-    const text = props.comment.text;
-    return {
-      format,
-      user,
-      edit,
-      text,
-    };
-  },
+defineEmit({
+  edit: (comment) => comment.timestamp && comment.text,
 });
+
+const props = defineProps({
+  comment: Object,
+});
+
+const edit = ref(false);
+const text = props.comment.text;
 </script>
 
 <style lang="stylus" scoped>
@@ -63,4 +57,12 @@ export default defineComponent({
   position absolute
   right 0.8em
   top 1.2em
+
+form
+  display flex
+  flex 1
+  padding 0 1em
+
+input
+  flex 1
 </style>
