@@ -1,19 +1,19 @@
 <template lang="pug">
 .description(v-if="text || editable")
   .title 
-    slot Description
+    slot {{ $t('subtitle') }}
     button.edit(@click="open = !open", v-if="editable && !open")
       i.iconify(data-icon="la:pen-alt")
     button.save(v-if="open", @click="update()")
       i.iconify(data-icon="la:check")
     button(v-if="open", @click="open = false")
       i.iconify(data-icon="la:times")
-  .markdown(v-if="!open") {{ text }}
+  .text(v-if="text && !open") {{ text }}
   form(v-if="open", @submit.prevent="")
     textarea(
       v-model="text",
-      name="description",
-      @keyup.enter.meta="update()",
+      name="subtitle",
+      @keyup.meta.enter="update()",
       @keyup.ctrl.enter="update()",
       :rows="10"
     )
@@ -66,4 +66,5 @@ function update() {
 
 textarea
   width 90%
+  height 100px
 </style>

@@ -10,8 +10,6 @@ nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
   router-link.username(v-else="", to="/my")
     user-pill(:id="user.is.pub")
   .spacer
-  router-link(to="/")
-    span.iconify(data-icon="la:home", data-inline="false")
   app-locale
   router-link(to="/about/")
     span.iconify(data-icon="la:info-circle")

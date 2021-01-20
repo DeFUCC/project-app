@@ -16,12 +16,16 @@
           user-pill(:id="item.soul.slice(1, 88)")
 
     edit-team(v-if="false", :id="item.soul", :editable="editable")
-    edit-description(
-      :text="item.description",
+    edit-subtitle(
+      :text="item.subtitle",
       :editable="editable",
-      @update="updateItem('description', $event)"
-    ) {{ $t('description') }}
-
+      @update="updateItem('subtitle', $event)"
+    ) {{ $t('subtitle') }}
+    edit-link(
+      :link="item.link",
+      :editable="editable",
+      @update="updateItem('link', $event)"
+    )
     .dates
       edit-date(type="start", :id="item.soul", :editable="editable")
       edit-date(type="finish", :id="item.soul", :editable="editable")

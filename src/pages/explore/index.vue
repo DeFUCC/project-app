@@ -7,10 +7,13 @@
       v-for="type in types",
       :key="type"
     )
-      item-type(:type="type")
-      .name {{ $tc(`type.${type}`, count(type)) }}
-      .spacer
-      .count {{ count(type) }}
+      header
+        item-type(:type="type")
+        .spacer
+        .count {{ count(type) }}
+      section
+        .title {{ $tc(`type.${type}`, count(type)) }}
+        .def {{ $t(`def.${type}`) }}
 </template>
 
 <script setup lang="ts">
@@ -26,7 +29,7 @@ types.forEach((type) => {
   db.get(type)
     .map()
     .once((data, key) => {
-      if (data && data.title) {
+      if (data) {
         counter[type][key] = data;
       }
     });
@@ -38,6 +41,13 @@ function count(type) {
 </script>
 
 <style lang="stylus" scoped>
+.title
+  font-size 1.2em
+  font-weight bold
+
+.def
+  padding 0.5em 0
+
 .head
   padding 0.5em
 
@@ -45,7 +55,15 @@ function count(type) {
   display grid
   grid-gap 1em
   padding 1em
-  grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
+  grid-template-columns repeat(auto-fill, minmax(300px, 1fr))
+
+header
+  display flex
+  flex 1
+  width 100%
+
+section
+  padding 0.5em
 
 .type
   font-size 1em
@@ -53,17 +71,18 @@ function count(type) {
   cursor pointer
   transition all 300ms ease
   display flex
-  align-items center
+  flex-flow column nowrap
+  align-items flex-start
   background-color var(--top-bar)
   padding 1em
 
 .type img
-  font-size 2em
+  font-size 1.4em
   height 2em
 
 .type .count
   padding 8px
-  font-size 1.2em
+  font-size 1em
   white-space nowrap
   font-weight bold
 

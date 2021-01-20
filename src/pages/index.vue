@@ -2,10 +2,12 @@
 main
   img.logo(src="/icons/feeds.svg", alt="")
   .title
-    h1 Feeds
-    p desc
-  router-link.card(to="/explore/") explore
-  router-link.card(to="/users/") users
+    h1 {{ $t('app.title') }}
+    h3 {{ $t('app.welcome') }}
+    p {{ $t('app.description') }}
+  router-link.card(to="/explore/") Explore
+  router-link.card(to="/users/") Users
+  router-link.card(to="/timeline/") Timeline
   app-install
 </template>
 
@@ -16,9 +18,10 @@ main
 main
   display grid
   grid-template-columns 1fr 10fr
-  grid-template-rows repeat(1fr)
+  grid-template-rows 200px
   grid-template-areas 'logo info' 'app app'
   grid-gap 1em
+  padding 2em
 
 .card
   padding 1em

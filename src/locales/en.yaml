@@ -1,8 +1,6 @@
 '404':
   sorry: Sorry!
   text: Nothing found here.
-app:
-  title: Project app
 type:
   user: User | Users
   design: Design | Designs
@@ -29,3 +27,26 @@ log:
   title: Log
 comment: Comment | Comments
 description: Description
+def:
+  design: A set of socially significant projects united by a common idea
+  project: >-
+    A feasible sequence of coordinated human actions aimed at achieving clear
+    goals under certain conditions and within a certain time frame
+  object: Material or informational entity
+  event: Structured joint activity of people in a specific place at a specific time
+  task: >-
+    Description of the effective action with all the information necessary to
+    complete it
+  purchase: >-
+    Supply of tools, materials and information necessary for the implementation
+    of the project
+  result: Successful final consequence of targeted action
+  thing: Material Item
+app:
+  title: Feeds
+  welcome: Welcome!
+  description: >-
+    Service for joint development and implementation of socio-cultural programs
+    and generally useful projects
+link: Link | Links
+subtitle: Subtitle

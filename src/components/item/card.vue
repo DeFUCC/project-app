@@ -12,7 +12,7 @@ li.item(
         .title
           item-type.type-icon(:type="item.type") 
           .name {{ item.title }}
-        .description(v-if="item.description") {{ item.description }}
+        .description(v-if="item.subtitle") {{ item.subtitle }}
       .info
         edit-status(:id="item.soul", :editable="isMine(item.soul)")
         user-pill(:id="item?.soul.slice(1, 88)")

@@ -1,14 +1,14 @@
 <template lang="pug">
 .description(v-if="text || editable")
   .title 
-    slot Markdown
+    slot {{ $t('description') }}
     button.edit(@click="open = !open", v-if="editable && !open")
       i.iconify(data-icon="la:pen-alt")
     button.save(v-if="open", @click="update()")
       i.iconify(data-icon="la:check")
     button(v-if="open", @click="open = false")
       i.iconify(data-icon="la:times")
-  .markdown(v-if="!open") {{ text }}
+  .markdown(v-if="!open", v-html="md.render(text || '')")
   form(v-if="open", @submit.prevent="")
     textarea(
       v-model="text",
@@ -21,6 +21,20 @@
 
 <script setup lang="ts">
 import { defineEmit, ref, defineProps, reactive, watchEffect } from "vue";
+import markdownIt from "markdown-it";
+import mila from "markdown-it-link-attributes";
+
+const md = markdownIt({
+  linkify: true,
+  typographer: true,
+});
+
+md.use(mila, {
+  attrs: {
+    target: "_blank",
+    rel: "noopener",
+  },
+});
 
 const emit = defineEmit(["update"]);
 
