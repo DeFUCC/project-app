@@ -72,6 +72,5 @@ export default defineComponent({
   min-width max-content
 
 .title
-  white-space nowrap
   transition all 300ms ease-in-out
 </style>

@@ -116,6 +116,7 @@ onMounted(() => {
 
 <style lang="stylus" scoped>
 .page
+  overflow-x hidden
   display grid
   padding 0 0.5em
   grid-gap 1em
