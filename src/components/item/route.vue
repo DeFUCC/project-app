@@ -11,43 +11,34 @@
     span.title {{ parent.title }}
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, watchEffect } from "vue";
+<script setup lang="ts">
+import { defineEmit, reactive, defineProps, watchEffect } from "vue";
 import { cutUuid, gun, soul } from "../../store/gun-db";
 import { itemColor } from "../../use/colors";
 
-export default defineComponent({
-  emits: ["open"],
-  props: {
-    id: String,
-  },
-  setup(props) {
-    const route = reactive([]);
+const props = defineProps({
+  id: String,
+});
+defineEmit(["open"]);
+const route = reactive([]);
 
-    watchEffect(() => {
-      route.length = 0;
-      let id = props.id;
-      for (let p = 0; p < 12; p++) {
-        if (!id) {
-          break;
-        }
-        gun.get(id).once((item) => {
-          if (item && item.type && item.title) {
-            route[p] = item;
-            route[p].soul = id;
-            route[p].id = cutUuid(id);
-            id = item?.parent;
-          }
-        });
+watchEffect(() => {
+  route.length = 0;
+  let id = props.id;
+  for (let p = 0; p < 12; p++) {
+    if (!id) {
+      break;
+    }
+    gun.get(id).once((item) => {
+      if (item && item.type && item.title) {
+        route[p] = item;
+        route[p].soul = id;
+        route[p].id = cutUuid(id);
+        id = item?.parent;
       }
-      route.reverse();
     });
-
-    return {
-      itemColor,
-      route,
-    };
-  },
+  }
+  route.reverse();
 });
 </script>
 

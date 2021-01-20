@@ -23,6 +23,9 @@ const types = Object.keys(model);
 </script>
 
 <style lang="stylus" scoped>
+main
+  overflow-x hidden
+
 .types
   display flex
 

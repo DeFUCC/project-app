@@ -12,31 +12,20 @@
     user-pub(:pub="user.is?.pub", :size="120")
 </template>
 
-<script lang="ts">
-import { ref } from "vue";
+<script setup lang="ts">
+import { defineProps, ref } from "vue";
 import { appPath, db } from "../../store/gun-db";
 import { user, publishUser } from "../../store/user";
 
-export default {
-  props: {
-    alias: String,
-  },
-  setup(props) {
-    const published = ref(false);
-    db.get("user")
-      .get(user.is?.pub)
-      .once((val) => {
-        published.value = val;
-      });
-
-    return {
-      publishUser,
-      published,
-      appPath,
-      user,
-    };
-  },
-};
+const props = defineProps({
+  alias: String,
+});
+const published = ref(false);
+db.get("user")
+  .get(user.is?.pub)
+  .once((val) => {
+    published.value = val;
+  });
 </script>
 
 <style lang="stylus" scoped>

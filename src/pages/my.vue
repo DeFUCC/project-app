@@ -14,27 +14,18 @@ main.page(v-if="user.is")
         component(:is="Component", :user="user.is.pub")
 </template>
 
-<script>
+<script setup lang="ts">
 import { pubGradient } from "../use/colors";
 import { user, logOut } from "../store/user";
 import { useRouter } from "vue-router";
 import { watchEffect } from "vue";
-export default {
-  setup() {
-    const router = useRouter();
-    watchEffect(() => {
-      if (!user.is) {
-        router.push("/");
-      }
-    });
 
-    return {
-      user,
-      logOut,
-      pubGradient,
-    };
-  },
-};
+const router = useRouter();
+watchEffect(() => {
+  if (!user.is) {
+    router.push("/");
+  }
+});
 </script>
 
 <style lang="stylus" scoped>

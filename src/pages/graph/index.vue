@@ -19,24 +19,16 @@ article
           .content {{ r }}
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+<script setup lang="ts">
+import { reactive, ref } from "vue";
 import { gun } from "../../store/gun-db";
 import { itemColor } from "../../use/colors";
 
-export default defineComponent({
-  setup() {
-    const graph = ref({});
+const graph = ref({});
 
-    setInterval(() => {
-      graph.value = gun._.graph;
-    }, 500);
-    return {
-      graph,
-      itemColor,
-    };
-  },
-});
+setInterval(() => {
+  graph.value = gun._.graph;
+}, 500);
 </script>
 
 <style lang="stylus" scoped>

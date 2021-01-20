@@ -4,31 +4,24 @@
   | {{ count }}
 </template>
 
-<script lang="ts">
-import { computed, reactive } from "vue";
+<script setup lang="ts">
+import { computed, defineProps, reactive } from "vue";
 import { gun } from "../../../store/gun-db";
-export default {
-  props: {
-    id: String,
-    type: String,
-  },
-  setup(props) {
-    const items = reactive({});
-    gun
-      .get(props.id)
-      .get(props.type)
-      .map()
-      .on((data: any, key: string) => {
-        items[key] = data;
-      });
-    const count = computed(() => Object.keys(items).length);
-    const icon = `/svg/${props.type}.svg`;
-    return {
-      count,
-      icon,
-    };
-  },
-};
+
+const props = defineProps({
+  id: String,
+  type: String,
+});
+const items = reactive({});
+gun
+  .get(props.id)
+  .get(props.type)
+  .map()
+  .on((data: any, key: string) => {
+    items[key] = data;
+  });
+const count = computed(() => Object.keys(items).length);
+const icon = `/svg/${props.type}.svg`;
 </script>
 
 <style lang="stylus" scoped>

@@ -5,15 +5,7 @@ router-view(v-slot="{Component}")
     component(:is="Component")
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "Project app",
-  setup() {
-    return {};
-  },
-});
+<script setup lang="ts">
 </script>
 
 <style lang="stylus" scoped></style>

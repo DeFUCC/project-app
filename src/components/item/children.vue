@@ -8,30 +8,23 @@
   )
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { computed, defineProps, ref } from "vue";
 import { gun } from "../../store/gun-db";
 import { model } from "../../store/model";
 
-export default defineComponent({
-  props: {
-    id: String,
-  },
-  setup(props) {
-    const type = ref();
-    gun
-      .get(props.id)
-      .get("type")
-      .on((data) => {
-        type.value = data;
-      });
-    const childTypes = computed(() => {
-      return model[type.value];
-    });
-    return {
-      childTypes,
-    };
-  },
+const props = defineProps({
+  id: String,
+});
+const type = ref();
+gun
+  .get(props.id)
+  .get("type")
+  .on((data) => {
+    type.value = data;
+  });
+const childTypes = computed(() => {
+  return model[type.value];
 });
 </script>
 

@@ -20,24 +20,19 @@
     span.iconify(data-icon="la:sort-amount-up-solid")
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { defineEmit, ref, defineProps } from "vue";
 
-export default defineComponent({
-  emits: ["order"],
-  props: {
-    by: {
-      type: String,
-      required: true,
-    },
-  },
-  setup() {
-    const open = ref(false);
-    return {
-      open,
-    };
+defineProps({
+  by: {
+    type: String,
+    required: true,
   },
 });
+
+defineEmit(["order"]);
+
+const open = ref(false);
 </script>
 
 <style lang="stylus" scoped>

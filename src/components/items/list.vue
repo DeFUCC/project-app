@@ -32,48 +32,52 @@
       )
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import {
+  defineEmit,
+  computed,
+  defineProps,
+  reactive,
+  ref,
+  watchEffect,
+} from "vue";
 import { appPath, db, gun, soul } from "../../store/gun-db";
 import { user } from "../../store/user";
 import { useSorter } from "../../use/sorter";
 
-export default defineComponent({
-  name: "ItemsList",
-  emits: ["open", "explore"],
-  props: {
-    type: {
-      type: String,
-      required: true,
-    },
-    parent: String,
-    editable: Boolean,
+const emit = defineEmit(["open", "explore"]);
+const props = defineProps({
+  type: {
+    type: String,
+    required: true,
   },
+  parent: String,
+  editable: Boolean,
+});
 
-  setup(props) {
-    const items = reactive({});
+const items = reactive({});
 
-    let query: any;
-    if (props.parent) {
-      query = gun.get(props.parent);
-    } else {
-      query = db;
-    }
-    query.get(props.type).map().on(loadItem);
+let query: any;
+if (props.parent) {
+  query = gun.get(props.parent);
+} else {
+  query = db;
+}
+query.get(props.type).map().on(loadItem);
 
-    const { sorted, options } = useSorter(items);
+const { sorted, options } = useSorter(items);
 
-    async function loadItem(data: any, key: string) {
-      if (items[key]) {
-        items[key] = null;
-      }
-      if (data === null) return;
-      items[key] = { ...data };
-      let item = items[key];
-      item.soul = soul(data);
-      item.id = key;
+async function loadItem(data: any, key: string) {
+  if (items[key]) {
+    items[key] = null;
+  }
+  if (data === null) return;
+  items[key] = { ...data };
+  let item = items[key];
+  item.soul = soul(data);
+  item.id = key;
 
-      /*
+  /*
 
       item.rated = {
         star: {},
@@ -113,14 +117,7 @@ export default defineComponent({
           }
         });
         */
-    }
-
-    return {
-      sorted,
-      options,
-    };
-  },
-});
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -128,6 +125,7 @@ export default defineComponent({
   border var(--border-thin)
   border-radius var(--small-radius)
   margin-bottom 2em
+  overflow-x hidden
 
 .item-list
   display flex

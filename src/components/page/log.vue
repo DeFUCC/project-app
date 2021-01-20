@@ -17,61 +17,49 @@
       .text {{ log[1].split('|')[1] }}
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { defineProps, reactive, ref, watchEffect } from "vue";
 import { format } from "../../use/locale";
 import { gun } from "../../store/gun-db";
-import { error, notify } from "../../store/history";
 
-export default defineComponent({
-  props: {
-    id: String,
-    editable: Boolean,
-  },
-  setup(props) {
-    const state = reactive({
-      open: false,
-      total: 0,
-    });
+const props = defineProps({
+  id: String,
+  editable: Boolean,
+});
+const state = reactive({
+  open: false,
+  total: 0,
+});
 
-    const logs = reactive({});
-    gun
-      .get(props.id)
-      .get("log")
-      .map()
-      .on((data, key) => {
-        logs[key] = data;
-      });
+const logs = reactive({});
+gun
+  .get(props.id)
+  .get("log")
+  .map()
+  .on((data, key) => {
+    logs[key] = data;
+  });
 
-    const chronoLogs = ref([]);
+const chronoLogs = ref([]);
 
-    watchEffect(() => {
-      let entries = Object.entries(logs);
-      state.total = entries.length;
-      let sorted = entries.sort((a: any, b: any) => {
-        if (!a) {
-          return -1;
-        }
-        if (!b) {
-          return 1;
-        }
-        let diff = b[0] - a[0];
-        return diff;
-      });
-      if (!state.open) {
-        chronoLogs.value = sorted.slice(0, 2);
-      } else {
-        chronoLogs.value = sorted;
-      }
-    });
-
-    return {
-      chronoLogs,
-      logs,
-      format,
-      state,
-    };
-  },
+watchEffect(() => {
+  let entries = Object.entries(logs);
+  state.total = entries.length;
+  let sorted = entries.sort((a: any, b: any) => {
+    if (!a) {
+      return -1;
+    }
+    if (!b) {
+      return 1;
+    }
+    let diff = b[0] - a[0];
+    return diff;
+  });
+  if (!state.open) {
+    chronoLogs.value = sorted.slice(0, 2);
+  } else {
+    chronoLogs.value = sorted;
+  }
 });
 </script>
 

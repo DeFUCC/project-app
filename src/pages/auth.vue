@@ -21,41 +21,28 @@ main.auth
     ) Create a new user
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref, watch } from "vue";
 import { user, findUser, authUser, createUser } from "../store/user";
 import { useRouter } from "vue-router";
-export default {
-  components: {},
-  setup() {
-    const router = useRouter();
-    watch(
-      () => user.is,
-      () => {
-        if (user.is) {
-          router.push("/my");
-        }
-      }
-    );
-    const alias = ref("");
-    const pass = ref("");
-    const userExists = ref(null);
-    watch(alias, (name) => {
-      findUser(name, (exists) => {
-        userExists.value = exists;
-      });
-    });
 
-    return {
-      user,
-      alias,
-      pass,
-      createUser,
-      userExists,
-      authUser,
-    };
-  },
-};
+const router = useRouter();
+watch(
+  () => user.is,
+  () => {
+    if (user.is) {
+      router.push("/my");
+    }
+  }
+);
+const alias = ref("");
+const pass = ref("");
+const userExists = ref(null);
+watch(alias, (name) => {
+  findUser(name, (exists) => {
+    userExists.value = exists;
+  });
+});
 </script>
 
 <style lang="stylus" scoped>

@@ -24,41 +24,28 @@
     ) Create a new user
 </template>
 
-<script>
-import { ref, watch, watchEffect } from "vue";
+<script setup lang="ts">
+import { defineEmit, ref, defineProps, watch, watchEffect } from "vue";
 import { user, findUser, authUser, createUser } from "../../store/user";
 
-export default {
-  emits: ["close"],
-  props: {
-    open: Boolean,
-  },
-  setup(props, { emit }) {
-    const alias = ref("");
-    const pass = ref("");
-    const userExists = ref(null);
-    watch(alias, (name) => {
-      findUser(name, (exists) => {
-        userExists.value = exists;
-      });
-    });
+const emit = defineEmit(["close"]);
+const props = defineProps({
+  open: Boolean,
+});
+const alias = ref("");
+const pass = ref("");
+const userExists = ref(null);
+watch(alias, (name) => {
+  findUser(name, (exists) => {
+    userExists.value = exists;
+  });
+});
 
-    watchEffect(() => {
-      if (user.is) {
-        emit("close");
-      }
-    });
-
-    return {
-      user,
-      alias,
-      pass,
-      createUser,
-      userExists,
-      authUser,
-    };
-  },
-};
+watchEffect(() => {
+  if (user.is) {
+    emit("close");
+  }
+});
 </script>
 
 <style lang="stylus" scoped>

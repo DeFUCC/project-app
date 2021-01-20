@@ -2,22 +2,15 @@
 img(:src="createAvatar(pub)", :width="size", :height="size")
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, onMounted, ref } from "vue";
+<script setup lang="ts">
+import { computed, defineProps, onMounted, ref } from "vue";
 import createAvatar from "../../use/avatar";
 
-export default defineComponent({
-  props: {
-    pub: String,
-    size: {
-      type: Number,
-      default: 420,
-    },
-  },
-  setup(props) {
-    return {
-      createAvatar,
-    };
+const props = defineProps({
+  pub: String,
+  size: {
+    type: Number,
+    default: 420,
   },
 });
 </script>

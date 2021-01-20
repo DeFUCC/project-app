@@ -8,39 +8,33 @@ router-link.user(
     slot
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, reactive, watchEffect } from "vue";
-import { db, gun, appPath } from "../../store/gun-db";
+<script setup lang="ts">
+import { computed, defineProps, reactive, watchEffect } from "vue";
+import { db, appPath } from "../../store/gun-db";
 import { user } from "../../store/user";
-import { itemColor, pubGradient } from "../../use/colors";
+import { pubGradient } from "../../use/colors";
 import { truncate } from "../../store/item";
 
-export default defineComponent({
-  props: {
-    id: String,
-  },
-  setup(props) {
-    const profile = reactive({
-      alias: null,
-      pub: null,
-      avatar: null,
-    });
-    const isMe = computed(() => profile.pub == user.is?.pub);
+const props = defineProps({
+  id: String,
+});
+const profile = reactive({
+  alias: null,
+  pub: null,
+  avatar: null,
+});
+const isMe = computed(() => profile.pub == user.is?.pub);
 
-    watchEffect(() => {
-      if (props.id) {
-        db.get("user")
-          .get(props.id)
-          .on((data, key) => {
-            profile.alias = truncate(String(data.alias), 24);
-            profile.pub = data.pub;
-            profile.avatar = data.icon;
-          });
-      }
-    });
-
-    return { profile, isMe, itemColor, appPath, user, pubGradient };
-  },
+watchEffect(() => {
+  if (props.id) {
+    db.get("user")
+      .get(props.id)
+      .on((data, key) => {
+        profile.alias = truncate(String(data.alias), 24);
+        profile.pub = data.pub;
+        profile.avatar = data.icon;
+      });
+  }
 });
 </script>
 

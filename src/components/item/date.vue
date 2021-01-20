@@ -6,21 +6,13 @@
   | {{ format(item.updatedAt).date }}
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineComponent, defineProps } from "vue";
 import { getState } from "../../store/gun-db";
 import { format } from "../../use/locale";
 
-export default defineComponent({
-  props: {
-    item: Object,
-  },
-  setup() {
-    return {
-      getState,
-      format,
-    };
-  },
+defineProps({
+  item: Object,
 });
 </script>
 

@@ -5,14 +5,7 @@ main.markdown
       component(:is="Component")
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  setup() {
-    return {};
-  },
-});
+<script setup lang="ts">
 </script>
 
 <style lang="stylus" scoped>

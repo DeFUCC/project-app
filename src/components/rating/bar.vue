@@ -20,24 +20,15 @@
     span(v-show="count.trash") {{ count.trash }}
 </template>
 
-<script>
-import { defineComponent, ref, watchEffect } from "vue";
+<script setup lang="ts">
+import { defineProps, ref, watchEffect } from "vue";
 import { useItemRating } from "../../use/rating";
-export default defineComponent({
-  props: {
-    id: String,
-    horizontal: Boolean,
-  },
-  setup(props) {
-    let { count, myRate, rate } = useItemRating(props.id);
 
-    return {
-      count,
-      myRate,
-      rate,
-    };
-  },
+const props = defineProps({
+  id: String,
+  horizontal: Boolean,
 });
+let { count, myRate, rate } = useItemRating(props.id);
 </script>
 
 <style lang="stylus" scoped>

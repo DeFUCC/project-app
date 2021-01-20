@@ -10,24 +10,13 @@ main
 
 </template>
 
-<script>
+<script setup lang="ts">
 import { history, warn, eventColors, clear } from "../store/history";
 
-export default {
-  setup() {
-    function getDate(time) {
-      let d = new Date(time);
-      return d.toLocaleString();
-    }
-    return {
-      history,
-      clear,
-      warn,
-      getDate,
-      eventColors,
-    };
-  },
-};
+function getDate(time) {
+  let d = new Date(time);
+  return d.toLocaleString();
+}
 </script>
 
 <style lang="stylus" scoped>

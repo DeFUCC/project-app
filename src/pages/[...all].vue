@@ -4,8 +4,7 @@ main.error
   p {{ $t('404.text') }}
 </template>
 
-<script>
-export default {};
+<script setup lang="ts">
 </script>
 
 <style lang="stylus" scoped>

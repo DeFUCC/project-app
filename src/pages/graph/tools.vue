@@ -23,8 +23,8 @@
           ) 
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
 import { sea } from "../../store/gun-db";
 import ColorHash from "color-hash";
 import QRCode from "qrcode";
@@ -34,49 +34,35 @@ const color = new ColorHash({
   lightness: [0.6, 0.7, 0.8],
 });
 
-export default defineComponent({
-  setup() {
-    const pair = ref(null);
-    const qrcode = ref(null);
-    const split = computed(() => pair.value?.pub.split("."));
-    async function getPair() {
-      pair.value = await sea.pair();
-      qrcode.value = await QRCode.toDataURL(pair.value.pub, {
-        errorCorrectionLevel: "Q",
-        scale: 8,
-      });
-    }
-    getPair();
+const pair = ref(null);
+const qrcode = ref(null);
+const split = computed(() => pair.value?.pub.split("."));
+async function getPair() {
+  pair.value = await sea.pair();
+  qrcode.value = await QRCode.toDataURL(pair.value.pub, {
+    errorCorrectionLevel: "Q",
+    scale: 8,
+  });
+}
+getPair();
 
-    function decode(st) {
-      const symbols =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
-      const symbolArray = symbols.split("");
-      let arr = [];
-      let i = 0;
-      for (let letter of st) {
-        arr[i++] = symbolArray.indexOf(letter) / 64;
-      }
-      return arr;
-    }
+function decode(st) {
+  const symbols =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+  const symbolArray = symbols.split("");
+  let arr = [];
+  let i = 0;
+  for (let letter of st) {
+    arr[i++] = symbolArray.indexOf(letter) / 64;
+  }
+  return arr;
+}
 
-    function pubGradient(pub, angle = 0) {
-      let sp = pub.split(".");
-      let duo = sp.map((s) => color.hex(s));
-      return `linear-gradient(${angle}deg, ${duo[0]} 0%, ${duo[1]} 100%)`;
-    }
-
-    return {
-      color,
-      pair,
-      split,
-      qrcode,
-      getPair,
-      decode,
-      pubGradient,
-    };
-  },
-});
+function pubGradient(pub, angle = 0) {
+  let sp = pub.split(".");
+  let duo = sp.map((s) => color.hex(s));
+  return `linear-gradient(${angle}deg, ${duo[0]} 0%, ${duo[1]} 100%)`;
+}
 </script>
 
 <style lang="stylus" scoped>

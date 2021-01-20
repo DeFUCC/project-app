@@ -21,32 +21,21 @@ li.item(
       item-children(:id="item.soul")
 </template>
 
-<script>
+<script setup lang="ts">
 import { itemColor } from "../../use/colors";
-import { computed, defineComponent } from "vue";
-import { truncate } from "../../store/item";
+import { defineProps } from "vue";
 import { isMine } from "../../store/user";
 
-export default defineComponent({
-  props: {
-    item: {
-      type: Object,
-      default: {
-        type: "item",
-        title: "Basic item",
-        createdAt: 345298357,
-        updatedAt: 3482489005,
-        soul: "example",
-      },
+const props = defineProps({
+  item: {
+    type: Object,
+    default: {
+      type: "item",
+      title: "Basic item",
+      createdAt: 345298357,
+      updatedAt: 3482489005,
+      soul: "example",
     },
-  },
-
-  setup(props) {
-    return {
-      isMine,
-      truncate,
-      itemColor,
-    };
   },
 });
 </script>

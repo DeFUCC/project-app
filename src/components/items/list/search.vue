@@ -7,25 +7,18 @@
     span.iconify(data-icon="la:times-circle")
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, watch, watchEffect } from "vue";
+<script setup lang="ts">
+import { defineEmit, reactive, watch, watchEffect } from "vue";
 
-export default defineComponent({
-  emits: ["search"],
-  setup(props, { emit }) {
-    const search = reactive({
-      text: "",
-      open: false,
-    });
+const emit = defineEmit(["search"]);
 
-    watchEffect(() => {
-      emit("search", search.text);
-    });
+const search = reactive({
+  text: "",
+  open: false,
+});
 
-    return {
-      search,
-    };
-  },
+watchEffect(() => {
+  emit("search", search.text);
 });
 </script>
 

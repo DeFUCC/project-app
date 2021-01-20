@@ -1,5 +1,5 @@
 <template lang="pug">
-articke
+article
   header Export
   section
     .row(v-for="(data, key) in item", :key="data")
@@ -15,56 +15,45 @@ articke
             router-link(:to="{ query: { id: dt['#'] } }") {{ dt['#'] }}
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useTitle } from "@vueuse/core";
-import { defineComponent, reactive, ref, watchEffect } from "vue";
+import { reactive, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { gun, appPath } from "../../store/gun-db";
 
-export default defineComponent({
-  setup() {
-    const route = useRoute();
-    const router = useRouter();
-    const title = useTitle();
-    const id = ref();
-    const item = ref({});
-    watchEffect(() => {
-      id.value = route.query.id || appPath;
-      item.value = {};
-      if (id.value) {
-        gun
-          .get(id.value)
-          .map()
-          .on((d, k) => {
-            item.value[k] = d;
-            if (k == "title") {
-              title.value = d;
-            }
-          });
-      }
-    });
-    function close() {
-      router.push({ path: "app" });
-    }
-    function open(val) {
-      if (val[0] != "~") {
-        return;
-      }
-      router.push({
-        query: {
-          id: val,
-        },
+const route = useRoute();
+const router = useRouter();
+const title = useTitle();
+const id = ref();
+const item = ref({});
+watchEffect(() => {
+  id.value = route.query.id || appPath;
+  item.value = {};
+  if (id.value) {
+    gun
+      .get(id.value)
+      .map()
+      .on((d, k) => {
+        item.value[k] = d;
+        if (k == "title") {
+          title.value = d;
+        }
       });
-    }
-
-    return {
-      item,
-      id,
-      open,
-      close,
-    };
-  },
+  }
 });
+function close() {
+  router.push({ path: "app" });
+}
+function open(val) {
+  if (val[0] != "~") {
+    return;
+  }
+  router.push({
+    query: {
+      id: val,
+    },
+  });
+}
 </script>
 
 <style lang="stylus" scoped>

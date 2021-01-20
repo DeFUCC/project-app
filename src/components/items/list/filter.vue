@@ -8,29 +8,22 @@
     span.iconify(data-icon="la:trash")
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineComponent, defineEmit, defineProps } from "vue";
 import { user } from "../../../store/user";
 import { itemColor } from "../../../use/colors";
 
-export default defineComponent({
-  emits: ["star", "seen", "trash"],
-  props: {
-    my: {
-      type: Object,
-      default: {
-        star: true,
-        seen: true,
-        trash: false,
-      },
-      required: true,
+defineEmit(["star", "seen", "trash"]);
+
+defineProps({
+  my: {
+    type: Object,
+    default: {
+      star: true,
+      seen: true,
+      trash: false,
     },
-  },
-  setup() {
-    return {
-      user,
-      itemColor,
-    };
+    required: true,
   },
 });
 </script>

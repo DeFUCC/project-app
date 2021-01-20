@@ -10,12 +10,7 @@ main
       component(:is="Component")
 </template>
 
-<script>
-export default {
-  setup() {
-    return {};
-  },
-};
+<script setup lang="ts">
 </script>
 
 <style lang="stylus" scoped>
