@@ -8,22 +8,6 @@ main.columns
       :class="{ active: atype == type }",
       :type="atype"
     )
-  .column
-    transition(name="fade")
-      keep-alive
-        items-list(
-          :key="type",
-          :type="type",
-          @open="feeds.open($event, -1)",
-          :editable="true"
-        )
-  .column(v-for="(feed, num) in feeds.list", :key="num")
-    page-container(
-      @open="feeds.open($event, num)",
-      @close="feeds.close(num)",
-      :key="feed",
-      :id="feed"
-    )
 </template>
 
 <script lang="ts">

@@ -1,6 +1,5 @@
 <template lang="pug">
-#users
-  h3 Users
+main route
   router-view(v-slot="{ Component }")
     transition(name="fade")
       keep-alive
@@ -10,13 +9,4 @@
 <script setup lang="ts">
 </script>
 
-<style lang="stylus" scoped>
-#users
-  padding 2em
-
-.user
-  padding 1em
-
-.data
-  font-size 0.2em
-</style>
+<style lang="stylus" scoped></style>

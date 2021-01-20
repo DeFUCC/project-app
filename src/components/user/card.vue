@@ -1,27 +1,18 @@
 <template lang="pug">
 router-link.card(
-  :to="'/app/users/' + user.pub",
+  :to="'/users/' + user.pub",
   :style="{ backgroundColor: itemColor(user.pub) }"
 )
-  user-avatar(size="small", :pic="profile.icon")
   h3.alias {{ user.alias }}
 </template>
 
-<script>
-import { computed, reactive } from "vue";
-import { useUserProfile } from "../../use/userProfile";
+<script setup lang="ts">
+import { computed, defineProps, reactive } from "vue";
 import { itemColor } from "../../use/colors";
-export default {
-  props: ["user"],
-  setup(props) {
-    const profile = useUserProfile(props.user.pub);
 
-    return {
-      profile,
-      itemColor,
-    };
-  },
-};
+const props = defineProps({
+  user: Object,
+});
 </script>
 
 <style lang="stylus" scoped>

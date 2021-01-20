@@ -4,15 +4,7 @@ router-view(v-slot="{ Component }")
     component(:is="Component")
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    type: String,
-  },
-  setup() {
-    return {};
-  },
-};
+<script setup lang="ts">
 </script>
 
 <style lang="stylus" scoped></style>

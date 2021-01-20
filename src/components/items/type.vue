@@ -1,35 +1,29 @@
 <template lang="pug">
-.type(@click="$router.push({ path: '/' + type })")
+.type(@click="$emit('open', type)")
   item-type(:type="type")
   .name {{ $tc(`type.${type}`, count) }}
   .spacer
   .count {{ count }}
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, reactive, ref } from "vue";
+<script setup lang="ts">
+import { computed, defineEmit, reactive, ref, defineProps } from "vue";
 import { appPath, gun } from "../../store/gun-db";
 
-export default defineComponent({
-  props: {
-    type: String,
-  },
-  setup(props) {
-    const list = reactive({});
-    gun
-      .get(appPath)
-      .get(props.type)
-      .map()
-      .once((data, key) => {
-        if (data) list[key] = data;
-      });
-    const count = computed(() => {
-      return Object.keys(list).length;
-    });
-    return {
-      count,
-    };
-  },
+defineEmit(["open"]);
+const props = defineProps({
+  type: String,
+});
+const list = reactive({});
+gun
+  .get(appPath)
+  .get(props.type)
+  .map()
+  .once((data, key) => {
+    if (data) list[key] = data;
+  });
+const count = computed(() => {
+  return Object.keys(list).length;
 });
 </script>
 

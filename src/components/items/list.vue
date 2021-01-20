@@ -21,7 +21,6 @@
 import { computed, defineComponent, reactive, ref, watchEffect } from "vue";
 import { appPath, db, gun, soul } from "../../store/gun-db";
 import { user } from "../../store/user";
-import { useItems } from "../../use/items";
 import { useSorter } from "../../use/sorter";
 
 export default defineComponent({
