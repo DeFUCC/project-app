@@ -90,8 +90,7 @@ export default defineComponent({
 
 .log
   display flex
-  flex 1 1 2em
-  min-height 2em
+  flex 1 0 3em
 
 .log div
   padding 4px

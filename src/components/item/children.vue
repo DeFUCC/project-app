@@ -3,7 +3,7 @@
   item-children-count(
     :id="id",
     :type="type",
-    v-for="type in types",
+    v-for="type in childTypes",
     :key="type"
   )
 </template>
@@ -25,13 +25,11 @@ export default defineComponent({
       .on((data) => {
         type.value = data;
       });
-    const types = computed(() => {
-      let modelTypes = model[type.value];
-
+    const childTypes = computed(() => {
       return model[type.value];
     });
     return {
-      types,
+      childTypes,
     };
   },
 });

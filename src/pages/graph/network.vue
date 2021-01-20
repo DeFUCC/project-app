@@ -23,7 +23,7 @@ import { itemColor } from "../../use/colors";
 import { useGraph } from "../../use/graph";
 import { throttledWatch, useResizeObserver } from "@vueuse/core";
 import { db, gun, soul } from "../../store/gun-db";
-import { model } from "../../store/model";
+import { types } from "../../store/model";
 
 export default defineComponent({
   setup() {
@@ -43,7 +43,7 @@ export default defineComponent({
       user: "#0ff",
     };
 
-    for (let type of model.all) {
+    for (let type of types) {
       db.get(type)
         .map()
         .on((data, key) => {
@@ -66,7 +66,7 @@ export default defineComponent({
       nodes,
       () => {
         for (let node of nodes) {
-          for (let type of model.all) {
+          for (let type of types) {
             if (node.data[type]) {
               gun
                 .get(node.id)

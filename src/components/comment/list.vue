@@ -102,7 +102,7 @@ function addComment() {
 <style lang="stylus" scoped>
 .comments
   font-size 0.9em
-  margin 8px
+  border var(--border-thin)
 
 .row
   position sticky
@@ -112,6 +112,7 @@ function addComment() {
   padding 1em
   background-color var(--bar-color)
   font-weight bold
+  z-index 30
 
 main, .buttons
   display flex

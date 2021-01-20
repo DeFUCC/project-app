@@ -1,6 +1,5 @@
 <template lang="pug">
 .title
-  item-type(:type="type")
   h2(v-if="!edit") {{ text }}
     span.edit(v-if="editable", @click="edit = true")
       i.iconify(data-icon="la:pen")
@@ -8,6 +7,7 @@
     input(
       ref="title",
       @blur="$emit('update', newTitle); edit = false",
+      @keyup.esc="edit = false",
       type="text",
       v-model="newTitle"
     )
@@ -21,7 +21,6 @@ defineEmit(["update"]);
 const props = defineProps({
   editable: Boolean,
   text: String,
-  type: String,
 });
 const edit = ref(false);
 const newTitle = ref(props.text);
@@ -43,4 +42,8 @@ input
 
 .title h2
   margin 0.5em 0
+
+.edit
+  font-size 16px
+  padding 6px
 </style>

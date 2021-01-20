@@ -2,7 +2,7 @@
 nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
   transition(name="fade")
     user-auth(v-if="auth", @close="auth = false")
-  router-link.logo(to="/explore/design")
+  router-link.logo(to="/")
     img(src="/icons/feeds.svg", alt="")
   .spacer
   .login(v-if="!user.is", @click="auth = !auth")

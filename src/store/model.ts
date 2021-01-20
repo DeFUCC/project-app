@@ -1,5 +1,4 @@
-const modelGraph = {
-  user: ['design', 'project', 'object', 'event', 'task', 'purchase'],
+export const model = {
   design: ['project'],
   project: ['object', 'event'],
   event: ['task', 'purchase'],
@@ -10,10 +9,7 @@ const modelGraph = {
   thing: [],
 }
 
-export const model = {
-  all: Object.keys(modelGraph),
-  ...modelGraph,
-}
+export const types = Object.keys(model)
 
 export const statuses = [
   'new',

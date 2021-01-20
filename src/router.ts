@@ -3,7 +3,7 @@ import routes from 'voie-pages'
 
 export const router = createRouter({
   history: createWebHistory(),
-  routes: [{ path: '/app', redirect: '/design' }, ...routes],
+  routes: [...routes],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return new Promise((res, rej) => {

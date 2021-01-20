@@ -22,7 +22,6 @@ li.item(
 </template>
 
 <script>
-import { model } from "../../store/model";
 import { itemColor } from "../../use/colors";
 import { computed, defineComponent } from "vue";
 import { truncate } from "../../store/item";
@@ -45,7 +44,6 @@ export default defineComponent({
   setup(props) {
     return {
       isMine,
-      model,
       truncate,
       itemColor,
     };
@@ -104,7 +102,7 @@ export default defineComponent({
   flex-flow column
   align-items stretch
   padding 0
-  flex 1 1 600px
+  flex 1 1 360px
   min-height min-content
   border-radius var(--small-radius)
 

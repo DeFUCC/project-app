@@ -25,6 +25,7 @@ export const sea = window.SEA
 export const genUuid = window.Gun.text.random
 
 export function cutUuid(key: string): string {
+  if (!key) return
   return key.substring(key.lastIndexOf('/') + 1)
 }
 

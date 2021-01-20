@@ -1,7 +1,7 @@
 <template lang="pug">
 .row
   span.path(
-    @click="$emit('open', parent.soul)",
+    @click="$emit('open', { id: parent.id, type: parent.type })",
     v-for="(parent, i) in route",
     :key="parent",
     :style="{ backgroundColor: itemColor(parent.soul) }",
@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, watchEffect } from "vue";
-import { gun, soul } from "../../store/gun-db";
+import { cutUuid, gun, soul } from "../../store/gun-db";
 import { itemColor } from "../../use/colors";
 
 export default defineComponent({
@@ -35,6 +35,7 @@ export default defineComponent({
           if (item && item.type && item.title) {
             route[p] = item;
             route[p].soul = id;
+            route[p].id = cutUuid(id);
             id = item?.parent;
           }
         });
