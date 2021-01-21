@@ -3,8 +3,6 @@ li.item(
   :style="{ backgroundColor: itemColor(item.soul), borderColor: itemColor(item.parent) }"
 )
   .main
-    .icon(v-if="item.icon")
-      img(:src="item.icon")
     .content
       .header
         .route
@@ -17,6 +15,8 @@ li.item(
         edit-status(:id="item.soul", :editable="isMine(item.soul)")
         user-pill(:id="item?.soul.slice(1, 88)")
         comment-count(:id="item.soul")
+    .icon(v-if="item.icon")
+      img(:src="item.icon")
     aside.side
       item-children(:id="item.soul")
 </template>

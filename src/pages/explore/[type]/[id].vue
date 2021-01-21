@@ -2,7 +2,7 @@
 page-container(
   v-if="itemSoul",
   :key="itemSoul",
-  @explore="$router.push(`/explore/${$event.type}/${$event.id}`)",
+  @open="$router.push(`/explore/${$event.type}/${$event.id}`)",
   @close="$router.push(`/explore/${type}`)",
   :id="itemSoul"
 )

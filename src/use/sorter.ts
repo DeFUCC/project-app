@@ -18,6 +18,14 @@ export function useSorter(obj: object) {
       trash: true,
     },
     limit: 5,
+    loading: true,
+  })
+
+  const sorted = reactive({
+    list: null,
+    count: 0,
+    more: false,
+    total: 0,
   })
 
   debouncedWatch(
@@ -39,13 +47,6 @@ export function useSorter(obj: object) {
       options: toRaw(options),
     })
   }
-
-  const sorted = reactive({
-    list: null,
-    count: 0,
-    more: false,
-    total: 0,
-  })
 
   sorter.onmessage = (e) => {
     sorted.list = e.data.list

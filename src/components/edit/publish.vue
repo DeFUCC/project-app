@@ -1,9 +1,7 @@
 <template lang="pug">
 .publish(v-if="isMine(soul)")
-  .row(v-if="!isPublished") is not published in {{ type }}
-    button(@click="publish()") Publish
-  .row(v-else) is published in {{ type }}
-    button(@click="unpublish()") Unpublish
+  button(v-if="!isPublished", @click="publish()") Publish
+  button(v-else, @click="unpublish()") Unpublish
 </template>
 
 <script setup lang="ts">
@@ -37,6 +35,9 @@ function publish() {
 </script>
 
 <style lang="stylus" scoped>
-.row
-  padding 1em
+.publish
+  padding 0.5em 1em
+
+button
+  background-color var(--secondary-button)
 </style>

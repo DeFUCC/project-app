@@ -31,7 +31,6 @@ const newTitle = ref(props.text);
   width 100%
   display flex
   align-items center
-  font-size 1.2em
 
 form
   width 100%
@@ -40,8 +39,9 @@ form
 input
   width 80%
 
-.title h2
+.title h3
   margin 0.5em 0
+  font-size 1.2em
 
 .edit
   font-size 16px

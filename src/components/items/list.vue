@@ -25,7 +25,7 @@
   ul.item-list
     transition-group(name="list")
       item-card.card(
-        @click="$emit('open', item.soul); $emit('explore', { id: item.id, type })",
+        @click="$emit('open', { id: item.id, type: type, soul: item.soul })",
         v-for="item in sorted.list",
         :key="item.soul",
         :item="item"

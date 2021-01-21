@@ -3,7 +3,6 @@
   .content
     item-route(:id="item.parent", @open="$emit('explore', $event)")
     .main
-      edit-icon(:id="item.soul", :editable="editable", :icon="item.icon")
       .info
         edit-title(
           :editable="editable",
@@ -12,15 +11,17 @@
         )
         .data
           item-type(:type="item.type")
-          edit-status(:id="item.soul", :editable="editable")
           user-pill(:id="item.soul.slice(1, 88)")
-
+      edit-icon(:id="item.soul", :editable="editable", :icon="item.icon")
     edit-team(v-if="false", :id="item.soul", :editable="editable")
     edit-subtitle(
       :text="item.subtitle",
       :editable="editable",
       @update="updateItem('subtitle', $event)"
     ) {{ $t('subtitle') }}
+    .statuses
+      edit-status.pad(:id="item.soul", :editable="editable")
+      edit-publish(:soul="item.soul", :type="item.type")
     edit-link(
       :link="item.link",
       :editable="editable",
@@ -34,13 +35,11 @@
       :editable="editable",
       @update="updateItem('text', $event)"
     )
-    edit-publish(:soul="item.soul", :type="item.type")
     rating-bar(:horizontal="true", :id="item.soul") 
   .lists
     items-list(
       v-for="type in model[item.type]",
       @open="$emit('open', $event)",
-      @explore="$emit('explore', $event)",
       :key="type",
       :type="type",
       :editable="editable",
@@ -137,7 +136,7 @@ onMounted(() => {
   top 0
   background-color var(--background)
   z-index 30
-  margin 0
+  margin-bottom 1em
 
 .content > div
   margin 0 2em
@@ -149,6 +148,11 @@ aside
 .lists
   margin 1em
   grid-area list
+
+.statuses
+  display flex
+  flex-flow row wrap
+  align-items center
 
 .data
   font-size 0.75em
@@ -172,4 +176,7 @@ aside
 
 .dates
   display flex
+
+.pad
+  padding 0.5em 0
 </style>

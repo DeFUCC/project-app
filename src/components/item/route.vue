@@ -1,5 +1,5 @@
 <template lang="pug">
-.row(v-if="reversed.length > 0")
+.route(v-if="reversed.length > 0")
   span.path(
     @click="$emit('open', { id: item.id, type: item.type })",
     v-for="(item, i) in reversed",
@@ -43,11 +43,12 @@ watchEffect(async () => {
 </script>
 
 <style lang="stylus" scoped>
-.row
+.route
   display flex
   flex-flow row wrap
   flex 1 1 100%
   align-items flex-start
+  font-size 0.85em
 
 .path
   display flex
