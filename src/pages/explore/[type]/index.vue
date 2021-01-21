@@ -1,9 +1,9 @@
 <template lang="pug">
-items-list(
+items-lister(
   :key="type",
   :type="type",
   :editable="true",
-  @explore="$router.push(`/explore/${type}/${$event.id}`)"
+  @open="$router.push(`/explore/${$event.type}/${$event.id}`)"
 )
 </template>
 

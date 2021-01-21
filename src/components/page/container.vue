@@ -1,10 +1,10 @@
 <template lang="pug">
 .page(ref="page")
   .content
+    item-route(:id="item.parent", @open="$emit('explore', $event)")
     .main
       edit-icon(:id="item.soul", :editable="editable", :icon="item.icon")
       .info
-        item-route(:id="item.parent", @open="$emit('explore', $event)")
         edit-title(
           :editable="editable",
           :text="item.title",
@@ -116,19 +116,38 @@ onMounted(() => {
 
 <style lang="stylus" scoped>
 .page
-  overflow-x hidden
   display grid
-  padding 0 0.5em
-  grid-gap 1em
-  grid-template-columns repeat(auto-fit, minmax(360px, 1fr))
+  grid-template-columns 1fr
+  grid-template-areas 'info' 'list' 'aside'
 
-.main
+@media screen and (min-width 791px)
+  .page
+    grid-template-columns minmax(320px, 2fr) 3fr
+    grid-template-areas 'info list' 'aside list'
+
+@media screen and (min-width 1260px)
+  .page
+    grid-template-columns minmax(320px, 2fr) 3fr 1fr
+    grid-template-areas 'info list aside'
+
+.content .main
   display flex
   align-items center
   position sticky
   top 0
   background-color var(--background)
   z-index 30
+  margin 0
+
+.content > div
+  margin 0 2em
+
+aside
+  grid-area aside
+
+.lists
+  margin 1em
+  grid-area list
 
 .data
   font-size 0.75em
@@ -152,7 +171,4 @@ onMounted(() => {
 
 .dates
   display flex
-
-.content
-  padding 1em
 </style>

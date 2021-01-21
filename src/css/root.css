@@ -50,7 +50,6 @@ html {
 }
 
 #app {
-  overscroll-behavior-x: none !important;
   height: 100%;
   width: 100%;
   display: grid;

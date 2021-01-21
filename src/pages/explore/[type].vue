@@ -1,5 +1,5 @@
 <template lang="pug">
-main 
+section
   .types
     .type(
       @click="$router.push(`/explore/${atype}`)",

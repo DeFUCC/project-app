@@ -1,6 +1,6 @@
 <template lang="pug">
 .title
-  h2(v-if="!edit") {{ text }}
+  h3(v-if="!edit") {{ text }}
     span.edit(v-if="editable", @click="edit = true")
       i.iconify(data-icon="la:pen")
   form(@submit.prevent="$emit('update', newTitle); edit = false", v-if="edit")

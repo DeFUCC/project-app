@@ -47,6 +47,7 @@ form
   display flex
   align-items center
   padding 1em
+  flex 1 1 600px
 
 .title
   margin 0

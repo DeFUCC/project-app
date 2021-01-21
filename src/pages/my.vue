@@ -18,10 +18,10 @@ main.page(v-if="user.is")
 import { pubGradient } from "../use/colors";
 import { user, logOut } from "../store/user";
 import { useRouter } from "vue-router";
-import { watchEffect } from "vue";
+import { onMounted, watchEffect } from "vue";
 
 const router = useRouter();
-watchEffect(() => {
+onMounted(() => {
   if (!user.is) {
     router.push("/");
   }

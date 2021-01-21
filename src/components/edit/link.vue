@@ -1,5 +1,5 @@
 <template lang="pug">
-.url
+.url(v-if="link || editable")
   span.title {{ $t('link') }}
   span.edit(v-if="!link", @click="edit = true")
     i.iconify(data-icon="la:plus")

@@ -33,19 +33,11 @@
 </template>
 
 <script setup lang="ts">
-import {
-  defineEmit,
-  computed,
-  defineProps,
-  reactive,
-  ref,
-  watchEffect,
-} from "vue";
-import { appPath, db, gun, soul } from "../../store/gun-db";
+import { defineEmit, ref, defineProps } from "vue";
 import { user } from "../../store/user";
-import { useSorter } from "../../use/sorter";
+import { useItems } from "../../use/ItemsList";
 
-const emit = defineEmit(["open", "explore"]);
+const emit = defineEmit(["open"]);
 const props = defineProps({
   type: {
     type: String,
@@ -54,70 +46,8 @@ const props = defineProps({
   parent: String,
   editable: Boolean,
 });
-
-const items = reactive({});
-
-let query: any;
-if (props.parent) {
-  query = gun.get(props.parent);
-} else {
-  query = db;
-}
-query.get(props.type).map().on(loadItem);
-
-const { sorted, options } = useSorter(items);
-
-async function loadItem(data: any, key: string) {
-  if (items[key]) {
-    items[key] = null;
-  }
-  if (data === null) return;
-  items[key] = { ...data };
-  let item = items[key];
-  item.soul = soul(data);
-  item.id = key;
-
-  /*
-
-      item.rated = {
-        star: {},
-        seen: {},
-        trash: {},
-      };
-
-      item.myRate = {
-        star: false,
-        seen: false,
-        trash: false,
-      };
-
-      db.get("user")
-        .map()
-        .on((userData, userId) => {
-          for (let rate in item.rated) {
-            gun
-              .user(userId)
-              .get(appPath)
-              .get("rate")
-              .get(rate)
-              .get(soul(data))
-              .on((rated: any, rateType: string) => {
-                if (rated) {
-                  item.rated[rate][userId] = true;
-                  if (userId == user?.is?.pub) {
-                    item.myRate[rate] = true;
-                  }
-                } else {
-                  delete item.rated[rate][userId];
-                  if (userId == user?.is?.pub) {
-                    item.myRate[rate] = false;
-                  }
-                }
-              });
-          }
-        });
-        */
-}
+const open = ref(false);
+const { sorted, options } = useItems(props.type, props.parent);
 </script>
 
 <style lang="stylus" scoped>
@@ -125,7 +55,6 @@ async function loadItem(data: any, key: string) {
   border var(--border-thin)
   border-radius var(--small-radius)
   margin-bottom 2em
-  overflow-x hidden
 
 .item-list
   display flex

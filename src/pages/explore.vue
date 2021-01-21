@@ -3,8 +3,7 @@ main
   .title 
     router-link(to="/explore/") Explore
   router-view(v-slot="{ Component }")
-    transition(name="fade")
-      component(:is="Component")
+    component(:is="Component")
 </template>
 
 <script setup lang="ts">
