@@ -9,7 +9,8 @@
       item-date(:item="profile")
     user-avatar.pic(:pic="profile?.avatar", size="large")
 
-  .data {{ items.design }}
+  .data
+    .card(v-for="item in items", :key="item") {{ item }}
 </template>
 
 <script setup lang="ts">
@@ -22,7 +23,7 @@ const props = defineProps({
   id: String,
 });
 
-const profile = reactive({});
+const profile = ref({});
 const pub = ref();
 
 const verified = asyncComputed(async () => {
@@ -30,7 +31,7 @@ const verified = asyncComputed(async () => {
   return props.id == hash;
 });
 
-const items = reactive({});
+const items = ref({});
 
 db.get("user")
   .get(props.id)
@@ -40,14 +41,16 @@ db.get("user")
       .user(pub.value)
       .get(appPath)
       .map()
+      .map()
       .on((da, ke) => {
-        items[ke] = da;
+        if (!da || !soul(da)) return;
+        items.value[ke] = soul(da);
       });
   })
   .map()
   .once((data, key) => {
     if (!data) return;
-    profile[key] = data;
+    profile.value[key] = data;
   });
 </script>
 
