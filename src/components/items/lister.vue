@@ -8,7 +8,7 @@
       .count {{ sorted.total }}
       span.open(@click="open = !open")
         i.iconify(data-icon="la:chevron-down")
-    .tools(:class="{ open }")
+    .tools(:class="{ open }") {{ $t(`def.${type}`) }}
       items-lister-order(
         :by="options.orderBy",
         @order="options.orderBy = $event",
@@ -30,12 +30,15 @@
         :key="item.id",
         :item="item"
       )
+    .more(ref="more", v-if="sorted.more", @click="loadMore()") {{ sorted.list.length }} / {{ sorted.count }}
 </template>
 
 <script setup lang="ts">
+import { useIntersectionObserver } from "@vueuse/core";
 import { defineEmit, ref, defineProps } from "vue";
 import { user } from "../../store/user";
-import { useItems } from "../../use/ItemsList";
+import { useItems } from "../../use/items";
+useIntersectionObserver;
 
 const emit = defineEmit(["open"]);
 const props = defineProps({
@@ -46,8 +49,20 @@ const props = defineProps({
   parent: String,
   editable: Boolean,
 });
-const open = ref(false);
 const { sorted, options } = useItems(props.type, props.parent);
+const open = ref(false);
+const page = ref(7);
+const more = ref(null);
+const loading = ref(false);
+function loadMore() {
+  options.limit += page.value;
+}
+
+useIntersectionObserver(more, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    loadMore();
+  }
+});
 </script>
 
 <style lang="stylus" scoped>
@@ -93,14 +108,14 @@ aside
   position sticky
   align-self start
   z-index 20
-  top 0
+  top 1em
   min-height 3em
   flex-flow row wrap
   align-items center
   justify-content flex-start
   padding 0.5em
   background-color var(--bar-color)
-  margin 0
+  margin 1em
 
 .tools > div
   flex 1 1 200px
@@ -121,4 +136,21 @@ aside
 .count
   font-weight bold
   padding 0 1em
+
+.more
+  cursor pointer
+  flex 1 1 100%
+  opacity 0.6
+  transition all 300ms ease
+  display flex
+  align-items center
+  padding 3em
+  justify-content center
+  background-color var(--secondary-button)
+
+.more:hover
+  opacity 1
+
+.more:active
+  opacity 0.4
 </style>

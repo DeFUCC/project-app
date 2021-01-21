@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { defineEmit, ref, defineProps } from "vue";
 import { user } from "../../store/user";
-import { useItems } from "../../use/ItemsList";
+import { useItems } from "../../use/items";
 
 const emit = defineEmit(["open"]);
 const props = defineProps({

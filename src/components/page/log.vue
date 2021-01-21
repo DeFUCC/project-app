@@ -65,7 +65,7 @@ watchEffect(() => {
 
 <style lang="stylus" scoped>
 .logs
-  padding 1em
+  padding 1em 0
   display flex
   flex-flow column nowrap
   font-size 0.9em

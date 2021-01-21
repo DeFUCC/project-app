@@ -1,4 +1,4 @@
-import { gun, soul, db } from './../store/gun-db'
+import { gun, soul, db } from '../store/gun-db'
 import { reactive } from 'vue'
 import { useSorter } from './sorter'
 

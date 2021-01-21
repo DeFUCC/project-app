@@ -9,12 +9,6 @@ export function useSorter(obj: object) {
 
   const sorter = new Worker('/workers/sorter.js')
 
-  const sorted = reactive({
-    list: null,
-    count: 0,
-    total: 0,
-  })
-
   const options = reactive({
     orderBy: 'createdAt',
     search: '',
@@ -23,6 +17,7 @@ export function useSorter(obj: object) {
       seen: true,
       trash: true,
     },
+    limit: 5,
   })
 
   debouncedWatch(
@@ -45,9 +40,17 @@ export function useSorter(obj: object) {
     })
   }
 
+  const sorted = reactive({
+    list: null,
+    count: 0,
+    more: false,
+    total: 0,
+  })
+
   sorter.onmessage = (e) => {
     sorted.list = e.data.list
     sorted.count = e.data.count
+    sorted.more = e.data.more
     sorted.total = e.data.total
   }
 

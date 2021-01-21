@@ -4,18 +4,17 @@ onmessage = (e) => {
 
 function sort({ data }) {
   let list = Object.values(data.list)
-  let clean = 0
-  let shown = 0
+  let more = false
   let total = list.length
-  let { orderBy, search, filterMy } = data.options
+  let { orderBy, search, filterMy, limit } = data.options
+
+  list = list.filter(Boolean)
 
   if (search) {
     list = list.filter((item) => {
       return item.title.toLowerCase().includes(search.toLowerCase())
     })
   }
-
-  list = list.filter(Boolean)
 
   if (orderBy == 'AB') {
     list.sort(sortByAB)
@@ -25,7 +24,7 @@ function sort({ data }) {
   }
 
   if (orderBy == 'rating') {
-    //   list.sort(sortByRating)
+    list.sort(sortByRating)
   }
 
   if (filterMy) {
@@ -43,7 +42,14 @@ function sort({ data }) {
     })
   }
   let count = list.length
-  postMessage({ list, count, total })
+  if (count > limit) {
+    list.length = limit
+    more = true
+  } else {
+    more = false
+  }
+
+  postMessage({ list, count, total, more })
 }
 
 function sortByRating(a, b) {

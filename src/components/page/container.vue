@@ -144,6 +144,7 @@ onMounted(() => {
 
 aside
   grid-area aside
+  margin 1em
 
 .lists
   margin 1em

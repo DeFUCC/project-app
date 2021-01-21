@@ -56,6 +56,8 @@ html {
   grid-template-columns: 60px 1fr;
   grid-template-areas: 'nav content';
   overflow-x: hidden;
+  touch-action: pan-y;
+  overflow-x: hidden;
 }
 
 #app > main {
