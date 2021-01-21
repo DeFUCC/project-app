@@ -2,20 +2,28 @@
 #profile
   aside
     edit-icon(
-      :id="`${appPath}/user/${user?.is?.pub}`",
+      @update="updateProfile('avatar', $event.content)",
       :editable="true",
-      :icon="user?.info?.icon"
+      :icon="user?.profile?.avatar"
     )
-  main
-    h1 {{ user.info.title }}
-    button(v-if="!published", @click="publishUser()") Publish
+    edit-title(
+      :editable="Boolean(user.is)",
+      :text="user.profile.title",
+      @update="updateProfile('title', $event)"
+    )
     user-pub(:pub="user.is?.pub", :size="120")
+  main
+    button(@click="participate()") Participate
+    .data 
+      .line(v-for="(u, k) in user.profile", :key="k") {{ k }}: {{ u }}
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref } from "vue";
-import { appPath, db } from "../../store/gun-db";
-import { user, publishUser } from "../../store/user";
+import { defineProps, onMounted, ref } from "vue";
+import { appPath, db, gun } from "../../store/gun-db";
+import { notify } from "../../store/history";
+import { update } from "../../store/item";
+import { user, participate } from "../../store/user";
 
 const props = defineProps({
   alias: String,
@@ -26,6 +34,14 @@ db.get("user")
   .once((val) => {
     published.value = val;
   });
+
+function updateProfile(field, content) {
+  const userProfile = gun.user(user.is.pub).get(appPath).get("profile");
+  userProfile.get(field).put(content);
+  userProfile.get("updatedAt").put(Date.now());
+  userProfile.get("log").get(Date.now()).put(`new ${field}`);
+  notify(`You've updated ${field}!`);
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -36,4 +52,7 @@ db.get("user")
 
 aside div
   margin 1em
+
+.line
+  padding 1em
 </style>

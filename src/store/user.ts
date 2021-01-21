@@ -1,19 +1,17 @@
-import { useRouter } from 'vue-router'
-import { gun, db, appPath } from './gun-db'
+import { gun, db, appPath, getShortHash } from './gun-db'
 import { notify, error } from './history'
 import { reactive, watch } from 'vue'
 
 export const user = reactive({
   is: null,
   profile: {
-    createdAt: null,
-    avatar: null,
+    title: '',
   },
-  info: {},
   rates: {},
 })
 
 export function isMine(soul: string) {
+  if (!soul) return
   return soul.slice(1, 88) == user.is?.pub
 }
 
@@ -39,12 +37,6 @@ export function loadUser(pub: string) {
     .on((data, key) => {
       user.profile[key] = data
     })
-  db.get('user')
-    .get(pub)
-    .map()
-    .on((data, key) => {
-      user.info[key] = data
-    })
   gun
     .user(pub)
     .get(appPath)
@@ -67,6 +59,14 @@ export function findUser(alias: string, cb: (data: any) => void) {
   })
 }
 
+function generateUser(alias: string, pub: string) {
+  return {
+    alias: alias,
+    pub: pub,
+    createdAt: Date.now(),
+  }
+}
+
 export function createUser(alias: string, pass: string) {
   console.log('creating')
   findUser(alias, (val) => {
@@ -77,46 +77,26 @@ export function createUser(alias: string, pass: string) {
       let dbUser = db
         .get('user')
         .get(ack.pub)
-        .put(
-          {
-            alias: alias,
-            pub: ack.pub,
-            type: 'user',
-            title: alias,
-            description: ack.pub,
-            createdAt: Date.now(),
-          },
-          (ack) => {
-            window.location.reload()
-          },
-        )
+        .put(generateUser(alias, ack.pub), () => {
+          window.location.reload()
+        })
     } else {
       error(ack.err)
     }
   })
 }
 
-export function publishUser() {
-  let user = gun.user()
-  let pub = user?.is?.pub
-  if (pub) {
-    let dbUser = db
-      .get('user')
-      .get(pub)
-      .put(
-        {
-          alias: user.is.alias,
-          pub: pub,
-          type: 'user',
-          title: user.is.alias,
-          description: pub,
-          createdAt: Date.now(),
-        },
-        (ack) => {
-          notify(`User ${user.is.alias} is published`)
-        },
-      )
-  }
+export async function participate() {
+  let id = await getShortHash(user.is.pub)
+  let profile = gun.user().get(appPath).get('profile')
+  profile.get('id').put(id)
+  profile.get('pub').put(user.is.pub)
+  let dbUser = db
+    .get('user')
+    .get(id)
+    .put(profile, () => {
+      notify(`User ${user.profile?.title} is participating with id ${id}`)
+    })
 }
 
 export function authUser(alias, pass) {

@@ -5,14 +5,15 @@
     span.iconify(data-icon="la:camera")
   edit-file(
     v-if="edit",
-    @loaded="update(id, 'icon', $event.content); edit = false",
+    @loaded="$emit('update', $event); edit = false",
     @close="edit = false"
   )
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref } from "vue";
-import { update } from "../../store/item";
+import { defineEmit, ref, defineProps } from "vue";
+
+defineEmit(["update"]);
 
 const props = defineProps({
   id: String,

@@ -4,7 +4,7 @@
   button(@click="getPair()") Gen Pair
   transition(name="fade")
     .tools(v-if="pair", :key="pair")
-      user-pub(:pub="pair.pub", :size="420")
+      user-pub(:pub="pair.pub", :size="300")
       .gradient.pad(:style="{ background: pubGradient(pair.pub, 90) }")
       img(:src="qrcode", v-if="qrcode")
       .split
@@ -13,7 +13,6 @@
           :key="sp",
           :style="{ backgroundColor: color.hex(sp) }"
         ) {{ sp }}
-      .pair.pad(:style="{ backgroundColor: color.hex(pair.pub) }") {{ pair.pub }}
       .decode
         .bits(v-for="sp in split", :key="sp")
           .bit(
@@ -21,6 +20,7 @@
             :key="bit",
             :style="{ backgroundColor: 'hsl(0,0%,' + bit * 100 + '%)' }"
           ) 
+      .pair.pad(:style="{ backgroundColor: color.hex(pair.pub) }") {{ pair.pub }}
 </template>
 
 <script setup lang="ts">
@@ -41,7 +41,7 @@ async function getPair() {
   pair.value = await sea.pair();
   qrcode.value = await QRCode.toDataURL(pair.value.pub, {
     errorCorrectionLevel: "Q",
-    scale: 8,
+    scale: 6,
   });
 }
 getPair();

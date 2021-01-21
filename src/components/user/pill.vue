@@ -1,6 +1,7 @@
 <template lang="pug">
 router-link.user(
-  :to="{ path: isMe ? '/my' : `/page`, query: { id: `${appPath}/user/${profile.pub}` } }",
+  @click.stop,
+  :to="{ path: isMe ? '/my' : `/users/${profile.id}` }",
   :style="{ background: isMe ? pubGradient(profile.pub, 90) : 'none' }"
 )
   user-avatar.avatar(size="small", :pic="profile.avatar")
@@ -10,7 +11,7 @@ router-link.user(
 
 <script setup lang="ts">
 import { computed, defineProps, reactive, watchEffect } from "vue";
-import { db, appPath } from "../../store/gun-db";
+import { db, appPath, gun, getShortHash } from "../../store/gun-db";
 import { user } from "../../store/user";
 import { pubGradient } from "../../use/colors";
 import { truncate } from "../../store/item";
@@ -22,17 +23,21 @@ const profile = reactive({
   alias: null,
   pub: null,
   avatar: null,
+  id: null,
 });
 const isMe = computed(() => profile.pub == user.is?.pub);
 
 watchEffect(() => {
   if (props.id) {
-    db.get("user")
-      .get(props.id)
-      .on((data, key) => {
-        profile.alias = truncate(String(data.alias), 24);
+    gun
+      .get(`~${props.id}`)
+      .get(appPath)
+      .get("profile")
+      .on(async (data, key) => {
+        profile.alias = data.title;
         profile.pub = data.pub;
-        profile.avatar = data.icon;
+        profile.avatar = data.avatar;
+        profile.id = await getShortHash(props.id);
       });
   }
 });

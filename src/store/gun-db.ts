@@ -24,6 +24,10 @@ export const getState = window.Gun.state.is //(node,'key') => timestamp
 export const sea = window.SEA
 export const genUuid = window.Gun.text.random
 
+export async function getShortHash(text) {
+  return await sea.work(text, appPath, null, { name: 'SHA-1', encode: 'hex' })
+}
+
 export function cutUuid(key: string): string {
   if (!key) return
   return key.substring(key.lastIndexOf('/') + 1)

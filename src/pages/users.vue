@@ -1,22 +1,20 @@
 <template lang="pug">
-#users
-  h3 Users
+main
+  .header
+    router-link(to="/users") Users
   router-view(v-slot="{ Component }")
     transition(name="fade")
-      keep-alive
-        component(:is="Component")
+      component(:is="Component")
 </template>
 
 <script setup lang="ts">
 </script>
 
 <style lang="stylus" scoped>
-#users
-  padding 2em
+main
+  display flex
+  flex-flow column
 
-.user
+.header
   padding 1em
-
-.data
-  font-size 0.2em
 </style>

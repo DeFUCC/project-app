@@ -1,7 +1,7 @@
 <template lang="pug">
 main.page(v-if="user.is")
   header.bar(:style="{ background: pubGradient(user.is?.pub, -90) }")
-    user-avatar(:pic="user?.info?.icon", size="medium")
+    user-avatar(:pic="user?.profile?.icon", size="medium")
     .title {{ user.is?.alias }}
     .spacer
     button(@click="logOut()") Log out
@@ -17,9 +17,8 @@ main.page(v-if="user.is")
 <script setup lang="ts">
 import { pubGradient } from "../use/colors";
 import { user, logOut } from "../store/user";
+import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { onMounted, watchEffect } from "vue";
-
 const router = useRouter();
 onMounted(() => {
   if (!user.is) {

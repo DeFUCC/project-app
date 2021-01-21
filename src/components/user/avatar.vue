@@ -43,4 +43,7 @@ export default {
 .big
   width 8em
   height 8em
+
+.large
+  width 10em
 </style>

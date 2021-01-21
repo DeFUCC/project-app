@@ -3,20 +3,20 @@
   .bar
     item-type(:type="type")
     h3 {{ $tc(`type.${type}`, 10) }}
-    items-list-filter(
+    page-list-filter(
       :my="options.filterMy",
       @star="options.filterMy.star = !options.filterMy.star",
       @seen="options.filterMy.seen = !options.filterMy.seen",
       @trash="options.filterMy.trash = !options.filterMy.trash",
       v-show="sorted.total > 0"
     )
-    items-list-order(
+    page-list-order(
       :by="options.orderBy",
       @order="options.orderBy = $event",
       v-show="sorted.total > 0"
     )
     .spacer
-    items-list-search(
+    page-list-search(
       @search="options.search = $event",
       v-show="sorted.total > 3"
     )
@@ -30,9 +30,11 @@
         :key="item.soul",
         :item="item"
       )
+    .more(ref="more", v-if="sorted.more", @click="loadMore()") {{ sorted.list.length }} / {{ sorted.count }}
 </template>
 
 <script setup lang="ts">
+import { useIntersectionObserver } from "@vueuse/core";
 import { defineEmit, ref, defineProps } from "vue";
 import { user } from "../../store/user";
 import { useItems } from "../../use/items";
@@ -46,8 +48,22 @@ const props = defineProps({
   parent: String,
   editable: Boolean,
 });
-const open = ref(false);
+
 const { sorted, options } = useItems(props.type, props.parent);
+
+const open = ref(false);
+const page = ref(7);
+const more = ref(null);
+const loading = ref(false);
+function loadMore() {
+  options.limit += page.value;
+}
+
+useIntersectionObserver(more, ([{ isIntersecting }]) => {
+  if (isIntersecting) {
+    loadMore();
+  }
+});
 </script>
 
 <style lang="stylus" scoped>
@@ -87,4 +103,21 @@ const { sorted, options } = useItems(props.type, props.parent);
   display block
   color var(--text-light)
   white-space nowrap
+
+.more
+  cursor pointer
+  flex 1 1 100%
+  opacity 0.6
+  transition all 300ms ease
+  display flex
+  align-items center
+  padding 3em
+  justify-content center
+  background-color var(--secondary-button)
+
+.more:hover
+  opacity 1
+
+.more:active
+  opacity 0.4
 </style>

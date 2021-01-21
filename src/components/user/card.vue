@@ -1,18 +1,29 @@
 <template lang="pug">
 router-link.card(
-  :to="'/users/' + user.pub",
-  :style="{ backgroundColor: itemColor(user.pub) }"
+  :to="'/users/' + id",
+  :style="{ background: pubGradient(profile?.pub, -90) }"
 )
-  h3.alias {{ user.alias }}
+  user-avatar(:pic="profile?.avatar", size="medium")
+  .profile
+    .title {{ profile?.title }}
+    slot 
 </template>
 
 <script setup lang="ts">
+import { asyncComputed } from "@vueuse/core";
 import { computed, defineProps, reactive } from "vue";
-import { itemColor } from "../../use/colors";
+import { appPath, db, getShortHash, sea } from "../../store/gun-db";
+import { itemColor, pubGradient } from "../../use/colors";
 
 const props = defineProps({
-  user: Object,
+  profile: Object,
+  id: String,
 });
+
+function remove(id) {
+  console.log(id);
+  db.get("user").get(id).put(null);
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -23,6 +34,6 @@ const props = defineProps({
   align-items center
   background-color #eee
 
-h3
-  margin 0
+.profile
+  margin 1em
 </style>

@@ -12,7 +12,12 @@
         .data
           item-type(:type="item.type")
           user-pill(:id="item.soul.slice(1, 88)")
-      edit-icon(:id="item.soul", :editable="editable", :icon="item.icon")
+      edit-icon(
+        :id="item.soul",
+        :editable="editable",
+        :icon="item.icon",
+        @update="updateIcon($event.content)"
+      )
     edit-team(v-if="false", :id="item.soul", :editable="editable")
     edit-subtitle(
       :text="item.subtitle",
@@ -37,7 +42,7 @@
     )
     rating-bar(:horizontal="true", :id="item.soul") 
   .lists
-    items-list(
+    page-list(
       v-for="type in model[item.type]",
       @open="$emit('open', $event)",
       :key="type",
@@ -93,6 +98,10 @@ const edit = reactive({
 
 function updateItem(field: string, content: string) {
   update(props.id, field, content);
+}
+
+function updateIcon(content) {
+  update(props.id, "icon", content);
 }
 
 const editable = computed(() => {
