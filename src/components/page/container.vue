@@ -1,7 +1,7 @@
 <template lang="pug">
 .page(ref="page")
   .content
-    item-route(:id="item.parent", @open="$emit('explore', $event)")
+    item-route(:id="item.parent", @open="$emit('open', $event)")
     .main
       .info
         edit-title(
