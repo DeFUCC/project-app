@@ -29,11 +29,11 @@
     "qrcode": "^1.4.4",
     "remarkable": "^2.0.1",
     "vue": "^3.0.5",
-    "vue-i18n": "^9.0.0-rc.3",
+    "vue-i18n": "^9.0.0-rc.4",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
-    "@iconify/json": "^1.1.289",
+    "@iconify/json": "^1.1.290",
     "@intlify/vite-plugin-vue-i18n": "^1.0.0-beta.12",
     "@prettier/plugin-pug": "^1.13.2",
     "@types/node": "^14.14.22",
@@ -41,9 +41,9 @@
     "@vue/compiler-sfc": "^3.0.5",
     "pug": "^3.0.0",
     "stylus": "^0.54.8",
-    "vite": "^2.0.0-beta.34",
+    "vite": "^2.0.0-beta.36",
     "vite-plugin-components": "^0.6.6",
-    "vite-plugin-md": "^0.3.1",
+    "vite-plugin-md": "^0.4.1",
     "vite-plugin-purge-icons": "^0.5.2",
     "vite-plugin-pwa": "^0.3.9",
     "vite-plugin-voie": "^0.7.3"

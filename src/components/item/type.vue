@@ -1,9 +1,10 @@
 <template lang="pug">
-img.type-icon(v-if="type", :src="'/svg/' + type + '.svg'", alt="")
+img.type-icon(v-if="model[type]", :src="'/svg/' + type + '.svg'", alt="")
 </template>
 
 <script setup lang="ts">
 import { defineProps } from "vue";
+import { model } from "../../store/model";
 
 defineProps({
   type: {

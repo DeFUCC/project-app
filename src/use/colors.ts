@@ -5,7 +5,7 @@ import { usePreferredDark } from '@vueuse/core'
 const isDark = usePreferredDark()
 const colors = {
   light: new ColorHash({
-    saturation: [0.12, 0.15, 0.2],
+    saturation: [0.05, 0.08, 0.12],
     lightness: [0.85, 0.87, 0.9],
   }),
   dark: new ColorHash({

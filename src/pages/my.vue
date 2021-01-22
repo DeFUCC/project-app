@@ -22,7 +22,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 onMounted(() => {
   if (!user.is) {
-    router.push("/");
+    //  router.push("/");
   }
 });
 </script>

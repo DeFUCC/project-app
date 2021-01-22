@@ -70,12 +70,13 @@ import { model } from "../../store/model";
 import { user } from "../../store/user";
 import { itemColor } from "../../use/colors";
 import { appPath, gun } from "../../store/gun-db";
+import { useTitle } from "@vueuse/core";
 
 const props = defineProps({
   id: String,
 });
-
-const emit = defineEmit(["open", "explore", "close", "renamed"]);
+const title = useTitle();
+const emit = defineEmit(["open"]);
 const item = reactive({
   soul: props.id,
   title: null,
@@ -119,6 +120,10 @@ watchEffect(() => {
 });
 onMounted(() => {
   mounted.value = true;
+});
+
+watchEffect(() => {
+  title.value = item.title;
 });
 </script>
 

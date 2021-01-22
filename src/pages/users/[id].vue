@@ -10,7 +10,9 @@
     user-avatar.pic(:pic="profile?.avatar", size="large")
 
   .data
-    .card(v-for="item in items", :key="item") {{ item }}
+    suspense
+      .sus
+        item-async-card(:id="item", v-for="(item, id) in items", :key="id")
 </template>
 
 <script setup lang="ts">

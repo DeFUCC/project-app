@@ -3,7 +3,8 @@ router-link.card(
   :to="'/users/' + id",
   :style="{ background: pubGradient(profile?.pub, -90) }"
 )
-  user-avatar(:pic="profile?.avatar", size="medium")
+  user-avatar(v-if="profile?.avatar", :pic="profile?.avatar", size="medium")
+  user-pub(v-else, :pub="profile?.pub", :size="60")
   .profile
     .title {{ profile?.title }}
     slot 

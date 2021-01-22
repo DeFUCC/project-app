@@ -1,31 +1,19 @@
 <template lang="pug">
 .avatar
-  img.avatar(
-    v-if="pic",
-    :src="pic",
-    :class="{ [size]: true }",
-    :alt="user.is.alias"
-  )
+  img.avatar(v-if="pic", :src="pic", :class="{ [size]: true }")
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    pic: String,
-    size: {
-      type: String,
-      default: "small",
-    },
-    user: {
-      type: Object,
-      default: {
-        is: {
-          alias: "No alias",
-        },
-      },
-    },
+<script setup lang="ts">
+import { defineProps } from "vue";
+
+const props = defineProps({
+  pic: String,
+  pub: String,
+  size: {
+    type: String,
+    default: "small",
   },
-};
+});
 </script>
 
 <style lang="stylus" scoped>

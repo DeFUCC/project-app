@@ -1,5 +1,5 @@
 <template lang="pug">
-img(:src="createAvatar(pub)", :width="size", :height="size")
+img(v-if="pub", :src="createAvatar(pub)", :width="size", :height="size")
 </template>
 
 <script setup lang="ts">

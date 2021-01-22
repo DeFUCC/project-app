@@ -1,7 +1,7 @@
 <template lang="pug">
 .route(v-if="reversed.length > 0")
   span.path(
-    @click="$emit('open', { id: item.id, type: item.type })",
+    @click="$emit('open', { id: item.id, type: item.type, soul: item.soul })",
     v-for="(item, i) in reversed",
     :key="item",
     :style="{ backgroundColor: itemColor(soul(item)) }"

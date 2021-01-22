@@ -1,6 +1,5 @@
 <template lang="pug">
 router-link.user(
-  @click.stop,
   :to="{ path: isMe ? '/my' : `/users/${profile.id}` }",
   :style="{ background: isMe ? pubGradient(profile.pub, 90) : 'none' }"
 )

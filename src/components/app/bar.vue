@@ -7,9 +7,11 @@ nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
   .spacer
   .login(v-if="!user.is", @click="auth = !auth")
     span.iconify(data-icon="la:sign-in-alt")
-  router-link.username(v-else="", to="/my")
+  .username(v-else="")
     user-pill(:id="user.is.pub")
   .spacer
+  router-link(to="/users/")
+    span.iconify(data-icon="la:users")
   app-locale
   router-link(to="/about/")
     span.iconify(data-icon="la:info-circle")
