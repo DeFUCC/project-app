@@ -26,7 +26,11 @@ aside
         v-if="sorted.total > minSearch"
       )
         i.iconify(data-icon="la:search")
-    button(:class="{ active: add }", @click="add = !add")
+    button(
+      :class="{ active: add }",
+      @click="add = !add",
+      v-if="user.is && editable"
+    )
       i.iconify(data-icon="la:plus")
   transition-group(name="fade")
     list-options-status(
@@ -39,13 +43,20 @@ aside
       v-show="order",
       key="order",
       :by="options.orderBy",
-      @order="options.orderBy = $event"
+      @order="options.orderBy = $event",
+      v-if="sorted.total > minSearch"
     )
-    list-options-filter(key="filter", v-show="filter", :my="options.filterMy")
+    list-options-filter(
+      key="filter",
+      v-show="filter",
+      :my="options.filterMy",
+      v-if="user.is"
+    )
     list-options-search(
       key="search",
       @search="options.search = $event",
-      v-show="search"
+      v-show="search",
+      v-if="sorted.total > minSearch"
     )
     slot(v-if="add", key="add")
 </template>
@@ -59,6 +70,7 @@ const props = defineProps({
   type: String,
   options: Object,
   sorted: Object,
+  editable: Boolean,
 });
 
 const minSearch = 4;
@@ -72,8 +84,13 @@ const status = ref(true);
 </script>
 
 <style lang="stylus" scoped>
+@media screen and (max-width 610px)
+  aside
+    position static !important
+
 .title
   display flex
+  flex-flow row wrap
   align-items center
   flex 1 1 100%
   padding 0 0.5em
@@ -90,7 +107,7 @@ aside
   position sticky
   align-self start
   z-index 20
-  top 1em
+  top 0
   min-height 3em
   flex-flow row wrap
   align-items center

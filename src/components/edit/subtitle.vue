@@ -1,5 +1,5 @@
 <template lang="pug">
-.description(v-if="text || editable")
+.subtitle(v-if="text || editable")
   .title 
     slot {{ $t('subtitle') }}
     button.edit(@click="open = !open", v-if="editable && !open")
@@ -58,7 +58,7 @@ function update() {
 .edit:hover
   opacity 1
 
-.description
+.subtitle
   margin 1em 0
   position relative
   hyphens auto

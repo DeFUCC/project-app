@@ -69,6 +69,7 @@ dateGun.on((t) => {
 
 .date
   display flex
+  flex-flow row wrap
   align-items center
 
 form

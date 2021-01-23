@@ -19,12 +19,15 @@ import { pubGradient } from "../use/colors";
 import { user, logOut } from "../store/user";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useTitle } from "@vueuse/core";
 const router = useRouter();
 onMounted(() => {
   if (!user.is) {
     //  router.push("/");
   }
 });
+
+useTitle(user.profile.title);
 </script>
 
 <style lang="stylus" scoped>

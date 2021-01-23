@@ -32,7 +32,9 @@ defineProps({
 <style lang="stylus" scoped>
 .filter
   display flex
-  padding 0
+  flex-flow row wrap
+  padding 0.5em
+  flex 1 1 300px
 
 .filter button
   margin 0

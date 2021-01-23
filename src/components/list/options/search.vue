@@ -1,10 +1,12 @@
 <template lang="pug">
 .search(:class="{ open: search.text }")
-  label(for="search") Search
-    span.iconify(data-icon="la:search")
-  input(type="text", v-model="search.text")
-  i.close(@click.prevent.stop="search.text = ''")
-    span.iconify(data-icon="la:times-circle")
+  .title Search
+  form
+    label(for="search")
+      span.iconify(data-icon="la:search")
+    input(type="text", v-model="search.text")
+    i.close(@click.prevent.stop="search.text = ''")
+      span.iconify(data-icon="la:times-circle")
 </template>
 
 <script setup lang="ts">
@@ -26,21 +28,27 @@ watchEffect(() => {
 .search
   display flex
   align-items center
-  margin 0 0 0 1em
+  display flex
+  flex-flow row wrap
+  padding 0.5em
+  flex 1 1 300px
+
+form
+  display flex
+  align-items center
+  margin-left 1.2em
   position relative
 
 .search input
   margin 0
   padding 1em 1.4em
   border-radius 4px
-  width 4px
+  text-indent 1em
   transition all 300ms ease-in-out
-
-.search input:focus
-  width 8em
 
 .search label
   z-index 10
+  margin-right -1.2em
 
 .close
   cursor pointer

@@ -32,16 +32,17 @@
       :editable="editable",
       @update="updateItem('link', $event)"
     )
+    edit-area(:id="item.soul", v-if="false")
     .dates
       edit-date(type="start", :id="item.soul", :editable="editable")
       edit-date(type="finish", :id="item.soul", :editable="editable")
+    rating-bar(:horizontal="true", :id="item.soul") 
+  .lists
     edit-markdown(
       :text="item.text",
       :editable="editable",
       @update="updateItem('text', $event)"
     )
-    rating-bar(:horizontal="true", :id="item.soul") 
-  .lists
     list-items(
       :wide="false",
       v-slot="{item}",
@@ -82,7 +83,7 @@ import { useTitle } from "@vueuse/core";
 const props = defineProps({
   id: String,
 });
-const title = useTitle();
+
 const emit = defineEmit(["open"]);
 const item = reactive({
   soul: props.id,
@@ -91,7 +92,7 @@ const item = reactive({
   pub: null,
   team: {},
 });
-
+const title = useTitle(item.title);
 const gunItem = gun.get(props.id);
 
 gunItem.map().on((data: any, key: string) => {
@@ -150,6 +151,9 @@ watchEffect(() => {
     grid-template-columns minmax(320px, 2fr) 3fr 1fr
     grid-template-areas 'info list aside'
 
+.content
+  padding 1.5em
+
 .content .main
   display flex
   align-items center
@@ -158,9 +162,6 @@ watchEffect(() => {
   background-color var(--background)
   z-index 30
   margin-bottom 1em
-
-.content > div
-  margin 0 2em
 
 aside
   grid-area aside
@@ -172,6 +173,7 @@ aside
 
 .statuses
   display flex
+  margin 1em 0
   flex-flow row wrap
   align-items center
 

@@ -12,6 +12,9 @@ main
 </template>
 
 <script setup lang="ts">
+import { useTitle } from "@vueuse/core";
+
+useTitle("Feeds");
 </script>
 
 <style lang="stylus" scoped>

@@ -5,7 +5,8 @@
     :class="{ wide: wide }",
     :type="type",
     :options="options",
-    :sorted="sorted"
+    :sorted="sorted",
+    :editable="editable"
   )
     add-form(:type="type", :parent="parent", v-if="editable")
   ul.item-list

@@ -22,6 +22,8 @@ import { useTitle } from "@vueuse/core";
 import { reactive } from "vue";
 import { db } from "../../store/gun-db";
 
+useTitle("Explore");
+
 const counter = reactive({});
 
 types.forEach((type) => {

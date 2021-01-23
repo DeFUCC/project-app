@@ -33,6 +33,7 @@ const current = computed(() => {
   display flex
   flex-flow row wrap
   padding 0.5em
+  flex 1 1 300px
 
 .status
   cursor pointer

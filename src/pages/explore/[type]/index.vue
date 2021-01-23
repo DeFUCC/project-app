@@ -16,10 +16,12 @@ list-items(
 
 <script setup lang="ts">
 import { defineProps } from "vue";
+import { useTitle } from "@vueuse/core";
 
 const props = defineProps({
   type: String,
 });
+useTitle(`Explore ${props.type}`);
 
 function explore(ev) {
   console.log(ev);

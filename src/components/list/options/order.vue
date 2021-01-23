@@ -33,7 +33,9 @@ const open = ref(false);
 <style lang="stylus" scoped>
 .order
   display flex
-  transition all 300ms ease-in-out
+  flex-flow row wrap
+  padding 0.5em
+  flex 1 1 300px
 
 .order button
   margin 0 4px
