@@ -23,7 +23,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
   - [voie](https://github.com/vamplate/vite-plugin-voie)  enables file system based routing (all routes are parsed from file structure under the *./src/pages* folder) 
   - [vite-plugin-components](https://github.com/antfu/vite-plugin-components) automatically import components from *./src/components* **done**
   - [purgeIcons](https://github.com/antfu/purge-icons) with [Icônes](https://icones.js.org/) VS code extension for fast icons workflow
-  - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) for static pages in docs 
+  - [vite-plugin-md](https://github.com/antfu/vite-plugin-md) for static pages in docs *removed from core, docs will be put aside*
   - [vite-plugin-vue-i18n](https://github.com/intlify/vite-plugin-vue-i18n) to improve i18n features in sfcs
   - [vite-plugin-pwa](https://github.com/antfu/vite-plugin-pwa) for PWA offline experience 
 - [GUN](https://gun.eco/) for the reactive p2p graph database
