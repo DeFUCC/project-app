@@ -6,9 +6,18 @@ function sort({ data }) {
   let list = Object.values(data.list)
   let more = false
   let total = list.length
-  let { orderBy, search, filterMy, limit } = data.options
+  let { status, orderBy, search, filterMy, limit } = data.options
+  let statusCount = {}
+  for (st in status) {
+    statusCount[st] = 0
+  }
 
   list = list.filter(Boolean)
+
+  list = list.filter((item) => {
+    statusCount[item.status]++
+    return status[item.status]
+  })
 
   if (search) {
     list = list.filter((item) => {
@@ -49,7 +58,7 @@ function sort({ data }) {
     more = false
   }
 
-  postMessage({ list, count, total, more })
+  postMessage({ list, count, total, more, statusCount })
 }
 
 function sortByRating(a, b) {

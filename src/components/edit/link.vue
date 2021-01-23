@@ -1,7 +1,7 @@
 <template lang="pug">
 .url(v-if="link || editable")
   span.title {{ $t('link') }}
-  span.edit(v-if="!link", @click="edit = true")
+  button.edit(v-if="!link", @click="edit = true")
     i.iconify(data-icon="la:plus")
   a.link(v-if="!edit && link", :href="link", target="_blank", rel="nofollow") {{ link }}
   input(
@@ -14,9 +14,9 @@
     type="url",
     v-model="newLink"
   )
-  span.edit(v-if="link && editable", @click="edit = !edit")
+  button.edit(v-if="link && editable", @click="edit = !edit")
     i.iconify(data-icon="la:pen")
-  span.edit(v-if="link && editable", @click="$emit('update', null)")
+  button.edit(v-if="link && editable", @click="$emit('update', null)")
     i.iconify(data-icon="la:trash")
   slot
 </template>

@@ -53,7 +53,6 @@ function setStatus(st) {
   padding 2px 4px
   border-radius 4px
   font-size 1em
-  background-color #ccc
   width min-content
   white-space nowrap
   cursor pointer
@@ -71,25 +70,4 @@ function setStatus(st) {
 
 .choose .status
   margin 4px
-
-.new
-  background-color rgb(154, 184, 93)
-
-.dev
-  background-color #ccc
-
-.process
-  background-color rgb(157, 219, 199)
-
-.pause
-  background-color rgb(179, 179, 179)
-
-.product
-  background-color rgb(115, 211, 152)
-
-.ondemand
-  background-color rgb(202, 143, 120)
-
-.finish
-  background-color lightblue
 </style>

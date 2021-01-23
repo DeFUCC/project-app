@@ -12,6 +12,15 @@ export function useSorter(obj: object) {
   const options = reactive({
     orderBy: 'createdAt',
     search: '',
+    status: {
+      new: true,
+      dev: true,
+      process: true,
+      product: true,
+      pause: false,
+      ondemand: false,
+      finish: false,
+    },
     filterMy: {
       star: false,
       seen: true,
@@ -26,6 +35,7 @@ export function useSorter(obj: object) {
     count: 0,
     more: false,
     total: 0,
+    status: {},
   })
 
   debouncedWatch(
@@ -37,7 +47,7 @@ export function useSorter(obj: object) {
     },
     {
       immediate: true,
-      debounce: 500,
+      debounce: 300,
     },
   )
 
@@ -53,6 +63,7 @@ export function useSorter(obj: object) {
     sorted.count = e.data.count
     sorted.more = e.data.more
     sorted.total = e.data.total
+    sorted.status = e.data.statusCount
   }
 
   return {

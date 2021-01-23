@@ -1,5 +1,5 @@
 <template lang="pug">
-.filter(v-if="user.is")
+.filter
   .title Filter by
   .controls
     button(:class="{ active: my.star }", @click="my.star = !my.star")

@@ -2,45 +2,57 @@
 aside
   .title
     item-type(:type="type")
-    h3 {{ $tc(`type.${type}`, sorted.total) }}
-    .count {{ sorted.total }}
+    h3 {{ $tc(`type.${type}`, sorted.count) }}
+    .count(v-if="sorted.total > 0") {{ sorted.count }} / {{ sorted.total }}
     .spacer
-    button(:class="{ active: tag }", @click="tag = !tag")
-      i.iconify(data-icon="la:tags")
-    button(:class="{ active: order }", @click="order = !order")
-      i.iconify(data-icon="la:sort-alpha-down")
-    button(:class="{ active: filter }", @click="filter = !filter")
-      i.iconify(data-icon="la:filter")
-    button(:class="{ active: search }", @click="search = !search")
-      i.iconify(data-icon="la:search")
+    .buttons(v-if="sorted.total > 0")
+      button(:class="{ active: status }", @click="status = !status")
+        i.iconify(data-icon="la:tags")
+      button(
+        :class="{ active: order }",
+        @click="order = !order",
+        v-if="sorted.total > minSearch"
+      )
+        i.iconify(data-icon="la:sort-alpha-down")
+      button(
+        :class="{ active: filter }",
+        @click="filter = !filter",
+        v-if="user.is"
+      )
+        i.iconify(data-icon="la:filter")
+      button(
+        :class="{ active: search }",
+        @click="search = !search",
+        v-if="sorted.total > minSearch"
+      )
+        i.iconify(data-icon="la:search")
     button(:class="{ active: add }", @click="add = !add")
       i.iconify(data-icon="la:plus")
   transition-group(name="fade")
+    list-options-status(
+      v-show="status",
+      key="status",
+      :count="sorted.status",
+      :status="options.status"
+    )
     list-options-order(
       v-show="order",
       key="order",
       :by="options.orderBy",
-      @order="options.orderBy = $event",
-      v-if="sorted.total > 0"
+      @order="options.orderBy = $event"
     )
-    list-options-filter(
-      key="filter",
-      v-show="filter",
-      :my="options.filterMy",
-      v-if="sorted.total > 0"
-    )
-
+    list-options-filter(key="filter", v-show="filter", :my="options.filterMy")
     list-options-search(
       key="search",
       @search="options.search = $event",
-      v-show="search",
-      v-if="sorted.total > 3"
+      v-show="search"
     )
     slot(v-if="add", key="add")
 </template>
 
 <script setup lang="ts">
 import { defineProps, reactive, ref } from "vue";
+import { user } from "../../store/user";
 
 const props = defineProps({
   open: Boolean,
@@ -49,12 +61,14 @@ const props = defineProps({
   sorted: Object,
 });
 
+const minSearch = 4;
+
 const open = ref(props.open);
 const add = ref(props.open);
 const filter = ref(props.open);
 const order = ref(props.open);
 const search = ref(props.open);
-const tag = ref(props.open);
+const status = ref(true);
 </script>
 
 <style lang="stylus" scoped>
@@ -66,6 +80,9 @@ const tag = ref(props.open);
 
 .title button
   font-size 16px
+
+.title h3
+  font-size 1em
 
 aside
   display flex
@@ -97,5 +114,12 @@ aside.wide
 
 .count
   font-weight bold
-  padding 0 0.5em
+  padding 0.25em 0.5em
+  margin 0 0.5em
+  background-color var(--button-secondary)
+  border-radius 2em
+
+.buttons
+  display flex
+  flex-flow row wrap
 </style>
