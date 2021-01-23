@@ -1,1 +1,0 @@
-UKT is the rating system 

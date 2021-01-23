@@ -5,8 +5,6 @@ import PurgeIcons from 'vite-plugin-purge-icons'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
-import Markdown from 'vite-plugin-md'
-import tasklists from 'markdown-it-task-lists'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
@@ -54,25 +52,14 @@ export default defineConfig({
     Voie({
       extensions: ['vue', 'md'],
     }),
-    Markdown({
-      markdownItOptions: {
-        linkify: true,
-        typographer: true,
-      },
-      markdownItSetup(md) {
-        md.use(tasklists)
-      },
-    }),
     ViteComponents({
       // relative paths to the directory to search for components.
       dirs: ['src/components'],
 
       // valid file extensions for components.
-      extensions: ['vue', 'md', 'svg'],
+      extensions: ['vue'],
       // search for subdirectories
       deep: true,
-      // allow auto import and register components used in markdown
-      customLoaderMatcher: (path) => path.endsWith('.md'),
 
       // Allow subdirectories as namespace prefix for components.
       directoryAsNamespace: true,
