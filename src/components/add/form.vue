@@ -54,7 +54,7 @@ form
   flex 1 0
   font-size 1em
   outline none
-  background-color var(--secondary-button)
+  background-color var(--button-secondary)
   color var(--text-color)
   width 1em
   transition all 300ms ease-in-out

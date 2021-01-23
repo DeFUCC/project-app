@@ -1,19 +1,16 @@
 <template lang="pug">
 .order
   .title Order by
-  button(
-    :class="{ active: by == 'AB' }",
-    @click="$emit('order', 'AB'); open = !open"
-  )
+  button(:class="{ active: by == 'AB' }", @click="$emit('order', 'AB')")
     span.iconify(data-icon="la:sort-alpha-down")
   button(
     :class="{ active: by == 'createdAt' }",
-    @click="$emit('order', 'createdAt'); open = !open"
+    @click="$emit('order', 'createdAt')"
   )
     span.iconify(data-icon="la:sort-numeric-up-alt")
   button(
     :class="{ active: by == 'rating' }",
-    @click="$emit('order', 'rating'); open = !open"
+    @click="$emit('order', 'rating')"
   )
     span.iconify(data-icon="la:sort-amount-up-solid")
 </template>

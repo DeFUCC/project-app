@@ -42,14 +42,21 @@
     )
     rating-bar(:horizontal="true", :id="item.soul") 
   .lists
-    page-list(
+    list-items(
+      :wide="false",
+      v-slot="{item}",
       v-for="type in model[item.type]",
-      @open="$emit('open', $event)",
       :key="type",
       :type="type",
       :editable="editable",
       :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
     )
+      item-card.card(
+        @click="$emit('open', { id: item.id, type: type, soul: item.soul })",
+        :options="{ route: false }",
+        :key="item.soul",
+        :item="item"
+      )
   aside
     comment-list(:id="item.soul")
     page-log(:id="item.soul", :editable="editable")

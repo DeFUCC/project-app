@@ -3,7 +3,7 @@
   item-type(:type="item.type")
   .title {{ item.title }}
   router-link.link(v-if="item.id", :to="`/explore/${item.type}/${item.id}`") Explore
-  router-link.link(:to="{ path: '/page', query: { id } }") Open
+  router-link.link(:to="{ path: '/page', query: { id: id } }") Open
   item-date(:item="item")
 </template>
 

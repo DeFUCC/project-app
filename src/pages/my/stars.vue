@@ -3,7 +3,11 @@ article
   h3 My Stars
   suspense
     .sus
-      item-async-card(:id="value", v-for="(value, id) in stars", :key="id")
+      item-async-card(
+        :id="value['#']",
+        v-for="(value, id) in stars",
+        :key="id"
+      )
 </template>
 
 <script>

@@ -1,10 +1,17 @@
 <template lang="pug">
-items-lister(
+list-items(
+  :wide="true",
+  v-slot="{item}",
   :key="type",
   :type="type",
-  :editable="true",
-  @open="$router.push(`/explore/${$event.type}/${$event.id}`)"
+  :editable="true"
 )
+  item-card.card(
+    @click="$router.push(`/explore/${type}/${item.id}`)",
+    :options="{ route: false }",
+    :key="item.soul",
+    :item="item"
+  )
 </template>
 
 <script setup lang="ts">

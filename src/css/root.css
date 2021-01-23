@@ -2,8 +2,9 @@
   --background: #eee;
   --top-bar: #aaa;
   --body-padding: 1em;
-  --secondary-button: #cccccc;
+  --button-secondary: #cccccc;
   --button: #999;
+  --button-active: #888;
   --bar-color: #ddd;
   --small-radius: 4px;
   --text-color: #333;
@@ -17,8 +18,9 @@
     --background: #444;
     --top-bar: #666;
     --body-padding: 1em;
-    --secondary-button: #222;
+    --button-secondary: #222;
     --button: #343434;
+    --button-active: #424242;
     --bar-color: #333;
     --small-radius: 4px;
     --text-color: #eee;

@@ -39,5 +39,5 @@ function publish() {
   padding 0.5em 1em
 
 button
-  background-color var(--secondary-button)
+  background-color var(--button-secondary)
 </style>

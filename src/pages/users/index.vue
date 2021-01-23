@@ -1,30 +1,20 @@
 <template lang="pug">
 .users 
-  user-card(
-    v-for="profile in list",
-    :key="profile[0]",
-    :id="profile[0]",
-    :profile="profile[1]"
-  ) 
+  user-card(v-for="(user, id) in users", :key="id", :id="id", :profile="user") 
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 import { db } from "../../store/gun-db";
 
-const users = reactive({});
+const users = ref({});
 
 db.get("user")
   .map()
   .once((data, key) => {
-    users[key] = data;
+    if (!data) return;
+    users.value[key] = data;
   });
-
-const list = computed(() => {
-  let arr = Object.entries(users);
-  arr = arr.filter((profile) => Boolean(profile[1]));
-  return arr;
-});
 </script>
 
 <style lang="stylus" scoped>

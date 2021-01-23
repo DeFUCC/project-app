@@ -1,11 +1,11 @@
 <template lang="pug">
-li.item(
+li.card(
   :style="{ backgroundColor: itemColor(item.soul), borderColor: itemColor(item.parent) }"
 )
   .main
     .content
-      .header
-        .route
+      .header 
+        .route(v-if="options.route")
           item-route(:id="item.parent")
         .title
           item-type.type-icon(:type="item.type") 
@@ -27,6 +27,12 @@ import { defineProps } from "vue";
 import { isMine } from "../../store/user";
 
 const props = defineProps({
+  options: {
+    type: Object,
+    default: {
+      route: true,
+    },
+  },
   item: {
     type: Object,
     default: {
@@ -84,7 +90,9 @@ const props = defineProps({
 .title .type
   height 2em
 
-.item
+.card
+  margin 0.5em
+  scroll-snap-align start
   cursor pointer
   position relative
   display flex

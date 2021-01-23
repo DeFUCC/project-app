@@ -1,6 +1,6 @@
 export const model = {
   design: ['project'],
-  project: ['object', 'event'],
+  project: ['event', 'object'],
   event: ['task', 'purchase'],
   object: ['task', 'purchase'],
   task: ['result'],

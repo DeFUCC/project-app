@@ -1,35 +1,16 @@
 <template lang="pug">
-.list-holder
-  .bar
-    item-type(:type="type")
-    h3 {{ $tc(`type.${type}`, 10) }}
-    page-list-filter(
-      :my="options.filterMy",
-      @star="options.filterMy.star = !options.filterMy.star",
-      @seen="options.filterMy.seen = !options.filterMy.seen",
-      @trash="options.filterMy.trash = !options.filterMy.trash",
-      v-show="sorted.total > 0"
-    )
-    page-list-order(
-      :by="options.orderBy",
-      @order="options.orderBy = $event",
-      v-show="sorted.total > 0"
-    )
-    .spacer
-    page-list-search(
-      @search="options.search = $event",
-      v-show="sorted.total > 3"
-    )
-
-  add-form(:type="type", :parent="parent", v-if="editable")
+.holder
+  list-options(
+    :open="wide",
+    :class="{ wide: wide }",
+    :type="type",
+    :options="options",
+    :sorted="sorted"
+  )
+    add-form(:type="type", :parent="parent", v-if="editable")
   ul.item-list
     transition-group(name="list")
-      item-card.card(
-        @click="$emit('open', { id: item.id, type: type, soul: item.soul })",
-        v-for="item in sorted.list",
-        :key="item.soul",
-        :item="item"
-      )
+      slot(:item="item", v-for="item in sorted.list", :key="item.soul")
     .more(ref="more", v-if="sorted.more", @click="loadMore()") {{ sorted.list.length }} / {{ sorted.count }}
 </template>
 
@@ -38,9 +19,11 @@ import { useIntersectionObserver } from "@vueuse/core";
 import { defineEmit, ref, defineProps } from "vue";
 import { user } from "../../store/user";
 import { useItems } from "../../use/items";
+useIntersectionObserver;
 
 const emit = defineEmit(["open"]);
 const props = defineProps({
+  wide: Boolean,
   type: {
     type: String,
     required: true,
@@ -48,9 +31,7 @@ const props = defineProps({
   parent: String,
   editable: Boolean,
 });
-
 const { sorted, options } = useItems(props.type, props.parent);
-
 const open = ref(false);
 const page = ref(7);
 const more = ref(null);
@@ -67,36 +48,19 @@ useIntersectionObserver(more, ([{ isIntersecting }]) => {
 </script>
 
 <style lang="stylus" scoped>
-.list-holder
-  border var(--border-thin)
-  border-radius var(--small-radius)
-  margin-bottom 2em
+.holder
+  display flex
+  flex-flow row wrap
 
 .item-list
+  grid-area list
   display flex
+  flex 1 1 320px
   align-items stretch
   flex-flow row wrap
   padding 0
   margin 0
   min-height max-content
-
-.card
-  scroll-snap-align start end
-  margin 0.5em
-
-.bar
-  display flex
-  position sticky
-  z-index 20
-  top 0
-  flex 0 0 60px
-  min-height 3em
-  flex-flow row nowrap
-  align-items center
-  justify-content flex-start
-  padding 0.5em
-  background-color var(--bar-color)
-  margin 0
 
 .tag
   font-size 0.8em
@@ -113,7 +77,7 @@ useIntersectionObserver(more, ([{ isIntersecting }]) => {
   align-items center
   padding 3em
   justify-content center
-  background-color var(--secondary-button)
+  background-color var(--button-secondary)
 
 .more:hover
   opacity 1

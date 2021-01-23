@@ -134,7 +134,7 @@ form input
   box-shadow none
   border none
   margin 0 0.5em 0 1em
-  background-color var(--secondary-button)
+  background-color var(--button-secondary)
 
 .counter
   padding 0 0.5em
