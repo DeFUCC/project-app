@@ -141,7 +141,7 @@ watchEffect(() => {
   grid-template-columns 1fr
   grid-template-areas 'info' 'list' 'aside'
 
-@media screen and (min-width 791px)
+@media screen and (min-width 750px)
   .page
     grid-template-columns minmax(320px, 2fr) 3fr
     grid-template-areas 'info list' 'aside list'

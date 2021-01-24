@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, reactive, ref } from "vue";
+import { defineProps, reactive, ref } from "vue";
 import { gun } from "../../store/gun-db";
 import { statuses } from "../../store/model";
 
