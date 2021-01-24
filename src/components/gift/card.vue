@@ -1,7 +1,7 @@
 <template lang="pug">
 .gift(:style="{ backgroundColor: itemColor(hash) }")
   .hash {{ gift.way }}
-  .main {{ gift.type }}: {{ gift.quantity }} {{ gift.quality }}
+  .main {{ gift.quantity }} {{ gift.quality }}
   .parties
     user-pill(:id="gift.from")
     .p TO

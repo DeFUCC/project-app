@@ -62,7 +62,8 @@ function update() {
   margin 1em 0
   position relative
   hyphens auto
-  min-height 4em
+  display flex
+  flex-flow row wrap
 
 textarea
   width 90%

@@ -1,8 +1,9 @@
-input[type='text'],
-input[type='password'],
+input,
+select,
 textarea {
-  margin: 1em;
-  padding: 1em;
+  flex: 1 1 auto;
+  margin: 12px;
+  padding: 12px;
   border-radius: var(--small-radius);
   outline: none;
   border: 1px solid #999;

@@ -1,16 +1,13 @@
 <template lang="pug">
 form(@submit.prevent="addGift()")
   .row
-    user-pill(:id="gift.from")
-    .p TO
-    user-pill(:id="gift.to")
-
-  .row
     select(v-model="gift.way")
       option(v-for="way in ways", :value="way") {{ way }}
-    input(type="number", min="0", step="0.1", v-model="gift.quantity")
+  .row
+    input(type="number", min="0", step="1", v-model="gift.quantity")
     input(type="text", v-model="gift.quality")
-  textarea(v-model="gift.text")
+  .row
+    textarea(v-model="gift.text")
   button(type="submit") Send
 </template>
 
@@ -26,11 +23,11 @@ const props = defineProps({
 });
 
 const ways = ["public", "private"];
+const durations = [1, 7, 30, 365];
 
 const gift = ref({
   way: "public",
-  type: "currency",
-  quantity: 0,
+  quantity: 1,
   quality: "USD",
   text: "",
   for: props.soul,

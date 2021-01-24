@@ -73,7 +73,7 @@ function update() {
   opacity 1
 
 .description
-  margin 1em 0
+  margin 0.5em
   position relative
   hyphens auto
   min-height 4em

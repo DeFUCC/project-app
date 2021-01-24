@@ -1,7 +1,7 @@
 <template lang="pug">
 section
   .title 
-    h3 Gifts
+    h3 {{ $tc('type.donation', 10) }}
     .spacer
     button.support(@click="add = !add")
       i.iconify(data-icon="la:plus")
