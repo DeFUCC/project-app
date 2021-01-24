@@ -1,5 +1,5 @@
 <template lang="pug">
-img.type-icon(v-if="model[type]", :src="'/svg/' + type + '.svg'", alt="")
+img.type-icon(:src="'/svg/' + type + '.svg'", alt="")
 </template>
 
 <script setup lang="ts">

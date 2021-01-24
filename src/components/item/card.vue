@@ -5,8 +5,7 @@ li.card(
   .main
     .content
       .header 
-        .route(v-if="options.route")
-          item-route(:id="item.parent")
+        item-route.small(v-if="options.route", :id="item.parent")
         .title
           item-type.type-icon(:type="item.type") 
           .name {{ item.title }}
@@ -128,7 +127,6 @@ const props = defineProps({
   justify-content stretch
   align-items stretch
 
-.route
-  font-size 10px
-  flex 1 1 100%
+.small
+  font-size 12px
 </style>

@@ -51,6 +51,7 @@ export default defineConfig({
     vue(),
     Voie({
       extensions: ['vue', 'md'],
+      importMode: 'async',
     }),
     ViteComponents({
       // relative paths to the directory to search for components.

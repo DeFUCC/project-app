@@ -1,6 +1,7 @@
 <template lang="pug">
 section
-  .title 
+  .title
+    item-type(type="donation")
     h3 {{ $tc('type.donation', 10) }}
     .spacer
     button.support(@click="add = !add")
@@ -42,9 +43,13 @@ section
   padding 0.5em
 
 .title
+  padding 0 0.5em
   display flex
   align-items center
   border-bottom 1px solid var(--border-color)
+
+.title h3
+  font-size 1em
 
 .support
   font-size 1em

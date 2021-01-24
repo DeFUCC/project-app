@@ -53,7 +53,8 @@ watchEffect(async () => {
 .path
   display flex
   align-items center
-  flex 1 1 max-content
+  flex 1 1 auto
+  align-self flex-start
   padding 0.1em 0.5em
   overflow hidden
   cursor pointer
