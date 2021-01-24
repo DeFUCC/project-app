@@ -31,7 +31,7 @@ watchEffect(async () => {
     if (!id) {
       break;
     }
-    let item = await gun.get(id);
+    let item = await gun.get(id).then();
     if (item && item.type && item.title) {
       item.id = cutUuid(id);
       item.soul = id;
@@ -53,9 +53,8 @@ watchEffect(async () => {
 .path
   display flex
   align-items center
-  flex 1 1 100%
+  flex 1 1 max-content
   padding 0.1em 0.5em
-  max-width max-content
   overflow hidden
   cursor pointer
   transition all 300ms ease

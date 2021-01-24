@@ -11,6 +11,8 @@ type:
   purchase: Purchase | Purchases
   result: Result | Results
   thing: Thing | Things
+  donation: Donation | Donations
+  opportunity: Opportunity | Opportunities
 status:
   new: New
   dev: Development
@@ -42,6 +44,7 @@ def:
     of the project
   result: Successful final consequence of targeted action
   thing: Material Item
+  opportunity: A pleasant experience to live through
 app:
   title: Feeds
   welcome: Welcome!

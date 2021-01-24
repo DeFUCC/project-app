@@ -8,7 +8,7 @@ list-items(
 )
   item-card.card(
     @click="$router.push(`/explore/${type}/${item.id}`)",
-    :options="{ route: false }",
+    :options="{ route: true }",
     :key="item.soul",
     :item="item"
   )

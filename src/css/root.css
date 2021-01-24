@@ -1,5 +1,5 @@
 :root {
-  --background: #eee;
+  --background: hsla(0, 0%, 95%, 1);
   --top-bar: #aaa;
   --body-padding: 1em;
   --button-secondary: #cccccc;
@@ -10,12 +10,14 @@
   --text-color: #333;
   --text-light: #555;
   --mobile-size: 500px;
+  --border-color: #666;
   --border-thin: 1px solid hsla(0, 0%, 0%, 0.2);
+  --background-transparent: hsla(0, 0%, 95%, 0.85);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #444;
+    --background: hsla(0, 0%, 30%, 1);
     --top-bar: #666;
     --body-padding: 1em;
     --button-secondary: #222;
@@ -26,6 +28,7 @@
     --text-color: #eee;
     --text-light: #aaa;
     --mobile-size: 500px;
+    --border-color: #999;
     --border-thin: 1px solid hsla(0, 0%, 100%, 0.2);
   }
 }

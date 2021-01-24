@@ -32,33 +32,34 @@ aside
       v-if="user.is && editable"
     )
       i.iconify(data-icon="la:plus")
-  transition-group(name="fade")
-    list-options-status(
-      v-show="status",
-      key="status",
-      :count="sorted.status",
-      :status="options.status"
-    )
-    list-options-order(
-      v-show="order",
-      key="order",
-      :by="options.orderBy",
-      @order="options.orderBy = $event",
-      v-if="sorted.total > minSearch"
-    )
-    list-options-filter(
-      key="filter",
-      v-show="filter",
-      :my="options.filterMy",
-      v-if="user.is"
-    )
-    list-options-search(
-      key="search",
-      @search="options.search = $event",
-      v-show="search",
-      v-if="sorted.total > minSearch"
-    )
-    slot(v-if="add", key="add")
+  .filters
+    transition-group(name="fade")
+      list-options-status(
+        v-show="status",
+        key="status",
+        :count="sorted.status",
+        :status="options.status"
+      )
+      list-options-order(
+        v-show="order",
+        key="order",
+        :by="options.orderBy",
+        @order="options.orderBy = $event",
+        v-if="sorted.total > minSearch"
+      )
+      list-options-filter(
+        key="filter",
+        v-show="filter",
+        :my="options.filterMy",
+        v-if="user.is"
+      )
+      list-options-search(
+        key="search",
+        @search="options.search = $event",
+        v-show="search",
+        v-if="sorted.total > minSearch"
+      )
+      slot(v-if="add", key="add")
 </template>
 
 <script setup lang="ts">
@@ -94,6 +95,8 @@ const status = ref(true);
   align-items center
   flex 1 1 100%
   padding 0 0.5em
+  background-color var(--background)
+  border-bottom 1px solid var(--text-color)
 
 .title button
   font-size 16px
@@ -112,8 +115,6 @@ aside
   flex-flow row wrap
   align-items center
   justify-content flex-start
-  padding 0.5em
-  background-color var(--bar-color)
   margin 0.5em
 
 aside.wide
@@ -139,4 +140,10 @@ aside.wide
 .buttons
   display flex
   flex-flow row wrap
+
+.filters
+  display flex
+  flex-flow row wrap
+  width 100%
+  background-color var(--background-transparent)
 </style>

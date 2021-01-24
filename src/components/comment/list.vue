@@ -101,8 +101,7 @@ function addComment() {
 
 <style lang="stylus" scoped>
 .comments
-  font-size 0.9em
-  border var(--border-thin)
+  font-size 0.8em
 
 .row
   position sticky
@@ -110,7 +109,8 @@ function addComment() {
   top 0
   font-size 1.2em
   padding 1em
-  background-color var(--bar-color)
+  background-color var(--background)
+  border-bottom 1px solid var(--border-color)
   font-weight bold
   z-index 30
 
@@ -134,7 +134,7 @@ form input
   box-shadow none
   border none
   margin 0 0.5em 0 1em
-  background-color var(--button-secondary)
+  background-color var(--bar-color)
 
 .counter
   padding 0 0.5em
@@ -150,5 +150,6 @@ form input
   font-size 2em
   border none
   padding 0.5em
-  margin 0
+  margin 0 0 -6px 0
+  background-color transparent
 </style>

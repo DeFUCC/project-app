@@ -47,18 +47,15 @@ form
   display flex
   align-items center
   padding 1em
-  flex 1 1 600px
+  flex 1 1 100%
 
 .title
   margin 0
-  flex 1 0
+  flex 1 1 auto
   font-size 1em
   outline none
-  background-color var(--button-secondary)
+  border-radius 1em
+  background-color var(--bar-color)
   color var(--text-color)
-  width 1em
   transition all 300ms ease-in-out
-
-.title:focus
-  width 6em
 </style>

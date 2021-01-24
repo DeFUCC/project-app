@@ -2,7 +2,7 @@
 .page(ref="page")
   .content
     item-route(:id="item.parent", @open="$emit('open', $event)")
-    .main
+    .main(:style="{ backgroundColor: itemColor(item.soul) }")
       .info
         edit-title(
           :editable="editable",
@@ -58,6 +58,7 @@
         :key="item.soul",
         :item="item"
       )
+    gift-container(:soul="item.soul")
   aside
     comment-list(:id="item.soul")
     page-log(:id="item.soul", :editable="editable")
@@ -152,7 +153,7 @@ watchEffect(() => {
     grid-template-areas 'info list aside'
 
 .content
-  padding 1.5em
+  padding 0.5em
 
 .content .main
   display flex
@@ -162,6 +163,7 @@ watchEffect(() => {
   background-color var(--background)
   z-index 30
   margin-bottom 1em
+  border-bottom 1px solid var(--border-color)
 
 aside
   grid-area aside

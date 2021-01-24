@@ -1,5 +1,5 @@
 <template lang="pug">
-.statuses 
+.statuses
   .status(
     @click="status[stat] = !status[stat]",
     v-for="(num, stat) in current",

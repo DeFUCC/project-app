@@ -87,3 +87,9 @@ export function isEditable(item) {
   let teammate = Boolean(item?.team[user.is?.pub])
   return my || me || teammate
 }
+
+export async function moveItem(type, id, to) {
+  let movingGun = db.get(type).get(id)
+  let parentId = await movingGun.get('parent').then()
+  console.log(parentId)
+}

@@ -1,10 +1,11 @@
 export const model = {
   design: ['project'],
-  project: ['event', 'object'],
-  event: ['task', 'purchase'],
-  object: ['task', 'purchase'],
+  project: ['opportunity', 'event', 'object'],
+  event: ['opportunity', 'task', 'purchase'],
+  object: ['opportunity', 'task', 'purchase'],
   task: ['result'],
   purchase: ['thing'],
+  opportunity: [],
   result: [],
   thing: [],
 }
