@@ -63,6 +63,7 @@ const props = defineProps({
   align-items center
   font-size 1.2em
   line-height 1.4em
+  font-weight bold
   flex 1
 
 .description
@@ -126,7 +127,4 @@ const props = defineProps({
   flex-flow row nowrap
   justify-content stretch
   align-items stretch
-
-.small
-  font-size 12px
 </style>

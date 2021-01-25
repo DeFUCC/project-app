@@ -20,15 +20,19 @@ article
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { onBeforeUnmount, reactive, ref } from "vue";
 import { gun } from "../../store/gun-db";
 import { itemColor } from "../../use/colors";
 
 const graph = ref({});
 
-setInterval(() => {
+const timer = setInterval(() => {
   graph.value = gun._.graph;
 }, 500);
+
+onBeforeUnmount(() => {
+  clearInterval(timer);
+});
 </script>
 
 <style lang="stylus" scoped>

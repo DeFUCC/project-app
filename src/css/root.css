@@ -40,10 +40,11 @@ body {
   height: 100%;
   width: 100%;
   background-color: var(--background);
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Commissioner', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
+  line-height: 1.7em;
   word-break: break-word;
 }
 

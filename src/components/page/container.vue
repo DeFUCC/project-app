@@ -18,25 +18,26 @@
         :icon="item.icon",
         @update="updateIcon($event.content)"
       )
-    edit-team(v-if="false", :id="item.soul", :editable="editable")
-    edit-subtitle(
-      :text="item.subtitle",
-      :editable="editable",
-      @update="updateItem('subtitle', $event)"
-    ) {{ $t('subtitle') }}
-    .statuses
-      edit-status.pad(:id="item.soul", :editable="editable")
-      edit-publish(:soul="item.soul", :type="item.type")
-    edit-link(
-      :link="item.link",
-      :editable="editable",
-      @update="updateItem('link', $event)"
-    )
-    edit-area(:id="item.soul", v-if="false")
-    .dates
-      edit-date(type="start", :id="item.soul", :editable="editable")
-      edit-date(type="finish", :id="item.soul", :editable="editable")
-    rating-bar(:horizontal="true", :id="item.soul") 
+    .details
+      edit-team(v-if="false", :id="item.soul", :editable="editable")
+      edit-subtitle(
+        :text="item.subtitle",
+        :editable="editable",
+        @update="updateItem('subtitle', $event)"
+      ) {{ $t('subtitle') }}
+      .statuses
+        edit-status.pad(:id="item.soul", :editable="editable")
+        edit-publish(:soul="item.soul", :type="item.type")
+      edit-link(
+        :link="item.link",
+        :editable="editable",
+        @update="updateItem('link', $event)"
+      )
+      edit-area(:id="item.soul", v-if="false")
+      .dates
+        edit-date(type="start", :id="item.soul", :editable="editable")
+        edit-date(type="finish", :id="item.soul", :editable="editable")
+      rating-bar(:horizontal="true", :id="item.soul") 
   .lists
     edit-markdown(
       :text="item.text",
@@ -162,8 +163,12 @@ watchEffect(() => {
   top 0
   background-color var(--background)
   z-index 30
+  padding 0 0.5em
   margin-bottom 1em
   border-bottom 1px solid var(--border-color)
+
+.details
+  padding 0 1em
 
 aside
   grid-area aside

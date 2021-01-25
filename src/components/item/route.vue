@@ -48,7 +48,8 @@ watchEffect(async () => {
   flex-flow row wrap
   flex 1 1 100%
   align-items flex-start
-  font-size 0.85em
+  font-size 0.9em
+  line-height 1.4em
 
 .path
   display flex
