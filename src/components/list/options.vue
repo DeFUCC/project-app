@@ -4,6 +4,12 @@ aside
     item-type(:type="type")
     h3 {{ $tc(`type.${type}`, sorted.count) }}
     .count(v-if="sorted.total > 0") {{ sorted.count }} / {{ sorted.total }}
+    button.link(
+      v-if="user.is && editable",
+      :class="{ active: options.link }",
+      @click="options.link = !options.link"
+    )
+      i.iconify(data-icon="la:link")
     .spacer
     .buttons(v-if="sorted.total > 0")
       button(:class="{ active: status }", @click="status = !status")
@@ -136,6 +142,9 @@ aside.wide
   margin 0 0.5em
   background-color var(--button-secondary)
   border-radius 2em
+
+.link.active
+  animation blink 1200ms ease infinite
 
 .buttons
   display flex

@@ -37,7 +37,8 @@
       .dates
         edit-date(type="start", :id="item.soul", :editable="editable")
         edit-date(type="finish", :id="item.soul", :editable="editable")
-      rating-bar(:horizontal="true", :id="item.soul") 
+      rating-bar(:horizontal="true", :id="item.soul")
+      gift-container(:soul="item.soul")
   .lists
     edit-markdown(
       :text="item.text",
@@ -46,20 +47,14 @@
     )
     list-items(
       :wide="false",
-      v-slot="{item}",
       v-for="type in model[item.type]",
       :key="type",
       :type="type",
       :editable="editable",
-      :parent="item.type == 'user' ? `~${item.pub}/${appPath}` : item.soul"
+      :parent="item.soul",
+      @open="$emit('open', $event)"
     )
-      item-card.card(
-        @click="$emit('open', { id: item.id, type: type, soul: item.soul })",
-        :options="{ route: false }",
-        :key="item.soul",
-        :item="item"
-      )
-    gift-container(:soul="item.soul")
+
   aside
     comment-list(:id="item.soul")
     page-log(:id="item.soul", :editable="editable")
@@ -90,7 +85,7 @@ const emit = defineEmit(["open"]);
 const item = reactive({
   soul: props.id,
   title: null,
-  type: "design",
+  type: "task",
   pub: null,
   team: {},
 });
@@ -120,17 +115,6 @@ const editable = computed(() => {
 });
 
 const page = ref(null);
-const mounted = ref(false);
-watchEffect(() => {
-  if (mounted.value) {
-    setTimeout(() => {
-      page.value?.scrollIntoView({ behavior: "smooth" });
-    }, 200);
-  }
-});
-onMounted(() => {
-  mounted.value = true;
-});
 
 watchEffect(() => {
   title.value = item.title;

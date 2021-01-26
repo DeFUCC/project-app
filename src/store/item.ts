@@ -62,6 +62,10 @@ export async function createItem(type: string, data?: any, parent?: string) {
   }
 }
 
+export async function linkItem(id: string, type: string, link: string) {
+  console.log(`adding ${link} to ${type} in ${id}`)
+}
+
 export function truncate(input: string, num = 142) {
   if (!input) {
     return ' '

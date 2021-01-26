@@ -26,7 +26,4 @@ function open(val) {
 }
 </script>
 
-<style lang="stylus" scoped>
-main
-  padding 1em
-</style>
+<style lang="stylus" scoped></style>

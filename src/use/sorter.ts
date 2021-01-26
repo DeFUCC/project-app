@@ -1,34 +1,13 @@
 import { debouncedWatch } from '@vueuse/core'
 import { reactive, toRaw } from 'vue'
 
-export function useSorter(obj: object) {
+export function useSorter(list: object, options: object) {
   if (!window.Worker) {
     console.error('No worker support')
     return
   }
 
   const sorter = new Worker('/workers/sorter.js')
-
-  const options = reactive({
-    orderBy: 'createdAt',
-    search: '',
-    status: {
-      new: true,
-      dev: true,
-      process: true,
-      product: true,
-      pause: false,
-      ondemand: false,
-      finish: false,
-    },
-    filterMy: {
-      star: false,
-      seen: true,
-      trash: true,
-    },
-    limit: 5,
-    loading: true,
-  })
 
   const sorted = reactive({
     list: null,
@@ -39,10 +18,10 @@ export function useSorter(obj: object) {
   })
 
   debouncedWatch(
-    [obj, options],
+    [list, options],
     () => {
-      if (obj) {
-        sort(obj)
+      if (list) {
+        sort(list)
       }
     },
     {

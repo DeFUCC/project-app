@@ -31,7 +31,7 @@ const gift = ref({
   quality: "USD",
   text: "",
   for: props.soul,
-  from: user.is.pub,
+  from: user?.is?.pub,
   to: props.soul.slice(1, 88),
 });
 

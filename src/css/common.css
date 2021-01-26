@@ -56,3 +56,19 @@ a:hover {
       url('./fonts/commissioner-v3-latin_cyrillic-ext_cyrillic-700.woff')
       format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
+
+.blink {
+  animation: blink 800ms ease infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 1;
+  }
+}

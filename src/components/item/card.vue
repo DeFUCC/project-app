@@ -2,35 +2,41 @@
 li.card(
   :style="{ backgroundColor: itemColor(item.soul), borderColor: itemColor(item.parent) }"
 )
-  .main
-    .content
-      .header 
-        item-route.small(v-if="options.route", :id="item.parent")
-        .title
-          item-type.type-icon(:type="item.type") 
-          .name {{ item.title }}
-        .description(v-if="item.subtitle") {{ item.subtitle }}
-      .info
-        edit-status(:id="item.soul", :editable="isMine(item.soul)")
-        user-pill(:id="item?.soul.slice(1, 88)")
-        comment-count(:id="item.soul")
-    .icon(v-if="item.icon")
-      img(:src="item.icon")
-    aside.side
-      item-children(:id="item.soul")
+  .content
+    item-route.small(v-if="showRoute", :id="item.parent")
+    .header 
+      .title
+        item-type.type-icon(:type="item.type") 
+        .name {{ item.title }}
+          span.unlink(v-if="deletable", @click.stop.prevent="$emit('del')")
+            i.iconify(data-icon="la:unlink")
+      .description(v-if="item.subtitle") {{ item.subtitle }}
+    .info
+      edit-status(:id="item.soul", :editable="isMine(item.soul)")
+      user-pill(:id="item?.soul.slice(1, 88)")
+      comment-count(:id="item.soul")
+  slot
+  .icon(v-if="item.icon")
+    img(:src="item.icon")
+  aside.side
+    item-children(:id="item.soul")
 </template>
 
 <script setup lang="ts">
 import { itemColor } from "../../use/colors";
-import { defineProps } from "vue";
+import { defineEmit, defineProps } from "vue";
 import { isMine } from "../../store/user";
 
+defineEmit(["del"]);
+
 const props = defineProps({
-  options: {
-    type: Object,
-    default: {
-      route: true,
-    },
+  showRoute: {
+    type: Boolean,
+    default: true,
+  },
+  deletable: {
+    type: Boolean,
+    default: false,
   },
   item: {
     type: Object,
@@ -51,6 +57,7 @@ const props = defineProps({
   display flex
   align-items center
   flex 1 1 100%
+  padding 0.5em
 
 .title
   margin 4px 0
@@ -71,13 +78,7 @@ const props = defineProps({
   flex 1 0 100%
   margin 0.5em
 
-.main
-  display flex
-  flex 1
-  align-items stretch
-
 .content
-  padding 1em 0.5em
   align-self center
   width 100%
   display flex
@@ -96,7 +97,7 @@ const props = defineProps({
   cursor pointer
   position relative
   display flex
-  flex-flow column
+  flex-flow row
   align-items stretch
   padding 0
   flex 1 1 360px
@@ -120,6 +121,9 @@ const props = defineProps({
 .icon img
   border-radius 4em
   height 4em
+
+.unlink
+  margin 0 0.5em
 
 .side
   flex 0
