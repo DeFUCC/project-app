@@ -16,7 +16,6 @@
         @click="$emit('open', { type: type, id: item.id, soul: item.soul })",
         @del="unlinkItem(parent, type, item.id)",
         v-for="item in sorted.list",
-        :unlinkable="editable",
         :showRoute="item.parent != parent",
         :key="item.soul",
         :item="item"
