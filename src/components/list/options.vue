@@ -1,8 +1,8 @@
 <template lang="pug">
 aside
   .title
-    item-type(:type="type")
-    h3 {{ $tc(`type.${type}`, sorted.count) }}
+    type-icon(:type="type")
+    h3(@click="$emit('toggle')") {{ $tc(`type.${type}`, sorted.count) }}
     .count(v-if="sorted.total > 0") {{ sorted.count }} / {{ sorted.total }}
     button.link(
       v-if="user.is && editable",
@@ -69,7 +69,7 @@ aside
 </template>
 
 <script setup lang="ts">
-import { defineProps, reactive, ref } from "vue";
+import { defineEmit, reactive, defineProps, ref } from "vue";
 import { user } from "../../store/user";
 
 const props = defineProps({
@@ -79,6 +79,8 @@ const props = defineProps({
   sorted: Object,
   editable: Boolean,
 });
+
+const emit = defineEmit(["toggle"]);
 
 const minSearch = 4;
 

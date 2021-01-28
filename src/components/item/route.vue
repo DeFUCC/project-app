@@ -6,7 +6,7 @@
     :key="item",
     :style="{ backgroundColor: itemColor(soul(item)) }"
   )
-    item-type(:type="item.type")
+    type-icon(:type="item.type")
     span.title {{ item.title }}
 </template>
 

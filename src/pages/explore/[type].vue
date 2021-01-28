@@ -1,13 +1,13 @@
 <template lang="pug">
 section
   .types
-    .type(
+    type-icon.type(
       @click="$router.push(`/explore/${atype}`)",
       :class="{ active: atype == type }",
       v-for="atype in types",
-      :key="atype"
+      :key="atype",
+      :type="atype"
     )
-      item-type(:type="atype")
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")

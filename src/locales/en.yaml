@@ -11,7 +11,7 @@ type:
   purchase: Purchase | Purchases
   result: Result | Results
   thing: Thing | Things
-  donation: Donation | Donations
+  gift: Gift | Gifts
   opportunity: Opportunity | Opportunities
 status:
   new: New

@@ -11,7 +11,7 @@ type:
   purchase: Приобретение | Приобретения
   result: Результат | Результаты
   thing: Вещь | Вещи
-  donation: Дар | Дары
+  gift: Дар | Дары
   opportunity: Возможность | Возможности
 status:
   new: Новинка

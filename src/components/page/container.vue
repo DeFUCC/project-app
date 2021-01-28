@@ -10,7 +10,7 @@
           @update="updateItem('title', $event)"
         )
         .data
-          item-type(:type="item.type")
+          type-icon(:type="item.type")
           user-pill(:id="item.soul.slice(1, 88)")
       edit-icon(
         :id="item.soul",

@@ -1,8 +1,8 @@
 <template lang="pug">
 section
   .title
-    item-type(type="donation")
-    h3 {{ $tc('type.donation', 10) }}
+    type-icon(type="gift")
+    h3 {{ $tc('type.gift', 10) }}
     .spacer
     button.support(@click="add = !add")
       i.iconify(data-icon="la:plus")
@@ -39,9 +39,6 @@ async function addGift({ hash, content }) {
 </script>
 
 <style lang="stylus" scoped>
-section
-  padding 0.5em
-
 .title
   padding 0 0.5em
   display flex

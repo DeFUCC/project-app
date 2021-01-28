@@ -62,6 +62,7 @@ export function findUser(alias: string, cb: (data: any) => void) {
 function generateUser(alias: string, pub: string) {
   return {
     alias: alias,
+    title: alias,
     pub: pub,
     createdAt: Date.now(),
   }
@@ -72,11 +73,12 @@ export function createUser(alias: string, pass: string) {
   findUser(alias, (val) => {
     console.log(val)
   })
-  gun.user().create(alias, pass, (ack) => {
+  gun.user().create(alias, pass, async (ack) => {
     if (!ack.err) {
+      let id = await getShortHash(ack.pub)
       let dbUser = db
         .get('user')
-        .get(ack.pub)
+        .get(id)
         .put(generateUser(alias, ack.pub), () => {
           window.location.reload()
         })

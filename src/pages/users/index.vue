@@ -1,6 +1,11 @@
 <template lang="pug">
 .users 
-  user-card(v-for="(user, id) in users", :key="id", :id="id", :profile="user") 
+  user-card(
+    v-for="(profile, id) in users",
+    :key="id",
+    :id="id",
+    :profile="profile"
+  ) 
 </template>
 
 <script setup lang="ts">

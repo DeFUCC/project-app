@@ -6,12 +6,9 @@ li.card(
     item-route.small(v-if="showRoute", :id="item.parent")
     .header 
       .title
-        item-type.type-icon(:type="item.type") 
+        type-icon.type-icon(:type="item.type") 
         .name {{ item.title }}
-          span.unlink(
-            v-if="isMine(item.soul) && deletable",
-            @click.stop.prevent="$emit('del')"
-          )
+          span.unlink(v-if="unlinkable", @click.stop.prevent="$emit('del')")
             i.iconify(data-icon="la:unlink")
       .description(v-if="item.subtitle") {{ item.subtitle }}
     .info
@@ -37,7 +34,7 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-  deletable: {
+  unlinkable: {
     type: Boolean,
     default: false,
   },

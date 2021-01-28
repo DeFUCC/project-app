@@ -1,6 +1,6 @@
 <template lang="pug">
 .row(v-if="item && item.title", :style="{ backgroundColor: itemColor(id) }")
-  item-type(:type="item.type")
+  type-icon(:type="item.type")
   .title {{ item.title }}
   router-link.link(v-if="item.id", :to="`/explore/${item.type}/${item.id}`") Explore
   router-link.link(:to="{ path: '/page', query: { id: id } }") Open

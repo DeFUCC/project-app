@@ -6,17 +6,17 @@
     :type="type",
     :options="options",
     :sorted="options.link ? links : sorted",
-    :editable="editable"
+    :editable="editable",
+    @toggle="collapsed = !collapsed"
   )
     add-form(:type="type", :parent="parent", v-if="editable")
-  ul.item-list
+  ul.item-list(v-if="!options.link", v-show="!collapsed")
     transition-group(name="list")
       item-card.card(
-        v-if="!options.link",
         @click="$emit('open', { type: type, id: item.id, soul: item.soul })",
         @del="unlinkItem(parent, type, item.id)",
         v-for="item in sorted.list",
-        :deletable="!!parent",
+        :unlinkable="editable",
         :showRoute="item.parent != parent",
         :key="item.soul",
         :item="item"
@@ -26,7 +26,7 @@
         v-if="sorted.more",
         @click="options.limit += options.page"
       ) {{ sorted.list.length }} / {{ sorted.count }}
-  ul.item-list(v-if="options.link")
+  ul.item-list(v-if="options.link", v-show="!collapsed")
     transition-group(name="list")
       item-card.link(
         v-for="item in links.list",
@@ -66,6 +66,7 @@ const props = defineProps({
   },
   parent: String,
   editable: Boolean,
+  initCollapsed: Boolean,
 });
 
 const options = reactive({
@@ -92,6 +93,8 @@ const options = reactive({
 });
 
 const links = ref({});
+
+const collapsed = ref(props.initCollapsed);
 
 watchEffect(() => {
   if (!options.link) return;

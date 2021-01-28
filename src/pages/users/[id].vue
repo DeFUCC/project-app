@@ -9,10 +9,9 @@
       item-date(:item="profile")
     user-avatar.pic(:pic="profile?.avatar", size="large")
 
-  .data
-    suspense
-      .sus
-        item-async-card(:id="item", v-for="(item, id) in items", :key="id")
+  router-view(v-slot="{ Component }")
+    transition(name="fade")
+      component(:is="Component") 
 </template>
 
 <script setup lang="ts">
@@ -33,21 +32,10 @@ const verified = asyncComputed(async () => {
   return props.id == hash;
 });
 
-const items = ref({});
-
 db.get("user")
   .get(props.id)
   .once((d, k) => {
-    pub.value = soul(d).slice(1, 88);
-    gun
-      .user(pub.value)
-      .get(appPath)
-      .map()
-      .map()
-      .on((da, ke) => {
-        if (!da || !soul(da)) return;
-        items.value[ke] = soul(da);
-      });
+    pub.value = d.pub;
   })
   .map()
   .once((data, key) => {

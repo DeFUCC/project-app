@@ -17,19 +17,21 @@ export interface Item {
 }
 
 export function generateItem(type: string, data?: any, parent?: string): Item {
-  const item = { ...data }
-  Object.assign(item, {
-    id: genUuid(),
-    title: truncate(data.title) || generateWords(2),
-    description: '',
-    type: type,
-    parent: parent || user?.is?.pub,
-    status: 'new',
-    createdAt: Date.now(),
-    log: {
-      [Date.now()]: 'created|' + data.title,
+  const item = {
+    ...data,
+    ...{
+      id: genUuid(),
+      title: truncate(data.title) || generateWords(2),
+      description: '',
+      type: type,
+      parent: parent || user?.is?.pub,
+      status: 'new',
+      createdAt: Date.now(),
+      log: {
+        [Date.now()]: 'created|' + data.title,
+      },
     },
-  })
+  }
   return item
 }
 
@@ -42,6 +44,7 @@ export async function createItem(type: string, data?: any, parent?: string) {
     .get(type)
     .get(generated.id)
     .put(generated)
+    .then()
 
   let publicItem = db
     .get(type)

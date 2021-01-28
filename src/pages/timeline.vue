@@ -2,7 +2,7 @@
 .calendar
   .date(v-for="(item, key) in list", :key="key")
     .info
-      item-type(:type="item.type")
+      type-icon(:type="item.type")
       p {{ item.title }} {{ format(item?.dateStart)?.date }} &mdash; {{ format(item?.dateFinish)?.date }}
     .span
       .before(:style="{ flex: startPoint(item?.dateStart) }")
