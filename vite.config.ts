@@ -14,20 +14,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: [
-      'vue',
-      // 'gun',
-      'gun/gun',
-      'gun/sea',
-      'gun/sea.js',
-      'gun/lib/promise',
-      'gun/lib/then',
-      'gun/lib/webrtc',
-      'gun/lib/load',
-      'gun/lib/radix',
-      'gun/lib/rindexed',
-      'gun/lib/open',
-    ],
+    include: [],
   },
   plugins: [
     VitePWA({
