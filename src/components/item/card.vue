@@ -6,12 +6,12 @@ li.card(
     item-route.small(v-if="showRoute", :id="item.parent")
     .header 
       .title
-        type-icon.type-icon(:type="item.type") 
         .name {{ item.title }}
           span.unlink(v-if="unlinkable", @click.stop.prevent="$emit('del')")
             i.iconify(data-icon="la:unlink")
       .description(v-if="item.subtitle") {{ item.subtitle }}
     .info
+      type-icon.type-icon(:type="item.type") 
       edit-status(:id="item.soul", :editable="isMine(item.soul)")
       user-pill(:id="item?.soul.slice(1, 88)")
       comment-count(:id="item.soul")
@@ -57,10 +57,9 @@ const props = defineProps({
   display flex
   align-items center
   flex 1 1 100%
-  padding 0.5em
+  padding 1em 1em 4px 1em
 
 .title
-  margin 4px 0
   display flex
   align-items center
 
@@ -76,7 +75,6 @@ const props = defineProps({
 .description
   font-size 14px
   flex 1 0 100%
-  margin 0.5em
 
 .content
   align-self center
@@ -86,7 +84,9 @@ const props = defineProps({
   justify-content flex-start
 
 .type-icon
-  height 2em
+  height 3em
+  font-size 1.4em
+  margin 0
 
 .title .type
   height 2em
@@ -106,7 +106,7 @@ const props = defineProps({
 
 .info
   font-size 0.7em
-  margin 0.5em 0
+  margin 0 0.5em
   display flex
   flex 1 0 300px
   flex-flow row wrap

@@ -1,8 +1,6 @@
 <template lang="pug">
-main
-  .title 
-    router-link(to="/org/") Organisations
-  router-view(v-slot="{ Component }")
+router-view(v-slot="{ Component }")
+  transition(name="fade")
     component(:is="Component")
 </template>
 

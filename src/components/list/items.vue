@@ -9,7 +9,7 @@
     :editable="editable",
     @toggle="collapsed = !collapsed"
   )
-    add-form(:type="type", :parent="parent", v-if="editable")
+    add-form(:type="type", :org="org", :parent="parent", v-if="editable")
   ul.item-list(v-if="!options.link", v-show="!collapsed")
     transition-group(name="list")
       item-card.card(
@@ -54,7 +54,6 @@ import { defineEmit, ref, watchEffect, defineProps, reactive } from "vue";
 import { isMine, user } from "../../store/user";
 import { gun, soul, db } from "../../store/gun-db";
 import { useSorter } from "../../use/sorter";
-import { useRouter } from "vue-router";
 
 const emit = defineEmit(["open"]);
 const props = defineProps({
@@ -64,6 +63,7 @@ const props = defineProps({
     required: true,
   },
   parent: String,
+  org: String,
   editable: Boolean,
   initCollapsed: Boolean,
 });
@@ -109,7 +109,7 @@ function useItems(type: string, parent?: string) {
   if (parent) {
     query = gun.get(parent);
   } else {
-    query = db;
+    query = gun.get(props.org);
   }
 
   query
@@ -173,7 +173,8 @@ function moveItem(parent, type, id) {
 }
 
 function unlinkItem(parent, type, id) {
-  gun.get(parent).get(type).get(id).put(null);
+  console.log(parent, type, id);
+  // gun.get(parent).get(type).get(id).put(null);
 }
 
 useIntersectionObserver(more, ([{ isIntersecting }]) => {

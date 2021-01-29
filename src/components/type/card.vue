@@ -12,7 +12,6 @@
 <script setup lang="ts">
 import { computed, defineProps, ref, watchEffect } from "vue";
 import { appPath, gun } from "../../store/gun-db";
-import { isMine } from "../../store/user";
 
 const props = defineProps({
   type: String,

@@ -4,6 +4,7 @@ list-items(
   :key="type",
   :type="type",
   :editable="true",
+  :org="appPath",
   @open="$router.push(`/explore/${type}/${$event.id}`)"
 )
 </template>
@@ -11,6 +12,7 @@ list-items(
 <script setup lang="ts">
 import { defineProps } from "vue";
 import { useTitle } from "@vueuse/core";
+import { appPath } from "../../../store/gun-db";
 
 const props = defineProps({
   type: String,

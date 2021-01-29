@@ -5,7 +5,7 @@ page-container(
   @open="$router.push(`/org/${org}/${$event.type}/${$event.id}`)",
   @close="$router.push(`/org/${org}/${type}`)",
   :id="itemSoul",
-  :parent="org"
+  :org="org"
 )
 </template>
 

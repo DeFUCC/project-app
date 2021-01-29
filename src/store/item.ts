@@ -36,10 +36,10 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
 }
 
 export async function createItem(
+  org: string,
   type: string,
   data?: any,
   parent?: string,
-  org?: string,
 ) {
   let generated = generateItem(type, data, parent)
   let path = org || appPath
@@ -51,7 +51,8 @@ export async function createItem(
     .put(generated)
     .then()
 
-  let publicItem = db
+  let publicItem = gun
+    .get(org)
     .get(type)
     .get(generated.id)
     .put(await privateItem)

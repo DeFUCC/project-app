@@ -1,6 +1,6 @@
 <template lang="pug">
 .org
-  .types {{ organisations[org].title }}
+  .types 
     type-icon.type(
       @click="$router.push(`/org/${org}/${atype}`)",
       :class="{ active: atype == type }",
@@ -24,6 +24,9 @@ const props = defineProps({
 </script>
 
 <style lang="stylus" scoped>
+.title
+  cursor pointer
+
 .types
   display flex
   align-items center

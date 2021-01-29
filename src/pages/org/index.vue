@@ -1,5 +1,6 @@
 <template lang="pug">
 .orgs
+  .title Organisations
   .types(v-for="(org, path) in organisations", :key="org")
     router-link.title(:to="`/org/${path}`") {{ org.title }}
     type-card(

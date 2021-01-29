@@ -4,7 +4,7 @@ list-items(
   :key="type",
   :type="type",
   :editable="true",
-  :parent="org",
+  :org="org",
   @open="$router.push(`/org/${org}/${type}/${$event.id}`)"
 )
 </template>

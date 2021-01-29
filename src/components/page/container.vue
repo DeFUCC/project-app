@@ -51,7 +51,8 @@
       :key="type",
       :type="type",
       :editable="editable",
-      :parent="item.soul || org",
+      :parent="item.soul",
+      :org="org",
       @open="$emit('open', $event)"
     )
 
