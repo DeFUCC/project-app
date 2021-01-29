@@ -35,12 +35,17 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
   return item
 }
 
-export async function createItem(type: string, data?: any, parent?: string) {
+export async function createItem(
+  type: string,
+  data?: any,
+  parent?: string,
+  org?: string,
+) {
   let generated = generateItem(type, data, parent)
-
+  let path = org || appPath
   let privateItem = gun
     .user()
-    .get(appPath)
+    .get(path)
     .get(type)
     .get(generated.id)
     .put(generated)

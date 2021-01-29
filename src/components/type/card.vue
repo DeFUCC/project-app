@@ -1,5 +1,5 @@
 <template lang="pug">
-.type(v-if="count > 0 || isMine(parent)")
+.type
   header
     type-icon(:type="type")
     .spacer
@@ -11,16 +11,13 @@
 
 <script setup lang="ts">
 import { computed, defineProps, ref, watchEffect } from "vue";
+import { appPath, gun } from "../../store/gun-db";
+import { isMine } from "../../store/user";
 
 const props = defineProps({
   type: String,
   parent: String,
 });
-
-import { types } from "../../store/model";
-import { reactive } from "vue";
-import { appPath, db, gun, soul } from "../../store/gun-db";
-import { isMine } from "../../store/user";
 
 const counter = ref({});
 
@@ -29,7 +26,7 @@ watchEffect(() => {
   if (props.parent) {
     query = gun.get(props.parent);
   } else {
-    query = db;
+    query = gun.get(appPath);
   }
   counter.value = {};
   query

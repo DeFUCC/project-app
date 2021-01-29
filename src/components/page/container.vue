@@ -47,11 +47,11 @@
     )
     list-items(
       :wide="false",
-      v-for="type in model[item.type]",
+      v-for="type in organisations[org].model[item.type]",
       :key="type",
       :type="type",
       :editable="editable",
-      :parent="item.soul",
+      :parent="item.soul || org",
       @open="$emit('open', $event)"
     )
 
@@ -71,7 +71,7 @@ import {
   defineEmit,
 } from "vue";
 import { isEditable, update } from "../../store/item";
-import { model } from "../../store/model";
+import { model, organisations } from "../../store/model";
 import { user } from "../../store/user";
 import { itemColor } from "../../use/colors";
 import { appPath, gun } from "../../store/gun-db";
@@ -79,6 +79,11 @@ import { useTitle } from "@vueuse/core";
 
 const props = defineProps({
   id: String,
+  parent: String,
+  org: {
+    type: String,
+    default: appPath,
+  },
 });
 
 const emit = defineEmit(["open"]);

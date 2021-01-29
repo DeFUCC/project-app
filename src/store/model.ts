@@ -21,3 +21,21 @@ export const statuses = [
   'ondemand',
   'finish',
 ]
+
+export const organisations = {
+  'feeds-app': {
+    title: 'Open feeds',
+    subtitle: '',
+    description: 'First clean run of frukt in the app',
+    model,
+  },
+  'project-app': {
+    title: 'Project app',
+    subtitle: 'One of dirty runs of previous versions of the app',
+    description: 'may be very buggy!',
+    model: {
+      design: ['project'],
+      project: ['design'],
+    },
+  },
+}
