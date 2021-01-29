@@ -47,7 +47,7 @@
     )
     list-items(
       :wide="false",
-      v-for="type in organisations[org].model[item.type]",
+      v-for="type in types",
       :key="type",
       :type="type",
       :editable="editable",
@@ -104,6 +104,14 @@ const gunItem = gun.get(props.id);
 
 gunItem.map().on((data: any, key: string) => {
   item[key] = data;
+});
+
+const types = computed(() => {
+  if (organisations[props.org]) {
+    return organisations[props.org].model[item.type];
+  } else {
+    return model[item.type];
+  }
 });
 
 const edit = reactive({

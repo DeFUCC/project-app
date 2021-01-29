@@ -10,13 +10,19 @@ main#main
       :type="type",
       :parent="path"
     )
+  form.custom(@submit.prevent.stop)
+    input(type="text", v-model="customOrg")
+    router-link(:to="`/org/${customOrg}`") {{ customOrg }}
 </template>
 
 <script setup lang="ts">
 import { organisations, types } from "../../store/model";
 import { useTitle } from "@vueuse/core";
+import { ref } from "vue";
 
-useTitle("Explore");
+useTitle("Organisations");
+
+const customOrg = ref("");
 </script>
 
 <style lang="stylus" scoped>

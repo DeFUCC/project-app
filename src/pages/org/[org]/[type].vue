@@ -4,7 +4,7 @@
     type-icon.type(
       @click="$router.push(`/org/${org}/${atype}`)",
       :class="{ active: atype == type }",
-      v-for="atype in Object.keys(organisations[org].model)",
+      v-for="atype in types",
       :key="atype",
       :type="atype"
     )
@@ -14,12 +14,20 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-import { organisations } from "../../../store/model";
+import { computed, defineProps } from "vue";
+import { model, organisations } from "../../../store/model";
 
 const props = defineProps({
   type: String,
   org: String,
+});
+
+const types = computed(() => {
+  if (organisations[props.org]) {
+    return Object.keys(organisations[props.org].model);
+  } else {
+    return Object.keys(model);
+  }
 });
 </script>
 

@@ -1,8 +1,8 @@
 <template lang="pug">
-.types {{ organisations[org] }}
+.types {{ organisations?.[org] }}
   type-counter(
     @click="$router.push(`/org/${org}/${type}`)",
-    v-for="type in Object.keys(organisations[org].model)",
+    v-for="type in types",
     :key="type",
     :type="type",
     :parent="org"
@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { computed, defineProps } from "vue";
 import { useTitle } from "@vueuse/core";
-import { organisations } from "../../../store/model";
+import { model, organisations } from "../../../store/model";
 
 const props = defineProps({
   org: String,
@@ -22,6 +22,14 @@ useTitle(`Explore ${props.org}`);
 function explore(ev) {
   console.log(ev);
 }
+
+const types = computed(() => {
+  if (organisations[props.org]) {
+    return Object.keys(organisations[props.org].model);
+  } else {
+    return Object.keys(model);
+  }
+});
 </script>
 
 <style lang="stylus" scoped>

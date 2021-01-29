@@ -1,7 +1,7 @@
 <template lang="pug">
 main#main
   .title 
-    router-link(to="/org/") Organisations / {{ organisations[org].title }}
+    router-link(to="/org/") Organisations / {{ organisations?.[org]?.title || org }}
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")
