@@ -1,5 +1,5 @@
 <template lang="pug">
-main.markdown 
+main#main.markdown 
   h1 Welcome to the Feeds!
   p The tool for people to collaborate on shared ideas. Everyone can create and publish their projects and everyone can engage in cocreation of them. It can be used to better understand each other and synchronize our intentions in order to reach common goals.
 

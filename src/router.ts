@@ -6,13 +6,9 @@ export const router = createRouter({
   routes: [...routes],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return new Promise((res, rej) => {
-        setTimeout(() => {
-          res(savedPosition)
-        }, 200)
-      })
+      return savedPosition
     } else {
-      return { top: 0 }
+      return { el: '#main', top: 0, behavior: 'smooth' }
     }
   },
 })

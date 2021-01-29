@@ -1,5 +1,5 @@
 <template lang="pug">
-main
+main#main
   .title 
     router-link(to="/explore/") Explore
   router-view(v-slot="{ Component }")

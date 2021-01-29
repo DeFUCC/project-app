@@ -30,6 +30,7 @@ const props = defineProps({
 .types
   display flex
   align-items center
+  overflow-x scroll
 
 .type
   font-size 1.5em

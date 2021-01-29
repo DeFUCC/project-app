@@ -1,5 +1,5 @@
 <template lang="pug">
-main
+main#main
   img.logo(src="/icons/feeds.svg", alt="")
   .title
     h1 {{ $t('app.title') }}

@@ -1,9 +1,9 @@
 <template lang="pug">
-.orgs
+main#main
   .title Organisations
   .types(v-for="(org, path) in organisations", :key="org")
     router-link.title(:to="`/org/${path}`") {{ org.title }}
-    type-card(
+    type-counter(
       @click="$router.push(`/org/${path}/${type}`)",
       v-for="type in Object.keys(org.model)",
       :key="type",
@@ -27,7 +27,7 @@ useTitle("Explore");
   display grid
   grid-gap 1em
   padding 1em
-  grid-template-columns repeat(auto-fill, minmax(300px, 1fr))
+  grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
   margin-bottom 2em
   padding-bottom 2em
   border-bottom 1px solid #333

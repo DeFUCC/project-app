@@ -1,6 +1,6 @@
 <template lang="pug">
 .types {{ organisations[org] }}
-  type-card(
+  type-counter(
     @click="$router.push(`/org/${org}/${type}`)",
     v-for="type in Object.keys(organisations[org].model)",
     :key="type",

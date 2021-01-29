@@ -1,5 +1,5 @@
 <template lang="pug">
-main
+main#main
   .header
     router-link(to="/users") Users
   router-view(v-slot="{ Component }")

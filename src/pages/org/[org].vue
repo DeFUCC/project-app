@@ -1,5 +1,5 @@
 <template lang="pug">
-main
+main#main
   .title 
     router-link(to="/org/") Organisations / {{ organisations[org].title }}
   router-view(v-slot="{ Component }")

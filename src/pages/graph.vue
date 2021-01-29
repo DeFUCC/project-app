@@ -1,5 +1,5 @@
 <template lang="pug">
-main
+main#main
   .panel
     router-link(to="/graph/") Graph
     router-link(to="/graph/network/") Network

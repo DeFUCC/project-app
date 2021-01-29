@@ -4,50 +4,54 @@ aside
     type-icon(:type="type")
     h3(@click="$emit('toggle')") {{ $tc(`type.${type}`, sorted.count) }}
     .count(v-if="sorted.total > 0") {{ sorted.count }} / {{ sorted.total }}
+    button(
+      :class="{ active: state.add }",
+      @click="state.add = !state.add",
+      v-if="user.is && editable"
+    )
+      i.iconify(data-icon="la:plus")
     button.link(
-      v-if="user.is && editable",
+      v-if="user.is && editable && false",
       :class="{ active: options.link }",
       @click="options.link = !options.link"
     )
       i.iconify(data-icon="la:link")
     .spacer
     .buttons(v-if="sorted.total > 0")
-      button(:class="{ active: status }", @click="status = !status")
+      button(
+        :class="{ active: state.status }",
+        @click="state.status = !state.status"
+      )
         i.iconify(data-icon="la:tags")
       button(
-        :class="{ active: order }",
-        @click="order = !order",
+        :class="{ active: state.order }",
+        @click="state.order = !state.order",
         v-if="sorted.total > minSearch"
       )
         i.iconify(data-icon="la:sort-alpha-down")
       button(
-        :class="{ active: filter }",
-        @click="filter = !filter",
+        :class="{ active: state.filter }",
+        @click="state.filter = !state.filter",
         v-if="user.is"
       )
         i.iconify(data-icon="la:filter")
       button(
-        :class="{ active: search }",
-        @click="search = !search",
+        :class="{ active: state.search }",
+        @click="state.search = !state.search",
         v-if="sorted.total > minSearch"
       )
         i.iconify(data-icon="la:search")
-    button(
-      :class="{ active: add }",
-      @click="add = !add",
-      v-if="user.is && editable"
-    )
-      i.iconify(data-icon="la:plus")
+
   .filters
     transition-group(name="fade")
       list-options-status(
-        v-show="status",
+        v-show="state.status",
         key="status",
         :count="sorted.status",
         :status="options.status"
       )
       list-options-order(
-        v-show="order",
+        v-show="state.order",
         key="order",
         :by="options.orderBy",
         @order="options.orderBy = $event",
@@ -55,20 +59,21 @@ aside
       )
       list-options-filter(
         key="filter",
-        v-show="filter",
+        v-show="state.filter",
         :my="options.filterMy",
         v-if="user.is"
       )
       list-options-search(
         key="search",
         @search="options.search = $event",
-        v-show="search",
+        v-show="state.search",
         v-if="sorted.total > minSearch"
       )
-      slot(v-if="add", key="add")
+      slot(v-if="state.add", key="add")
 </template>
 
 <script setup lang="ts">
+import { useStorage } from "@vueuse/core";
 import { defineEmit, reactive, defineProps, ref } from "vue";
 import { user } from "../../store/user";
 
@@ -78,6 +83,15 @@ const props = defineProps({
   options: Object,
   sorted: Object,
   editable: Boolean,
+});
+
+const state = useStorage("list-options", {
+  open: false,
+  add: false,
+  filter: false,
+  order: false,
+  status: true,
+  search: false,
 });
 
 const emit = defineEmit(["toggle"]);

@@ -68,8 +68,8 @@ import {
   watchEffect,
   computed,
   reactive,
-  onMounted,
   defineEmit,
+  onMounted,
 } from "vue";
 import { isEditable, update } from "../../store/item";
 import { model, organisations } from "../../store/model";
@@ -85,6 +85,10 @@ const props = defineProps({
     type: String,
     default: appPath,
   },
+});
+
+onMounted(() => {
+  page.value.scrollIntoView();
 });
 
 const emit = defineEmit(["open"]);

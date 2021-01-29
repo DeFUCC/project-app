@@ -52,7 +52,7 @@
 import { useIntersectionObserver } from "@vueuse/core";
 import { defineEmit, ref, watchEffect, defineProps, reactive } from "vue";
 import { isMine, user } from "../../store/user";
-import { gun, soul, db } from "../../store/gun-db";
+import { gun, soul, db, appPath } from "../../store/gun-db";
 import { useSorter } from "../../use/sorter";
 
 const emit = defineEmit(["open"]);
@@ -63,7 +63,10 @@ const props = defineProps({
     required: true,
   },
   parent: String,
-  org: String,
+  org: {
+    type: String,
+    default: appPath,
+  },
   editable: Boolean,
   initCollapsed: Boolean,
 });
@@ -95,11 +98,6 @@ const links = ref({});
 
 const collapsed = ref(props.initCollapsed);
 
-watchEffect(() => {
-  if (!options.link) return;
-  links.value = useItems(props.type);
-});
-
 function useItems(type: string, parent?: string) {
   const list = reactive({});
 
@@ -127,6 +125,11 @@ function useItems(type: string, parent?: string) {
 
   return sorted;
 }
+
+watchEffect(() => {
+  if (!options.link) return;
+  links.value = useItems(props.type);
+});
 
 const sorted = useItems(props.type, props.parent);
 const open = ref(false);
@@ -173,7 +176,7 @@ function moveItem(parent, type, id) {
 }
 
 function unlinkItem(parent, type, id) {
-  console.log(parent, type, id);
+  console.log("try unlinking", parent, type, id);
   // gun.get(parent).get(type).get(id).put(null);
 }
 
