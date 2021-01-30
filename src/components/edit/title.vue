@@ -1,17 +1,17 @@
 <template lang="pug">
 .title
-  h3(v-show="!edit") {{ text }}
+  h3(v-if="!edit") {{ text }}
     span.edit(v-if="editable", @click="edit = true")
       i.iconify(data-icon="la:pen")
-  form(@submit.prevent="$emit('update', newTitle); edit = false", v-if="edit")
-    input(
-      ref="title",
-      @blur="$emit('update', newTitle); edit = false",
-      @keyup.esc="edit = false",
-      type="text",
-      v-model="newTitle"
-    )
-  slot
+  input(
+    v-else,
+    ref="title",
+    @keyup.enter="$emit('update', $event.target.value); edit = false",
+    @blur="edit = false",
+    @keyup.esc="edit = false",
+    type="text",
+    :value="text"
+  )
 </template>
 
 <script setup lang="ts">
@@ -23,7 +23,6 @@ const props = defineProps({
   text: String,
 });
 const edit = ref(false);
-const newTitle = ref(props.text);
 </script>
 
 <style lang="stylus" scoped>
@@ -35,6 +34,7 @@ const newTitle = ref(props.text);
 form
   width 100%
   flex 1
+  height 3em
 
 input
   width 80%
