@@ -12,16 +12,17 @@
       name="password",
       v-model="pass"
     )
-    button(
-      key="auth",
-      :disabled="alias && !userExists",
-      @click="authUser(alias, pass)"
-    ) Log in
-    button(
-      key="create",
-      :disabled="alias && userExists",
-      @click="createUser(alias, pass)"
-    ) Create a new user
+    transition(name="fade")
+      button(
+        key="auth",
+        v-if="alias && userExists",
+        @click="authUser(alias, pass)"
+      ) Log in
+      button(
+        key="create",
+        v-else="alias && !userExists",
+        @click="createUser(alias, pass)"
+      ) Create a new user
 </template>
 
 <script setup lang="ts">

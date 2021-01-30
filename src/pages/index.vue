@@ -5,6 +5,7 @@ main#main
     h1 {{ $t('app.title') }}
     h3 {{ $t('app.welcome') }}
     p {{ $t('app.description') }}
+  router-link.card(to="/org/") Collectives
   router-link.card(to="/explore/") Explore
   router-link.card(to="/users/") Users
   router-link.card(to="/timeline/") Timeline
