@@ -8,7 +8,7 @@ export const router = createRouter({
     if (savedPosition) {
       return savedPosition
     } else {
-      return { el: '#main', top: 0, behavior: 'smooth' }
+      return { top: 0, behavior: 'smooth' }
     }
   },
 })
