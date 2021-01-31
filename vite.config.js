@@ -4,7 +4,6 @@ import Voie from 'vite-plugin-voie'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 const moduleExclude = (match) => {
@@ -20,7 +19,7 @@ const moduleExclude = (match) => {
   }
 }
 
-export default defineConfig({
+export default {
   build: {
     rollupOptions: {
       external: ['text-encoding', '@peculiar/webcrypto'],
@@ -91,4 +90,4 @@ export default defineConfig({
       /* PurgeIcons Options */
     }),
   ],
-})
+}
