@@ -20,7 +20,7 @@
       )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps, ref } from "vue";
 import { gun } from "../../store/gun-db";
 

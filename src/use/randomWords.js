@@ -333,7 +333,7 @@ for (var key in grams) {
   grams[key].sorted = sorted.sort()
 }
 
-export function generateWords(n: number, max?: number): string {
+export function generateWords(n, max) {
   if (!n) {
     n = 1
   }

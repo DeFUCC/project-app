@@ -1,4 +1,4 @@
-export function format(date: number) {
+export function format(date) {
   if (!date) return
   let theDate = new Date(Number(date))
   return {

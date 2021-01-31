@@ -4,7 +4,7 @@ main.error
   p {{ $t('404.text') }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 </script>
 
 <style lang="stylus" scoped>

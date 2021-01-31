@@ -10,7 +10,7 @@
     span.title {{ item.title }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, reactive, defineProps, watchEffect, computed } from "vue";
 import { cutUuid, gun, soul } from "../../store/gun-db";
 import { itemColor } from "../../use/colors";

@@ -18,7 +18,7 @@
       .line(v-for="(u, k) in user.profile", :key="k") {{ k }}: {{ u }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, onMounted, ref } from "vue";
 import { appPath, db, gun } from "../../store/gun-db";
 import { notify } from "../../store/history";

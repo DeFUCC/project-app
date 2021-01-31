@@ -14,7 +14,7 @@ main.page(v-if="user.is")
         component(:is="Component", :user="user.is.pub")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { pubGradient } from "../use/colors";
 import { user, logOut } from "../store/user";
 import { onMounted } from "vue";

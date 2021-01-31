@@ -4,7 +4,7 @@
   | {{ count }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps, reactive } from "vue";
 import { gun } from "../../../store/gun-db";
 
@@ -17,7 +17,7 @@ gun
   .get(props.id)
   .get(props.type)
   .map()
-  .on((data: any, key: string) => {
+  .on((data, key) => {
     items[key] = data;
   });
 const count = computed(() => Object.keys(items).length);

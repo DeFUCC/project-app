@@ -1,7 +1,7 @@
 import { debouncedWatch } from '@vueuse/core'
 import { reactive, toRaw } from 'vue'
 
-export function useSorter(list: object, options: object) {
+export function useSorter(list, options) {
   if (!window.Worker) {
     console.error('No worker support')
     return
@@ -30,7 +30,7 @@ export function useSorter(list: object, options: object) {
     },
   )
 
-  function sort(list: object) {
+  function sort(list) {
     sorter.postMessage({
       list: toRaw(list),
       options: toRaw(options),

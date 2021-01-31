@@ -8,7 +8,7 @@ aside.row(:style="{ backgroundColor: itemColor(id) }")
     span.iconify(data-icon="la:times")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, defineProps } from "vue";
 import { itemColor } from "../../use/colors";
 

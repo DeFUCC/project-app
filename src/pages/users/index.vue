@@ -8,7 +8,7 @@
   ) 
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, reactive, ref } from "vue";
 import { db } from "../../store/gun-db";
 

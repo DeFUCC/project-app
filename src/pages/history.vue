@@ -10,7 +10,7 @@ main
 
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { history, warn, eventColors, clear } from "../store/history";
 
 function getDate(time) {

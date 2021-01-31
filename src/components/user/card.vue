@@ -10,7 +10,7 @@ router-link.card(
     slot 
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { asyncComputed } from "@vueuse/core";
 import { computed, defineProps, reactive } from "vue";
 import { appPath, db, getShortHash, sea } from "../../store/gun-db";

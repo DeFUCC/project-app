@@ -4,19 +4,9 @@ import { gun, db, sea, genUuid, soul, appPath } from './gun-db'
 import { generateWords } from '../use/randomWords'
 import { error, notify } from './history'
 
-export interface Item {
-  id: string
-  soul: string
-  title: string
-  description: string
-  type: string
-  parent: string
-  team: object
-  createdAt: number
-  createdBy: string
-}
 
-export function generateItem(type: string, data?: any, parent?: string): Item {
+
+export function generateItem(type, data, parent) {
   const item = {
     ...data,
     ...{
@@ -35,12 +25,7 @@ export function generateItem(type: string, data?: any, parent?: string): Item {
   return item
 }
 
-export async function createItem(
-  org: string,
-  type: string,
-  data?: any,
-  parent?: string,
-) {
+export async function createItem(org, type, data, parent) {
   let generated = generateItem(type, data, parent)
   let path = org || appPath
   let privateItem = gun
@@ -71,18 +56,18 @@ export async function createItem(
   }
 }
 
-export async function linkItem(id: string, type: string, link: string) {
+export async function linkItem(id, type, link) {
   console.log(`adding ${link} to ${type} in ${id}`)
 }
 
-export function truncate(input: string, num = 142) {
+export function truncate(input, num = 142) {
   if (!input) {
     return ' '
   }
   return input.length > num ? `${input.substring(0, num)}` : input
 }
 
-export function update(id: string, field: string, content: string) {
+export function update(id, field, content) {
   const gunItem = gun.get(id)
   gunItem.get(field).put(content)
   gunItem.get('updatedAt').put(Date.now())

@@ -9,7 +9,7 @@
   )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps } from "vue";
 import { useTitle } from "@vueuse/core";
 import { model, organisations } from "../../../store/model";

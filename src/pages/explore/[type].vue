@@ -13,7 +13,7 @@ section
       component(:is="Component")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps } from "vue";
 import { model } from "../../store/model";
 const props = defineProps({

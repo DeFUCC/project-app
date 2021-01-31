@@ -15,7 +15,7 @@ main#main
     router-link(:to="`/org/${customOrg}`") {{ customOrg }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { organisations, types } from "../../store/model";
 import { useTitle } from "@vueuse/core";
 import { ref } from "vue";

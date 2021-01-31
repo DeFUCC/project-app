@@ -8,7 +8,7 @@
   )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { types } from "../../store/model";
 import { useTitle } from "@vueuse/core";
 

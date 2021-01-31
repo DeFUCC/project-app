@@ -22,7 +22,7 @@ main.auth
       ) Create a new user
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { ref, watch } from "vue";
 import { user, findUser, authUser, createUser } from "../store/user";
 import { useRouter } from "vue-router";

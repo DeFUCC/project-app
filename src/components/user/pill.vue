@@ -8,7 +8,7 @@ router-link.user(
     slot
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps, reactive, watchEffect } from "vue";
 import { db, appPath, gun, getShortHash } from "../../store/gun-db";
 import { user } from "../../store/user";

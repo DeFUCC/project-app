@@ -8,7 +8,7 @@
   ) {{ $t(`status.${stat}`) }} {{ num }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { ref, defineProps, computed } from "vue";
 import { statuses } from "../../../store/model";
 

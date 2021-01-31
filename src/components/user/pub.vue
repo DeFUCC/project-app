@@ -2,7 +2,7 @@
 img(v-if="pub", :src="createAvatar(pub)", :width="size", :height="size")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps, onMounted, ref } from "vue";
 import createAvatar from "../../use/avatar";
 

@@ -61,7 +61,7 @@
     page-log(:id="item.soul", :editable="editable")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import {
   ref,
   defineProps,
@@ -102,7 +102,7 @@ const item = reactive({
 const title = useTitle(item.title);
 const gunItem = gun.get(props.id);
 
-gunItem.map().on((data: any, key: string) => {
+gunItem.map().on((data, key) => {
   item[key] = data;
 });
 
@@ -120,7 +120,7 @@ const edit = reactive({
   description: false,
 });
 
-function updateItem(field: string, content: string) {
+function updateItem(field, content) {
   update(props.id, field, content);
 }
 

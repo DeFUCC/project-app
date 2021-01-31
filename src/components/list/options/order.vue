@@ -15,7 +15,7 @@
     span.iconify(data-icon="la:sort-amount-up-solid")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, ref, defineProps } from "vue";
 
 defineProps({

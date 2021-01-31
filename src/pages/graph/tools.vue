@@ -23,7 +23,7 @@
       .pair.pad(:style="{ backgroundColor: color.hex(pair.pub) }") {{ pair.pub }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, ref } from "vue";
 import { sea } from "../../store/gun-db";
 import ColorHash from "color-hash";

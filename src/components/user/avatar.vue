@@ -3,7 +3,7 @@
   img.avatar(v-if="pic", :src="pic", :class="{ [size]: true }")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps } from "vue";
 
 const props = defineProps({

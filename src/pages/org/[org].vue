@@ -7,7 +7,7 @@ main#main
       component(:is="Component")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps } from "vue";
 import { organisations } from "../../store/model";
 

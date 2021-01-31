@@ -1,7 +1,5 @@
 import { reactive, computed, watchEffect } from 'vue'
 
-type Events = 'app' | 'info' | 'error' | 'warn'
-
 const evTypes = {
   app: 'app',
   info: 'info',
@@ -30,18 +28,18 @@ export const unseen = computed(() => {
   return history.filter((ev) => !ev.seen)
 })
 
-export function notify(text: string): void {
+export function notify(text) {
   addEvent('info', text)
 }
-export function warn(text: string): void {
+export function warn(text) {
   addEvent('warn', text)
 }
 
-export function error(text: string): void {
+export function error(text) {
   addEvent('error', text)
 }
 
-export function clear(): void {
+export function clear() {
   history.splice(0)
 }
 
@@ -52,7 +50,7 @@ export const eventColors = {
   warn: 'hsl(41, 100%, 53%)',
 }
 
-function newEvent(type: Events) {
+function newEvent(type) {
   return {
     type: evTypes[type],
     time: Date.now(),
@@ -60,7 +58,7 @@ function newEvent(type: Events) {
   }
 }
 
-function addEvent(type: Events, content: string, time = 5000) {
+function addEvent(type, content, time = 5000) {
   const event = reactive({
     ...newEvent(type),
     content,

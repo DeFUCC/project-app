@@ -31,7 +31,7 @@
     | {{ state.output.size }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { useFileUpload } from "../../use/fileUpload";
 import { defineEmit, ref, watch } from "vue";
 import { onClickOutside } from "@vueuse/core";

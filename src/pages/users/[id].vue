@@ -14,7 +14,7 @@
       component(:is="Component") 
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { asyncComputed } from "@vueuse/core";
 import { defineProps, onMounted, reactive, ref } from "vue";
 import { appPath, db, getShortHash, gun, sea, soul } from "../../store/gun-db";

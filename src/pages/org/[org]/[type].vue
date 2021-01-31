@@ -13,7 +13,7 @@
       component(:is="Component")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps } from "vue";
 import { model, organisations } from "../../../store/model";
 

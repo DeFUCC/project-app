@@ -24,7 +24,7 @@ section.comments(:class="{ open }")
           i.iconify(data-icon="ri:send-plane-line", data-inline="false")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps, reactive, ref } from "vue";
 import { appPath, db, gun, soul } from "../../store/gun-db";
 import { error } from "../../store/history";
@@ -64,7 +64,7 @@ db.get("user")
   });
 
 const sorted = computed(() => {
-  let list = Object.values(comments).sort((a: any, b: any) => {
+  let list = Object.values(comments).sort((a, b) => {
     return Number(a.timestamp) - Number(b.timestamp);
   });
   return list;

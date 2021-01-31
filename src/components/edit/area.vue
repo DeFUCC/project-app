@@ -6,7 +6,7 @@
   button(@click="setArea()") Set
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, reactive, ref } from "vue";
 import { db, gun } from "../../store/gun-db";
 

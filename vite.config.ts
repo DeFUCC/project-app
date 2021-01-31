@@ -7,16 +7,44 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const moduleExclude = (match) => {
+  const m = (id) => id.indexOf(match) > -1
+  return {
+    name: `exclude-${match}`,
+    resolveId(id) {
+      if (m(id)) return id
+    },
+    load(id) {
+      if (m(id)) return `export default {}`
+    },
+  }
+}
+
 export default defineConfig({
   build: {
     rollupOptions: {
-      external: [],
+      external: ['text-encoding', '@peculiar/webcrypto'],
     },
   },
+  server: {
+    port: 3000,
+  },
   optimizeDeps: {
-    include: [],
+    include: [
+      'gun',
+      'gun/gun',
+      'gun/sea',
+      'gun/sea.js',
+      'gun/lib/then',
+      'gun/lib/webrtc',
+      'gun/lib/radix',
+      'gun/lib/radisk',
+      'gun/lib/store',
+      'gun/lib/rindexed',
+    ],
   },
   plugins: [
+    moduleExclude('text-encoding'),
     VitePWA({
       manifest: {
         name: 'Project app',

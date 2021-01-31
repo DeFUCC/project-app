@@ -1,7 +1,7 @@
 {
     "include": [
       "./src/**/*",
-      "types.d.ts"
+      "./types.d.ts"
     ],
     "compilerOptions": {
       "module": "es2015",

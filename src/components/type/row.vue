@@ -9,7 +9,7 @@
   )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, defineProps } from "vue";
 import { types } from "../../store/model";
 

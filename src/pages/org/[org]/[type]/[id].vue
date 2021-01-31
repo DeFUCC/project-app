@@ -9,7 +9,7 @@ page-container(
 )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, ref, watchEffect } from "vue";
 import { db, gun, soul } from "../../../../store/gun-db";
 import { itemColor } from "../../../../use/colors";

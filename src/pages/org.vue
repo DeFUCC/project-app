@@ -4,7 +4,7 @@ router-view(v-slot="{ Component }")
     component(:is="Component")
 </template>
 
-<script setup lang="ts">
+<script setup >
 </script>
 
 <style lang="stylus" scoped>

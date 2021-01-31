@@ -10,7 +10,7 @@
       span.iconify(data-icon="la:trash") 
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineComponent, defineEmit, defineProps } from "vue";
 import { user } from "../../../store/user";
 

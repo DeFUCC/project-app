@@ -25,7 +25,7 @@
       ) Create a new user
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, ref, defineProps, watch, watchEffect } from "vue";
 import { user, findUser, authUser, createUser } from "../../store/user";
 

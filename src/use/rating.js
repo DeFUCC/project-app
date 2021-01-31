@@ -1,13 +1,11 @@
-import { appPath, isNode } from './../store/gun-db'
+import { appPath, isNode } from '../store/gun-db'
 import { reactive, computed, ref } from 'vue'
 import { db, gun, soul } from '../store/gun-db'
 import { user } from '../store/user'
 
-type RateType = 'star' | 'seen' | 'trash'
-
 const types = ['star', 'seen', 'trash']
 
-export function useItemRating(id: string) {
+export function useItemRating(id) {
   const rating = reactive({
     item: id,
     star: {},
@@ -55,12 +53,12 @@ export function useItemRating(id: string) {
 
   db.get('user')
     .map()
-    .on((data: any, key: string) => {
+    .on((data, key) => {
       getUserRating(key)
     })
 
-  function getUserRating(userId: string) {
-    let userProfile: any
+  function getUserRating(userId) {
+    let userProfile
     const userRating = gun
       .user(userId)
       .once((d) => {
@@ -72,7 +70,7 @@ export function useItemRating(id: string) {
       userRating
         .get(type)
         .get(id)
-        .on((data: any, key: string) => {
+        .on((data, key) => {
           if (key == id) {
             if (data) {
               rating[type][userId] = userProfile
@@ -84,9 +82,9 @@ export function useItemRating(id: string) {
     })
   }
 
-  function rate(type: RateType): void {
+  function rate(type) {
     if (!user.is) return
-    let current: any
+    let current
     let item = gun.get(id)
     gun
       .user()

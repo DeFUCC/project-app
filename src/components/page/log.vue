@@ -17,7 +17,7 @@
       .text {{ log[1].split('|')[1] }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, reactive, ref, watchEffect } from "vue";
 import { format } from "../../use/locale";
 import { gun } from "../../store/gun-db";
@@ -45,7 +45,7 @@ const chronoLogs = ref([]);
 watchEffect(() => {
   let entries = Object.entries(logs);
   state.total = entries.length;
-  let sorted = entries.sort((a: any, b: any) => {
+  let sorted = entries.sort((a, b) => {
     if (!a) {
       return -1;
     }

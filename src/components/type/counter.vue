@@ -8,7 +8,7 @@
     .title {{ $tc(`type.${type}`, count) }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps, ref, watchEffect } from "vue";
 import { appPath, gun } from "../../store/gun-db";
 

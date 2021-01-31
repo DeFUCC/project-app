@@ -25,7 +25,7 @@ const deepColors = {
   }),
 }
 
-export function itemColor(item: any): string {
+export function itemColor(item) {
   let color = colors[isDark.value ? 'dark' : 'light']
   if (isNode(item)) {
     return color.hex(cutUuid(soul(item)))

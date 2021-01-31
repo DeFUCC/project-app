@@ -9,7 +9,7 @@
       span.iconify(data-icon="la:times-circle")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, reactive, watch, watchEffect } from "vue";
 
 const emit = defineEmit(["search"]);

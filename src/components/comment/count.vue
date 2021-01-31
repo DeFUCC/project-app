@@ -4,7 +4,7 @@
   span {{ count }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { reactive, computed, defineProps } from "vue";
 import { gun, db, appPath } from "../../store/gun-db";
 

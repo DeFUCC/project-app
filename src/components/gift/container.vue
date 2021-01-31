@@ -18,7 +18,7 @@ section
       )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, reactive, ref } from "vue";
 import { gun, sea } from "../../store/gun-db";
 import { user } from "../../store/user";

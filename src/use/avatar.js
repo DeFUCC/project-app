@@ -1,4 +1,4 @@
-export default function (pub: string, size = 800) {
+export default function (pub, size = 800) {
   const canvas = document.createElement('canvas')
   canvas.width = canvas.height = size
   const ctx = canvas.getContext('2d')
@@ -13,12 +13,7 @@ export default function (pub: string, size = 800) {
   return canvas.toDataURL()
 }
 
-function drawGradient(
-  ctx: CanvasRenderingContext2D,
-  top: number,
-  bottom: number,
-  size: number,
-) {
+function drawGradient(ctx, top, bottom, size) {
   var gradient = ctx.createLinearGradient(0, 0, 0, size)
   gradient.addColorStop(0, `hsl(0,0%,${top * 100}%)`)
   gradient.addColorStop(1, `hsl(0,0%,${bottom * 100}%)`)
@@ -27,12 +22,7 @@ function drawGradient(
   ctx.fillRect(0, 0, size, size)
 }
 
-function drawCircles(
-  data: any,
-  ctx: CanvasRenderingContext2D,
-  size: number,
-  radius: number,
-) {
+function drawCircles(data, ctx, size, radius) {
   const chunks = chunkIt(data, 7)
   chunks.forEach((chunk) => {
     if (chunk.length == 7) {

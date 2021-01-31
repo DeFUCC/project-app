@@ -12,7 +12,7 @@ main#main
   app-install
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { useTitle } from "@vueuse/core";
 
 useTitle("Feeds");

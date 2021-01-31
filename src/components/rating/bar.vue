@@ -20,7 +20,7 @@
     span(v-show="count.trash") {{ count.trash }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, ref, watchEffect } from "vue";
 import { useItemRating } from "../../use/rating";
 

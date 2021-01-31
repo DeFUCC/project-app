@@ -48,7 +48,7 @@
       ) {{ links.list.length }} / {{ links.count }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { useIntersectionObserver } from "@vueuse/core";
 import { defineEmit, ref, watchEffect, defineProps, reactive } from "vue";
 import { isMine, user } from "../../store/user";
@@ -98,11 +98,11 @@ const links = ref({});
 
 const collapsed = ref(props.initCollapsed);
 
-function useItems(type: string, parent?: string) {
+function useItems(type, parent) {
   const list = reactive({});
 
   const { sorted } = useSorter(list, options);
-  let query: any;
+  let query;
 
   if (parent) {
     query = gun.get(parent);

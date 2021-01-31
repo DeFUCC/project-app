@@ -72,7 +72,7 @@ aside
       slot(v-if="state.add", key="add")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { useStorage } from "@vueuse/core";
 import { defineEmit, reactive, defineProps, ref } from "vue";
 import { user } from "../../store/user";

@@ -19,7 +19,7 @@
     )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, ref, defineProps, reactive, watchEffect } from "vue";
 import markdownIt from "markdown-it";
 import mila from "markdown-it-link-attributes";

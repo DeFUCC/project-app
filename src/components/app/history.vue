@@ -10,7 +10,7 @@ section.notification
       router-link.more(to="/history") &equiv;
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { unseen, eventColors } from "../../store/history";
 </script>
 

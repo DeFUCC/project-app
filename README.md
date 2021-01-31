@@ -62,7 +62,7 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 - [ ] item page features
   - [x] log
     - [x] log item changes
-    - [ ] log events
+    - [x] log events
     - [x] Data: Date.now() : "String"
   - [ ] qna
   - [ ] ukt

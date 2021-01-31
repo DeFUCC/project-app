@@ -4,7 +4,7 @@
   button(v-else, @click="unpublish()") Unpublish
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, ref } from "vue";
 import { gun, genUuid, cutUuid, appPath } from "../../store/gun-db";
 import { isMine } from "../../store/user";

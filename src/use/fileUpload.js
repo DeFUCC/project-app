@@ -55,7 +55,7 @@ export function useFileUpload() {
   }
 
   function processFile(file) {
-    fileToBase64(file).then((res: any) => {
+    fileToBase64(file).then((res) => {
       state.output = {
         name: sanitizeFileName(file.name),
         content: res,
@@ -114,7 +114,7 @@ export function useFileUpload() {
           resolve(canvas.toDataURL())
         }
         let res = readerBase64.result
-        img.src = res as string
+        img.src = res
       }
 
       reader.onerror = (error) => reject(error)

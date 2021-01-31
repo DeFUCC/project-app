@@ -22,7 +22,7 @@ nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
     span.iconify(data-icon="mdi:graph-outline", data-inline="false")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { ref } from "vue";
 import { user } from "../../store/user";
 import { itemColor, pubGradient } from "../../use/colors";

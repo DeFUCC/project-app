@@ -23,7 +23,7 @@ section.team
 
 
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, reactive, ref, watchEffect } from "vue";
 import { db, gun, sea } from "../../store/gun-db";
 

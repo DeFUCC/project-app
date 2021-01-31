@@ -9,7 +9,7 @@ list-items(
 )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps } from "vue";
 import { useTitle } from "@vueuse/core";
 

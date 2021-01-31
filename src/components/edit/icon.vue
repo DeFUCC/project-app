@@ -10,7 +10,7 @@
   )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, ref, defineProps } from "vue";
 
 defineEmit(["update"]);

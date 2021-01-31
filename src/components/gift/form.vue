@@ -11,7 +11,7 @@ form(@submit.prevent="addGift()")
   button(type="submit") Send
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, ref, defineProps } from "vue";
 import { gun, sea } from "../../store/gun-db";
 import { user } from "../../store/user";

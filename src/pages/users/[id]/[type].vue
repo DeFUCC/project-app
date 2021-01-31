@@ -12,7 +12,7 @@
   )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineProps, ref } from "vue";
 
 import { appPath, db } from "../../../store/gun-db";

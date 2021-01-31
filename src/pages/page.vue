@@ -5,7 +5,7 @@ main
       page-container(v-if="id", @open="open", :key="id", :id="id")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, reactive, ref, watchEffect } from "vue";
 import { gun } from "../store/gun-db";

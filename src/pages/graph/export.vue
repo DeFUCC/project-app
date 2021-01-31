@@ -15,7 +15,7 @@ article
             router-link(:to="{ query: { id: dt['#'] } }") {{ dt['#'] }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { useTitle } from "@vueuse/core";
 import { reactive, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";

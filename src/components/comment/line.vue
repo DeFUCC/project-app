@@ -19,7 +19,7 @@
       span.iconify(data-icon="la:times")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, ref, defineProps } from "vue";
 import { user } from "../../store/user";
 import { format } from "../../use/locale";

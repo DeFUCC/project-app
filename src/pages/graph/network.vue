@@ -17,7 +17,7 @@ article(ref="graph")
       .to(:style="{ backgroundColor: itemColor(link.target) }")
 </template>
 
-<script lang="ts">
+<script >
 import { defineComponent, ref, reactive, watchEffect } from "vue";
 import { itemColor } from "../../use/colors";
 import { useGraph } from "../../use/graph";

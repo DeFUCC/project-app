@@ -19,7 +19,7 @@ article
           .content {{ r }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { onBeforeUnmount, reactive, ref } from "vue";
 import { gun } from "../../store/gun-db";
 import { itemColor } from "../../use/colors";

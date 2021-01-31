@@ -14,7 +14,7 @@
   )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, ref, defineProps } from "vue";
 
 defineEmit(["update"]);
@@ -31,13 +31,9 @@ const edit = ref(false);
   display flex
   align-items center
 
-form
-  width 100%
-  flex 1
-  height 3em
-
 input
   width 80%
+  flex 1
 
 .title h3
   margin 0.5em 0

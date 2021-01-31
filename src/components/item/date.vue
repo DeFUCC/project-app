@@ -6,7 +6,7 @@
   | {{ format(item.updatedAt).date }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineComponent, defineProps } from "vue";
 import { getState } from "../../store/gun-db";
 import { format } from "../../use/locale";

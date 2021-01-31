@@ -2,7 +2,7 @@
 img.type-icon(:src="'/svg/' + type + '.svg'", alt="")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps } from "vue";
 import { model } from "../../store/model";
 

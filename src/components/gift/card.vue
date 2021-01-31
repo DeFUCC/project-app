@@ -11,7 +11,7 @@
   .at {{ format(gift.timestamp).date }}
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps } from "vue";
 import { itemColor } from "../../use/colors";
 import { format } from "../../use/locale";

@@ -9,7 +9,7 @@
   )
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineProps, ref } from "vue";
 import { appPath, db, soul } from "../../../store/gun-db";
 

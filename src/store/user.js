@@ -10,12 +10,12 @@ export const user = reactive({
   rates: {},
 })
 
-export function isMine(soul: string) {
+export function isMine(soul) {
   if (!soul) return
   return soul.slice(1, 88) == user.is?.pub
 }
 
-gun.user().recall({ sessionStorage: true }, (ack: { err: string }) => {
+gun.user().recall({ sessionStorage: true }, (ack) => {
   if (!ack.err) {
     logIn()
   } else {
@@ -28,7 +28,7 @@ gun.on('auth', async () => {
   loadUser(gun.user().is.pub)
 })
 
-export function loadUser(pub: string) {
+export function loadUser(pub) {
   gun
     .user(pub)
     .get(appPath)
@@ -53,13 +53,13 @@ export function logIn() {
   notify('You successfully logged in as ' + user.is.alias + '.')
 }
 
-export function findUser(alias: string, cb: (data: any) => void) {
+export function findUser(alias, cb) {
   gun.get('~@' + alias).once((val) => {
     cb(val)
   })
 }
 
-function generateUser(alias: string, pub: string) {
+function generateUser(alias, pub) {
   return {
     alias: alias,
     title: alias,
@@ -68,7 +68,7 @@ function generateUser(alias: string, pub: string) {
   }
 }
 
-export function createUser(alias: string, pass: string) {
+export function createUser(alias, pass) {
   console.log('creating')
   findUser(alias, (val) => {
     console.log(val)

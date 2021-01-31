@@ -22,7 +22,7 @@ li.card(
     item-children(:id="item.soul")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { itemColor } from "../../use/colors";
 import { defineEmit, defineProps } from "vue";
 import { isMine } from "../../store/user";

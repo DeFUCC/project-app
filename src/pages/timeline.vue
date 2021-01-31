@@ -12,7 +12,7 @@
       .after
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { computed, defineComponent, defineEmit, reactive } from "vue";
 import { db, soul } from "../store/gun-db";
 import { itemColor } from "../use/colors";
@@ -30,7 +30,7 @@ db.map()
   });
 
 const list = computed(() => {
-  return Object.values(items).sort((a: any, b: any) => {
+  return Object.values(items).sort((a, b) => {
     return a.dateStart > b.dateStart ? 1 : -1;
   });
 });

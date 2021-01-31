@@ -2,7 +2,7 @@
 button(v-if="installable", @click="installApp()") Install the app
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { useInstall } from "../../use/install";
 const { installable, installApp } = useInstall();
 </script>

@@ -10,7 +10,7 @@ form.add(@submit.prevent="")
     span.iconify(data-icon="la:plus")
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { defineEmit, reactive, defineProps, ref, watchEffect } from "vue";
 import { createItem } from "../../store/item";
 import { onStartTyping } from "@vueuse/core";

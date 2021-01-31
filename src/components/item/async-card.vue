@@ -7,7 +7,7 @@
   item-date(:item="item")
 </template>
 
-<script lang="ts">
+<script >
 import { gun } from "../../store/gun-db";
 import { itemColor } from "../../use/colors";
 export default {
