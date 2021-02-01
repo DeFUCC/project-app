@@ -1,5 +1,5 @@
 <template lang="pug">
-img.type-icon(:src="'/svg/' + type + '.svg'", alt="")
+img.type-icon(:src="`/svg/${path}/${type}.svg`", alt="")
 </template>
 
 <script setup >
@@ -10,6 +10,10 @@ defineProps({
   type: {
     type: String,
     default: "skill",
+  },
+  path: {
+    type: String,
+    default: "gray",
   },
 });
 </script>

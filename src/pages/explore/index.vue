@@ -17,8 +17,8 @@ useTitle("Explore");
 
 <style lang="stylus" scoped>
 .types
-  display grid
-  grid-gap 1em
-  padding 1em
-  grid-template-columns repeat(auto-fill, minmax(300px, 1fr))
+  display flex
+  flex-flow row wrap
+  align-items stretch
+  justify-content stretch
 </style>

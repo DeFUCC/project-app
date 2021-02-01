@@ -1,11 +1,11 @@
 <template lang="pug">
 .type
+  type-icon.bg(:type="type", path="color-lines")
   header
-    type-icon(:type="type")
+    .title {{ $tc(`type.${type}`, count) }}
     .spacer
     .count {{ count }}
   section
-    .title {{ $tc(`type.${type}`, count) }}
     .def {{ $t(`def.${type}`) }}
 </template>
 
@@ -21,21 +21,19 @@ const props = defineProps({
 const counter = ref({});
 
 let query;
-watchEffect(() => {
-  if (props.parent) {
-    query = gun.get(props.parent);
-  } else {
-    query = gun.get(appPath);
+
+if (props.parent) {
+  query = gun.get(props.parent);
+} else {
+  query = gun.get(appPath);
+}
+counter.value = {};
+query.get(props.type).once((data, key) => {
+  if (data) {
+    for (let key in data) {
+      counter.value[key] = true;
+    }
   }
-  counter.value = {};
-  query
-    .get(props.type)
-    .map()
-    .once((data, key) => {
-      if (data) {
-        counter.value[key] = data;
-      }
-    });
 });
 
 const count = computed(() => {
@@ -44,6 +42,14 @@ const count = computed(() => {
 </script>
 
 <style lang="stylus" scoped>
+.bg
+  position absolute
+  top 0px
+  left 10px
+  font-size 5em !important
+  z-index 1
+  opacity 0.5
+
 .title
   font-size 1.2em
   font-weight bold
@@ -58,11 +64,18 @@ header
   display flex
   flex 1
   width 100%
+  z-index 5
 
 section
   padding 0.5em
+  z-index 5
 
 .type
+  flex 0 1 600px
+  height 200px
+  margin 1em
+  position relative
+  overflow hidden
   font-size 1em
   opacity 0.8
   cursor pointer
@@ -70,7 +83,7 @@ section
   display flex
   flex-flow column nowrap
   align-items flex-start
-  background-color var(--top-bar)
+  background-color var(--background)
   padding 1em
 
 .type img

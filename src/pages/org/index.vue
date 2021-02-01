@@ -1,6 +1,6 @@
 <template lang="pug">
 main#main
-  .title Organisations
+  .title Collectives
   .types(v-for="(org, path) in organisations", :key="org")
     router-link.title(:to="`/org/${path}`") {{ org.title }}
     type-counter(
