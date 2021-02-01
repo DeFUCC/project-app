@@ -1,6 +1,6 @@
 <template lang="pug">
 router-link.user(
-  :to="{ path: isMe ? '/my' : `/users/${profile.id}` }",
+  :to="{ path: isMe ? '/my' : `/u/${profile.id}` }",
   :style="{ background: isMe ? pubGradient(profile.pub, 90) : 'none' }"
 )
   user-avatar.avatar(size="small", :pic="profile.avatar")

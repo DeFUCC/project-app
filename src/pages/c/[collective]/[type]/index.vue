@@ -4,8 +4,8 @@ list-items(
   :key="type",
   :type="type",
   :editable="true",
-  :org="org",
-  @open="$router.push(`/org/${org}/${type}/${$event.id}`)"
+  :collective="collective",
+  @open="$router.push(`/c/${collective}/${type}/${$event.id}`)"
 )
 </template>
 
@@ -15,7 +15,7 @@ import { useTitle } from "@vueuse/core";
 
 const props = defineProps({
   type: String,
-  org: String,
+  collective: String,
 });
 useTitle(`Explore ${props.type}`);
 

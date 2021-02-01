@@ -20,7 +20,7 @@ const props = defineProps({
   type: String,
   parent: String,
   editable: Boolean,
-  org: String,
+  collective: String,
 });
 
 const item = reactive({
@@ -34,7 +34,7 @@ watchEffect(() => {
 });
 
 function addItem() {
-  createItem(props.org, props.type, item, props.parent);
+  createItem(props.collective, props.type, item, props.parent);
   item.title = "";
 }
 

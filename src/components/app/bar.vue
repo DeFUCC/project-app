@@ -4,22 +4,16 @@ nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
     user-auth(v-if="auth", @close="auth = false")
   router-link.logo(to="/")
     img(src="/icons/feeds.svg", alt="")
-  router-link(to="/org/")
-    span.iconify(data-icon="la:boxes")
-  router-link(to="/users/")
+  router-link(to="/u/")
     span.iconify(data-icon="la:users")
-  .spacer
+  router-link(to="/lab/")
+    span.iconify(data-icon="la:flask", data-inline="false")
+
   .login(v-if="!user.is", @click="auth = !auth")
     span.iconify(data-icon="la:sign-in-alt")
   .username(v-else="")
     user-pill(:id="user.is.pub")
   .spacer
-
-  app-locale
-  router-link(to="/about/")
-    span.iconify(data-icon="la:info-circle")
-  router-link(to="/graph/")
-    span.iconify(data-icon="mdi:graph-outline", data-inline="false")
 </template>
 
 <script setup >

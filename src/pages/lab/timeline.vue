@@ -14,9 +14,9 @@
 
 <script setup >
 import { computed, defineComponent, defineEmit, reactive } from "vue";
-import { db, soul } from "../store/gun-db";
-import { itemColor } from "../use/colors";
-import { format } from "../use/locale";
+import { db, soul } from "../../store/gun-db";
+import { itemColor } from "../../use/colors";
+import { format } from "../../use/locale";
 
 const items = reactive({});
 db.map()

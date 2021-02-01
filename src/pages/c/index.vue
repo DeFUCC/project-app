@@ -2,9 +2,9 @@
 main#main
   .title Collectives
   .types(v-for="(org, path) in organisations", :key="org")
-    router-link.title(:to="`/org/${path}`") {{ org.title }}
+    router-link.title(:to="`/c/${path}`") {{ org.title }}
     type-counter(
-      @click="$router.push(`/org/${path}/${type}`)",
+      @click="$router.push(`/c/${path}/${type}`)",
       v-for="type in Object.keys(org.model)",
       :key="type",
       :type="type",
@@ -12,7 +12,7 @@ main#main
     )
   form.custom(@submit.prevent.stop)
     input(type="text", v-model="customOrg")
-    router-link(:to="`/org/${customOrg}`") {{ customOrg }}
+    router-link(:to="`/c/${customOrg}`") {{ customOrg }}
 </template>
 
 <script setup >

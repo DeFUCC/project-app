@@ -2,10 +2,10 @@
 page-container(
   v-if="itemSoul",
   :key="itemSoul",
-  @open="$router.push(`/org/${org}/${$event.type}/${$event.id}`)",
-  @close="$router.push(`/org/${org}/${type}`)",
+  @open="$router.push(`/c/${collective}/${$event.type}/${$event.id}`)",
+  @close="$router.push(`/c/${collective}/${type}`)",
   :id="itemSoul",
-  :org="org"
+  :collective="collective"
 )
 </template>
 
@@ -17,13 +17,13 @@ import { itemColor } from "../../../../use/colors";
 const props = defineProps({
   type: String,
   id: String,
-  org: String,
+  collective: String,
 });
 
 const itemSoul = ref();
 watchEffect(() => {
   gun
-    .get(props.org)
+    .get(props.collective)
     .get(props.type)
     .once((data, key) => {
       let id = props.id;

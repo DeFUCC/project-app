@@ -1,8 +1,8 @@
 <template lang="pug">
-.org
+.collective
   .types 
     type-icon.type(
-      @click="$router.push(`/org/${org}/${atype}`)",
+      @click="$router.push(`/c/${collective}/${atype}`)",
       :class="{ active: atype == type }",
       v-for="atype in types",
       :key="atype",
@@ -19,12 +19,12 @@ import { model, organisations } from "../../../store/model";
 
 const props = defineProps({
   type: String,
-  org: String,
+  collective: String,
 });
 
 const types = computed(() => {
-  if (organisations[props.org]) {
-    return Object.keys(organisations[props.org].model);
+  if (organisations[props.collective]) {
+    return Object.keys(organisations[props.collective].model);
   } else {
     return Object.keys(model);
   }

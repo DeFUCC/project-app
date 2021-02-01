@@ -4,7 +4,7 @@ list-items(
   :key="type",
   :type="type",
   :editable="true",
-  :org="appPath",
+  :collective="appPath",
   @open="$router.push(`/explore/${type}/${$event.id}`)"
 )
 </template>

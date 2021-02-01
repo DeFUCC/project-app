@@ -1,6 +1,6 @@
 <template lang="pug">
 router-link.card(
-  :to="'/users/' + id",
+  :to="'/u/' + id",
   :style="{ background: pubGradient(profile?.pub, -90) }"
 )
   user-avatar(v-if="profile?.avatar", :pic="profile?.avatar", size="medium")

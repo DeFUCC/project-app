@@ -1,7 +1,7 @@
 <template lang="pug">
 main#main
-  .title 
-    router-link(to="/org/") Organisations / {{ organisations?.[org]?.title || org }}
+  .title Collectives /
+    router-link(to="/c/") {{ organisations?.[collective]?.title || collective }}
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")
@@ -12,7 +12,7 @@ import { defineProps } from "vue";
 import { organisations } from "../../store/model";
 
 const props = defineProps({
-  org: String,
+  collective: String,
 });
 </script>
 

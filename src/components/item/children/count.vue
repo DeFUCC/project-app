@@ -1,27 +1,31 @@
 <template lang="pug">
 .count(v-if="count > 0")
-  img.icon(:src="icon", alt="")
+  type-icon(:type="type")
   | {{ count }}
 </template>
 
 <script setup >
-import { computed, defineProps, reactive } from "vue";
+import { computed, defineProps, reactive, ref } from "vue";
 import { gun } from "../../../store/gun-db";
 
 const props = defineProps({
   id: String,
   type: String,
 });
-const items = reactive({});
+const counter = ref({});
 gun
   .get(props.id)
   .get(props.type)
-  .map()
-  .on((data, key) => {
-    items[key] = data;
+  .once((data, key) => {
+    if (data) {
+      for (let key in data) {
+        if (data[key] && key != "_") {
+          counter.value[key] = true;
+        }
+      }
+    }
   });
-const count = computed(() => Object.keys(items).length);
-const icon = `/svg/${props.type}.svg`;
+const count = computed(() => Object.keys(counter.value).length);
 </script>
 
 <style lang="stylus" scoped>

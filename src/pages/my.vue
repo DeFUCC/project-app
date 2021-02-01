@@ -1,31 +1,24 @@
 <template lang="pug">
-main.page(v-if="user.is")
+main.page
   header.bar(:style="{ background: pubGradient(user.is?.pub, -90) }")
     user-avatar(:pic="user?.profile?.icon", size="medium")
-    .title {{ user.is?.alias }}
+    router-link.title(to="/my") {{ user.is?.alias }}
+    router-link(to="/my/profile") Profile
+    router-link(to="/my/stars") Stars
     .spacer
     button(@click="logOut()") Log out
-  .bar
-    router-link(to="/my") Profile
-    router-link(to="/my/stars") Stars
   router-view(v-slot="{ Component }")
     transition(name="fade")
       keep-alive
-        component(:is="Component", :user="user.is.pub")
+        component(:is="Component", :user="user.is?.pub")
 </template>
 
 <script setup >
 import { pubGradient } from "../use/colors";
 import { user, logOut } from "../store/user";
 import { onMounted } from "vue";
-import { useRouter } from "vue-router";
+
 import { useTitle } from "@vueuse/core";
-const router = useRouter();
-onMounted(() => {
-  if (!user.is) {
-    //  router.push("/");
-  }
-});
 
 useTitle(user.profile.title);
 </script>

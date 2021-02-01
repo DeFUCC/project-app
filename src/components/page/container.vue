@@ -52,7 +52,7 @@
       :type="type",
       :editable="editable",
       :parent="item.soul",
-      :org="org",
+      :collective="collective",
       @open="$emit('open', $event)"
     )
 
@@ -81,7 +81,7 @@ import { useTitle } from "@vueuse/core";
 const props = defineProps({
   id: String,
   parent: String,
-  org: {
+  collective: {
     type: String,
     default: appPath,
   },
@@ -107,8 +107,8 @@ gunItem.map().on((data, key) => {
 });
 
 const types = computed(() => {
-  if (organisations[props.org]) {
-    return organisations[props.org].model[item.type];
+  if (organisations[props.collective]) {
+    return organisations[props.collective].model[item.type];
   } else {
     return model[item.type];
   }

@@ -9,7 +9,12 @@
     :editable="editable",
     @toggle="collapsed = !collapsed"
   )
-    add-form(:type="type", :org="org", :parent="parent", v-if="editable")
+    add-form(
+      :type="type",
+      :collective="collective",
+      :parent="parent",
+      v-if="editable"
+    )
   ul.item-list(v-if="!options.link", v-show="!collapsed")
     transition-group(name="list")
       item-card.card(
@@ -63,7 +68,7 @@ const props = defineProps({
     required: true,
   },
   parent: String,
-  org: {
+  collective: {
     type: String,
     default: appPath,
   },
@@ -107,7 +112,7 @@ function useItems(type, parent) {
   if (parent) {
     query = gun.get(parent);
   } else {
-    query = gun.get(props.org);
+    query = gun.get(props.collective);
   }
 
   query

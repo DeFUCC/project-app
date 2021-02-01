@@ -1,11 +1,11 @@
 <template lang="pug">
-.types {{ organisations?.[org] }}
+.types {{ organisations?.[collective] }}
   type-counter(
-    @click="$router.push(`/org/${org}/${type}`)",
+    @click="$router.push(`/c/${collective}/${type}`)",
     v-for="type in types",
     :key="type",
     :type="type",
-    :parent="org"
+    :parent="collective"
   )
 </template>
 
@@ -15,17 +15,17 @@ import { useTitle } from "@vueuse/core";
 import { model, organisations } from "../../../store/model";
 
 const props = defineProps({
-  org: String,
+  collective: String,
 });
-useTitle(`Explore ${props.org}`);
+useTitle(`Explore ${props.collective}`);
 
 function explore(ev) {
   console.log(ev);
 }
 
 const types = computed(() => {
-  if (organisations[props.org]) {
-    return Object.keys(organisations[props.org].model);
+  if (organisations[props.collective]) {
+    return Object.keys(organisations[props.collective].model);
   } else {
     return Object.keys(model);
   }
@@ -33,7 +33,7 @@ const types = computed(() => {
 </script>
 
 <style lang="stylus" scoped>
-.org
+.collective
   padding 1em
 
 .title

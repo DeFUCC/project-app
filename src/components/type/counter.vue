@@ -1,7 +1,7 @@
 <template lang="pug">
 .type
   header 
-    type-icon(:type="type")
+    type-icon(:type="type", kind="gray")
     .spacer
     .count {{ count }}
   section
@@ -20,21 +20,19 @@ const props = defineProps({
 const counter = ref({});
 
 let query;
-watchEffect(() => {
-  if (props.parent) {
-    query = gun.get(props.parent);
-  } else {
-    query = gun.get(appPath);
+
+if (props.parent) {
+  query = gun.get(props.parent);
+} else {
+  query = gun.get(appPath);
+}
+counter.value = {};
+query.get(props.type).once((data, key) => {
+  if (data) {
+    for (let key in data) {
+      counter.value[key] = true;
+    }
   }
-  counter.value = {};
-  query
-    .get(props.type)
-    .map()
-    .once((data, key) => {
-      if (data) {
-        counter.value[key] = data;
-      }
-    });
 });
 
 const count = computed(() => {

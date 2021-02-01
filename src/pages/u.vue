@@ -1,7 +1,7 @@
 <template lang="pug">
 main#main
   .header
-    router-link(to="/users") Users
+    router-link(to="/u") Users
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")

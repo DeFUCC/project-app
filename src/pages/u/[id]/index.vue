@@ -1,7 +1,7 @@
 <template lang="pug">
 .list(v-if="pub")
   type-card(
-    @click="$router.push(`/users/${id}/${type}`)",
+    @click="$router.push(`/u/${id}/${type}`)",
     v-for="type in types",
     :key="type",
     :type="type",

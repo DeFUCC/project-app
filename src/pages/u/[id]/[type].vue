@@ -1,6 +1,6 @@
 <template lang="pug">
 .list 
-  type-row(@choose="$router.push(`/users/${id}/${$event}`)", :active="type")
+  type-row(@choose="$router.push(`/u/${id}/${$event}`)", :active="type")
   list-items(
     v-if="userPath",
     :wide="false",
