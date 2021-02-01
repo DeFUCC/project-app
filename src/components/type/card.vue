@@ -49,13 +49,13 @@ const count = computed(() => {
   right 10px
   font-size 5em !important
   z-index 1
-  opacity 0.3
+  opacity 0.6
   transition all 600ms ease-in
   transform-origin 80% 50%
 
 .type:hover .bg
   transform scale(3)
-  opacity 0.5
+  opacity 0.3
   transition all 1s ease-out
 
 .title
@@ -83,7 +83,7 @@ section
   flex 5
 
 .type
-  flex 0 1 500px
+  flex 1 1 300px
   height 200px
   margin 1em
   position relative
