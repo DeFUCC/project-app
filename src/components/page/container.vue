@@ -38,7 +38,6 @@
         edit-date(type="start", :id="item.soul", :editable="editable")
         edit-date(type="finish", :id="item.soul", :editable="editable")
       rating-bar(:horizontal="true", :id="item.soul")
-      gift-container(:soul="item.soul")
   .lists
     edit-markdown(
       :text="item.text",
@@ -57,6 +56,7 @@
     )
 
   aside
+    gift-container(:soul="item.soul")
     comment-list(:id="item.soul")
     page-log(:id="item.soul", :editable="editable")
 </template>

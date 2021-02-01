@@ -50,7 +50,7 @@ function setStatus(st) {
 .status
   display flex
   align-items center
-  padding 2px 4px
+  padding 0px 8px
   border-radius 4px
   font-size 1em
   width min-content

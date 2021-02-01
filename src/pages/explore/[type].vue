@@ -6,7 +6,8 @@ section
       :class="{ active: atype == type }",
       v-for="atype in types",
       :key="atype",
-      :type="atype"
+      :type="atype",
+      path="discs"
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")
@@ -28,12 +29,14 @@ main
 
 .types
   display flex
+  padding 1em
 
 .type
   font-size 1.5em
   opacity 0.2
   transition all 300ms ease
   cursor pointer
+  padding 4px
 
 .type:hover
   opacity 1

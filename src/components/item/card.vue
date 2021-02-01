@@ -11,7 +11,7 @@ li.card(
             i.iconify(data-icon="la:unlink")
       .description(v-if="item.subtitle") {{ item.subtitle }}
     .info
-      type-icon.type-icon(:type="item.type") 
+      type-icon.type-icon(:type="item.type", v-if="typed") 
       edit-status(:id="item.soul", :editable="isMine(item.soul)")
       user-pill(:id="item?.soul.slice(1, 88)")
       comment-count(:id="item.soul")
@@ -33,6 +33,10 @@ const props = defineProps({
   showRoute: {
     type: Boolean,
     default: true,
+  },
+  typed: {
+    type: Boolean,
+    default: false,
   },
   unlinkable: {
     type: Boolean,
@@ -84,8 +88,7 @@ const props = defineProps({
   justify-content flex-start
 
 .type-icon
-  height 3em
-  font-size 1.4em
+  font-size 1em
   margin 0
 
 .title .type
@@ -106,7 +109,7 @@ const props = defineProps({
 
 .info
   font-size 0.7em
-  margin 0 0.5em
+  padding 0.5em 0
   display flex
   flex 1 0 300px
   flex-flow row wrap
