@@ -7,7 +7,6 @@ This app is intended to be fast, reliable and free. So it's developed only by th
 [repo](https://github.com/DeFUCC/project-app)
 
 ## STACK
-- [TypeScript](https://www.typescriptlang.org/) 
 - [Vue 3](https://v3.vuejs.org/) 
   - [Vue router](https://github.com/vuejs/vue-router-next) for page routing [docs](https://next.router.vuejs.org/)
   - [i18n](https://vue-i18n-next.intlify.dev/) internationalization, now via global yaml files in /locales folder
