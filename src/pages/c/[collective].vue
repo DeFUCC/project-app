@@ -9,7 +9,7 @@ main#main
 
 <script setup >
 import { defineProps } from "vue";
-import { organisations } from "../../store/model";
+import { organisations } from "store@model";
 
 const props = defineProps({
   collective: String,
@@ -18,5 +18,5 @@ const props = defineProps({
 
 <style lang="stylus" scoped>
 .title
-  padding 0.5em 1em
+  padding: 0.5em 1em
 </style>

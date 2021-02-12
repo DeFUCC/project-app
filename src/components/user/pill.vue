@@ -10,10 +10,10 @@ router-link.user(
 
 <script setup >
 import { computed, defineProps, reactive, watchEffect } from "vue";
-import { db, appPath, gun, getShortHash } from "../../store/gun-db";
-import { user } from "../../store/user";
-import { pubGradient } from "../../use/colors";
-import { truncate } from "../../store/item";
+import { db, appPath, gun, getShortHash } from "store@gun-db";
+import { user } from "store@user";
+import { pubGradient } from "use@colors";
+import { truncate } from "store@item";
 
 const props = defineProps({
   id: String,
@@ -44,20 +44,20 @@ watchEffect(() => {
 
 <style lang="stylus" scoped>
 .avatar
-  margin-top 2px
+  margin-top: 2px
 
 .alias
-  margin 0 8px 0 6px
-  font-weight normal
+  margin: 0 8px 0 6px
+  font-weight: normal
 
 .user
-  display flex
-  align-items center
-  border-radius 2em
-  padding 0
-  white-space nowrap
-  opacity 0.75
+  display: flex
+  align-items: center
+  border-radius: 2em
+  padding: 0
+  white-space: nowrap
+  opacity: 0.75
 
 .user:hover
-  opacity 0.9
+  opacity: 0.9
 </style>

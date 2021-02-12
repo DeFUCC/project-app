@@ -14,8 +14,8 @@ main.page
 </template>
 
 <script setup >
-import { pubGradient } from "../use/colors";
-import { user, logOut } from "../store/user";
+import { pubGradient } from "use@colors";
+import { user, logOut } from "store@user";
 import { onMounted } from "vue";
 
 import { useTitle } from "@vueuse/core";
@@ -25,24 +25,24 @@ useTitle(user.profile.title);
 
 <style lang="stylus" scoped>
 .bar
-  display flex
-  position sticky
-  z-index 20
-  top 0
-  flex-flow row nowrap
-  align-items center
-  justify-content flex-start
-  padding 1em
-  background-color var(--bar-color)
+  display: flex
+  position: sticky
+  z-index: 20
+  top: 0
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: flex-start
+  padding: 1em
+  background-color: var(--bar-color)
 
 .bar a
-  padding 1em
+  padding: 1em
 
 .page
-  width 100%
+  width: 100%
 
 .title
-  padding 0 1em
-  font-size 1.2em
-  font-weight bold
+  padding: 0 1em
+  font-size: 1.2em
+  font-weight: bold
 </style>

@@ -25,7 +25,7 @@
 
 <script setup >
 import { computed, ref } from "vue";
-import { sea } from "../../store/gun-db";
+import { sea } from "store@gun-db";
 import ColorHash from "color-hash";
 import QRCode from "qrcode";
 
@@ -67,33 +67,33 @@ function pubGradient(pub, angle = 0) {
 
 <style lang="stylus" scoped>
 .tool-case
-  padding 1em 2em
-  font-size 8px
-  color #555
+  padding: 1em 2em
+  font-size: 8px
+  color: #555
 
 .pad
-  padding 1em
-  margin 1em 0
+  padding: 1em
+  margin: 1em 0
 
 .gradient
-  padding 10em
+  padding: 10em
 
 .split
-  display flex
-  width 100%
-  padding 0
-  justify-content stretch
+  display: flex
+  width: 100%
+  padding: 0
+  justify-content: stretch
 
 .decode
-  display flex
+  display: flex
 
 .bits
-  display flex
-  flex-flow row wrap
-  width 100%
-  padding 1em
+  display: flex
+  flex-flow: row wrap
+  width: 100%
+  padding: 1em
 
 .bit
-  height 32px
-  flex 1 1 32px
+  height: 32px
+  flex: 1 1 32px
 </style>

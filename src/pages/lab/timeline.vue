@@ -14,9 +14,9 @@
 
 <script setup >
 import { computed, defineComponent, defineEmit, reactive } from "vue";
-import { db, soul } from "../../store/gun-db";
-import { itemColor } from "../../use/colors";
-import { format } from "../../use/locale";
+import { db, soul } from "store@gun-db";
+import { itemColor } from "use@colors";
+import { format } from "use@locale";
 
 const items = reactive({});
 db.map()
@@ -58,26 +58,26 @@ function span(start, finish = Date.now()) {
 
 <style lang="stylus" scoped>
 .calendar
-  display flex
-  flex-flow column
+  display: flex
+  flex-flow: column
 
 .date
-  display flex
-  position relative
+  display: flex
+  position: relative
 
 .info
-  display flex
-  flex-flow row
-  align-items center
-  z-index 30
+  display: flex
+  flex-flow: row
+  align-items: center
+  z-index: 30
 
 .last
-  padding 1em
+  padding: 1em
 
 .span
-  position absolute
-  width 100%
-  height 100%
-  display flex
-  flex 1 0 100%
+  position: absolute
+  width: 100%
+  height: 100%
+  display: flex
+  flex: 1 0 100%
 </style>

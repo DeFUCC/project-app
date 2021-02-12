@@ -27,7 +27,7 @@
 
 <script setup >
 import { defineEmit, ref, defineProps, watch, watchEffect } from "vue";
-import { user, findUser, authUser, createUser } from "../../store/user";
+import { user, findUser, authUser, createUser } from "store@user";
 
 const emit = defineEmit(["close"]);
 const props = defineProps({
@@ -51,31 +51,31 @@ watchEffect(() => {
 
 <style lang="stylus" scoped>
 .close
-  position absolute
-  right 0.5em
-  top 0.5em
+  position: absolute
+  right: 0.5em
+  top: 0.5em
 
 .info
-  padding 0 1em
-  display flex
+  padding: 0 1em
+  display: flex
 
 form
-  display flex
-  flex-flow column
+  display: flex
+  flex-flow: column
 
 #auth
-  padding 1em
-  position absolute
-  top 20px
-  right 20px
-  min-width 200px
-  max-width 300px
-  width 80%
-  margin 40px
-  z-index 90
-  background-color var(--background)
-  border-radius 0.5em
+  padding: 1em
+  position: absolute
+  top: 20px
+  right: 20px
+  min-width: 200px
+  max-width: 300px
+  width: 80%
+  margin: 40px
+  z-index: 90
+  background-color: var(--background)
+  border-radius: 0.5em
 
 button
-  margin 1em
+  margin: 1em
 </style>

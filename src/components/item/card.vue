@@ -23,9 +23,9 @@ li.card(
 </template>
 
 <script setup >
-import { itemColor } from "../../use/colors";
+import { itemColor } from "use@colors";
 import { defineEmit, defineProps } from "vue";
-import { isMine } from "../../store/user";
+import { isMine } from "store@user";
 
 defineEmit(["del"]);
 
@@ -57,81 +57,81 @@ const props = defineProps({
 
 <style lang="stylus" scoped>
 .header
-  flex-flow row wrap
-  display flex
-  align-items center
-  flex 1 1 100%
-  padding 1em 1em 4px 1em
+  flex-flow: row wrap
+  display: flex
+  align-items: center
+  flex: 1 1 100%
+  padding: 1em 1em 4px 1em
 
 .title
-  display flex
-  align-items center
+  display: flex
+  align-items: center
 
 .title .name
-  margin 0
-  display flex
-  align-items center
-  font-size 1.2em
-  line-height 1.4em
-  font-weight bold
-  flex 1
+  margin: 0
+  display: flex
+  align-items: center
+  font-size: 1.2em
+  line-height: 1.4em
+  font-weight: bold
+  flex: 1
 
 .description
-  font-size 14px
-  flex 1 0 100%
+  font-size: 14px
+  flex: 1 0 100%
 
 .content
-  align-self center
-  width 100%
-  display flex
-  flex-flow row wrap
-  justify-content flex-start
+  align-self: center
+  width: 100%
+  display: flex
+  flex-flow: row wrap
+  justify-content: flex-start
 
 .type-icon
-  font-size 1em
-  margin 0
+  font-size: 1em
+  margin: 0
 
 .title .type
-  height 2em
+  height: 2em
 
 .card
-  margin 0.5em
-  scroll-snap-align start
-  cursor pointer
-  position relative
-  display flex
-  flex-flow row
-  align-items stretch
-  padding 0
-  flex 1 1 360px
-  min-height min-content
-  border-radius var(--small-radius)
+  margin: 0.5em
+  scroll-snap-align: start
+  cursor: pointer
+  position: relative
+  display: flex
+  flex-flow: row
+  align-items: stretch
+  padding: 0
+  flex: 1 1 360px
+  min-height: min-content
+  border-radius: var(--small-radius)
 
 .info
-  font-size 0.7em
-  padding 0.5em 0
-  display flex
-  flex 1 0 300px
-  flex-flow row wrap
-  align-items center
+  font-size: 0.7em
+  padding: 0.5em 0
+  display: flex
+  flex: 1 0 300px
+  flex-flow: row wrap
+  align-items: center
 
 .icon
-  display flex
-  align-items center
-  padding 8px
-  flex 1 0 60px
+  display: flex
+  align-items: center
+  padding: 8px
+  flex: 1 0 60px
 
 .icon img
-  border-radius 4em
-  height 4em
+  border-radius: 4em
+  height: 4em
 
 .unlink
-  margin 0 0.5em
+  margin: 0 0.5em
 
 .side
-  flex 0
-  display flex
-  flex-flow row nowrap
-  justify-content stretch
-  align-items stretch
+  flex: 0
+  display: flex
+  flex-flow: row nowrap
+  justify-content: stretch
+  align-items: stretch
 </style>

@@ -4,7 +4,7 @@ img(v-if="pub", :src="createAvatar(pub)", :width="size", :height="size")
 
 <script setup >
 import { computed, defineProps, onMounted, ref } from "vue";
-import createAvatar from "../../use/avatar";
+import createAvatar from "use@avatar";
 
 const props = defineProps({
   pub: String,
@@ -17,5 +17,5 @@ const props = defineProps({
 
 <style lang="stylus" scoped>
 img
-  border-radius 100%
+  border-radius: 100%
 </style>

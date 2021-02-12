@@ -21,8 +21,8 @@
 
 <script setup >
 import { defineEmit, ref, defineProps } from "vue";
-import { user } from "../../store/user";
-import { format } from "../../use/locale";
+import { user } from "store@user";
+import { format } from "use@locale";
 
 defineEmit({
   edit: (comment) => comment.timestamp && comment.text,
@@ -38,31 +38,31 @@ const text = props.comment.text;
 
 <style lang="stylus" scoped>
 .comment
-  padding 0.5em
-  background-color var(--bar-color)
-  border-radius 1em
-  margin 0.5em
-  position relative
-  line-height 1.5em
-  display flex
-  flex-flow row wrap
-  align-items center
+  padding: 0.5em
+  background-color: var(--bar-color)
+  border-radius: 1em
+  margin: 0.5em
+  position: relative
+  line-height: 1.5em
+  display: flex
+  flex-flow: row wrap
+  align-items: center
 
 .text
-  padding 0 0.5em
+  padding: 0 0.5em
 
 .time
-  font-size 0.8em
-  color #999
-  position absolute
-  right 0.8em
-  top 1.2em
+  font-size: 0.8em
+  color: #999
+  position: absolute
+  right: 0.8em
+  top: 1.2em
 
 form
-  display flex
-  flex 1
-  padding 0 1em
+  display: flex
+  flex: 1
+  padding: 0 1em
 
 input
-  flex 1
+  flex: 1
 </style>

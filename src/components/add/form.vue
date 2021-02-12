@@ -12,7 +12,7 @@ form.add(@submit.prevent="")
 
 <script setup >
 import { defineEmit, reactive, defineProps, ref, watchEffect } from "vue";
-import { createItem } from "../../store/item";
+import { createItem } from "store@item";
 import { onStartTyping } from "@vueuse/core";
 
 const emit = defineEmit(["search"]);
@@ -45,18 +45,18 @@ onStartTyping(() => {
 
 <style lang="stylus" scoped>
 form
-  display flex
-  align-items center
-  padding 1em
-  flex 1 1 100%
+  display: flex
+  align-items: center
+  padding: 1em
+  flex: 1 1 100%
 
 .title
-  margin 0
-  flex 1 1 auto
-  font-size 1em
-  outline none
-  border-radius 1em
-  background-color var(--bar-color)
-  color var(--text-color)
-  transition all 300ms ease-in-out
+  margin: 0
+  flex: 1 1 auto
+  font-size: 1em
+  outline: none
+  border-radius: 1em
+  background-color: var(--bar-color)
+  color: var(--text-color)
+  transition: all 300ms ease-in-out
 </style>

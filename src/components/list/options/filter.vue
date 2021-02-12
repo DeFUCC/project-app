@@ -12,7 +12,7 @@
 
 <script setup >
 import { defineComponent, defineEmit, defineProps } from "vue";
-import { user } from "../../../store/user";
+import { user } from "store@user";
 
 defineEmit(["star", "seen", "trash"]);
 
@@ -31,22 +31,22 @@ defineProps({
 
 <style lang="stylus" scoped>
 .filter
-  display flex
-  flex-flow row wrap
-  padding 0.5em
-  flex 1 1 300px
+  display: flex
+  flex-flow: row wrap
+  padding: 0.5em
+  flex: 1 1 300px
 
 .filter button
-  margin 0
-  border-radius 0
-  padding 0.5em 0.7em
+  margin: 0
+  border-radius: 0
+  padding: 0.5em 0.7em
 
 .filter button:first-child
-  border-radius 4em 0 0 4em
+  border-radius: 4em 0 0 4em
 
 .filter button:last-child
-  border-radius 0 4em 4em 0
+  border-radius: 0 4em 4em 0
 
 .iconify
-  font-size 1.4em
+  font-size: 1.4em
 </style>

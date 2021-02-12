@@ -6,8 +6,8 @@
 
 <script setup >
 import { defineProps, ref } from "vue";
-import { gun, genUuid, cutUuid, appPath } from "../../store/gun-db";
-import { isMine } from "../../store/user";
+import { gun, genUuid, cutUuid, appPath } from "store@gun-db";
+import { isMine } from "store@user";
 
 const props = defineProps({
   soul: String,
@@ -36,8 +36,8 @@ function publish() {
 
 <style lang="stylus" scoped>
 .publish
-  padding 0.5em 1em
+  padding: 0.5em 1em
 
 button
-  background-color var(--button-secondary)
+  background-color: var(--button-secondary)
 </style>

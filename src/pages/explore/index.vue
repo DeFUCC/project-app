@@ -9,7 +9,7 @@
 </template>
 
 <script setup >
-import { types } from "../../store/model";
+import { types } from "store@model";
 import { useTitle } from "@vueuse/core";
 
 useTitle("Explore");
@@ -17,8 +17,8 @@ useTitle("Explore");
 
 <style lang="stylus" scoped>
 .types
-  display flex
-  flex-flow row wrap
-  align-items stretch
-  justify-content stretch
+  display: flex
+  flex-flow: row wrap
+  align-items: stretch
+  justify-content: stretch
 </style>

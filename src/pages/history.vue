@@ -11,7 +11,7 @@ main
 </template>
 
 <script setup >
-import { history, warn, eventColors, clear } from "../store/history";
+import { history, warn, eventColors, clear } from "store@history";
 
 function getDate(time) {
   let d = new Date(time);
@@ -21,15 +21,15 @@ function getDate(time) {
 
 <style lang="stylus" scoped>
 .line
-  display flex
-  flex-flow row wrap
-  align-items center
-  margin 2px 0
+  display: flex
+  flex-flow: row wrap
+  align-items: center
+  margin: 2px 0
 
 .date
-  font-size 0.8em
-  flex 0 0 10em
+  font-size: 0.8em
+  flex: 0 0 10em
 
 .content
-  flex 4 1
+  flex: 4 1
 </style>

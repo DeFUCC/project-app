@@ -20,10 +20,10 @@
 
 <script setup >
 import { defineProps, onMounted, ref } from "vue";
-import { appPath, db, gun } from "../../store/gun-db";
-import { notify } from "../../store/history";
-import { update } from "../../store/item";
-import { user, participate } from "../../store/user";
+import { appPath, db, gun } from "store@gun-db";
+import { notify } from "store@history";
+import { update } from "store@item";
+import { user, participate } from "store@user";
 
 const props = defineProps({
   alias: String,
@@ -46,13 +46,13 @@ function updateProfile(field, content) {
 
 <style lang="stylus" scoped>
 #profile
-  padding 1em
-  display grid
-  grid-template-columns 200px 1fr
+  padding: 1em
+  display: grid
+  grid-template-columns: 200px 1fr
 
 aside div
-  margin 1em
+  margin: 1em
 
 .line
-  padding 1em
+  padding: 1em
 </style>

@@ -1,5 +1,5 @@
 import { reactive, computed, ref } from 'vue'
-import { error } from '../store/history'
+import { error } from 'store@history'
 
 //// https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue
 // to be upgraded with this code https://github.com/powerbot15/image-compressor/blob/master/image-compressor.js

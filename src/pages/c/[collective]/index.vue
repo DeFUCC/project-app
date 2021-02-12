@@ -12,7 +12,7 @@
 <script setup >
 import { computed, defineProps } from "vue";
 import { useTitle } from "@vueuse/core";
-import { model, organisations } from "../../../store/model";
+import { model, organisations } from "store@model";
 
 const props = defineProps({
   collective: String,
@@ -34,14 +34,14 @@ const types = computed(() => {
 
 <style lang="stylus" scoped>
 .collective
-  padding 1em
+  padding: 1em
 
 .title
-  padding 0.5em 1em
+  padding: 0.5em 1em
 
 .types
-  display grid
-  grid-gap 1em
-  padding 1em
-  grid-template-columns repeat(auto-fill, minmax(300px, 1fr))
+  display: grid
+  grid-gap: 1em
+  padding: 1em
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
 </style>

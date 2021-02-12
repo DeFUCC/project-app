@@ -19,8 +19,8 @@
 
 <script setup >
 import { defineProps, reactive, ref, watchEffect } from "vue";
-import { format } from "../../use/locale";
-import { gun } from "../../store/gun-db";
+import { format } from "use@locale";
+import { gun } from "store@gun-db";
 
 const props = defineProps({
   id: String,
@@ -65,33 +65,33 @@ watchEffect(() => {
 
 <style lang="stylus" scoped>
 .logs
-  padding 1em 0
-  display flex
-  flex-flow column nowrap
-  font-size 0.9em
+  padding: 1em 0
+  display: flex
+  flex-flow: column nowrap
+  font-size: 0.9em
 
 .log-panel
-  padding 0.5em
-  display flex
-  align-items center
-  flex 1 0 2em
+  padding: 0.5em
+  display: flex
+  align-items: center
+  flex: 1 0 2em
 
 .log
-  display flex
-  flex 1 0 3em
+  display: flex
+  flex: 1 0 3em
 
 .log div
-  padding 4px
+  padding: 4px
 
 .undefined
-  opacity 0.2
+  opacity: 0.2
 
 .created
-  background-color hsla(0, 0%, 30%, 0.4)
+  background-color: hsla(0, 0%, 30%, 0.4)
 
 .edited
-  opacity 0.5
+  opacity: 0.5
 
 .updated
-  background-color rgba(157, 180, 147, 0.4)
+  background-color: rgba(157, 180, 147, 0.4)
 </style>

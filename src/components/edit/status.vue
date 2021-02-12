@@ -17,8 +17,8 @@
 
 <script setup >
 import { defineProps, reactive, ref } from "vue";
-import { gun } from "../../store/gun-db";
-import { statuses } from "../../store/model";
+import { gun } from "store@gun-db";
+import { statuses } from "store@model";
 
 const props = defineProps({
   id: String,
@@ -41,33 +41,33 @@ function setStatus(st) {
 
 <style lang="stylus" scoped>
 .state
-  display flex
-  flex-flow row wrap
-  align-items center
-  margin 0 8px
-  position relative
+  display: flex
+  flex-flow: row wrap
+  align-items: center
+  margin: 0 8px
+  position: relative
 
 .status
-  display flex
-  align-items center
-  padding 0px 8px
-  border-radius 4px
-  font-size 1em
-  width min-content
-  white-space nowrap
-  cursor pointer
-  color #333
+  display: flex
+  align-items: center
+  padding: 0px 8px
+  border-radius: 4px
+  font-size: 1em
+  width: min-content
+  white-space: nowrap
+  cursor: pointer
+  color: #333
 
 .status span
-  padding 0 0 0 0.3em
+  padding: 0 0 0 0.3em
 
 .choose
-  position absolute
-  top 0
-  z-index 40
-  border-radius 8px
-  background-color hsla(0, 0%, 100%, 0.8)
+  position: absolute
+  top: 0
+  z-index: 40
+  border-radius: 8px
+  background-color: hsla(0, 0%, 100%, 0.8)
 
 .choose .status
-  margin 4px
+  margin: 4px
 </style>

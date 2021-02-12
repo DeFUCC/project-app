@@ -56,9 +56,9 @@
 <script setup >
 import { useIntersectionObserver } from "@vueuse/core";
 import { defineEmit, ref, watchEffect, defineProps, reactive } from "vue";
-import { isMine, user } from "../../store/user";
-import { gun, soul, db, appPath } from "../../store/gun-db";
-import { useSorter } from "../../use/sorter";
+import { isMine, user } from "store@user";
+import { gun, soul, db, appPath } from "store@gun-db";
+import { useSorter } from "use@sorter";
 
 const emit = defineEmit(["open"]);
 const props = defineProps({
@@ -194,60 +194,60 @@ useIntersectionObserver(more, ([{ isIntersecting }]) => {
 
 <style lang="stylus" scoped>
 .holder
-  display flex
-  flex-flow row wrap
+  display: flex
+  flex-flow: row wrap
 
 .item-list
-  grid-area list
-  display flex
-  flex 1 1 320px
-  align-items stretch
-  flex-flow row wrap
-  padding 0
-  margin 0
-  min-height max-content
+  grid-area: list
+  display: flex
+  flex: 1 1 320px
+  align-items: stretch
+  flex-flow: row wrap
+  padding: 0
+  margin: 0
+  min-height: max-content
 
 .tag
-  font-size 0.8em
-  display block
-  color var(--text-light)
-  white-space nowrap
+  font-size: 0.8em
+  display: block
+  color: var(--text-light)
+  white-space: nowrap
 
 .link
-  opacity 0.8
-  border 4px solid #333
+  opacity: 0.8
+  border: 4px solid #333
 
 .link .overlay
-  position absolute
-  top 0
-  left 0
-  width 100%
-  height 100%
-  display flex
-  align-items center
-  justify-content center
-  background-color hsla(0, 0%, 100%, 0.2)
-  animation blink 1200ms ease infinite
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: hsla(0, 0%, 100%, 0.2)
+  animation: blink 1200ms ease infinite
 
 .link .overlay button
-  font-size 3em
-  padding 12px
-  margin 12px
+  font-size: 3em
+  padding: 12px
+  margin: 12px
 
 .more
-  cursor pointer
-  flex 1 1 100%
-  opacity 0.6
-  transition all 300ms ease
-  display flex
-  align-items center
-  padding 3em
-  justify-content center
-  background-color var(--button-secondary)
+  cursor: pointer
+  flex: 1 1 100%
+  opacity: 0.6
+  transition: all 300ms ease
+  display: flex
+  align-items: center
+  padding: 3em
+  justify-content: center
+  background-color: var(--button-secondary)
 
 .more:hover
-  opacity 1
+  opacity: 1
 
 .more:active
-  opacity 0.4
+  opacity: 0.4
 </style>

@@ -19,7 +19,7 @@ article
 import { useTitle } from "@vueuse/core";
 import { reactive, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { gun, appPath } from "../../store/gun-db";
+import { gun, appPath } from "store@gun-db";
 
 const route = useRoute();
 const router = useRouter();
@@ -58,6 +58,6 @@ function open(val) {
 
 <style lang="stylus" scoped>
 .row
-  display grid
-  grid-template-columns 120px 1fr
+  display: grid
+  grid-template-columns: 120px 1fr
 </style>

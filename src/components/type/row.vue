@@ -11,7 +11,7 @@
 
 <script setup >
 import { defineEmit, defineProps } from "vue";
-import { types } from "../../store/model";
+import { types } from "store@model";
 
 const emit = defineEmit(["choose"]);
 
@@ -22,18 +22,18 @@ const props = defineProps({
 
 <style lang="stylus" scoped>
 .types
-  display flex
-  overflow-x scroll
+  display: flex
+  overflow-x: scroll
 
 .type
-  font-size 1.5em
-  opacity 0.2
-  transition all 300ms ease
-  cursor pointer
+  font-size: 1.5em
+  opacity: 0.2
+  transition: all 300ms ease
+  cursor: pointer
 
 .type:hover
-  opacity 1
+  opacity: 1
 
 .type.active
-  opacity 0.8
+  opacity: 0.8
 </style>

@@ -4,7 +4,7 @@ img.type-icon(:src="`/svg/${path}/${type}.svg`", alt="")
 
 <script setup >
 import { defineProps } from "vue";
-import { model } from "../../store/model";
+import { model } from "store@model";
 
 defineProps({
   type: {
@@ -20,7 +20,7 @@ defineProps({
 
 <style lang="stylus" scoped>
 .type-icon
-  width 2em
-  height 2em
-  color #999
+  width: 2em
+  height: 2em
+  color: #999
 </style>

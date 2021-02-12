@@ -5,6 +5,7 @@ import PurgeIcons from 'vite-plugin-purge-icons'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
+import alias from '@rollup/plugin-alias'
 
 const moduleExclude = (match) => {
   const m = (id) => id.indexOf(match) > -1
@@ -61,6 +62,12 @@ export default {
           },
         ],
       },
+    }),
+    alias({
+      entries: [
+        { find: /^store\@(.*)/, replacement: '/src/store/$1.js' },
+        { find: /^use\@(.*)/, replacement: '/src/use/$1.js' },
+      ],
     }),
     vue(),
     Voie({

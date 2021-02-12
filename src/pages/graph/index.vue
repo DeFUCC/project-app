@@ -21,8 +21,8 @@ article
 
 <script setup >
 import { onBeforeUnmount, reactive, ref } from "vue";
-import { gun } from "../../store/gun-db";
-import { itemColor } from "../../use/colors";
+import { gun } from "store@gun-db";
+import { itemColor } from "use@colors";
 
 const graph = ref({});
 
@@ -37,19 +37,19 @@ onBeforeUnmount(() => {
 
 <style lang="stylus" scoped>
 .record
-  font-size 12px
-  border 1px solid #aaa
-  cursor pointer
+  font-size: 12px
+  border: 1px solid #aaa
+  cursor: pointer
 
 .prop
-  padding 0.5em
+  padding: 0.5em
 
 .key
-  display flex
+  display: flex
 
 .user
-  padding 0 1em
+  padding: 0 1em
 
 .title
-  font-weight bold
+  font-weight: bold
 </style>

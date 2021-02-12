@@ -13,9 +13,9 @@ form(@submit.prevent="addGift()")
 
 <script setup >
 import { defineEmit, ref, defineProps } from "vue";
-import { gun, sea } from "../../store/gun-db";
-import { user } from "../../store/user";
-import { itemColor } from "../../use/colors";
+import { gun, sea } from "store@gun-db";
+import { user } from "store@user";
+import { itemColor } from "use@colors";
 const emit = defineEmit(["send"]);
 
 const props = defineProps({
@@ -44,12 +44,12 @@ async function addGift() {
 
 <style lang="stylus" scoped>
 form
-  padding 1em
+  padding: 1em
 
 .row
-  display flex
-  align-items center
+  display: flex
+  align-items: center
 
 .row > div
-  padding 1em
+  padding: 1em
 </style>

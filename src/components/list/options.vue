@@ -75,7 +75,7 @@ aside
 <script setup >
 import { useStorage } from "@vueuse/core";
 import { defineEmit, reactive, defineProps, ref } from "vue";
-import { user } from "../../store/user";
+import { user } from "store@user";
 
 const props = defineProps({
   open: Boolean,
@@ -107,68 +107,68 @@ const status = ref(true);
 </script>
 
 <style lang="stylus" scoped>
-@media screen and (max-width 610px)
+@media screen and (max-width: 610px)
   aside
-    position static !important
+    position: static !important
 
 .title
-  display flex
-  flex-flow row wrap
-  align-items center
-  flex 1 1 100%
-  padding 0 0.5em
-  background-color var(--background)
-  border-bottom 1px solid var(--text-color)
+  display: flex
+  flex-flow: row wrap
+  align-items: center
+  flex: 1 1 100%
+  padding: 0 0.5em
+  background-color: var(--background)
+  border-bottom: 1px solid var(--text-color)
 
 .title button
-  font-size 16px
+  font-size: 16px
 
 .title h3
-  font-size 1em
+  font-size: 1em
 
 aside
-  display flex
-  flex 1 1 100%
-  position sticky
-  align-self start
-  z-index 20
-  top 0
-  min-height 3em
-  flex-flow row wrap
-  align-items center
-  justify-content flex-start
-  margin 0.5em
+  display: flex
+  flex: 1 1 100%
+  position: sticky
+  align-self: start
+  z-index: 20
+  top: 0
+  min-height: 3em
+  flex-flow: row wrap
+  align-items: center
+  justify-content: flex-start
+  margin: 0.5em
 
 aside.wide
-  flex 1 0 200px
+  flex: 1 0 200px
 
 .tools > div
-  flex 1 1 200px
-  margin 1em 0
+  flex: 1 1 200px
+  margin: 1em 0
 
 .tools .title
-  display flex
-  align-items center
-  flex 1 1 100%
-  margin 0
+  display: flex
+  align-items: center
+  flex: 1 1 100%
+  margin: 0
 
 .count
-  font-weight bold
-  padding 0.25em 0.5em
-  margin 0 0.5em
-  background-color var(--button-secondary)
-  border-radius 2em
+  font-weight: bold
+  padding: 0.25em 0.5em
+  margin: 0 0.5em
+  background-color: var(--button-secondary)
+  border-radius: 2em
 
 .link.active
-  animation blink 1200ms ease infinite
+  animation: blink 1200ms ease infinite
 
 .buttons
-  display flex
-  flex-flow row wrap
+  display: flex
+  flex-flow: row wrap
 
 .filters
-  display flex
-  flex-flow row wrap
-  width 100%
-  background-color var(--background-transparent)
+  display: flex
+  flex-flow: row wrap
+  width: 100%
+  background-color: var(--background-transparent)
 </style>

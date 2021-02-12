@@ -26,10 +26,10 @@ section.comments(:class="{ open }")
 
 <script setup >
 import { computed, defineProps, reactive, ref } from "vue";
-import { appPath, db, gun, soul } from "../../store/gun-db";
-import { error } from "../../store/history";
-import { user } from "../../store/user";
-import { format } from "../../use/locale";
+import { appPath, db, gun, soul } from "store@gun-db";
+import { error } from "store@history";
+import { user } from "store@user";
+import { format } from "use@locale";
 
 const props = defineProps({
   id: String,
@@ -101,55 +101,55 @@ function addComment() {
 
 <style lang="stylus" scoped>
 .comments
-  font-size 0.8em
+  font-size: 0.8em
 
 .row
-  position sticky
-  cursor pointer
-  top 0
-  font-size 1.2em
-  padding 1em
-  background-color var(--background)
-  border-bottom 1px solid var(--border-color)
-  font-weight bold
-  z-index 30
+  position: sticky
+  cursor: pointer
+  top: 0
+  font-size: 1.2em
+  padding: 1em
+  background-color: var(--background)
+  border-bottom: 1px solid var(--border-color)
+  font-weight: bold
+  z-index: 30
 
 main, .buttons
-  display flex
-  flex-flow column nowrap
-  align-items stretch
+  display: flex
+  flex-flow: column nowrap
+  align-items: stretch
 
 form
-  padding 0 1em
+  padding: 0 1em
 
 form, header
-  display flex
-  align-items center
+  display: flex
+  align-items: center
 
 form input
-  flex 1 1 320px
-  padding 1em
-  border-radius 1em
-  outline none
-  box-shadow none
-  border none
-  margin 0 0.5em 0 1em
-  background-color var(--bar-color)
+  flex: 1 1 320px
+  padding: 1em
+  border-radius: 1em
+  outline: none
+  box-shadow: none
+  border: none
+  margin: 0 0.5em 0 1em
+  background-color: var(--bar-color)
 
 .counter
-  padding 0 0.5em
+  padding: 0 0.5em
 
 .chevron
-  transition all 300ms ease-out
-  padding 0.5em
+  transition: all 300ms ease-out
+  padding: 0.5em
 
 .open .chevron
-  transform rotateZ(180deg)
+  transform: rotateZ(180deg)
 
 .send
-  font-size 2em
-  border none
-  padding 0.5em
-  margin 0 0 -6px 0
-  background-color transparent
+  font-size: 2em
+  border: none
+  padding: 0.5em
+  margin: 0 0 -6px 0
+  background-color: transparent
 </style>

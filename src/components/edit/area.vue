@@ -8,7 +8,7 @@
 
 <script setup >
 import { defineProps, reactive, ref } from "vue";
-import { db, gun } from "../../store/gun-db";
+import { db, gun } from "store@gun-db";
 
 const props = defineProps({
   id: String,

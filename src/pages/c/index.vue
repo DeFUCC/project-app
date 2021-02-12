@@ -16,7 +16,7 @@ main#main
 </template>
 
 <script setup >
-import { organisations, types } from "../../store/model";
+import { organisations, types } from "store@model";
 import { useTitle } from "@vueuse/core";
 import { ref } from "vue";
 
@@ -27,14 +27,14 @@ const customOrg = ref("");
 
 <style lang="stylus" scoped>
 .title
-  padding 0.5em 1em
+  padding: 0.5em 1em
 
 .types
-  display grid
-  grid-gap 1em
-  padding 1em
-  grid-template-columns repeat(auto-fill, minmax(200px, 1fr))
-  margin-bottom 2em
-  padding-bottom 2em
-  border-bottom 1px solid #333
+  display: grid
+  grid-gap: 1em
+  padding: 1em
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+  margin-bottom: 2em
+  padding-bottom: 2em
+  border-bottom: 1px solid #333
 </style>

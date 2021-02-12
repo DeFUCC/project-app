@@ -10,7 +10,7 @@
 
 <script setup >
 import { ref, defineProps, computed } from "vue";
-import { statuses } from "../../../store/model";
+import { statuses } from "store@model";
 
 const props = defineProps({
   status: Object,
@@ -30,19 +30,19 @@ const current = computed(() => {
 
 <style lang="stylus" scoped>
 .statuses
-  display flex
-  flex-flow row wrap
-  padding 0.5em
-  flex 1 1 300px
+  display: flex
+  flex-flow: row wrap
+  padding: 0.5em
+  flex: 1 1 300px
 
 .status
-  cursor pointer
-  margin 0.25em
-  padding 0.125em 0.5em
-  border-radius 6px
-  opacity 0.5
-  transition all 100ms ease-in-out
+  cursor: pointer
+  margin: 0.25em
+  padding: 0.125em 0.5em
+  border-radius: 6px
+  opacity: 0.5
+  transition: all 100ms ease-in-out
 
 .status.active
-  opacity 1
+  opacity: 1
 </style>

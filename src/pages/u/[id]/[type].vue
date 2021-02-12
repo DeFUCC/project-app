@@ -15,9 +15,9 @@
 <script setup >
 import { computed, defineProps, ref } from "vue";
 
-import { appPath, db } from "../../../store/gun-db";
-import { model, types } from "../../../store/model";
-import { user } from "../../../store/user";
+import { appPath, db } from "store@gun-db";
+import { model, types } from "store@model";
+import { user } from "store@user";
 
 const props = defineProps({
   type: String,

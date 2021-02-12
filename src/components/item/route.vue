@@ -12,8 +12,8 @@
 
 <script setup >
 import { defineEmit, reactive, defineProps, watchEffect, computed } from "vue";
-import { cutUuid, gun, soul } from "../../store/gun-db";
-import { itemColor } from "../../use/colors";
+import { cutUuid, gun, soul } from "store@gun-db";
+import { itemColor } from "use@colors";
 
 const props = defineProps({
   id: String,
@@ -44,26 +44,26 @@ watchEffect(async () => {
 
 <style lang="stylus" scoped>
 .route
-  display flex
-  flex-flow row wrap
-  flex 1 1 100%
-  align-items flex-start
-  font-size 0.9em
-  line-height 1.4em
+  display: flex
+  flex-flow: row wrap
+  flex: 1 1 100%
+  align-items: flex-start
+  font-size: 0.9em
+  line-height: 1.4em
 
 .path
-  display flex
-  align-items center
-  flex 1 1 auto
-  align-self flex-start
-  padding 0.1em 0.5em
-  overflow hidden
-  cursor pointer
-  transition all 300ms ease
+  display: flex
+  align-items: center
+  flex: 1 1 auto
+  align-self: flex-start
+  padding: 0.1em 0.5em
+  overflow: hidden
+  cursor: pointer
+  transition: all 300ms ease
 
 .path:hover .title
-  min-width max-content
+  min-width: max-content
 
 .title
-  transition all 300ms ease-in-out
+  transition: all 300ms ease-in-out
 </style>

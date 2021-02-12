@@ -71,11 +71,11 @@ import {
   defineEmit,
   onMounted,
 } from "vue";
-import { isEditable, update } from "../../store/item";
-import { model, organisations } from "../../store/model";
-import { user } from "../../store/user";
-import { itemColor } from "../../use/colors";
-import { appPath, gun } from "../../store/gun-db";
+import { isEditable, update } from "store@item";
+import { model, organisations } from "store@model";
+import { user } from "store@user";
+import { itemColor } from "use@colors";
+import { appPath, gun } from "store@gun-db";
 import { useTitle } from "@vueuse/core";
 
 const props = defineProps({
@@ -141,74 +141,74 @@ watchEffect(() => {
 
 <style lang="stylus" scoped>
 .page
-  display grid
-  grid-template-columns 1fr
-  grid-template-areas 'info' 'list' 'aside'
+  display: grid
+  grid-template-columns: 1fr
+  grid-template-areas: 'info' 'list' 'aside'
 
-@media screen and (min-width 750px)
+@media screen and (min-width: 750px)
   .page
-    grid-template-columns minmax(320px, 2fr) 3fr
-    grid-template-areas 'info list' 'aside list'
+    grid-template-columns: minmax(320px, 2fr) 3fr
+    grid-template-areas: 'info list' 'aside list'
 
-@media screen and (min-width 1260px)
+@media screen and (min-width: 1260px)
   .page
-    grid-template-columns minmax(320px, 2fr) 3fr 1fr
-    grid-template-areas 'info list aside'
+    grid-template-columns: minmax(320px, 2fr) 3fr 1fr
+    grid-template-areas: 'info list aside'
 
 .content
-  padding 0.5em
+  padding: 0.5em
 
 .content .main
-  display flex
-  align-items center
-  position sticky
-  top 0
-  background-color var(--background)
-  z-index 30
-  padding 0 0.5em
-  margin-bottom 1em
-  border-bottom 1px solid var(--border-color)
+  display: flex
+  align-items: center
+  position: sticky
+  top: 0
+  background-color: var(--background)
+  z-index: 30
+  padding: 0 0.5em
+  margin-bottom: 1em
+  border-bottom: 1px solid var(--border-color)
 
 .details
-  padding 0 1em
+  padding: 0 1em
 
 aside
-  grid-area aside
-  margin 1em
+  grid-area: aside
+  margin: 1em
 
 .lists
-  margin 1em
-  grid-area list
+  margin: 1em
+  grid-area: list
 
 .statuses
-  display flex
-  margin 1em 0
-  flex-flow row wrap
-  align-items center
+  display: flex
+  margin: 1em 0
+  flex-flow: row wrap
+  align-items: center
 
 .data
-  font-size 0.75em
-  display flex
-  flex-flow row wrap
-  align-items center
+  font-size: 0.75em
+  display: flex
+  flex-flow: row wrap
+  align-items: center
 
 .pill
-  margin 4px
-  padding 0 8px 0 4px
+  margin: 4px
+  padding: 0 8px 0 4px
 
 .link
-  font-size 1.4em
+  font-size: 1.4em
 
 .info
-  display flex
-  align-items flex-start
-  flex-flow column nowrap
-  padding 4px
-  flex 1 1 360px
+  display: flex
+  align-items: flex-start
+  flex-flow: column nowrap
+  padding: 4px
+  flex: 1 1 360px
 
 .dates
-  display flex
+  display: flex
 
 .pad
-  padding 0.5em 0
+  padding: 0.5em 0
 </style>

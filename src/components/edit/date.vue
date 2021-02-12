@@ -22,7 +22,7 @@
 
 <script setup >
 import { computed, defineProps, ref } from "vue";
-import { gun } from "../../store/gun-db";
+import { gun } from "store@gun-db";
 
 const props = defineProps({
   id: String,
@@ -58,20 +58,20 @@ dateGun.on((t) => {
 
 <style lang="stylus" scoped>
 .row
-  flex 1 1 50%
-  display flex
-  flex-flow column
+  flex: 1 1 50%
+  display: flex
+  flex-flow: column
 
 .type
-  font-size 0.8em
-  padding 0.5em 0
-  color var(--text-light)
+  font-size: 0.8em
+  padding: 0.5em 0
+  color: var(--text-light)
 
 .date
-  display flex
-  flex-flow row wrap
-  align-items center
+  display: flex
+  flex-flow: row wrap
+  align-items: center
 
 form
-  margin 0 0.5em
+  margin: 0 0.5em
 </style>

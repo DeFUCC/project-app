@@ -8,8 +8,8 @@
 </template>
 
 <script >
-import { gun } from "../../store/gun-db";
-import { itemColor } from "../../use/colors";
+import { gun } from "store@gun-db";
+import { itemColor } from "use@colors";
 export default {
   props: ["id"],
   async setup(props) {
@@ -24,10 +24,10 @@ export default {
 
 <style lang="stylus" scoped>
 .row
-  padding 1em
-  display flex
-  align-items center
+  padding: 1em
+  display: flex
+  align-items: center
 
 .link
-  padding 0 1em
+  padding: 0 1em
 </style>

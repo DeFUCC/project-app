@@ -6,7 +6,7 @@
 
 <script setup >
 import { reactive, computed, defineProps } from "vue";
-import { gun, db, appPath } from "../../store/gun-db";
+import { gun, db, appPath } from "store@gun-db";
 
 const props = defineProps({
   id: String,
@@ -40,7 +40,7 @@ const count = computed(() => {
 
 <style lang="stylus" scoped>
 .counter
-  padding 0 0.7em
-  display flex
-  align-items center
+  padding: 0 0.7em
+  display: flex
+  align-items: center
 </style>

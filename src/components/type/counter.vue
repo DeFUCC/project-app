@@ -10,7 +10,7 @@
 
 <script setup >
 import { computed, defineProps, ref, watchEffect } from "vue";
-import { appPath, gun } from "../../store/gun-db";
+import { appPath, gun } from "store@gun-db";
 
 const props = defineProps({
   type: String,
@@ -42,47 +42,47 @@ const count = computed(() => {
 
 <style lang="stylus" scoped>
 .title
-  font-size 1.2em
-  font-weight bold
+  font-size: 1.2em
+  font-weight: bold
 
 .def
-  padding 0.5em 0
+  padding: 0.5em 0
 
 .head
-  padding 0.5em
+  padding: 0.5em
 
 header
-  display flex
-  flex 1
-  width 100%
+  display: flex
+  flex: 1
+  width: 100%
 
 section
-  padding 0.5em
+  padding: 0.5em
 
 .type
-  font-size 1em
-  opacity 0.8
-  cursor pointer
-  transition all 300ms ease
-  display flex
-  flex-flow column nowrap
-  align-items flex-start
-  background-color var(--top-bar)
-  padding 1em
+  font-size: 1em
+  opacity: 0.8
+  cursor: pointer
+  transition: all 300ms ease
+  display: flex
+  flex-flow: column nowrap
+  align-items: flex-start
+  background-color: var(--top-bar)
+  padding: 1em
 
 .type img
-  font-size 1.4em
-  height 2em
+  font-size: 1.4em
+  height: 2em
 
 .type .count
-  padding 8px
-  font-size 1em
-  white-space nowrap
-  font-weight bold
+  padding: 8px
+  font-size: 1em
+  white-space: nowrap
+  font-weight: bold
 
 .type:hover
-  opacity 1
+  opacity: 1
 
 .type.active
-  opacity 0.85
+  opacity: 0.85
 </style>

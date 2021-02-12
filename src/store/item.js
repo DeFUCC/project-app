@@ -1,10 +1,8 @@
 import { user } from './user'
 import { computed, watchEffect, reactive } from 'vue'
-import { gun, db, sea, genUuid, soul, appPath } from './gun-db'
-import { generateWords } from '../use/randomWords'
+import { gun, db, sea, genUuid, soul, appPath } from 'store@gun-db'
+import { generateWords } from 'use@randomWords'
 import { error, notify } from './history'
-
-
 
 export function generateItem(type, data, parent) {
   const item = {

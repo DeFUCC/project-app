@@ -11,27 +11,27 @@ section.notification
 </template>
 
 <script setup >
-import { unseen, eventColors } from "../../store/history";
+import { unseen, eventColors } from "store@history";
 </script>
 
 <style lang="stylus" scoped>
 .notification
-  position fixed
-  bottom 2em
-  left 130px
-  z-index 50
+  position: fixed
+  bottom: 2em
+  left: 130px
+  z-index: 50
 
 .message
-  font-size 0.7em
-  padding 0.5em
-  background-color #eee
-  display flex
-  flex-flow row
+  font-size: 0.7em
+  padding: 0.5em
+  background-color: #eee
+  display: flex
+  flex-flow: row
 
 .more
-  padding 0 0.4em
-  text-decoration none
+  padding: 0 0.4em
+  text-decoration: none
 
 .content:first-letter
-  text-transform capitalize
+  text-transform: capitalize
 </style>

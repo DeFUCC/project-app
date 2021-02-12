@@ -10,8 +10,8 @@
 
 <script setup >
 import { computed, defineProps, ref } from "vue";
-import { gun } from "../../store/gun-db";
-import { model } from "../../store/model";
+import { gun } from "store@gun-db";
+import { model } from "store@model";
 
 const props = defineProps({
   id: String,
@@ -30,10 +30,10 @@ const childTypes = computed(() => {
 
 <style lang="stylus" scoped>
 .counters
-  flex 1 1 100%
-  margin 0
-  display flex
-  justify-content stretch
-  align-items stretch
-  flex-flow row wrap
+  flex: 1 1 100%
+  margin: 0
+  display: flex
+  justify-content: stretch
+  align-items: stretch
+  flex-flow: row wrap
 </style>

@@ -8,8 +8,8 @@
 
 <script setup >
 import { defineComponent, defineProps } from "vue";
-import { getState } from "../../store/gun-db";
-import { format } from "../../use/locale";
+import { getState } from "store@gun-db";
+import { format } from "use@locale";
 
 defineProps({
   item: Object,

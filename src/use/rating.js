@@ -1,7 +1,7 @@
-import { appPath, isNode } from '../store/gun-db'
+import { appPath, isNode } from 'store@gun-db'
 import { reactive, computed, ref } from 'vue'
-import { db, gun, soul } from '../store/gun-db'
-import { user } from '../store/user'
+import { db, gun, soul } from 'store@gun-db'
+import { user } from 'store@user'
 
 const types = ['star', 'seen', 'trash']
 

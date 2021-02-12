@@ -25,7 +25,7 @@ section.team
 
 <script setup >
 import { defineProps, reactive, ref, watchEffect } from "vue";
-import { db, gun, sea } from "../../store/gun-db";
+import { db, gun, sea } from "store@gun-db";
 
 const props = defineProps({
   id: String,
@@ -77,5 +77,5 @@ function removeMember(pub) {
 
 <style lang="stylus" scoped>
 .team
-  padding 1em
+  padding: 1em
 </style>

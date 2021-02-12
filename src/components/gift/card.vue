@@ -13,8 +13,8 @@
 
 <script setup >
 import { defineProps } from "vue";
-import { itemColor } from "../../use/colors";
-import { format } from "../../use/locale";
+import { itemColor } from "use@colors";
+import { format } from "use@locale";
 const props = defineProps({
   gift: Object,
   hash: String,
@@ -23,14 +23,14 @@ const props = defineProps({
 
 <style lang="stylus" scoped>
 .gift
-  padding 0.5em
-  display flex
-  align-items center
+  padding: 0.5em
+  display: flex
+  align-items: center
 
 .gift div
-  padding 0.5em
+  padding: 0.5em
 
 .parties
-  display flex
-  flex-flow row wrap
+  display: flex
+  flex-flow: row wrap
 </style>

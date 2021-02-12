@@ -16,7 +16,7 @@ section
 
 <script setup >
 import { defineProps } from "vue";
-import { model } from "../../store/model";
+import { model } from "store@model";
 const props = defineProps({
   type: String,
 });
@@ -25,22 +25,22 @@ const types = Object.keys(model);
 
 <style lang="stylus" scoped>
 main
-  overflow-x hidden
+  overflow-x: hidden
 
 .types
-  display flex
-  padding 1em
+  display: flex
+  padding: 1em
 
 .type
-  font-size 1.5em
-  opacity 0.2
-  transition all 300ms ease
-  cursor pointer
-  padding 4px
+  font-size: 1.5em
+  opacity: 0.2
+  transition: all 300ms ease
+  cursor: pointer
+  padding: 4px
 
 .type:hover
-  opacity 1
+  opacity: 1
 
 .type.active
-  opacity 0.8
+  opacity: 0.8
 </style>

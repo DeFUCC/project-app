@@ -12,7 +12,7 @@ list-items(
 <script setup >
 import { defineProps } from "vue";
 import { useTitle } from "@vueuse/core";
-import { appPath } from "../../../store/gun-db";
+import { appPath } from "store@gun-db";
 
 const props = defineProps({
   type: String,

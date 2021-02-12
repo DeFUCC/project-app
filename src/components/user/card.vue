@@ -13,8 +13,8 @@ router-link.card(
 <script setup >
 import { asyncComputed } from "@vueuse/core";
 import { computed, defineProps, reactive } from "vue";
-import { appPath, db, getShortHash, sea } from "../../store/gun-db";
-import { itemColor, pubGradient } from "../../use/colors";
+import { appPath, db, getShortHash, sea } from "store@gun-db";
+import { itemColor, pubGradient } from "use@colors";
 
 const props = defineProps({
   profile: Object,
@@ -29,12 +29,12 @@ function remove(id) {
 
 <style lang="stylus" scoped>
 .card
-  padding 1em
-  margin 0.5em 0
-  display flex
-  align-items center
-  background-color #eee
+  padding: 1em
+  margin: 0.5em 0
+  display: flex
+  align-items: center
+  background-color: #eee
 
 .profile
-  margin 1em
+  margin: 1em
 </style>

@@ -10,7 +10,7 @@
 
 <script setup >
 import { computed, reactive, ref } from "vue";
-import { db } from "../../store/gun-db";
+import { db } from "store@gun-db";
 
 const users = ref({});
 
@@ -24,8 +24,8 @@ db.get("user")
 
 <style lang="stylus" scoped>
 .users
-  padding 0 1em
+  padding: 0 1em
 
 .card
-  padding 2em
+  padding: 2em
 </style>

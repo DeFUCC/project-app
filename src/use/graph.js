@@ -1,6 +1,6 @@
 import { watchEffect, reactive } from 'vue'
-import { db, gun, soul } from '../store/gun-db'
-import { types } from '../store/model'
+import { db, gun, soul } from 'store@gun-db'
+import { types } from 'store@model'
 
 export function useGraph() {
   const nodes = reactive([])

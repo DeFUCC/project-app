@@ -12,7 +12,7 @@ article
 
 <script>
 import { computed, reactive, ref, watchEffect } from "vue";
-import { user } from "../../store/user";
+import { user } from "store@user";
 
 export default {
   setup(props) {

@@ -24,7 +24,7 @@ main.auth
 
 <script setup >
 import { ref, watch } from "vue";
-import { user, findUser, authUser, createUser } from "../store/user";
+import { user, findUser, authUser, createUser } from "store@user";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -48,12 +48,12 @@ watch(alias, (name) => {
 
 <style lang="stylus" scoped>
 .auth
-  padding 1em
+  padding: 1em
 
 #auth
-  display flex
-  flex-flow column
+  display: flex
+  flex-flow: column
 
 button
-  margin 1em
+  margin: 1em
 </style>

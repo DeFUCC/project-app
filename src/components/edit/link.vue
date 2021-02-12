@@ -23,7 +23,7 @@
 
 <script setup >
 import { defineEmit, ref, defineProps } from "vue";
-import { error } from "../../store/history";
+import { error } from "store@history";
 
 const emit = defineEmit({
   update: (link) => (link ? true : false),
@@ -47,28 +47,28 @@ function update() {
 
 <style lang="stylus" scoped>
 .title
-  font-size 0.8em
-  white-space nowrap
-  color var(--text-light)
+  font-size: 0.8em
+  white-space: nowrap
+  color: var(--text-light)
 
 .url
-  width 100%
-  display flex
-  align-items center
-  font-size 1em
+  width: 100%
+  display: flex
+  align-items: center
+  font-size: 1em
 
 .link
-  white-space nowrap
-  overflow hidden
-  margin 0 0.5em
+  white-space: nowrap
+  overflow: hidden
+  margin: 0 0.5em
 
 input
-  width 80%
+  width: 80%
 
 .title h2
-  margin 0.5em 0
+  margin: 0.5em 0
 
 .edit
-  font-size 16px
-  padding 6px
+  font-size: 16px
+  padding: 6px
 </style>

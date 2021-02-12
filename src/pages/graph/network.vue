@@ -19,11 +19,11 @@ article(ref="graph")
 
 <script >
 import { defineComponent, ref, reactive, watchEffect } from "vue";
-import { itemColor } from "../../use/colors";
-import { useGraph } from "../../use/graph";
+import { itemColor } from "use@colors";
+import { useGraph } from "use@graph";
 import { throttledWatch, useResizeObserver } from "@vueuse/core";
-import { db, gun, soul } from "../../store/gun-db";
-import { types } from "../../store/model";
+import { db, gun, soul } from "store@gun-db";
+import { types } from "store@model";
 
 export default defineComponent({
   setup() {
@@ -112,23 +112,23 @@ export default defineComponent({
 
 <style lang="stylus" scoped>
 .node
-  padding 0.5em
-  border-radius 2em
+  padding: 0.5em
+  border-radius: 2em
 
 .link, .node
-  display flex
-  align-items center
+  display: flex
+  align-items: center
 
 .link div
-  padding 1em
+  padding: 1em
 
 .link div:first-child
-  border-radius 1em 0 0 1em
+  border-radius: 1em 0 0 1em
 
 .link div:last-child
-  border-radius 0 1em 1em 0
+  border-radius: 0 1em 1em 0
 
 .links, .nodes
-  display flex
-  flex-flow row wrap
+  display: flex
+  flex-flow: row wrap
 </style>
