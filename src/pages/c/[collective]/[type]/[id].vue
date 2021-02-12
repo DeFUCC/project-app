@@ -11,8 +11,8 @@ page-container(
 
 <script setup >
 import { defineProps, ref, watchEffect } from "vue";
-import { db, gun, soul } from "../store@gun-db";
-import { itemColor } from "../use@colors";
+import { db, gun, soul } from "store@gun-db";
+import { itemColor } from "use@colors";
 
 const props = defineProps({
   type: String,
