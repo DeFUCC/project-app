@@ -2,7 +2,7 @@
 main.page
   header.bar(:style="{ background: pubGradient(user.is?.pub, -90) }")
     user-avatar(:pic="user?.profile?.icon", size="medium")
-    router-link.title(to="/my") {{ user.is?.alias }}
+    router-link.title(to="/my") {{ user?.profile?.title }}
     router-link(to="/my/profile") Profile
     router-link(to="/my/stars") Stars
     .spacer

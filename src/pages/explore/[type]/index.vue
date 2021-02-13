@@ -18,10 +18,6 @@ const props = defineProps({
   type: String,
 });
 useTitle(`Explore ${props.type}`);
-
-function explore(ev) {
-  console.log(ev);
-}
 </script>
 
 <style lang="stylus" scoped></style>

@@ -31,20 +31,21 @@
     "markdown-it-task-lists": "^2.1.1",
     "qrcode": "^1.4.4",
     "vue": "^3.0.5",
-    "vue-i18n": "^9.0.0-rc.5",
-    "vue-router": "^4.0.3"
+    "vue-i18n": "^9.0.0-rc.6",
+    "vue-router": "^4.0.3",
+    "vue3-qr-reader": "^0.0.3"
   },
   "devDependencies": {
-    "@iconify/json": "^1.1.300",
-    "@intlify/vite-plugin-vue-i18n": "^1.0.0-beta.16",
+    "@iconify/json": "^1.1.302",
+    "@intlify/vite-plugin-vue-i18n": "^1.0.0-beta.17",
     "@prettier/plugin-pug": "^1.13.3",
     "@rollup/plugin-alias": "^3.1.2",
     "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.5",
     "pug": "^3.0.0",
     "stylus": "^0.54.8",
-    "vite": "^2.0.0-beta.67",
-    "vite-plugin-components": "^0.6.6",
+    "vite": "^2.0.0-beta.69",
+    "vite-plugin-components": "^0.6.7",
     "vite-plugin-purge-icons": "^0.6.0",
     "vite-plugin-pwa": "^0.4.6",
     "vite-plugin-voie": "^0.7.3"
