@@ -4,7 +4,7 @@ import Voie from 'vite-plugin-voie'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import vue from '@vitejs/plugin-vue'
-import { VitePWA } from 'vite-plugin-pwa'
+// import { VitePWA } from 'vite-plugin-pwa'
 import alias from '@rollup/plugin-alias'
 
 const moduleExclude = (match) => {
@@ -45,24 +45,24 @@ export default {
   },
   plugins: [
     moduleExclude('text-encoding'),
-    VitePWA({
-      manifest: {
-        name: 'Project app',
-        theme_color: '#777',
-        icons: [
-          {
-            src: '/icons/feeds192.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-          {
-            src: '/icons/feeds512.png',
-            type: 'image/png',
-            sizes: '512x512',
-          },
-        ],
-      },
-    }),
+    // VitePWA({
+    //   manifest: {
+    //     name: 'Project app',
+    //     theme_color: '#777',
+    //     icons: [
+    //       {
+    //         src: '/icons/feeds192.png',
+    //         type: 'image/png',
+    //         sizes: '192x192',
+    //       },
+    //       {
+    //         src: '/icons/feeds512.png',
+    //         type: 'image/png',
+    //         sizes: '512x512',
+    //       },
+    //     ],
+    //   },
+    // }),
     alias({
       entries: [
         { find: /^store\@(.*)/, replacement: '/src/store/$1.js' },
@@ -72,7 +72,7 @@ export default {
     vue(),
     Voie({
       extensions: ['vue', 'md'],
-      importMode: 'async',
+      importMode: 'sync',
     }),
     ViteComponents({
       // relative paths to the directory to search for components.

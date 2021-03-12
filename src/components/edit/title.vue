@@ -27,19 +27,19 @@ const edit = ref(false);
 
 <style lang="stylus" scoped>
 .title
-  width 100%
-  display flex
-  align-items center
+  width: 100%
+  display: flex
+  align-items: center
 
 input
-  width 80%
-  flex 1
+  width: 80%
+  flex: 1
 
 .title h3
-  margin 0.5em 0
-  font-size 1.2em
+  margin: 0.5em 0
+  font-size: 1.2em
 
 .edit
-  font-size 16px
-  padding 6px
+  font-size: 16px
+  padding: 6px
 </style>
