@@ -8,7 +8,7 @@ li.card(
       .title
         .name {{ item.title }}
           span.unlink(v-if="unlinkable", @click.stop.prevent="$emit('del')")
-            i.iconify(data-icon="la:unlink")
+            .i-la-unlink
       .description(v-if="item.subtitle") {{ item.subtitle }}
     .info
       type-icon.type-icon(:type="item.type", v-if="typed") 
@@ -24,7 +24,7 @@ li.card(
 
 <script setup >
 import { itemColor } from "use@colors";
-import {  defineProps } from "vue";
+import { defineProps } from "vue";
 import { isMine } from "store@user";
 
 defineEmits(["del"]);

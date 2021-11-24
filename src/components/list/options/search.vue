@@ -3,14 +3,14 @@
   .title Search
   form
     label(for="search")
-      span.iconify(data-icon="la:search")
+      .i-la-search
     input(type="text", v-model="search.text")
     i.close(@click.prevent.stop="search.text = ''")
-      span.iconify(data-icon="la:times-circle")
+      .i-la-times-circle
 </template>
 
 <script setup >
-import {  reactive, watch, watchEffect } from "vue";
+import { reactive, watch, watchEffect } from "vue";
 
 const emit = defineEmits(["search"]);
 

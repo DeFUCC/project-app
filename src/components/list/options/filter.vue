@@ -1,17 +1,4 @@
-<template lang="pug">
-.filter
-  .title Filter by
-  .controls
-    button(:class="{ active: my.star }", @click="my.star = !my.star")
-      span.iconify(data-icon="la:star")
-    button(:class="{ active: my.seen }", @click="my.seen = !my.seen")
-      span.iconify(data-icon="la:eye")
-    button(:class="{ active: my.trash }", @click="my.trash = !my.trash")
-      span.iconify(data-icon="la:trash") 
-</template>
-
 <script setup >
-import { defineComponent,  defineProps } from "vue";
 import { user } from "store@user";
 
 defineEmits(["star", "seen", "trash"]);
@@ -28,6 +15,20 @@ defineProps({
   },
 });
 </script>
+
+<template lang="pug">
+.filter
+  .title Filter by
+  .controls.text-2xl
+    button(:class="{ active: my.star }", @click="my.star = !my.star")
+      .i-la-star
+    button(:class="{ active: my.seen }", @click="my.seen = !my.seen")
+      .i-la-eye
+    button(:class="{ active: my.trash }", @click="my.trash = !my.trash")
+      .i-la-trash
+</template>
+
+
 
 <style lang="stylus" scoped>
 .filter
@@ -47,6 +48,4 @@ defineProps({
 .filter button:last-child
   border-radius: 0 4em 4em 0
 
-.iconify
-  font-size: 1.4em
 </style>

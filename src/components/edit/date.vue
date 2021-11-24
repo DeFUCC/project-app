@@ -3,13 +3,13 @@
   .type
     | {{ $t('date.' + type) }}
     button(@click="add()", v-if="!timestamp && editable")
-      i.iconify(data-icon="la:plus")
+      .i-la-plus
     button(@click="remove()", v-if="timestamp && editable")
-      i.iconify(data-icon="la:trash")
+      .i-la-trash
   .date(v-if="timestamp") {{ parsed.toLocaleDateString() }}
     .edit(v-if="editable")
       button(@click="edit = !edit")
-        i.iconify(data-icon="la:pen")
+        .i-la-pen
     form(v-show="edit", @submit.prevent="")
       input(
         type="date",

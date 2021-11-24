@@ -5,7 +5,7 @@ section
     h3 {{ $tc('type.gift', 10) }}
     .spacer
     button.support(@click="add = !add")
-      i.iconify(data-icon="la:plus")
+      .i-la-plus
   transition(name="fade")
     gift-form(v-if="add", :soul="soul", @send="addGift")
   .list

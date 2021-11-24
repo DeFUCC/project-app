@@ -2,7 +2,7 @@
 .icon(v-if="icon || editable", :class="{ editable }")
   img(v-if="icon", :src="icon")
   .camera(@click="edit = true", v-if="!icon || editable")
-    span.iconify(data-icon="la:camera")
+    .i-la-camera
   edit-file(
     v-if="edit",
     @loaded="$emit('update', $event); edit = false",

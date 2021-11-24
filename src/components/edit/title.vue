@@ -2,7 +2,7 @@
 .title
   h3(v-if="!edit") {{ text }}
     span.edit(v-if="editable", @click="edit = true")
-      i.iconify(data-icon="la:pen")
+      .i-la-pen
   input(
     v-else,
     ref="title",
@@ -15,7 +15,7 @@
 </template>
 
 <script setup >
-import {  ref, defineProps } from "vue";
+import { ref, defineProps } from "vue";
 
 defineEmits(["update"]);
 const props = defineProps({

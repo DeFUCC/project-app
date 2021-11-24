@@ -7,7 +7,7 @@ form.add(@submit.prevent="")
     v-model.trim="item.title"
   )
   button(v-if="item.title", @click="addItem()")
-    span.iconify(data-icon="la:plus")
+    span ADD
 </template>
 
 <script setup >

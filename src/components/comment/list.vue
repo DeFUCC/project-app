@@ -1,31 +1,4 @@
-<template lang="pug">
-section.comments(:class="{ open }")
-  header.row(@click="open = !open")
-    i.iconify(data-icon="fe:comment-o") 
-    .title {{ $tc('comment', count) }}
-    .spacer
-    .counter {{ count }}
-    span.chevron
-      i.iconify(data-icon="la:angle-down")
-  transition(name="fade")
-    main(v-if="open")
-      .list
-        transition-group(name="list")
-          comment-line(
-            v-for="comment in sorted",
-            :key="comment.timestamp",
-            :comment="comment",
-            @edit="editComment"
-          )
-      form(v-if="user.is && open", @submit.prevent="addComment()")
-        user-pill(:id="user.is.pub")
-        input.input(name="text", rows="1", v-model="text")
-        button.send(type="submit")
-          i.iconify(data-icon="ri:send-plane-line", data-inline="false")
-</template>
-
 <script setup >
-import { computed, defineProps, reactive, ref } from "vue";
 import { appPath, db, gun, soul } from "store@gun-db";
 import { error } from "store@history";
 import { user } from "store@user";
@@ -98,6 +71,35 @@ function addComment() {
   text.value = "";
 }
 </script>
+
+
+<template lang="pug">
+section.comments(:class="{ open }")
+  header.row(@click="open = !open")
+    .i-fe-comment-o
+    .title {{ $tc('comment', count) }}
+    .spacer
+    .counter {{ count }}
+    span.chevron
+      .i-la-angle-down
+  transition(name="fade")
+    main(v-if="open")
+      .list
+        transition-group(name="list")
+          comment-line(
+            v-for="comment in sorted",
+            :key="comment.timestamp",
+            :comment="comment",
+            @edit="editComment"
+          )
+      form(v-if="user.is && open", @submit.prevent="addComment()")
+        user-pill(:id="user.is.pub")
+        input.input(name="text", rows="1", v-model="text")
+        button.send(type="submit")
+          .i-ri-send-plane-line
+</template>
+
+
 
 <style lang="stylus" scoped>
 .comments

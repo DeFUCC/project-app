@@ -43,9 +43,9 @@
             v-if="isMovable(type, item.id)",
             @click="moveItem(parent, type, item.id)"
           ) 
-            i.iconify(data-icon="la:arrow-right")
+            .i-la-arrow-right
           button(@click="linkItem(parent, type, item.id)")
-            i.iconify(data-icon="la:link")
+            .i-la-link
       .more(
         ref="more",
         v-if="links.more",
@@ -55,7 +55,6 @@
 
 <script setup >
 import { useIntersectionObserver } from "@vueuse/core";
-import {  ref, watchEffect, defineProps, reactive } from "vue";
 import { isMine, user } from "store@user";
 import { gun, soul, db, appPath } from "store@gun-db";
 import { useSorter } from "use@sorter";
@@ -63,15 +62,9 @@ import { useSorter } from "use@sorter";
 const emit = defineEmits(["open"]);
 const props = defineProps({
   wide: Boolean,
-  type: {
-    type: String,
-    required: true,
-  },
+  type: { type: String, required: true, },
   parent: String,
-  collective: {
-    type: String,
-    default: appPath,
-  },
+  collective: { type: String, default: appPath, },
   editable: Boolean,
   initCollapsed: Boolean,
 });

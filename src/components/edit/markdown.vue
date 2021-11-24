@@ -3,11 +3,11 @@
   .title 
     slot {{ $t('description') }}
     button.edit(@click="open = !open", v-if="editable && !open")
-      i.iconify(data-icon="la:pen-alt")
+      .i-la-pen-alt
     button.save(v-if="open", @click="update()")
-      i.iconify(data-icon="la:check")
+      .i-la-check
     button(v-if="open", @click="open = false")
-      i.iconify(data-icon="la:times")
+      .i-la-times
   .markdown(v-if="!open", v-html="md.render(text || '')")
   form(v-if="open", @submit.prevent="")
     textarea(
@@ -20,7 +20,7 @@
 </template>
 
 <script setup >
-import {  ref, defineProps, reactive, watchEffect } from "vue";
+import { ref, defineProps, reactive, watchEffect } from "vue";
 import markdownIt from "markdown-it";
 import mila from "markdown-it-link-attributes";
 

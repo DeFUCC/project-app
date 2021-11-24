@@ -4,14 +4,14 @@ section.team
   .role
     user-pill(:author="id.slice(1, 88)")
       span.edit(v-if="editable", @click="edit = !edit")
-        i.iconify(data-icon="la:plus")
+        .i-la-plus
       user-pill(
         :author="member",
         v-for="(is, member) in team",
         :key="member",
         @click.prevent="removeMember(member)"
       )
-        i.iconify(data-icon="la:times")
+        .i-la-times
   .list(v-if="editable && edit")
     user-pill(
       :author="user.pub",

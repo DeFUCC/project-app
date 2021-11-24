@@ -2,21 +2,21 @@
 .rating(:class="{ horizontal }")
   .star(@click.stop="rate('star')", :class="{ active: myRate.star }")
     i(v-show="!myRate.star")
-      span.iconify(data-icon="la:star")
+      .i-la-star
     i(v-show="!!myRate.star")
-      span.iconify(data-icon="la:star-solid")
+      .i-la-star-solid
     span(v-show="count.star") {{ count.star }}
   .seen(@click.stop="rate('seen')", :class="{ active: myRate.seen }")
     i(v-show="!myRate.seen")
-      span.iconify(data-icon="la:eye")
+      .i-la-eye
     i(v-show="!!myRate.seen")
-      span.iconify(data-icon="la:eye-slash")
+      .i-la-eye-slash
     span(v-show="count.seen") {{ count.seen }}
   .trash(@click.stop="rate('trash')", :class="{ active: myRate.trash }")
     i(v-show="!myRate.trash")
-      span.iconify(data-icon="la:trash-alt")
+      .i-la-trash-alt
     i(v-show="!!myRate.trash")
-      span.iconify(data-icon="la:trash-restore-alt")
+      .i-la-trash-restore-alt
     span(v-show="count.trash") {{ count.trash }}
 </template>
 

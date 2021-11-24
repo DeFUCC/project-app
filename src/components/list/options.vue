@@ -9,38 +9,38 @@ aside
       @click="state.add = !state.add",
       v-if="user.is && editable"
     )
-      i.iconify(data-icon="la:plus")
+      .i-la-plus
     button.link(
       v-if="user.is && editable && false",
       :class="{ active: options.link }",
       @click="options.link = !options.link"
     )
-      i.iconify(data-icon="la:link")
+      .i-la-link
     .spacer
     .buttons(v-if="sorted.total > 0")
       button(
         :class="{ active: state.status }",
         @click="state.status = !state.status"
       )
-        i.iconify(data-icon="la:tags")
+        .i-la-tag
       button(
         :class="{ active: state.order }",
         @click="state.order = !state.order",
         v-if="sorted.total > minSearch"
       )
-        i.iconify(data-icon="la:sort-alpha-down")
+        .i-la-sort-alpha-down
       button(
         :class="{ active: state.filter }",
         @click="state.filter = !state.filter",
         v-if="user.is"
       )
-        i.iconify(data-icon="la:filter")
+        .i-la-filter
       button(
         :class="{ active: state.search }",
         @click="state.search = !state.search",
         v-if="sorted.total > minSearch"
       )
-        i.iconify(data-icon="la:search")
+        .i-la-search
 
   .filters
     transition-group(name="fade")
@@ -74,7 +74,7 @@ aside
 
 <script setup >
 import { useStorage } from "@vueuse/core";
-import {  reactive, defineProps, ref } from "vue";
+import { reactive, defineProps, ref } from "vue";
 import { user } from "store@user";
 
 const props = defineProps({

@@ -7,8 +7,11 @@ import Pages from "vite-plugin-pages";
 import WindiCSS from "vite-plugin-windicss";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
+
+import Unocss from "unocss/vite";
+import presetIcons from "@unocss/preset-icons";
+import extractorPug from "@unocss/extractor-pug";
+import { extractorSplit } from "@unocss/core";
 
 const moduleExclude = (match) => {
   const m = (id) => id.indexOf(match) > -1;
@@ -44,6 +47,8 @@ export default {
       "gun/lib/radisk",
       "gun/lib/store",
       "gun/lib/rindexed",
+      "vue",
+      "@vueuse/core",
     ],
   },
   plugins: [
@@ -78,6 +83,15 @@ export default {
       dirs: "src/pages",
       importMode: "sync",
     }),
+    Unocss({
+      extractors: [extractorPug(), extractorSplit],
+      presets: [
+        presetIcons({
+          /* options */
+        }),
+        // ...other presets
+      ],
+    }),
     WindiCSS({
       scan: {
         dirs: ["src/", "./"],
@@ -99,9 +113,6 @@ export default {
         },
       ],
     }),
-    Icons({
-      defaultStyle: "vertical-align: middle;",
-    }),
     Components({
       dirs: ["src/components"],
       extensions: ["vue", "ts", "js"],
@@ -109,11 +120,6 @@ export default {
       globalNamespaces: ["global"],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       exclude: [/node_modules/, /\.git/],
-      resolvers: [
-        IconsResolver({
-          prefix: false,
-        }),
-      ],
     }),
     vueI18n({
       compositionOnly: false,

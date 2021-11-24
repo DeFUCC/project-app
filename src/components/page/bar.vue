@@ -1,15 +1,4 @@
-<template lang="pug">
-aside.row(:style="{ backgroundColor: itemColor(id) }")
-  item-route(:id="parent || id", @open="$emit('open', $event)")
-  router-link.link(:to="{ path: '/page', query: { id: id } }")
-    i.iconify(data-icon="la:link")
-  .spacer
-  span.close(@click="$emit('close')")
-    span.iconify(data-icon="la:times")
-</template>
-
 <script setup >
-import {  defineProps } from "vue";
 import { itemColor } from "use@colors";
 
 defineProps({
@@ -19,6 +8,16 @@ defineProps({
 
 defineEmits(["close", "open"]);
 </script>
+
+<template lang="pug">
+aside.row(:style="{ backgroundColor: itemColor(id) }")
+  item-route(:id="parent || id", @open="$emit('open', $event)")
+  router-link.link(:to="{ path: '/page', query: { id: id } }")
+    .i-la-link
+  .spacer
+  span.close(@click="$emit('close')")
+    .i-la-times
+</template>
 
 <style lang="stylus" scoped>
 .row

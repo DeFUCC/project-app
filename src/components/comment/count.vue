@@ -1,11 +1,10 @@
 <template lang="pug">
-.counter(v-if="count")
-  i.iconify(data-icon="fe:comment-o") 
+.text-lg.flex.items-center(v-if="count")
+  .i-fe-comment-o
   span {{ count }}
 </template>
 
 <script setup >
-import { reactive, computed, defineProps } from "vue";
 import { gun, db, appPath } from "store@gun-db";
 
 const props = defineProps({
@@ -37,10 +36,3 @@ const count = computed(() => {
   return Object.keys(comments).length;
 });
 </script>
-
-<style lang="stylus" scoped>
-.counter
-  padding: 0 0.7em
-  display: flex
-  align-items: center
-</style>

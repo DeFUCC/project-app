@@ -1,13 +1,13 @@
 <template lang="pug">
 nav 
   router-link.card(to="/c/")
-    span.iconify(data-icon="la:boxes")
+    .i-la-boxes
     .title Collectives
   router-link.card(to="/lab/timeline/")
-    span.iconify(data-icon="la:calendar")
+    .i-la-calendar
     .title Timeline
   router-link.card(to="/graph/")
-    span.iconify(data-icon="mdi:graph-outline")
+    .i-mdi-graph-outline
     .title Graph
 </template>
 
@@ -29,6 +29,4 @@ nav
   margin 0.5em
   background-color var(--card-bg)
 
-.iconify
-  padding 1em
 </style>

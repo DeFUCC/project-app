@@ -3,7 +3,7 @@
   .status(:class="{ [status]: true }", @click.stop="open = !open")
     | {{ $t('status.' + status) }}
     span(v-show="editable")
-      i.iconify(data-icon="la:pen")
+      .i-la-pen
   transition(name="fade")
     .choose(v-if="editable", v-show="open")
       span.status(

@@ -1,27 +1,4 @@
-<template lang="pug">
-.subtitle(v-if="text || editable")
-  .title 
-    slot {{ $t('subtitle') }}
-    button.edit(@click="open = !open", v-if="editable && !open")
-      i.iconify(data-icon="la:pen-alt")
-    button.save(v-if="open", @click="update()")
-      i.iconify(data-icon="la:check")
-    button(v-if="open", @click="open = false")
-      i.iconify(data-icon="la:times")
-  .text(v-if="text && !open") {{ text }}
-  form(v-if="open", @submit.prevent="")
-    textarea(
-      v-model="text",
-      name="subtitle",
-      @keyup.meta.enter="update()",
-      @keyup.ctrl.enter="update()",
-      :rows="10"
-    )
-</template>
-
 <script setup >
-import {  ref, defineProps, reactive, watchEffect } from "vue";
-
 const emit = defineEmits(["update"]);
 
 const props = defineProps({
@@ -42,6 +19,29 @@ function update() {
   open.value = false;
 }
 </script>
+
+<template lang="pug">
+.subtitle(v-if="text || editable")
+  .title 
+    slot {{ $t('subtitle') }}
+    button.edit(@click="open = !open", v-if="editable && !open")
+      .i-la-pen-alt
+    button.save(v-if="open", @click="update()")
+      .i-la-check
+    button(v-if="open", @click="open = false")
+      .i-la-times
+  .text(v-if="text && !open") {{ text }}
+  form(v-if="open", @submit.prevent="")
+    textarea(
+      v-model="text",
+      name="subtitle",
+      @keyup.meta.enter="update()",
+      @keyup.ctrl.enter="update()",
+      :rows="10"
+    )
+</template>
+
+
 
 <style lang="stylus" scoped>
 .title

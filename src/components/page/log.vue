@@ -5,7 +5,7 @@
     .spacer
     .count {{ state.total }}
     span(v-if="editable", @click="state.open = !state.open")
-      i.iconify(data-icon="la:angle-down-solid")
+      .i-la-angle-down
   transition-group(name="list")
     .log(
       v-for="(log, key) in chronoLogs",

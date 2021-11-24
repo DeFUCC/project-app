@@ -1,16 +1,16 @@
 <template lang="pug">
-nav#bar.flex.flex-col.items-center(:style="{ background: pubGradient(user.is?.pub, 0) }")
+nav#bar.flex.flex-col.items-center.text-2xl(:style="{ background: pubGradient(user.is?.pub, 0) }")
   transition(name="fade")
     user-auth(v-if="auth", @close="auth = false")
   router-link.flex-1(to="/")
     img.min-w-30px(src="/icons/feeds.svg", alt="")
   router-link(to="/u/")
-    span U
+    .i-la-users
   router-link(to="/lab/")
-    span LAB
+    .i-la-flask
 
   .login(v-if="!user.is", @click="auth = !auth")
-    span Log in
+    .i-la-sign-in-alt
   .username(v-else="")
     user-pill(:id="user.is.pub")
   .spacer

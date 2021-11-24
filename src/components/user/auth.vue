@@ -1,32 +1,4 @@
-<template lang="pug">
-#auth
-  .info 
-    .text Hello!
-    span.close(@click="$emit('close')")
-      i.iconify(data-icon="la:times")
-  form(@submit.prevent="")
-    input.mv2(type="text", placeholder="Login", v-model="alias")
-    input.mv2(
-      type="password",
-      placeholder="Password",
-      name="password",
-      v-model="pass"
-    )
-    transition(name="fade")
-      button(
-        key="auth",
-        v-if="alias && userExists",
-        @click="authUser(alias, pass)"
-      ) Log in
-      button(
-        key="create",
-        v-else="alias && !userExists",
-        @click="createUser(alias, pass)"
-      ) Create a new user
-</template>
-
 <script setup >
-import {  ref, defineProps, watch, watchEffect } from "vue";
 import { user, findUser, authUser, createUser } from "store@user";
 
 const emit = defineEmits(["close"]);
@@ -48,6 +20,33 @@ watchEffect(() => {
   }
 });
 </script>
+
+<template lang="pug">
+#auth
+  .info 
+    .text Hello!
+    span.close(@click="$emit('close')")
+      .i-la-times
+  form(@submit.prevent="")
+    input.mv2(type="text", placeholder="Login", v-model="alias")
+    input.mv2(
+      type="password",
+      placeholder="Password",
+      name="password",
+      v-model="pass"
+    )
+    transition(name="fade")
+      button(
+        key="auth",
+        v-if="alias && userExists",
+        @click="authUser(alias, pass)"
+      ) Log in
+      button(
+        key="create",
+        v-else="alias && !userExists",
+        @click="createUser(alias, pass)"
+      ) Create a new user
+</template>
 
 <style lang="stylus" scoped>
 .close

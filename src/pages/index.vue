@@ -6,7 +6,7 @@ main#main
       .title
         h1 {{ $t('app.title') }}
           router-link.pad(to="/about/")
-            span.iconify(data-icon="la:info-circle")
+            span ABOUT
         .spacer
         app-locale
       .info

@@ -1,22 +1,5 @@
-<template lang="pug">
-.user-page
-  .profile(:style="{ background: pubGradient(pub) }")
-    .row
-      .title {{ profile?.title }}
-        span.verified(v-if="verified")
-          i.iconify(data-icon="la:check")
-      .spacer
-      item-date(:item="profile")
-    user-avatar.pic(:pic="profile?.avatar", size="large")
-
-  router-view(v-slot="{ Component }")
-    transition(name="fade")
-      component(:is="Component") 
-</template>
-
 <script setup >
 import { asyncComputed } from "@vueuse/core";
-import { defineProps, onMounted, reactive, ref } from "vue";
 import { appPath, db, getShortHash, gun, sea, soul } from "store@gun-db";
 import { pubGradient } from "use@colors";
 
@@ -43,6 +26,23 @@ db.get("user")
     profile.value[key] = data;
   });
 </script>
+
+<template lang="pug">
+.user-page
+  .profile(:style="{ background: pubGradient(pub) }")
+    .row
+      .title {{ profile?.title }}
+        span.verified(v-if="verified")
+          .i-la-check
+      .spacer
+      item-date(:item="profile")
+    user-avatar.pic(:pic="profile?.avatar", size="large")
+
+  router-view(v-slot="{ Component }")
+    transition(name="fade")
+      component(:is="Component") 
+</template>
+
 
 <style lang="stylus" scoped>
 .user-page

@@ -1,24 +1,3 @@
-<template lang="pug">
-.comment(:key="comment.text")
-  user-pill(:id="comment.author")
-  .text(v-if="!edit") {{ comment.text }}
-  .time(v-if="!edit") {{ format(comment.timestamp).date }}
-  form
-    input(v-if="edit", v-model="text")
-    button.edit(
-      v-if="comment.author == user.is?.pub && !edit",
-      @click="edit = true"
-    )
-      span.iconify(data-icon="la:pen")
-    button.save(
-      v-if="edit",
-      @click="$emit('edit', { timestamp: comment.timestamp, text: text }); edit = false"
-    )
-      span.iconify(data-icon="la:check")
-    button.close(v-if="edit", @click="edit = false")
-      span.iconify(data-icon="la:times")
-</template>
-
 <script setup >
 import { user } from "store@user";
 import { format } from "use@locale";
@@ -35,27 +14,39 @@ const edit = ref(false);
 const text = props.comment.text;
 </script>
 
+<template lang="pug">
+.comment.p-2.my-2.flex.relative.items-center.flex-row.flex-wrap.rounded-xl(:key="comment.text")
+  user-pill(:id="comment.author")
+  .p-1(v-if="!edit") {{ comment.text }}
+  .time(v-if="!edit") {{ format(comment.timestamp).date }}
+  form
+    input(v-if="edit", v-model="text")
+    button.edit(
+      v-if="comment.author == user.is?.pub && !edit",
+      @click="edit = true"
+    )
+      .i-la-pen
+    button.m-2(
+      v-if="edit",
+      @click="$emit('edit', { timestamp: comment.timestamp, text: text }); edit = false"
+    )
+      .i-la-check
+    button.m-2(v-if="edit", @click="edit = false")
+      .i-la-times
+</template>
+
+
+
 <style lang="stylus" scoped>
 .comment
-  padding: 0.5em
   background-color: var(--bar-color)
-  border-radius: 1em
-  margin: 0.5em
-  position: relative
-  line-height: 1.5em
-  display: flex
-  flex-flow: row wrap
-  align-items: center
-
-.text
-  padding: 0 0.5em
 
 .time
   font-size: 0.8em
   color: #999
   position: absolute
   right: 0.8em
-  top: 1.2em
+  top: 30%
 
 form
   display: flex
