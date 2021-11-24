@@ -17,7 +17,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview --port=5005"
+    "serve": "vite preview --port=5005",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@mattkrick/sanitize-svg": "^0.3.1",

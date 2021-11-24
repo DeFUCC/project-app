@@ -4,7 +4,7 @@ The tool for people to collaborate on shared ideas. Everyone can create and publ
 
 This app is intended to be fast, reliable and free. So it's developed only by those who are passionate about the new level of social collaboration. Like social media creates chaos in our heads with their smart feeds with huge amount of ads, the Project App can put structure to our ideas and deeds with a particular project realization model. Structured project info can help people connect, mutually coordinate and collaborate in a new more intense but fun way.
 
-[repo](https://github.com/DeFUCC/project-app)
+Updated version is published at [projects.defucc.me](https://projects.defucc.me/)
 
 ## STACK
 
