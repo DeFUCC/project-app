@@ -1,0 +1,15 @@
+{
+    "name": "Project app",
+    "icons": [
+        {
+            "src": "/icons/feeds192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/icons/feeds512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
