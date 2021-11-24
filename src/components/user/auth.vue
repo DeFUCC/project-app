@@ -26,10 +26,10 @@
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps, watch, watchEffect } from "vue";
+import {  ref, defineProps, watch, watchEffect } from "vue";
 import { user, findUser, authUser, createUser } from "store@user";
 
-const emit = defineEmit(["close"]);
+const emit = defineEmits(["close"]);
 const props = defineProps({
   open: Boolean,
 });

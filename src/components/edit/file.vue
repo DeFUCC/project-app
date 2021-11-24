@@ -33,10 +33,10 @@
 
 <script setup >
 import { useFileUpload } from "use@fileUpload";
-import { defineEmit, ref, watch } from "vue";
+
 import { onClickOutside } from "@vueuse/core";
 
-const emit = defineEmit(["loaded", "close"]);
+const emit = defineEmits(["loaded", "close"]);
 
 const { state, handleChanges } = useFileUpload();
 watch(state, () => {

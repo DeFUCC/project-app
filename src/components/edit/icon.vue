@@ -11,9 +11,8 @@
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps } from "vue";
 
-defineEmit(["update"]);
+defineEmits(["update"]);
 
 const props = defineProps({
   id: String,

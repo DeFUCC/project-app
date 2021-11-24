@@ -55,12 +55,12 @@
 
 <script setup >
 import { useIntersectionObserver } from "@vueuse/core";
-import { defineEmit, ref, watchEffect, defineProps, reactive } from "vue";
+import {  ref, watchEffect, defineProps, reactive } from "vue";
 import { isMine, user } from "store@user";
 import { gun, soul, db, appPath } from "store@gun-db";
 import { useSorter } from "use@sorter";
 
-const emit = defineEmit(["open"]);
+const emit = defineEmits(["open"]);
 const props = defineProps({
   wide: Boolean,
   type: {

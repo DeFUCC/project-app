@@ -20,11 +20,10 @@
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps } from "vue";
 import { user } from "store@user";
 import { format } from "use@locale";
 
-defineEmit({
+defineEmits({
   edit: (comment) => comment.timestamp && comment.text,
 });
 

@@ -11,11 +11,10 @@ form.add(@submit.prevent="")
 </template>
 
 <script setup >
-import { defineEmit, reactive, defineProps, ref, watchEffect } from "vue";
 import { createItem } from "store@item";
 import { onStartTyping } from "@vueuse/core";
 
-const emit = defineEmit(["search"]);
+const emit = defineEmits(["search"]);
 const props = defineProps({
   type: String,
   parent: String,

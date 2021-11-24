@@ -74,7 +74,7 @@ aside
 
 <script setup >
 import { useStorage } from "@vueuse/core";
-import { defineEmit, reactive, defineProps, ref } from "vue";
+import {  reactive, defineProps, ref } from "vue";
 import { user } from "store@user";
 
 const props = defineProps({
@@ -94,7 +94,7 @@ const state = useStorage("list-options", {
   search: false,
 });
 
-const emit = defineEmit(["toggle"]);
+const emit = defineEmits(["toggle"]);
 
 const minSearch = 4;
 

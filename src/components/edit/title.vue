@@ -15,9 +15,9 @@
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps } from "vue";
+import {  ref, defineProps } from "vue";
 
-defineEmit(["update"]);
+defineEmits(["update"]);
 const props = defineProps({
   editable: Boolean,
   text: String,

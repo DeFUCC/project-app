@@ -24,10 +24,10 @@ li.card(
 
 <script setup >
 import { itemColor } from "use@colors";
-import { defineEmit, defineProps } from "vue";
+import {  defineProps } from "vue";
 import { isMine } from "store@user";
 
-defineEmit(["del"]);
+defineEmits(["del"]);
 
 const props = defineProps({
   showRoute: {

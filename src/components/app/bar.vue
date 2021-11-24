@@ -1,16 +1,16 @@
 <template lang="pug">
-nav#bar(:style="{ background: pubGradient(user.is?.pub, 0) }")
+nav#bar.flex.flex-col.items-center(:style="{ background: pubGradient(user.is?.pub, 0) }")
   transition(name="fade")
     user-auth(v-if="auth", @close="auth = false")
-  router-link.logo(to="/")
-    img(src="/icons/feeds.svg", alt="")
+  router-link.flex-1(to="/")
+    img.min-w-30px(src="/icons/feeds.svg", alt="")
   router-link(to="/u/")
-    span.iconify(data-icon="la:users")
+    span U
   router-link(to="/lab/")
-    span.iconify(data-icon="la:flask", data-inline="false")
+    span LAB
 
   .login(v-if="!user.is", @click="auth = !auth")
-    span.iconify(data-icon="la:sign-in-alt")
+    span Log in
   .username(v-else="")
     user-pill(:id="user.is.pub")
   .spacer
@@ -25,18 +25,10 @@ const auth = ref(false);
 </script>
 
 <style lang="stylus" scoped>
-.logo
-  height: 32px
-  width: 32px
-  flex: 0 0 32px
-
 nav
   grid-area: nav
-  scroll-snap-align: start
   flex: 0 0 60px
-  display: flex
   align-items: center
-  flex-flow: column nowrap
   background-color: var(--top-bar)
   white-space: nowrap
   width: 60px

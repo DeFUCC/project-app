@@ -9,7 +9,7 @@ aside.row(:style="{ backgroundColor: itemColor(id) }")
 </template>
 
 <script setup >
-import { defineEmit, defineProps } from "vue";
+import {  defineProps } from "vue";
 import { itemColor } from "use@colors";
 
 defineProps({
@@ -17,7 +17,7 @@ defineProps({
   parent: String,
 });
 
-defineEmit(["close", "open"]);
+defineEmits(["close", "open"]);
 </script>
 
 <style lang="stylus" scoped>

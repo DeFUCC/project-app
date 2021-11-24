@@ -13,7 +13,7 @@
 </template>
 
 <script setup >
-import { computed, defineComponent, defineEmit, reactive } from "vue";
+import { computed, defineComponent,  reactive } from "vue";
 import { db, soul } from "store@gun-db";
 import { itemColor } from "use@colors";
 import { format } from "use@locale";

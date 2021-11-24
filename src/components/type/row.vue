@@ -10,10 +10,10 @@
 </template>
 
 <script setup >
-import { defineEmit, defineProps } from "vue";
+import {  defineProps } from "vue";
 import { types } from "store@model";
 
-const emit = defineEmit(["choose"]);
+const emit = defineEmits(["choose"]);
 
 const props = defineProps({
   active: String,

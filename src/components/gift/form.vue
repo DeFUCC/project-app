@@ -12,11 +12,11 @@ form(@submit.prevent="addGift()")
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps } from "vue";
+import { ref, defineProps } from "vue";
 import { gun, sea } from "store@gun-db";
 import { user } from "store@user";
 import { itemColor } from "use@colors";
-const emit = defineEmit(["send"]);
+const emit = defineEmits(["send"]);
 
 const props = defineProps({
   soul: String,

@@ -10,9 +10,9 @@
 </template>
 
 <script setup >
-import { defineEmit, reactive, watch, watchEffect } from "vue";
+import {  reactive, watch, watchEffect } from "vue";
 
-const emit = defineEmit(["search"]);
+const emit = defineEmits(["search"]);
 
 const search = reactive({
   text: "",

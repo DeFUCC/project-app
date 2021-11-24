@@ -11,10 +11,10 @@
 </template>
 
 <script setup >
-import { defineComponent, defineEmit, defineProps } from "vue";
+import { defineComponent,  defineProps } from "vue";
 import { user } from "store@user";
 
-defineEmit(["star", "seen", "trash"]);
+defineEmits(["star", "seen", "trash"]);
 
 defineProps({
   my: {

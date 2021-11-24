@@ -22,10 +22,9 @@
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps } from "vue";
 import { error } from "store@history";
 
-const emit = defineEmit({
+const emit = defineEmits({
   update: (link) => (link ? true : false),
 });
 const props = defineProps({

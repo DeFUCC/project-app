@@ -1,13 +1,20 @@
-import { createApp } from 'vue'
-import app from './app.vue'
-import { router } from './router'
-import { i18n } from './locales/i18n'
-import './index.css'
+import { createApp } from "vue";
+import app from "./app.vue";
 
-import '@iconify/iconify'
-import '@purge-icons/generated'
+import { i18n } from "./locales/i18n";
+import "./index.css";
 
-const projectApp = createApp(app)
-projectApp.use(router)
-projectApp.use(i18n)
-projectApp.mount('#app')
+import "virtual:windi.css";
+
+import { createRouter, createWebHashHistory } from "vue-router";
+import routes from "~pages";
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+});
+
+const projectApp = createApp(app);
+projectApp.use(router);
+projectApp.use(i18n);
+projectApp.mount("#app");

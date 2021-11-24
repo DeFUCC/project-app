@@ -62,15 +62,7 @@
 </template>
 
 <script setup >
-import {
-  ref,
-  defineProps,
-  watchEffect,
-  computed,
-  reactive,
-  defineEmit,
-  onMounted,
-} from "vue";
+
 import { isEditable, update } from "store@item";
 import { model, organisations } from "store@model";
 import { user } from "store@user";
@@ -91,7 +83,7 @@ onMounted(() => {
   page.value.scrollIntoView();
 });
 
-const emit = defineEmit(["open"]);
+const emit = defineEmits(["open"]);
 const item = reactive({
   soul: props.id,
   title: null,

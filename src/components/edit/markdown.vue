@@ -20,7 +20,7 @@
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps, reactive, watchEffect } from "vue";
+import {  ref, defineProps, reactive, watchEffect } from "vue";
 import markdownIt from "markdown-it";
 import mila from "markdown-it-link-attributes";
 
@@ -36,7 +36,7 @@ md.use(mila, {
   },
 });
 
-const emit = defineEmit(["update"]);
+const emit = defineEmits(["update"]);
 
 const props = defineProps({
   text: String,

@@ -16,7 +16,7 @@
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps } from "vue";
+import {  ref, defineProps } from "vue";
 
 defineProps({
   by: {
@@ -25,7 +25,7 @@ defineProps({
   },
 });
 
-defineEmit(["order"]);
+defineEmits(["order"]);
 
 const open = ref(false);
 </script>
